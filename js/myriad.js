@@ -92,10 +92,8 @@ function Slide(article) {
 /**
  * Shows and hides dynamic elements to reflect the state of the slide at step n
  * @param n {number} step number to display
- * @param remove {boolean} whether nodes that are not displayed should be removed from the DOM entirely (used for
- * flattening the page into pure HTML)
  */
-Slide.prototype.display_step = function(n, remove=false) {
+Slide.prototype.display_step = function(n) {
     this.current_step = n;
     let dynamic_elements = this.article.querySelectorAll('.uncover, .only');
 
@@ -125,7 +123,7 @@ Slide.prototype.display_step = function(n, remove=false) {
  * @returns {boolean}
  */
 function counts_as_page(article) {
-    return !(article.classList.contains('title') || article.classList.contains('section'));
+    return !(article.classList.contains('title') || article.classList.contains('section') || article.classList.contains('not-page'));
 }
 
 

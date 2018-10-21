@@ -18,11 +18,19 @@
   font-style: italic
 @font-face
   font-family: TitleFont
+  src: url('../fonts/FiraSans-Bold.otf')
+@font-face
+  font-family: TitleFont
+  src: url('../fonts/FiraSans-BoldItalic.otf')
+  font-style: italic
+@font-face
+  font-family: TitleFont
   src: url('../fonts/FiraSans-Heavy.otf')
-  font-style: normal
+  font-weight: bold
 @font-face
   font-family: TitleFont
   src: url('../fonts/FiraSans-HeavyItalic.otf')
+  font-weight: bold
   font-style: italic
 @font-face
   font-family: Menlo
@@ -60,8 +68,8 @@ article
   width: 133.33vh
   height: 100vh
   position: relative
+  background: white no-repeat
   background-size: contain
-  background-repeat: no-repeat
   display: flex
   flex-direction: column
   justify-content: center
@@ -92,7 +100,7 @@ article
       bottom: 15%
       left: 1%
 
-    .date
+    time
       color: black
       text-align: right
       position: absolute
@@ -178,9 +186,17 @@ h1
   font-family: "TitleFont", "sans-serif"
   font-weight: bold
   font-size: 265%
-  -webkit-text-fill-color: white
+  color: white
   -webkit-text-stroke-color: black
   -webkit-text-stroke-width: .075ex
+
+h2
+  width: 100%
+  text-align: center
+  font-weight: normal
+  font-family: "TitleFont", "sans-serif"
+  color: white
+  font-size: 200%
 
 .no-display
   display: none !important
