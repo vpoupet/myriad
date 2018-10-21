@@ -1,0 +1,218 @@
+@font-face
+  font-family: GillSans
+  src: url('../fonts/GillSans-Light.ttf')
+  font-style: normal
+@font-face
+  font-family: GillSans
+  src: url('../fonts/GillSans-LightItalic.ttf')
+  font-style: italic
+@font-face
+  font-family: GillSans
+  src: url('../fonts/GillSans-Regular.ttf')
+  font-weight: bold
+  font-style: normal
+@font-face
+  font-family: GillSans
+  src: url('../fonts/GillSans-Italic.ttf')
+  font-weight: bold
+  font-style: italic
+@font-face
+  font-family: TitleFont
+  src: url('../fonts/FiraSans-Heavy.otf')
+  font-style: normal
+@font-face
+  font-family: TitleFont
+  src: url('../fonts/FiraSans-HeavyItalic.otf')
+  font-style: italic
+@font-face
+  font-family: Menlo
+  src: url('../fonts/Menlo-Regular.ttf')
+  font-style: normal
+@font-face
+  font-family: Menlo
+  src: url('../fonts/Menlo-Italic.ttf')
+  font-style: italic
+@font-face
+  font-family: Menlo
+  src: url('../fonts/Menlo-Bold.ttf')
+  font-weight: bold
+  font-style: normal
+@font-face
+  font-family: Menlo
+  src: url('../fonts/Menlo-BoldItalic.ttf')
+  font-weight: bold
+  font-style: italic
+
+*
+  box-sizing: border-box
+
+body
+  margin: 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  background: #CCC
+  overflow: hidden
+
+article
+  font-family: "GillSans", "sans-serif"
+  font-size: 3.2vh
+  width: 133.33vh
+  height: 100vh
+  position: relative
+  background-size: contain
+  background-repeat: no-repeat
+  display: flex
+  flex-direction: column
+  justify-content: center
+  line-height: 1.5
+  transform-origin: top left
+  @media (max-aspect-ratio: 4/3)
+    font-size: 2.4vw
+    width: 100vw
+    height: 75vw
+
+  &.title
+    background-image: url("BG_Title.png")
+
+    h1
+      position: relative
+
+    .context
+      color: white
+      text-align: right
+      position: absolute
+      top: 15%
+      right: 1%
+
+    .author
+      color: white
+      text-align: left
+      position: absolute
+      bottom: 15%
+      left: 1%
+
+    .date
+      color: black
+      text-align: right
+      position: absolute
+      bottom: 2%
+      right: 2%
+
+  &.section
+    background-image: url("BG_Section.png")
+
+  &.single
+    background-image: url("BG_Single.png")
+    padding: 5% 3% 0 3%
+
+  &.split
+    background-image: url("BG_SplitThin.png")
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding-top: 3%
+
+.leftside
+  width: 47.5%
+  padding-left: .5%
+
+.rightside
+  color: white
+  width: 47.5%
+  padding-right: .5%
+
+ul
+  margin: 0
+  list-style-type: square
+  line-height: 1.5
+  padding-left: 2ex
+
+  ul
+    font-size: 90%
+    list-style-type: circle
+
+  li.skip
+    margin-bottom: 1em
+
+.page_count
+  position: absolute
+  text-align: center
+  padding: 0
+  bottom: .5%
+  width: 10ex
+  border: .1ex black solid
+  border-radius: .75ex
+  font-size: 75%
+  background-color: rgba(255, 255, 255, .9)
+  left: 50%
+  transform: translateX(-50%)
+
+p
+  margin: 0
+
+object
+  margin: 0
+
+img
+  height: auto
+  width: auto
+
+pre
+  line-height: 1.5
+  white-space: pre-wrap
+  font-variant-ligatures: none
+
+
+code
+  font-family: "Menlo", "monospace"
+  font-size: 80%
+
+h1
+  margin: 0
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  text-align: center
+  font-family: "TitleFont", "sans-serif"
+  font-weight: bold
+  font-size: 265%
+  -webkit-text-fill-color: white
+  -webkit-text-stroke-color: black
+  -webkit-text-stroke-width: .075ex
+
+.no-display
+  display: none !important
+
+.hidden
+  visibility: hidden !important
+
+.highlight
+  background: #FF7
+
+.center
+  display: flex
+  flex-direction: column
+  align-items: center
+
+a.prev_link
+  position: absolute
+  //background-color: rgba(255, 0, 0, .2)
+  width: 30%
+  height: 100%
+  z-index: 1
+  top: 0
+  left: 0
+
+a.next_link
+  position: absolute
+  //background-color: rgba(0, 255, 0, .2)
+  width: 70%
+  height: 100%
+  z-index: 1
+  top: 0
+  right: 0
+
+//::-webkit-scrollbar
+//  width: 0

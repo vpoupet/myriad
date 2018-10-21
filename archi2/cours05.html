@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../css/myriad.css">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <title>M2101 - Architecture et programmation bas niveau</title>
+</head>
+<body>
+
+
+<article class="title">
+    <h1>Cours n° 5 :<br>Processus légers<br>(threads)</h1>
+    <div class="context">M2101 - Architecture et programmation bas niveau</div>
+    <div class="author">Victor Poupet</div>
+    <div class="date">12 mars 2018</div>
+</article>
+
+
+<article class="single">
+    <h1>Processus légers</h1>
+    <p>Si l'on veut exécuter plusieurs tâches en parallèle, on peut utiliser des processus différents</p>
+    <ul>
+        <li>la création d'un processus est une opération coûteuse
+        <li>chaque processus occupe un segment de mémoire séparée
+        <li>le code à exécuter est copié dans chaque nouveau processus
+        <li>la communication entre processus est difficile (tubes, fichiers, sockets, etc.)
+    </ul>
+
+    <br>
+    <p>Pour exécuter plusieurs instances de la même tâche en parallèle, on peut utiliser des <em>threads</em>
+        (processus légers) à la place des processus</p>
+    <ul>
+        <li>Un unique processus peut exécuter plusieurs threads
+        <li>L'ordonnancement gère les threads d'un même processus comme des tâches séparées (potentiellement sur des
+        processeurs différents)
+        <li>Les threads sont terminés lorsque le processus termine
+    </ul>
+</article>
+
+
+<article class="split">
+    <h1>Processus légers</h1>
+    <div class="leftside">
+        <div class="center">
+            <img src="cours05/cours05-thread-01.svg" style="width: 80%" class="only" data-step="0" alt="threads">
+            <img src="cours05/cours05-thread-02.svg" style="width: 80%" class="only" alt="threads">
+        </div>
+    </div>
+    <div class="rightside">
+        <ul>
+            <li>Chaque thread a ses propres variables locales, mais elles sont toutes dans la pile du processus
+                (un thread a donc accès à la pile des autres)
+            <li>Les threads d'un processus partagent les segments <code>text</code> et <code>data</code> du processus,
+            ainsi que le tas
+            <li>Chaque thread a ses propres pointeurs de pile et d'exécution, ainsi que l'état des registres du
+            processeur
+        </ul>
+    </div>
+</article>
+
+
+<article class="split">
+    <h1>En C</h1>
+    <div class="leftside">
+        <pre><code class="cpp">
+#include &lt;pthread.h>
+
+int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg)
+
+int pthread_join(pthread_t thread, void **value_ptr)
+
+void pthread_exit(void *value_ptr)
+        </code></pre>
+    </div>
+    <div class="rightside">
+        La bibliothèque <code>pthread</code> permet de créer et gérer des threads dans un processus
+        <ul>
+            <li><code>pthread_create</code> pour démarrer un nouveau thread
+                <ul>
+                    <li><code>start_routine</code> est la fonction à exécuter dans le thread
+                    <li>cette fonction prend un unique argument <code>arg</code> de type <code>void*</code>
+                </ul>
+            <li><code>pthread_join</code> pour attendre la fin d'un thread en cours
+                <ul>
+                    <li><code>value_ptr</code> est un pointeur où écrire le résultat de la fonction du thread qui a terminé
+                </ul>
+            <li><code>pthread_exit</code> permet de terminer un thread (appelée automatiquement si la fonction <code>start_routine</code> termine)
+        </ul>
+    </div>
+</article>
+
+
+<article class="split">
+    <h1>Exemple</h1>
+    <div class="leftside">
+        <pre><code class="cpp only" data-step="0">
+#include &lt;stdio.h>
+
+#define NB_CASES 1000
+
+void tache(int *tab) {
+  int i;
+  for (i = 0; i &lt; NB_CASES; i++) {
+    tab[i]=i*i;
+  }
+}
+        </code><code class="cpp only">
+#include &lt;stdio.h>
+
+#define NB_CASES 1000
+#define NB_THREADS 4
+
+void tache(int debut, int fin, int *tab) {
+  int i;
+  for (i = debut; i &lt; fin; i++) {
+    tab[i]=i*i;
+  }
+}
+        </code><code class="cpp only">
+#include &lt;pthread.h>
+#include &lt;stdio.h>
+
+#define NB_CASES 1000
+#define NB_THREADS 4
+
+struct ThreadArgs {
+  int debut;
+  int fin;
+  int *tab;
+};
+
+void* tache(void* args) {
+  struct ThreadArgs *a = args;
+  int i;
+  for (i = a->debut; i &lt; a->fin; i++) {
+    a->tab[i]=i*i;
+  }
+  return NULL;
+}
+        </code></pre>
+    </div>
+    <div class="rightside">
+        <pre><code class="cpp only" data-step="0">int main(void) {
+  int i, tab[NB_CASES];
+
+  tache(tab);
+
+  for (i = 0; i &lt; NB_CASES; i++) {
+    printf("%d ", tab[i]);
+  }
+  return 0;
+}</code><code class="cpp only">int main(void) {
+  int i, tab[NB_CASES];
+
+  for (i = 0; i &lt; NB_THREADS; i++) {
+    debut = i * NB_CASES / NB_THREADS;
+    fin = (i+1) * NB_CASES / NB_THREADS;
+    tache(debut, fin, tab);
+  }
+
+  for (i = 0; i &lt; NB_CASES; i++) {
+    printf("%d ", tab[i]);
+  }
+  return 0;
+}</code><code class="cpp only">int main(void) {
+  int i, tab[NB_CASES];
+  struct ThreadArgs args[NB_THREADS];
+  pthread_t threads[NB_THREADS];
+
+  for (i = 0; i &lt; NB_THREADS; i++) {
+    args[i].debut = i * NB_CASES / NB_THREADS;
+    args[i].fin = (i+1) * NB_CASES / NB_THREADS;
+    args[i].tab = tab;
+    pthread_create(&threads[i], NULL, tache, &args[i]);
+  }
+  for (i = 0; i &lt; NB_THREADS; i++) {
+    pthread_join(threads[i], NULL);
+  }
+  for (i = 0; i &lt; NB_CASES; i++) {
+    printf("%d ", tab[i]);
+  }
+  return 0;
+}</code></pre>
+    </div>
+</article>
+
+
+<article class="split">
+    <h1>Concurrence</h1>
+    <div class="leftside">
+        <pre><code class="cpp">#include &lt;pthread.h>
+#include &lt;stdio.h>
+#define NB_THREADS 4
+void* incr(void *arg) {
+    int i;
+    int *c = arg;
+    for (i = 0; i &lt; 10000; i++) {
+        <span class="highlight">(*c)++;</span>
+    }
+    return NULL;
+}
+int main(void) {
+    int i, <span class="highlight">c</span>;
+    pthread_t threads[NB_THREADS];
+    for (i = 0; i &lt; NB_THREADS; i++) {
+       pthread_create(&threads[i], NULL, incr, <span class="highlight">&c</span>); }
+    for (i = 0; i &lt; NB_THREADS; i++) {
+       pthread_join(threads[i], NULL);
+}
+    printf("%d\n", c);
+return 0; }</code></pre>
+    </div>
+    <div class="rightside">
+        Les threads partagent le même espace mémoire
+        <ul>
+            <li>La modification d'une variable par un thread affecte les lectures sur cette variable par les autres threads
+            <li>Problèmes d'accès concurrents
+            <li>Il faut utiliser des mécanismes complexes pour s'assurer du bon déroulement du programme
+            <ul>
+                <li>sémaphores
+                <li>mutex
+                <li>barrières
+            </ul>
+        </ul>
+    </div>
+</article>
+
+
+<article class="split">
+    <h1>Thread safety</h1>
+    <div class="leftside">
+        <pre><code class="cpp">
+#include &lt;pthread.h>
+
+int incr() {
+    static int c = 0;
+    static pthread_mutex_t mutex;
+    mutex = PTHREAD_MUTEX_INITIALIZER;
+
+    // bloquer le verrou
+    pthread_mutex_lock(&mutex);
+
+    c++;
+    int r = c; // sauvegarder résultat
+
+    // libérer le verrou
+    pthread_mutex_unlock(&mutex);
+
+    return r;
+}
+        </code></pre>
+    </div>
+    <div class="rightside">
+        <ul>
+            <li>assurer que les sections critiques (manipulations des variables partagées) ne soient accessibles que
+                par un thread
+            <li>attention aux blocages potentiels
+            <li>difficile à tester (certains effets se produisent rarement)
+            <li>les verrouillages ralentissent le parallélisme (goulot d'étranglement)
+        </ul>
+    </div>
+</article>
+
+
+<article class="split">
+    <h1>Réentrance</h1>
+    <div class="leftside">
+        <pre><code class="cpp only" data-step="0">
+// cette fonction est réentrante
+void echange(int *x, int *y) {
+    int t;
+    t = *x;
+    *x = *y;
+    *y = t;
+}
+        </code><code class="cpp only">
+int t;
+
+// cette fonction n'est pas réentrante
+void echange(int *x, int *y) {
+    t = *x;
+    *x = *y;
+    *y = t;
+}
+        </code><code class="cpp only">
+int t;
+
+// cette fonction est réentrante
+void echange(int *x, int *y) {
+    int s = t;
+    t = *x;
+    *x = *y;
+    *y = t;
+    t = s;
+}
+        </code></pre>
+    </div>
+    <div class="rightside">
+        Une fonction est dite <em>réentrante</em> si elle se comporte correctement lorsqu'elle est appelée pendant une
+        exécution d'elle-même
+        <ul>
+            <li>récursivité
+            <li>exécution lors d'une interruption
+            <li>exécution concurrente (threads)
+        </ul>
+    </div>
+</article>
+
+
+<article class="split">
+    <h1>Compilation</h1>
+    <div class="leftside">
+        <pre><code class="only" data-step="0">$ gcc prog.c -lpthread -D_REENTRANT</code><code class="only">$ gcc prog.c -pthread</code></pre>
+    </div>
+    <div class="rightside">
+        <ul class="only" data-step="0">
+            <li>Pour utiliser les fonctions de la bibliothèque <code>pthread</code>, il faut demander au compilateur
+                de lier l'exécutable à la bibliothèque&nbsp;: <code>-lpthread</code>
+            <li>Par ailleurs, il faut indiquer que les fonctions doivent être réentrantes&nbsp;:
+            <code>-D_REENTRANT</code>
+            <ul>
+                <li>certaines fonctions ont des variantes réentrantes (ex : <code>strtok_r</code> au lieu de
+                    <code>strtok</code>)
+                <li>certaines macros sont remplacées par des fonctions (ex : <code>getc</code> et <code>putc</code>)
+                <li>chaque thread dispose d'une instance différente de la variable <code>errno</code>
+            </ul>
+        </ul>
+        <ul class="only" data-start="1">
+            <li>Lorsqu'elle est disponible, l'option <code>-pthread</code> se charge d'activer les options nécessaires,
+                spécifiques au système courant (c'est la solution à préférer)
+            <li>la plupart du temps, cela correspond à<br><code>-lpthread -D_REENTRANT</code>
+        </ul>
+    </div>
+</article>
+
+
+<article class="split">
+    <h1>Processus Thread</h1>
+    <div class="leftside">
+        <ul>
+            <li>Espace de mémoire virtuelle (apparaît comme connexe) séparée
+            <li>Identifiant unique au niveau OS
+            <li>Les processus sont disjoints
+            <li>Peuvent fonctionner sur des machines distinctes
+        </ul>
+    </div>
+    <div class="rightside">
+        <ul>
+            <li>Subdivision d'un processus</li>
+            <li>Mémoire partagée (même espace d'adressage virtuel)</li>
+            <li>Sur la même machine (potentiellement sur des processeurs différents)</li>
+            <li>Plus simple à créer</li>
+            <li>Tous les threads d'un même processus ont le même code</li>
+        </ul>
+    </div>
+</article>
+
+
+
+<article class="split">
+    <h1>Virtualisation</h1>
+    <div class="leftside">
+        <img src="cours05/cours05-memoireVirtuelle.svg" style="width: 80%" alt="mémoire virtuelle">
+    </div>
+    <div class="rightside">
+        Les processus n'ont pas directement accès aux différentes mémoires physiques
+        <ul>
+            <li>Ils disposent d'un espace de mémoire virtuelle
+            <li>L'unité de gestion de mémoire (MMU) s'occupe de la correspondance
+            <li>Permet d'isoler les processus
+            <li>Masque les problèmes de fragmentation (le noyau s'en occupe)
+        </ul>
+    </div>
+</article>
+
+
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/myriad.js"></script>
+
+</body>
+</html>
