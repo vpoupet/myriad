@@ -113,12 +113,13 @@ slide will appear under the current slide (so it looks better with an aspect rat
 Navigation can be done with keyboard or mouse:
 * <kbd>&rarr;</kbd>, <kbd>D</kbd> or <kbd>space</kbd>: next step
 * <kbd>&larr;</kbd> or <kbd>Q</kbd>: previous step
-* <kbd>&darr;</kbd>, <kbd>S</kbd>: next slide (first step)
-* <kbd>&uarr;</kbd>, <kbd>Z</kbd>: previous slide (first step)
+* <kbd>&darr;</kbd> or <kbd>S</kbd>: next slide (first step)
+* <kbd>&uarr;</kbd> or <kbd>Z</kbd>: previous slide (first step)
 * <kbd>J</kbd>: jump to a page number (prompts the user for a number)
 * <kbd>X</kbd>: realign scrolling to current slide
 * click on left third of current slide: previous step
 * click on rest of current slide: next step
+
 # Examples
 
 ## Architecture et programmation bas niveau
