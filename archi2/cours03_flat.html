@@ -2,6 +2,8 @@
 <html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -9,27 +11,29 @@
 <body>
 
 
-<article class="title" id="slide0">
+<a id="slide_anchor0"></a><section class="title">
     <h1>Cours n° 3 :<br>Processus</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
-    <time>26 février 2018</time>
-<a href="#slide-1" class="prev_link"></a><a href="#slide1" class="next_link"></a></article>
+    <time datetime="2018-02-26">26 février 2018</time>
+<div class="page_count">0 / 11</div><a href="#slide_anchor-1" class="prev_flat_link"></a><a href="#slide_anchor1" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide1">
+<a id="slide_anchor1"></a><section class="single">
     <h1>Parallélisme</h1>
-    Les OS modernes sont tous capables d'exécuter plusieurs tâches en parallèle
-    <ul>
-        <li>chaque tâche est réalisée par un <em>processus</em>
-        </li><li>en réalité un processeur ne peut exécuter qu'un seul processus à la fois à un instant donné
-        </li><li>pour les faire avancer en parallèle, le processeur alloue de petits intervalles de temps à chaque
-        processus, en alternance (ordonnancement)
-    </li></ul>
-<div class="page_count">1 / 11</div><a href="#slide0" class="prev_link"></a><a href="#slide2" class="next_link"></a></article>
+    <div>
+        Les OS modernes sont tous capables d'exécuter plusieurs tâches en parallèle
+        <ul>
+            <li>chaque tâche est réalisée par un <em>processus</em>
+            </li><li>en réalité un processeur ne peut exécuter qu'un seul processus à la fois à un instant donné
+            </li><li>pour les faire avancer en parallèle, le processeur alloue de petits intervalles de temps à chaque
+            processus, en alternance (ordonnancement)
+        </li></ul>
+    </div>
+<div class="page_count">1 / 11</div><a href="#slide_anchor0" class="prev_flat_link"></a><a href="#slide_anchor2" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide2">
+<a id="slide_anchor2"></a><section class="split">
     <h1>Cycle d'un processus</h1>
     <div class="leftside">
         <img src="cours03/cours03-cycle.svg" style="width: 100%" alt="cycle d'un processus">
@@ -46,37 +50,39 @@
             </li><li><strong>Terminé&nbsp;:</strong> l'exécution est finie
         </li></ul>
     </div>
-<div class="page_count">2 / 11</div><a href="#slide1" class="prev_link"></a><a href="#slide3" class="next_link"></a></article>
+<div class="page_count">2 / 11</div><a href="#slide_anchor1" class="prev_flat_link"></a><a href="#slide_anchor3" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide3">
+<a id="slide_anchor3"></a><section class="single">
     <h1>Bloc de contrôle</h1>
-    <p>Le <em>bloc de contrôle</em> d'un processus (<em>process control bloc</em> ou PCB) est une structure de données
-        utilisée par l'OS pour représenter ses informations&nbsp;:</p>
-    <ul>
-        <li>Identification
-            <ul>
-                <li>identifiant du processus (PID)
-                </li><li>identifiant du processus parent (PPID)
-                </li><li>identifiant de l'utilisateur et du groupe exécutant le processus (UID et GID)
-            </li></ul>
-        </li><li>État du processeur
-            <ul>
-                <li>registres
-                </li><li>pointeurs de pile et exécution
-            </li></ul>
-        </li><li>Contrôle du processus
-            <ul>
-                <li>état d'exécution (prêt, suspendu, etc.)
-                </li><li>descripteurs de fichiers ouverts
-                </li><li>privilèges
-                </li><li>comptabilité (temps CPU, date d'exécution, <em>etc.</em>)
-            </li></ul>
-    </li></ul>
-<div class="page_count">3 / 11</div><a href="#slide2" class="prev_link"></a><a href="#slide4" class="next_link"></a></article>
+    <div>
+        <p>Le <em>bloc de contrôle</em> d'un processus (<em>process control bloc</em> ou PCB) est une structure de données
+            utilisée par l'OS pour représenter ses informations&nbsp;:</p>
+        <ul>
+            <li>Identification
+                <ul>
+                    <li>identifiant du processus (PID)
+                    </li><li>identifiant du processus parent (PPID)
+                    </li><li>identifiant de l'utilisateur et du groupe exécutant le processus (UID et GID)
+                </li></ul>
+            </li><li>État du processeur
+                <ul>
+                    <li>registres
+                    </li><li>pointeurs de pile et exécution
+                </li></ul>
+            </li><li>Contrôle du processus
+                <ul>
+                    <li>état d'exécution (prêt, suspendu, etc.)
+                    </li><li>descripteurs de fichiers ouverts
+                    </li><li>privilèges
+                    </li><li>comptabilité (temps CPU, date d'exécution, <em>etc.</em>)
+                </li></ul>
+        </li></ul>
+    </div>
+<div class="page_count">3 / 11</div><a href="#slide_anchor2" class="prev_flat_link"></a><a href="#slide_anchor4" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide4">
+<a id="slide_anchor4"></a><section class="split">
     <h1>Changement de processus</h1>
     <div class="leftside">
         <div class="center">
@@ -93,29 +99,31 @@
         Ce transfert peut être réalisé après une interruption de l'exécution du premier processus à l'aide d'un appel
         système.
     </div>
-<div class="page_count">4 / 11</div><a href="#slide3" class="prev_link"></a><a href="#slide5" class="next_link"></a></article>
+<div class="page_count">4 / 11</div><a href="#slide_anchor3" class="prev_flat_link"></a><a href="#slide_anchor5" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide5">
+<a id="slide_anchor5"></a><section class="single">
     <h1>Anatomie d'un processus</h1>
-    La mémoire occupée par un processus est divisée en plusieurs sections&nbsp;:
-    <ul>
-        <li>une section <code>text</code> contenant les instructions (en langage machine) à exécuter par le processus
-        </li><li>une section <code>data</code> contenant les variables globales et statiques, allouées avant d'exécuter la
-        fonction <code>main</code>
-        </li><li>le tas (<em>heap</em>) utilisé pour l'allocation dynamique des variables, géré à l'aide de fonctions
-        d'allocation (<code>malloc</code>, <code>free</code>, <em>etc.</em>)
-        </li><li>la pile (<em>stack</em>) utilisée pour stocker les variables locales, les arguments et la valeur de retour
-        des procédures exécutées par le programme
-    </li></ul>
+    <div>
+        La mémoire occupée par un processus est divisée en plusieurs sections&nbsp;:
+        <ul>
+            <li>une section <code>text</code> contenant les instructions (en langage machine) à exécuter par le processus
+            </li><li>une section <code>data</code> contenant les variables globales et statiques, allouées avant d'exécuter la
+            fonction <code>main</code>
+            </li><li>le tas (<em>heap</em>) utilisé pour l'allocation dynamique des variables, géré à l'aide de fonctions
+            d'allocation (<code>malloc</code>, <code>free</code>, <em>etc.</em>)
+            </li><li>la pile (<em>stack</em>) utilisée pour stocker les variables locales, les arguments et la valeur de retour
+            des procédures exécutées par le programme
+        </li></ul>
 
-    <br>
-    <p>En plus de ces données, si le programme est interrompu, il faut également sauvegarder le compteur d'exécution
-        ainsi que les valeurs contenues dans les registres du processeur</p>
-<div class="page_count">5 / 11</div><a href="#slide4" class="prev_link"></a><a href="#slide6" class="next_link"></a></article>
+        <br>
+        <p>En plus de ces données, si le programme est interrompu, il faut également sauvegarder le compteur d'exécution
+            ainsi que les valeurs contenues dans les registres du processeur</p>
+    </div>
+<div class="page_count">5 / 11</div><a href="#slide_anchor4" class="prev_flat_link"></a><a href="#slide_anchor6" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide6">
+<a id="slide_anchor6"></a><section class="split">
     <h1>size</h1>
     <div class="leftside">
         <pre><code class="cpp hljs"><span class="hljs-keyword">int</span> tab[<span class="hljs-number">5000</span>];
@@ -145,20 +153,24 @@ text data bss   dec   hex  filename
             </li><li>Les variables globales ne peuvent pas avoir une taille variable (définie à l'exécution)
         </li></ul>
     </div>
-<div class="page_count">6 / 11</div><a href="#slide5" class="prev_link"></a><a href="#slide7" class="next_link"></a></article>
+<div class="page_count">6 / 11</div><a href="#slide_anchor5" class="prev_flat_link"></a><a href="#slide_anchor7" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide7">
+<a id="slide_anchor7"></a><section class="single">
     <h1>text</h1>
-    <p>La section <code>text</code> de la mémoire contient la séquence d'instructions à exécuter</p>
-    <ul>
-        <li>Chargée au démarrage du programme et protégée en écriture
-        </li><li>Un registre du processeur contient l'adresse de l'instruction en cours (<em>program counter</em> ou PC)
-    </li></ul>
-<div class="page_count">7 / 11</div><a href="#slide6" class="prev_link"></a><a href="#slide8" class="next_link"></a></article>
+    <div>
+        <p>La section <code>text</code> de la mémoire contient la séquence d'instructions à exécuter</p>
+
+        <br>
+        <ul>
+            <li>Chargée au démarrage du programme et protégée en écriture
+            </li><li>Un registre du processeur contient l'adresse de l'instruction en cours (<em>program counter</em> ou PC)
+        </li></ul>
+    </div>
+<div class="page_count">7 / 11</div><a href="#slide_anchor6" class="prev_flat_link"></a><a href="#slide_anchor8" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide8">
+<a id="slide_anchor8"></a><section class="split">
     <h1>Limites</h1>
     <div class="leftside">
         <pre><code class="hljs">
@@ -181,10 +193,10 @@ virtual memory (kbytes, -v) unlimited
         La fonction <code>ulimit</code> permet d'obtenir les limitations de taille imposées par le système
         d'exploitation.
     </div>
-<div class="page_count">8 / 11</div><a href="#slide7" class="prev_link"></a><a href="#slide9" class="next_link"></a></article>
+<div class="page_count">8 / 11</div><a href="#slide_anchor7" class="prev_flat_link"></a><a href="#slide_anchor9" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide9">
+<a id="slide_anchor9"></a><section class="split">
     <h1>Allocation dynamique</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -221,10 +233,10 @@ virtual memory (kbytes, -v) unlimited
         <p>La taille du tas disponible pour un processus n'est en général pas limitée, et c'est donc là que doivent
             être placés les objets de grande taille.</p>
     </div>
-<div class="page_count">9 / 11</div><a href="#slide8" class="prev_link"></a><a href="#slide10" class="next_link"></a></article>
+<div class="page_count">9 / 11</div><a href="#slide_anchor8" class="prev_flat_link"></a><a href="#slide_anchor10" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide10">
+<a id="slide_anchor10"></a><section class="split">
     <h1>La pile</h1>
     <div class="leftside">
         <div class="center">
@@ -244,7 +256,7 @@ virtual memory (kbytes, -v) unlimited
         </div>
         
     </div>
-<div class="page_count">10 / 11</div><a href="#slide9" class="prev_link"></a><a href="#slide11" class="next_link"></a></article><article class="split" id="slide11">
+<div class="page_count">10 / 11</div><a href="#slide_anchor9" class="prev_flat_link"></a><a href="#slide_anchor11" class="next_flat_link"></a></section><a id="slide_anchor11"></a><section class="split">
     <h1>La pile</h1>
     <div class="leftside">
         <div class="center">
@@ -268,10 +280,10 @@ virtual memory (kbytes, -v) unlimited
                 précédente.</p>
         </div>
     </div>
-<div class="page_count">10 / 11</div><a href="#slide10" class="prev_link"></a><a href="#slide12" class="next_link"></a></article>
+<div class="page_count">10 / 11</div><a href="#slide_anchor10" class="prev_flat_link"></a><a href="#slide_anchor12" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide12">
+<a id="slide_anchor12"></a><section class="split">
     <h1><span style="display: inline-block; text-align: center; width: 50%">Pile</span><span style="display:
     inline-block; text-align: center; width: 50%">Tas</span></h1>
     <div class="leftside">
@@ -291,7 +303,8 @@ virtual memory (kbytes, -v) unlimited
             </li><li>Objets peuvent être redimensionnés (<code>realloc</code>)
         </li></ul>
     </div>
-<div class="page_count">11 / 11</div><a href="#slide11" class="prev_link"></a><a href="#slide13" class="next_link"></a></article>
+<div class="page_count">11 / 11</div><a href="#slide_anchor11" class="prev_flat_link"></a><a href="#slide_anchor13" class="next_flat_link"></a></section>
+
 
 
 

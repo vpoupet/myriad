@@ -62,75 +62,53 @@
   font-weight: bold;
   font-style: italic;
 }
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #CCC;
-  overflow: hidden;
-}
-
-article {
+section {
   font-family: "GillSans", "sans-serif";
-  font-size: 3.2vh;
-  width: 133.33vh;
-  height: 100vh;
-  position: relative;
   background: white no-repeat;
   background-size: contain;
   display: flex;
   flex-direction: column;
   justify-content: center;
   line-height: 1.5;
-  transform-origin: top left;
 }
-@media (max-aspect-ratio: 4/3) {
-  article {
-    font-size: 2.4vw;
-    width: 100vw;
-    height: 75vw;
-  }
-}
-article.title {
+section.title {
   background-image: url("BG_Title.png");
 }
-article.title h1 {
+section.title h1 {
   position: relative;
 }
-article.title .context {
+section.title .context {
   color: white;
   text-align: right;
   position: absolute;
   top: 15%;
   right: 1%;
 }
-article.title .author {
+section.title .author {
   color: white;
   text-align: left;
   position: absolute;
   bottom: 15%;
   left: 1%;
 }
-article.title time {
+section.title time {
   color: black;
   text-align: right;
   position: absolute;
   bottom: 2%;
   right: 2%;
 }
-article.section {
+section.title .page_count {
+  display: none;
+}
+section.section {
   background-image: url("BG_Section.png");
 }
-article.single {
+section.single {
   background-image: url("BG_Single.png");
   padding: 5% 3% 0 3%;
 }
-article.split {
+section.split {
   background-image: url("BG_SplitThin.png");
   flex-direction: row;
   justify-content: space-between;
@@ -153,7 +131,7 @@ ul {
   margin: 0;
   list-style-type: square;
   line-height: 1.5;
-  padding-left: 2ex;
+  padding-left: 1em;
 }
 ul ul {
   font-size: 90%;
@@ -168,9 +146,9 @@ ul li.skip {
   text-align: center;
   padding: 0;
   bottom: 0.5%;
-  width: 10ex;
-  border: 0.1ex black solid;
-  border-radius: 0.75ex;
+  width: 5em;
+  border: 0.05em black solid;
+  border-radius: 0.3em;
   font-size: 75%;
   background-color: rgba(255, 255, 255, 0.9);
   left: 50%;
@@ -213,7 +191,7 @@ h1 {
   font-size: 265%;
   color: white;
   -webkit-text-stroke-color: black;
-  -webkit-text-stroke-width: 0.075ex;
+  -webkit-text-stroke-width: 0.03em;
 }
 
 h2 {
@@ -241,22 +219,4 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-a.prev_link {
-  position: absolute;
-  width: 30%;
-  height: 100%;
-  z-index: 1;
-  top: 0;
-  left: 0;
-}
-
-a.next_link {
-  position: absolute;
-  width: 70%;
-  height: 100%;
-  z-index: 1;
-  top: 0;
-  right: 0;
 }

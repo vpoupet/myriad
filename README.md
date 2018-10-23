@@ -23,11 +23,11 @@ files:
 </html>
 ```
 
-Slides of the presentation correspond to `<article></article>` blocks in the HTML.
+Slides of the presentation correspond to `article` elements in the HTML.
 
 ## Structure of a slide
 
-The title of the slide should appear in a `<h1></h1>` element.
+The title of the slide should appear in a `h1` element.
 
 The rest of the element will be used as content for the slide (footer with page number will be added automatically by
 the javascript)

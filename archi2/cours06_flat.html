@@ -2,6 +2,8 @@
 <html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -9,52 +11,56 @@
 <body>
 
 
-<article class="title" id="slide0">
+<a id="slide_anchor0"></a><section class="title">
     <h1>Cours n° 6 :<br>Communication entre<br>processus</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
-    <time>12 mars 2018</time>
-<a href="#slide-1" class="prev_link"></a><a href="#slide1" class="next_link"></a></article>
+    <time datetime="2018-03-19">19 mars 2018</time>
+<div class="page_count">0 / 10</div><a href="#slide_anchor-1" class="prev_flat_link"></a><a href="#slide_anchor1" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide1">
+<a id="slide_anchor1"></a><section class="single">
     <h1>Fork, et après ?</h1>
-    <p>À l'aide de la fonction <code>fork</code> on peut créer de nouveaux processus</p>
-    <ul>
-        <li>mais chaque processus a ses propres variables, et sa propre mémoire
-        </li><li>comment les faire communiquer pour effectuer une tâche en commun ?
-    </li></ul>
+    <div>
+        <p>À l'aide de la fonction <code>fork</code> on peut créer de nouveaux processus</p>
+        <ul>
+            <li>mais chaque processus a ses propres variables, et sa propre mémoire
+            </li><li>comment les faire communiquer pour effectuer une tâche en commun ?
+        </li></ul>
 
-    <br>
-    Exemples de communication&nbsp;:
-    <ul>
-        <li>une application réseau communique avec le serveur distant
-        </li><li>un serveur web démarre des processus fils pour traîter les requêtes
-        </li><li>le shell ordonne l'interruption d'un processus (<code>kill</code>)
-        </li><li>éviter les conflits lorsque plusieurs processus veulent accéder à un fichier
-        </li><li>deux commandes sont exécutées avec un <em>pipe</em> (ex : <code>ls | grep toto</code>)
-    </li></ul>
-<div class="page_count">1 / 10</div><a href="#slide0" class="prev_link"></a><a href="#slide2" class="next_link"></a></article>
+        <br>
+        Exemples de communication&nbsp;:
+        <ul>
+            <li>une application réseau communique avec le serveur distant
+            </li><li>un serveur web démarre des processus fils pour traîter les requêtes
+            </li><li>le shell ordonne l'interruption d'un processus (<code>kill</code>)
+            </li><li>éviter les conflits lorsque plusieurs processus veulent accéder à un fichier
+            </li><li>deux commandes sont exécutées avec un <em>pipe</em> (ex : <code>ls | grep toto</code>)
+        </li></ul>
+    </div>
+<div class="page_count">1 / 10</div><a href="#slide_anchor0" class="prev_flat_link"></a><a href="#slide_anchor2" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide2">
+<a id="slide_anchor2"></a><section class="single">
     <h1>Techniques IPC</h1>
-    <p>Il existe de nombreuses méthodes de communication <em>inter-processus</em> (IPC en anglais)&nbsp;:</p>
-    <ul>
-        <li>signaux
-        </li><li>tubes (<em>pipes</em>)
-        </li><li>FIFO
-        </li><li>Verrous
-        </li><li>Files de messages
-        </li><li>Sémaphores
-        </li><li>Segments de mémoire partagée
-        </li><li>Fichiers sur mémoire
-        </li><li>Sockets
-    </li></ul>
-<div class="page_count">2 / 10</div><a href="#slide1" class="prev_link"></a><a href="#slide3" class="next_link"></a></article>
+    <div>
+        <p>Il existe de nombreuses méthodes de communication <em>inter-processus</em> (IPC en anglais)&nbsp;:</p>
+        <ul>
+            <li>signaux
+            </li><li>tubes (<em>pipes</em>)
+            </li><li>FIFO
+            </li><li>Verrous
+            </li><li>Files de messages
+            </li><li>Sémaphores
+            </li><li>Segments de mémoire partagée
+            </li><li>Fichiers sur mémoire
+            </li><li>Sockets
+        </li></ul>
+    </div>
+<div class="page_count">2 / 10</div><a href="#slide_anchor1" class="prev_flat_link"></a><a href="#slide_anchor3" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide3">
+<a id="slide_anchor3"></a><section class="split">
     <h1>Signaux</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-end="2">
@@ -85,7 +91,7 @@ sigaction *act, struct sigaction *oact)</span></span>;
         
 
     </div>
-<div class="page_count">3 / 10</div><a href="#slide2" class="prev_link"></a><a href="#slide4" class="next_link"></a></article><article class="split" id="slide4">
+<div class="page_count">3 / 10</div><a href="#slide_anchor2" class="prev_flat_link"></a><a href="#slide_anchor4" class="next_flat_link"></a></section><a id="slide_anchor4"></a><section class="split">
     <h1>Signaux</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-end="2">
@@ -119,7 +125,7 @@ sigaction *act, struct sigaction *oact)</span></span>;
         
 
     </div>
-<div class="page_count">3 / 10</div><a href="#slide3" class="prev_link"></a><a href="#slide5" class="next_link"></a></article><article class="split" id="slide5">
+<div class="page_count">3 / 10</div><a href="#slide_anchor3" class="prev_flat_link"></a><a href="#slide_anchor5" class="next_flat_link"></a></section><a id="slide_anchor5"></a><section class="split">
     <h1>Signaux</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-end="2">
@@ -147,7 +153,7 @@ sigaction *act, struct sigaction *oact)</span></span>;
         </div>
 
     </div>
-<div class="page_count">3 / 10</div><a href="#slide4" class="prev_link"></a><a href="#slide6" class="next_link"></a></article><article class="split" id="slide6">
+<div class="page_count">3 / 10</div><a href="#slide_anchor4" class="prev_flat_link"></a><a href="#slide_anchor6" class="next_flat_link"></a></section><a id="slide_anchor6"></a><section class="split">
     <h1>Signaux</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="3" data-start="3" data-end="3">
@@ -187,7 +193,7 @@ fgets: Interrupted system call</code></pre>
         </div>
 
     </div>
-<div class="page_count">3 / 10</div><a href="#slide5" class="prev_link"></a><a href="#slide7" class="next_link"></a></article><article class="split" id="slide7">
+<div class="page_count">3 / 10</div><a href="#slide_anchor5" class="prev_flat_link"></a><a href="#slide_anchor7" class="next_flat_link"></a></section><a id="slide_anchor7"></a><section class="split">
     <h1>Signaux</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="4" data-start="4" data-end="4"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sigint_handler</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig)</span> </span>{
@@ -228,10 +234,10 @@ message: salut</code></pre>
         </div>
 
     </div>
-<div class="page_count">3 / 10</div><a href="#slide6" class="prev_link"></a><a href="#slide8" class="next_link"></a></article>
+<div class="page_count">3 / 10</div><a href="#slide_anchor6" class="prev_flat_link"></a><a href="#slide_anchor8" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide8">
+<a id="slide_anchor8"></a><section class="split">
     <h1>Tubes (<em>pipes</em>)</h1>
     <div class="leftside">
         <div class="only" data-step="0" data-start="0" data-end="0">
@@ -268,7 +274,7 @@ message: salut</code></pre>
             </li><li>les tubes sont unidirectionnels
         </li></ul>
     </div>
-<div class="page_count">4 / 10</div><a href="#slide7" class="prev_link"></a><a href="#slide9" class="next_link"></a></article><article class="split" id="slide9">
+<div class="page_count">4 / 10</div><a href="#slide_anchor7" class="prev_flat_link"></a><a href="#slide_anchor9" class="next_flat_link"></a></section><a id="slide_anchor9"></a><section class="split">
     <h1>Tubes (<em>pipes</em>)</h1>
     <div class="leftside">
         
@@ -309,7 +315,7 @@ message: salut</code></pre>
             </li><li>les tubes sont unidirectionnels
         </li></ul>
     </div>
-<div class="page_count">4 / 10</div><a href="#slide8" class="prev_link"></a><a href="#slide10" class="next_link"></a></article><article class="split" id="slide10">
+<div class="page_count">4 / 10</div><a href="#slide_anchor8" class="prev_flat_link"></a><a href="#slide_anchor10" class="next_flat_link"></a></section><a id="slide_anchor10"></a><section class="split">
     <h1>Tubes (<em>pipes</em>)</h1>
     <div class="leftside">
         
@@ -344,10 +350,10 @@ message: salut</code></pre>
             </li><li>les tubes sont unidirectionnels
         </li></ul>
     </div>
-<div class="page_count">4 / 10</div><a href="#slide9" class="prev_link"></a><a href="#slide11" class="next_link"></a></article>
+<div class="page_count">4 / 10</div><a href="#slide_anchor9" class="prev_flat_link"></a><a href="#slide_anchor11" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide11">
+<a id="slide_anchor11"></a><section class="split">
     <h1>Tubes nommés (FIFO)</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="0" data-start="0" data-end="0">
@@ -376,7 +382,7 @@ message: salut</code></pre>
             </li><li>Possibilité de connecter plusieurs processus à chaque extrêmité
         </li></ul>
     </div>
-<div class="page_count">5 / 10</div><a href="#slide10" class="prev_link"></a><a href="#slide12" class="next_link"></a></article><article class="split" id="slide12">
+<div class="page_count">5 / 10</div><a href="#slide_anchor10" class="prev_flat_link"></a><a href="#slide_anchor12" class="next_flat_link"></a></section><a id="slide_anchor12"></a><section class="split">
     <h1>Tubes nommés (FIFO)</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="1" data-end="1">
@@ -408,10 +414,10 @@ message: salut</code></pre>
             </li><li>Possibilité de connecter plusieurs processus à chaque extrêmité
         </li></ul>
     </div>
-<div class="page_count">5 / 10</div><a href="#slide11" class="prev_link"></a><a href="#slide13" class="next_link"></a></article>
+<div class="page_count">5 / 10</div><a href="#slide_anchor11" class="prev_flat_link"></a><a href="#slide_anchor13" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide13">
+<a id="slide_anchor13"></a><section class="split">
     <h1>Verrous de fichiers</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -441,10 +447,10 @@ fcntl(fd, F_SETLKW, &amp;fl);
         <br>
         On peut obtenir la même chose avec des sémaphores
     </div>
-<div class="page_count">6 / 10</div><a href="#slide12" class="prev_link"></a><a href="#slide14" class="next_link"></a></article>
+<div class="page_count">6 / 10</div><a href="#slide_anchor12" class="prev_flat_link"></a><a href="#slide_anchor14" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide14">
+<a id="slide_anchor14"></a><section class="split">
     <h1>Sémaphores</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -472,7 +478,7 @@ fcntl(fd, F_SETLKW, &amp;fl);
         </div>
         
     </div>
-<div class="page_count">7 / 10</div><a href="#slide13" class="prev_link"></a><a href="#slide15" class="next_link"></a></article><article class="split" id="slide15">
+<div class="page_count">7 / 10</div><a href="#slide_anchor13" class="prev_flat_link"></a><a href="#slide_anchor15" class="next_flat_link"></a></section><a id="slide_anchor15"></a><section class="split">
     <h1>Sémaphores</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -496,10 +502,10 @@ fcntl(fd, F_SETLKW, &amp;fl);
             </li></ul>
         </div>
     </div>
-<div class="page_count">7 / 10</div><a href="#slide14" class="prev_link"></a><a href="#slide16" class="next_link"></a></article>
+<div class="page_count">7 / 10</div><a href="#slide_anchor14" class="prev_flat_link"></a><a href="#slide_anchor16" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide16">
+<a id="slide_anchor16"></a><section class="split">
     <h1>Mémoire partagée</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="0" data-start="0" data-end="0">
@@ -518,7 +524,7 @@ fcntl(fd, F_SETLKW, &amp;fl);
             </li><li>le bloc doit être libéré explicitement à l'aide de la commande <code>shmctl</code>
         </li></ul>
     </div>
-<div class="page_count">8 / 10</div><a href="#slide15" class="prev_link"></a><a href="#slide17" class="next_link"></a></article><article class="split" id="slide17">
+<div class="page_count">8 / 10</div><a href="#slide_anchor15" class="prev_flat_link"></a><a href="#slide_anchor17" class="next_flat_link"></a></section><a id="slide_anchor17"></a><section class="split">
     <h1>Mémoire partagée</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="1" data-end="1">
@@ -549,10 +555,10 @@ shmctl(shmid, IPC_RMID, <span class="hljs-literal">NULL</span>);
             </li><li>le bloc doit être libéré explicitement à l'aide de la commande <code>shmctl</code>
         </li></ul>
     </div>
-<div class="page_count">8 / 10</div><a href="#slide16" class="prev_link"></a><a href="#slide18" class="next_link"></a></article>
+<div class="page_count">8 / 10</div><a href="#slide_anchor16" class="prev_flat_link"></a><a href="#slide_anchor18" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide18">
+<a id="slide_anchor18"></a><section class="split">
     <h1>Fichiers sur mémoire</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -582,7 +588,7 @@ PROT_READ, MAP_SHARED, fd, pagesize);
         
         
     </div>
-<div class="page_count">9 / 10</div><a href="#slide17" class="prev_link"></a><a href="#slide19" class="next_link"></a></article><article class="split" id="slide19">
+<div class="page_count">9 / 10</div><a href="#slide_anchor17" class="prev_flat_link"></a><a href="#slide_anchor19" class="next_flat_link"></a></section><a id="slide_anchor19"></a><section class="split">
     <h1>Fichiers sur mémoire</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -615,7 +621,7 @@ PROT_READ, MAP_SHARED, fd, pagesize);
         </div>
         
     </div>
-<div class="page_count">9 / 10</div><a href="#slide18" class="prev_link"></a><a href="#slide20" class="next_link"></a></article><article class="split" id="slide20">
+<div class="page_count">9 / 10</div><a href="#slide_anchor18" class="prev_flat_link"></a><a href="#slide_anchor20" class="next_flat_link"></a></section><a id="slide_anchor20"></a><section class="split">
     <h1>Fichiers sur mémoire</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -644,10 +650,10 @@ PROT_READ, MAP_SHARED, fd, pagesize);
             </li></ul>
         </div>
     </div>
-<div class="page_count">9 / 10</div><a href="#slide19" class="prev_link"></a><a href="#slide21" class="next_link"></a></article>
+<div class="page_count">9 / 10</div><a href="#slide_anchor19" class="prev_flat_link"></a><a href="#slide_anchor21" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide21">
+<a id="slide_anchor21"></a><section class="split">
     <h1>Sockets</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -666,7 +672,8 @@ PROT_READ, MAP_SHARED, fd, pagesize);
             </li><li><em>cf</em>. suite du cours...
         </li></ul>
     </div>
-<div class="page_count">10 / 10</div><a href="#slide20" class="prev_link"></a><a href="#slide22" class="next_link"></a></article>
+<div class="page_count">10 / 10</div><a href="#slide_anchor20" class="prev_flat_link"></a><a href="#slide_anchor22" class="next_flat_link"></a></section>
+
 
 
 

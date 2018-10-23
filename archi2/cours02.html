@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -10,49 +12,53 @@
 <body>
 
 
-<article class="title">
+<section class="title">
     <h1>Cours n° 2 :<br>Appels systèmes<br>et entrée / sortie</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
     <time datetime="2018-02-12">12 février 2018</time>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Système d'exploitation</h1>
-    <ul>
-        <li>Le système d'exploitation (OS) est le premier programme exécuté au démarrage de l'ordinateur
-        <li>C'est l'OS qui gère toute l'activité de l'ordinateur (mémoire, utilisateurs, processeur, périphériques,
-        réseau, etc.)
-        <li>En cours&nbsp;: <em>Unix</em> (mais les autres sont similaires)
-        <li>Les programmes communiquent avec l'OS par l'intérmédiaire d'appels systèmes (<em>system call</em>)
-    </ul>
-</article>
+    <div>
+        <ul>
+            <li>Le système d'exploitation (OS) est le premier programme exécuté au démarrage de l'ordinateur
+            <li>C'est l'OS qui gère toute l'activité de l'ordinateur (mémoire, utilisateurs, processeur, périphériques,
+            réseau, etc.)
+            <li>En cours&nbsp;: <em>Unix</em> (mais les autres sont similaires)
+            <li>Les programmes communiquent avec l'OS par l'intérmédiaire d'appels systèmes (<em>system call</em>)
+        </ul>
+    </div>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Appels systèmes</h1>
-    Les appels systèmes ressemblent à des procédures (appels de fonction), avec toutefois des différences
-    importantes&nbsp;:
-    <ul>
-        <li>Les appels systèmes sont très coûteux en ressources&nbsp;:
-            <ul>
-                <li>le système sauvegarde l'état
-                <li>l'OS prend le contrôle du CPU
-                <li>l'OS exécute une tâche spécifique
-                <li>l'OS sauvegarde son état
-                <li>le contrôle est rendu au processus qui a lancé l'appel
-            </ul>
-        <li>Les appels systèmes dépendent du système d'exploitation
-        <li>Il ne faut pas les utiliser directement si le programme doit être portable
-        <li>La réalisation détaillée d'un appel système demande une connaissance précise des registres du processeur
-        <li>Il faut être très prudent pour ne pas provoquer d'erreurs
-        <li>On utilise en général une fonction qui se charge de faire l'appel
-    </ul>
-</article>
+    <div>
+        Les appels systèmes ressemblent à des procédures (appels de fonction), avec toutefois des différences
+        importantes&nbsp;:
+        <ul>
+            <li>Les appels systèmes sont très coûteux en ressources&nbsp;:
+                <ul>
+                    <li>le système sauvegarde l'état
+                    <li>l'OS prend le contrôle du CPU
+                    <li>l'OS exécute une tâche spécifique
+                    <li>l'OS sauvegarde son état
+                    <li>le contrôle est rendu au processus qui a lancé l'appel
+                </ul>
+            <li>Les appels systèmes dépendent du système d'exploitation
+            <li>Il ne faut pas les utiliser directement si le programme doit être portable
+            <li>La réalisation détaillée d'un appel système demande une connaissance précise des registres du processeur
+            <li>Il faut être très prudent pour ne pas provoquer d'erreurs
+            <li>On utilise en général une fonction qui se charge de faire l'appel
+        </ul>
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Entrée / Sortie</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -75,31 +81,33 @@ off_t <span class="highlight">lseek</span>(int fd, off_t offset, int whence);
             <li>chaque appel est décrit dans sa page de manuel (ex : <code>man 2 open</code>)
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>man 2 open</h1>
-    <pre><code class="plaintext">
-OPEN(2)                 BSD System Calls Manual                OPEN(2)
+    <div>
+        <pre><code class="plaintext">
+    OPEN(2)                 BSD System Calls Manual                OPEN(2)
 
-NAME
-     <span class="highlight">open</span> -- open or create a file for reading or writing
+    NAME
+         <span class="highlight">open</span> -- open or create a file for reading or writing
 
-SYNOPSIS
-     <span class="highlight">#include &lt;fcntl.h></span>
+    SYNOPSIS
+         <span class="highlight">#include &lt;fcntl.h></span>
 
-     <span class="highlight">int open(const char *path, int oflag, ...);</span>
+         <span class="highlight">int open(const char *path, int oflag, ...);</span>
 
-DESCRIPTION
-     The file name specified by path is opened for reading and/or writing, as specified by the argument oflag; the file descriptor is returned to the calling process.
+    DESCRIPTION
+         The file name specified by path is opened for reading and/or writing, as specified by the argument oflag; the file descriptor is returned to the calling process.
 
-     The oflag argument may indicate that the file is to be created if it does not exist (by specifying the O_CREAT flag).  In this case, open requires a third argument mode_t mode; the file is created with mode mode as described in chmod(2) and modified by the process' umask value (see umask(2)).
-    </code></pre>
-</article>
+         The oflag argument may indicate that the file is to be created if it does not exist (by specifying the O_CREAT flag).  In this case, open requires a third argument mode_t mode; the file is created with mode mode as described in chmod(2) and modified by the process' umask value (see umask(2)).
+        </code></pre>
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Open</h1>
     <div class="leftside">
         <pre><code class="cpp">int <span class="highlight">open</span>(char *path, int flags[, int mode]);</code></pre>
@@ -124,10 +132,10 @@ main()
             <li>Tous les autres appels E/S utilisent un descripteur de fichier
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Open (flags)</h1>
     <div class="leftside">
         <pre><code><span class="highlight">O_RDONLY</span> open for reading only
@@ -151,10 +159,10 @@ O_CLOEXEC mark as close-on-exec</code></pre>
             <li>Les valeurs possibles sont définies dans <code>/usr/include/sys/fcntl.h</code>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Close</h1>
     <div class="leftside">
         <pre><code class="cpp">int <span class="highlight">close</span>(int fd);</code></pre>
@@ -185,10 +193,10 @@ main() {
             <li>Le nombre de fichiers ouverts par un processus est limité (dépend du système, varie d'une centaine à plusieurs milliers)
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Read</h1>
     <div class="leftside">
         <pre><code class="cpp">int <span class="highlight">read</span>(int fd, char *buf, int size);</code></pre>
@@ -221,10 +229,10 @@ main() {
             <li>le résultat est le nombre d'octets effectivement lus (peut être inférieur à <code>size</code> si on est en fin de fichier)
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Write</h1>
     <div class="leftside">
     <pre><code class="cpp">int <span class="highlight">write</span>(int fd, char *buf, int size);</code></pre>
@@ -253,10 +261,10 @@ main() {
             <li>le résultat est le nombre d'octets effectivement écrits (devrait toujours être égal à <code>size</code>)
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Pointeur de fichier</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -288,10 +296,10 @@ int main() {
             <li>Le pointeur est automatiquement avancé par la lecture et l'écriture
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Ouvertures multiples</h1>
     <div class="leftside">
         <pre><code class="cpp only" data-end="1">
@@ -329,10 +337,10 @@ int main() {
             <li>les ouvertures en mode <code>O_APPEND</code> restent à la fin du fichier
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>stdin, stdout, stderr</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -353,10 +361,10 @@ main() {
         </ul>
         On peut directement utiliser ces descripteurs de fichiers sans avoir à utiliser <code>open</code>.
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>lseek</h1>
     <div class="leftside">
         <pre><code class="cpp">off_t <span class="highlight">lseek</span>(int fd, off_t offset, int whence);</code></pre>
@@ -396,10 +404,10 @@ main() {
         </ul>
         Il est possible de déplacer le curseur au-delà de la fin du fichier
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>stdio.h</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -432,9 +440,10 @@ int main() {
         Ces fonctions manipulent les fichiers par l'intermédiaire de pointeurs de fichiers (<em>file pointers</em>)
         de type <code>FILE*</code> (structure contenant un descripteur de fichier, et des informations supplémentaires)
     </div>
-</article>
+</section>
 
 <script src="../js/highlight.pack.js"></script>
+<script src="../js/slides.js"></script>
 <script src="../js/myriad.js"></script>
 
 </body>

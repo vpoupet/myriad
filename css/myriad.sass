@@ -51,34 +51,15 @@
   font-weight: bold
   font-style: italic
 
-*
-  box-sizing: border-box
 
-body
-  margin: 0
-  display: flex
-  flex-direction: column
-  align-items: center
-  background: #CCC
-  overflow: hidden
-
-article
+section
   font-family: "GillSans", "sans-serif"
-  font-size: 3.2vh
-  width: 133.33vh
-  height: 100vh
-  position: relative
   background: white no-repeat
   background-size: contain
   display: flex
   flex-direction: column
   justify-content: center
   line-height: 1.5
-  transform-origin: top left
-  @media (max-aspect-ratio: 4/3)
-    font-size: 2.4vw
-    width: 100vw
-    height: 75vw
 
   &.title
     background-image: url("BG_Title.png")
@@ -107,6 +88,9 @@ article
       bottom: 2%
       right: 2%
 
+    .page_count
+      display: none
+
   &.section
     background-image: url("BG_Section.png")
 
@@ -134,7 +118,7 @@ ul
   margin: 0
   list-style-type: square
   line-height: 1.5
-  padding-left: 2ex
+  padding-left: 1em
 
   ul
     font-size: 90%
@@ -148,9 +132,9 @@ ul
   text-align: center
   padding: 0
   bottom: .5%
-  width: 10ex
-  border: .1ex black solid
-  border-radius: .75ex
+  width: 5em
+  border: .05em black solid
+  border-radius: .3em
   font-size: 75%
   background-color: rgba(255, 255, 255, .9)
   left: 50%
@@ -188,7 +172,7 @@ h1
   font-size: 265%
   color: white
   -webkit-text-stroke-color: black
-  -webkit-text-stroke-width: .075ex
+  -webkit-text-stroke-width: .03em
 
 h2
   width: 100%
@@ -211,24 +195,6 @@ h2
   display: flex
   flex-direction: column
   align-items: center
-
-a.prev_link
-  position: absolute
-  //background-color: rgba(255, 0, 0, .2)
-  width: 30%
-  height: 100%
-  z-index: 1
-  top: 0
-  left: 0
-
-a.next_link
-  position: absolute
-  //background-color: rgba(0, 255, 0, .2)
-  width: 70%
-  height: 100%
-  z-index: 1
-  top: 0
-  right: 0
 
 //::-webkit-scrollbar
 //  width: 0

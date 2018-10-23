@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -10,52 +12,56 @@
 <body>
 
 
-<article class="title">
+<section class="title">
     <h1>Cours n° 6 :<br>Communication entre<br>processus</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
     <time datetime="2018-03-19">19 mars 2018</time>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Fork, et après ?</h1>
-    <p>À l'aide de la fonction <code>fork</code> on peut créer de nouveaux processus</p>
-    <ul>
-        <li>mais chaque processus a ses propres variables, et sa propre mémoire
-        <li>comment les faire communiquer pour effectuer une tâche en commun ?
-    </ul>
+    <div>
+        <p>À l'aide de la fonction <code>fork</code> on peut créer de nouveaux processus</p>
+        <ul>
+            <li>mais chaque processus a ses propres variables, et sa propre mémoire
+            <li>comment les faire communiquer pour effectuer une tâche en commun ?
+        </ul>
 
-    <br>
-    Exemples de communication&nbsp;:
-    <ul>
-        <li>une application réseau communique avec le serveur distant
-        <li>un serveur web démarre des processus fils pour traîter les requêtes
-        <li>le shell ordonne l'interruption d'un processus (<code>kill</code>)
-        <li>éviter les conflits lorsque plusieurs processus veulent accéder à un fichier
-        <li>deux commandes sont exécutées avec un <em>pipe</em> (ex : <code>ls | grep toto</code>)
-    </ul>
-</article>
+        <br>
+        Exemples de communication&nbsp;:
+        <ul>
+            <li>une application réseau communique avec le serveur distant
+            <li>un serveur web démarre des processus fils pour traîter les requêtes
+            <li>le shell ordonne l'interruption d'un processus (<code>kill</code>)
+            <li>éviter les conflits lorsque plusieurs processus veulent accéder à un fichier
+            <li>deux commandes sont exécutées avec un <em>pipe</em> (ex : <code>ls | grep toto</code>)
+        </ul>
+    </div>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Techniques IPC</h1>
-    <p>Il existe de nombreuses méthodes de communication <em>inter-processus</em> (IPC en anglais)&nbsp;:</p>
-    <ul>
-        <li>signaux
-        <li>tubes (<em>pipes</em>)
-        <li>FIFO
-        <li>Verrous
-        <li>Files de messages
-        <li>Sémaphores
-        <li>Segments de mémoire partagée
-        <li>Fichiers sur mémoire
-        <li>Sockets
-    </ul>
-</article>
+    <div>
+        <p>Il existe de nombreuses méthodes de communication <em>inter-processus</em> (IPC en anglais)&nbsp;:</p>
+        <ul>
+            <li>signaux
+            <li>tubes (<em>pipes</em>)
+            <li>FIFO
+            <li>Verrous
+            <li>Files de messages
+            <li>Sémaphores
+            <li>Segments de mémoire partagée
+            <li>Fichiers sur mémoire
+            <li>Sockets
+        </ul>
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Signaux</h1>
     <div class="leftside">
         <pre><code class="cpp only" data-end="2">
@@ -146,10 +152,10 @@ message: salut</code></pre>
         </div>
 
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Tubes (<em>pipes</em>)</h1>
     <div class="leftside">
         <div class="only" data-step="0">
@@ -226,10 +232,10 @@ int pipe(int fildes[2]);</code></pre>
             <li>les tubes sont unidirectionnels
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Tubes nommés (FIFO)</h1>
     <div class="leftside">
         <pre><code class="cpp only" data-step="0">
@@ -275,10 +281,10 @@ int main(void) {
             <li>Possibilité de connecter plusieurs processus à chaque extrêmité
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Verrous de fichiers</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -308,10 +314,10 @@ fcntl(fd, F_SETLKW, &fl);
         <br>
         On peut obtenir la même chose avec des sémaphores
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Sémaphores</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -347,10 +353,10 @@ int semop(int semid, struct sembuf *sops, unsigned int nsops);
             </ul>
         </div>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Mémoire partagée</h1>
     <div class="leftside">
         <pre><code class="cpp only" data-step="0">
@@ -386,10 +392,10 @@ shmctl(shmid, IPC_RMID, NULL);
             <li>le bloc doit être libéré explicitement à l'aide de la commande <code>shmctl</code>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Fichiers sur mémoire</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -435,10 +441,10 @@ PROT_READ, MAP_SHARED, fd, pagesize);
             </ul>
         </div>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Sockets</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -457,10 +463,11 @@ ssize_t send(int socket, const void *buffer, size_t length, int flags);
             <li><em>cf</em>. suite du cours...
         </ul>
     </div>
-</article>
+</section>
 
 
 <script src="../js/highlight.pack.js"></script>
+<script src="../js/slides.js"></script>
 <script src="../js/myriad.js"></script>
 
 </body>

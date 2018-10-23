@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -10,37 +12,39 @@
 <body>
 
 
-<article class="title">
+<section class="title">
     <h1>Cours n° 5 :<br>Processus légers<br>(threads)</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
     <time datetime="2018-03-12">12 mars 2018</time>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Processus légers</h1>
-    <p>Si l'on veut exécuter plusieurs tâches en parallèle, on peut utiliser des processus différents</p>
-    <ul>
-        <li>la création d'un processus est une opération coûteuse
-        <li>chaque processus occupe un segment de mémoire séparée
-        <li>le code à exécuter est copié dans chaque nouveau processus
-        <li>la communication entre processus est difficile (tubes, fichiers, sockets, etc.)
-    </ul>
+    <div>
+        <p>Si l'on veut exécuter plusieurs tâches en parallèle, on peut utiliser des processus différents</p>
+        <ul>
+            <li>la création d'un processus est une opération coûteuse
+            <li>chaque processus occupe un segment de mémoire séparée
+            <li>le code à exécuter est copié dans chaque nouveau processus
+            <li>la communication entre processus est difficile (tubes, fichiers, sockets, etc.)
+        </ul>
 
-    <br>
-    <p>Pour exécuter plusieurs instances de la même tâche en parallèle, on peut utiliser des <em>threads</em>
-        (processus légers) à la place des processus</p>
-    <ul>
-        <li>Un unique processus peut exécuter plusieurs threads
-        <li>L'ordonnancement gère les threads d'un même processus comme des tâches séparées (potentiellement sur des
-        processeurs différents)
-        <li>Les threads sont terminés lorsque le processus termine
-    </ul>
-</article>
+        <br>
+        <p>Pour exécuter plusieurs instances de la même tâche en parallèle, on peut utiliser des <em>threads</em>
+            (processus légers) à la place des processus</p>
+        <ul>
+            <li>Un unique processus peut exécuter plusieurs threads
+            <li>L'ordonnancement gère les threads d'un même processus comme des tâches séparées (potentiellement sur des
+            processeurs différents)
+            <li>Les threads sont terminés lorsque le processus termine
+        </ul>
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Processus légers</h1>
     <div class="leftside">
         <div class="center">
@@ -58,10 +62,10 @@
             processeur
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>En C</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -89,10 +93,10 @@ void pthread_exit(void *value_ptr)
             <li><code>pthread_exit</code> permet de terminer un thread (appelée automatiquement si la fonction <code>start_routine</code> termine)
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Exemple</h1>
     <div class="leftside">
         <pre><code class="cpp only" data-step="0">
@@ -184,10 +188,10 @@ void* tache(void* args) {
   return 0;
 }</code></pre>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Concurrence</h1>
     <div class="leftside">
         <pre><code class="cpp">#include &lt;pthread.h>
@@ -225,10 +229,10 @@ return 0; }</code></pre>
             </ul>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Thread safety</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -261,10 +265,10 @@ int incr() {
             <li>les verrouillages ralentissent le parallélisme (goulot d'étranglement)
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Réentrance</h1>
     <div class="leftside">
         <pre><code class="cpp only" data-step="0">
@@ -306,10 +310,10 @@ void echange(int *x, int *y) {
             <li>exécution concurrente (threads)
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Compilation</h1>
     <div class="leftside">
         <pre><code class="only" data-step="0">$ gcc prog.c -lpthread -D_REENTRANT</code><code class="only">$ gcc prog.c -pthread</code></pre>
@@ -333,10 +337,10 @@ void echange(int *x, int *y) {
             <li>la plupart du temps, cela correspond à<br><code>-lpthread -D_REENTRANT</code>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Processus Thread</h1>
     <div class="leftside">
         <ul>
@@ -355,11 +359,11 @@ void echange(int *x, int *y) {
             <li>Tous les threads d'un même processus ont le même code</li>
         </ul>
     </div>
-</article>
+</section>
 
 
 
-<article class="split">
+<section class="split">
     <h1>Virtualisation</h1>
     <div class="leftside">
         <img src="cours05/cours05-memoireVirtuelle.svg" style="width: 80%" alt="mémoire virtuelle">
@@ -373,10 +377,11 @@ void echange(int *x, int *y) {
             <li>Masque les problèmes de fragmentation (le noyau s'en occupe)
         </ul>
     </div>
-</article>
+</section>
 
 
 <script src="../js/highlight.pack.js"></script>
+<script src="../js/slides.js"></script>
 <script src="../js/myriad.js"></script>
 
 </body>

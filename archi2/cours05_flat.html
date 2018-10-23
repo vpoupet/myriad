@@ -2,6 +2,8 @@
 <html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -9,37 +11,39 @@
 <body>
 
 
-<article class="title" id="slide0">
+<a id="slide_anchor0"></a><section class="title">
     <h1>Cours n° 5 :<br>Processus légers<br>(threads)</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
-    <time>12 mars 2018</time>
-<a href="#slide-1" class="prev_link"></a><a href="#slide1" class="next_link"></a></article>
+    <time datetime="2018-03-12">12 mars 2018</time>
+<div class="page_count">0 / 10</div><a href="#slide_anchor-1" class="prev_flat_link"></a><a href="#slide_anchor1" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide1">
+<a id="slide_anchor1"></a><section class="single">
     <h1>Processus légers</h1>
-    <p>Si l'on veut exécuter plusieurs tâches en parallèle, on peut utiliser des processus différents</p>
-    <ul>
-        <li>la création d'un processus est une opération coûteuse
-        </li><li>chaque processus occupe un segment de mémoire séparée
-        </li><li>le code à exécuter est copié dans chaque nouveau processus
-        </li><li>la communication entre processus est difficile (tubes, fichiers, sockets, etc.)
-    </li></ul>
+    <div>
+        <p>Si l'on veut exécuter plusieurs tâches en parallèle, on peut utiliser des processus différents</p>
+        <ul>
+            <li>la création d'un processus est une opération coûteuse
+            </li><li>chaque processus occupe un segment de mémoire séparée
+            </li><li>le code à exécuter est copié dans chaque nouveau processus
+            </li><li>la communication entre processus est difficile (tubes, fichiers, sockets, etc.)
+        </li></ul>
 
-    <br>
-    <p>Pour exécuter plusieurs instances de la même tâche en parallèle, on peut utiliser des <em>threads</em>
-        (processus légers) à la place des processus</p>
-    <ul>
-        <li>Un unique processus peut exécuter plusieurs threads
-        </li><li>L'ordonnancement gère les threads d'un même processus comme des tâches séparées (potentiellement sur des
-        processeurs différents)
-        </li><li>Les threads sont terminés lorsque le processus termine
-    </li></ul>
-<div class="page_count">1 / 10</div><a href="#slide0" class="prev_link"></a><a href="#slide2" class="next_link"></a></article>
+        <br>
+        <p>Pour exécuter plusieurs instances de la même tâche en parallèle, on peut utiliser des <em>threads</em>
+            (processus légers) à la place des processus</p>
+        <ul>
+            <li>Un unique processus peut exécuter plusieurs threads
+            </li><li>L'ordonnancement gère les threads d'un même processus comme des tâches séparées (potentiellement sur des
+            processeurs différents)
+            </li><li>Les threads sont terminés lorsque le processus termine
+        </li></ul>
+    </div>
+<div class="page_count">1 / 10</div><a href="#slide_anchor0" class="prev_flat_link"></a><a href="#slide_anchor2" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide2">
+<a id="slide_anchor2"></a><section class="split">
     <h1>Processus légers</h1>
     <div class="leftside">
         <div class="center">
@@ -57,7 +61,7 @@
             processeur
         </li></ul>
     </div>
-<div class="page_count">2 / 10</div><a href="#slide1" class="prev_link"></a><a href="#slide3" class="next_link"></a></article><article class="split" id="slide3">
+<div class="page_count">2 / 10</div><a href="#slide_anchor1" class="prev_flat_link"></a><a href="#slide_anchor3" class="next_flat_link"></a></section><a id="slide_anchor3"></a><section class="split">
     <h1>Processus légers</h1>
     <div class="leftside">
         <div class="center">
@@ -75,10 +79,10 @@
             processeur
         </li></ul>
     </div>
-<div class="page_count">2 / 10</div><a href="#slide2" class="prev_link"></a><a href="#slide4" class="next_link"></a></article>
+<div class="page_count">2 / 10</div><a href="#slide_anchor2" class="prev_flat_link"></a><a href="#slide_anchor4" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide4">
+<a id="slide_anchor4"></a><section class="split">
     <h1>En C</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -106,10 +110,10 @@
             </li><li><code>pthread_exit</code> permet de terminer un thread (appelée automatiquement si la fonction <code>start_routine</code> termine)
         </li></ul>
     </div>
-<div class="page_count">3 / 10</div><a href="#slide3" class="prev_link"></a><a href="#slide5" class="next_link"></a></article>
+<div class="page_count">3 / 10</div><a href="#slide_anchor3" class="prev_flat_link"></a><a href="#slide_anchor5" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide5">
+<a id="slide_anchor5"></a><section class="split">
     <h1>Exemple</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="0" data-start="0" data-end="0">
@@ -137,7 +141,7 @@
   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
     </div>
-<div class="page_count">4 / 10</div><a href="#slide4" class="prev_link"></a><a href="#slide6" class="next_link"></a></article><article class="split" id="slide6">
+<div class="page_count">4 / 10</div><a href="#slide_anchor4" class="prev_flat_link"></a><a href="#slide_anchor6" class="next_flat_link"></a></section><a id="slide_anchor6"></a><section class="split">
     <h1>Exemple</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="1" data-end="1">
@@ -170,7 +174,7 @@
   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
     </div>
-<div class="page_count">4 / 10</div><a href="#slide5" class="prev_link"></a><a href="#slide7" class="next_link"></a></article><article class="split" id="slide7">
+<div class="page_count">4 / 10</div><a href="#slide_anchor5" class="prev_flat_link"></a><a href="#slide_anchor7" class="next_flat_link"></a></section><a id="slide_anchor7"></a><section class="split">
     <h1>Exemple</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="2" data-end="2">
@@ -217,10 +221,10 @@
   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
     </div>
-<div class="page_count">4 / 10</div><a href="#slide6" class="prev_link"></a><a href="#slide8" class="next_link"></a></article>
+<div class="page_count">4 / 10</div><a href="#slide_anchor6" class="prev_flat_link"></a><a href="#slide_anchor8" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide8">
+<a id="slide_anchor8"></a><section class="split">
     <h1>Concurrence</h1>
     <div class="leftside">
         <pre><code class="cpp hljs"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;pthread.h&gt;</span></span>
@@ -258,10 +262,10 @@
             </li></ul>
         </li></ul>
     </div>
-<div class="page_count">5 / 10</div><a href="#slide7" class="prev_link"></a><a href="#slide9" class="next_link"></a></article>
+<div class="page_count">5 / 10</div><a href="#slide_anchor7" class="prev_flat_link"></a><a href="#slide_anchor9" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide9">
+<a id="slide_anchor9"></a><section class="split">
     <h1>Thread safety</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -294,10 +298,10 @@
             </li><li>les verrouillages ralentissent le parallélisme (goulot d'étranglement)
         </li></ul>
     </div>
-<div class="page_count">6 / 10</div><a href="#slide8" class="prev_link"></a><a href="#slide10" class="next_link"></a></article>
+<div class="page_count">6 / 10</div><a href="#slide_anchor8" class="prev_flat_link"></a><a href="#slide_anchor10" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide10">
+<a id="slide_anchor10"></a><section class="split">
     <h1>Réentrance</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="0" data-start="0" data-end="0">
@@ -319,7 +323,7 @@
             </li><li>exécution concurrente (threads)
         </li></ul>
     </div>
-<div class="page_count">7 / 10</div><a href="#slide9" class="prev_link"></a><a href="#slide11" class="next_link"></a></article><article class="split" id="slide11">
+<div class="page_count">7 / 10</div><a href="#slide_anchor9" class="prev_flat_link"></a><a href="#slide_anchor11" class="next_flat_link"></a></section><a id="slide_anchor11"></a><section class="split">
     <h1>Réentrance</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="1" data-end="1">
@@ -342,7 +346,7 @@
             </li><li>exécution concurrente (threads)
         </li></ul>
     </div>
-<div class="page_count">7 / 10</div><a href="#slide10" class="prev_link"></a><a href="#slide12" class="next_link"></a></article><article class="split" id="slide12">
+<div class="page_count">7 / 10</div><a href="#slide_anchor10" class="prev_flat_link"></a><a href="#slide_anchor12" class="next_flat_link"></a></section><a id="slide_anchor12"></a><section class="split">
     <h1>Réentrance</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="2" data-end="2">
@@ -367,10 +371,10 @@
             </li><li>exécution concurrente (threads)
         </li></ul>
     </div>
-<div class="page_count">7 / 10</div><a href="#slide11" class="prev_link"></a><a href="#slide13" class="next_link"></a></article>
+<div class="page_count">7 / 10</div><a href="#slide_anchor11" class="prev_flat_link"></a><a href="#slide_anchor13" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide13">
+<a id="slide_anchor13"></a><section class="split">
     <h1>Compilation</h1>
     <div class="leftside">
         <pre><code class="only hljs" data-step="0" data-start="0" data-end="0">$ gcc prog.c -lpthread -D_REENTRANT</code></pre>
@@ -390,7 +394,7 @@
         </li></ul>
         
     </div>
-<div class="page_count">8 / 10</div><a href="#slide12" class="prev_link"></a><a href="#slide14" class="next_link"></a></article><article class="split" id="slide14">
+<div class="page_count">8 / 10</div><a href="#slide_anchor12" class="prev_flat_link"></a><a href="#slide_anchor14" class="next_flat_link"></a></section><a id="slide_anchor14"></a><section class="split">
     <h1>Compilation</h1>
     <div class="leftside">
         <pre><code class="only hljs" data-start="1" data-end="1">$ gcc prog.c -pthread</code></pre>
@@ -403,10 +407,10 @@
             </li><li>la plupart du temps, cela correspond à<br><code>-lpthread -D_REENTRANT</code>
         </li></ul>
     </div>
-<div class="page_count">8 / 10</div><a href="#slide13" class="prev_link"></a><a href="#slide15" class="next_link"></a></article>
+<div class="page_count">8 / 10</div><a href="#slide_anchor13" class="prev_flat_link"></a><a href="#slide_anchor15" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide15">
+<a id="slide_anchor15"></a><section class="split">
     <h1>Processus Thread</h1>
     <div class="leftside">
         <ul>
@@ -425,11 +429,11 @@
             <li>Tous les threads d'un même processus ont le même code</li>
         </ul>
     </div>
-<div class="page_count">9 / 10</div><a href="#slide14" class="prev_link"></a><a href="#slide16" class="next_link"></a></article>
+<div class="page_count">9 / 10</div><a href="#slide_anchor14" class="prev_flat_link"></a><a href="#slide_anchor16" class="next_flat_link"></a></section>
 
 
 
-<article class="split" id="slide16">
+<a id="slide_anchor16"></a><section class="split">
     <h1>Virtualisation</h1>
     <div class="leftside">
         <img src="cours05/cours05-memoireVirtuelle.svg" style="width: 80%" alt="mémoire virtuelle">
@@ -443,7 +447,8 @@
             </li><li>Masque les problèmes de fragmentation (le noyau s'en occupe)
         </li></ul>
     </div>
-<div class="page_count">10 / 10</div><a href="#slide15" class="prev_link"></a><a href="#slide17" class="next_link"></a></article>
+<div class="page_count">10 / 10</div><a href="#slide_anchor15" class="prev_flat_link"></a><a href="#slide_anchor17" class="next_flat_link"></a></section>
+
 
 
 

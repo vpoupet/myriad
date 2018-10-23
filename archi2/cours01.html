@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -11,15 +12,15 @@
 <body>
 
 
-<article class="title">
+<section class="title">
     <h1>Cours n°1 :<br>Introduction au C</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
     <time datetime="2018-01-29">29 janvier 2018</time>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Généralités</h1>
     <div class="main">
         <ul>
@@ -29,10 +30,10 @@
             <li>La syntaxe du C a fortement inspiré celle de nombreux langages par la suite (par exemple Java)</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Premier programme</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -54,10 +55,10 @@ int main() {
                 <code>*/</code></li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Instructions</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -75,10 +76,10 @@ if (a > 0) {
             <li>On peut grouper plusieurs instructions entre accolades</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Compilation</h1>
     <div class="leftside">
         <pre><code class="plaintext">
@@ -102,10 +103,10 @@ Hello, world!
             </li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Précompilation</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -133,10 +134,10 @@ int main() {
             <li>Remplacement de constantes et macros (<code>#define</code>)</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Variables</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -157,10 +158,10 @@ int f(int a) {
             <li><em>locales</em> : déclarées dans une fonction, valables uniquement dans cette fonction et ses sous-fonctions</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Fonctions</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -186,10 +187,10 @@ float hyp(int a, int b) {
 
         <p>Exemple: <code>stdio.h</code></p>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>La fonction main</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -222,10 +223,10 @@ int main(int argc, char *argv[]) {
             </li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Types de base</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -249,33 +250,34 @@ char s = 'A';
             <li>Il existe plusieurs types de données «&nbsp;élémentaires&nbsp;» prédéfinis</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Les types de base en mémoire</h1>
+    <div>
+        <p>Les différents types de base n'occupent pas le même espace mémoire.</p>
 
-    <p>Les différents types de base n'occupent pas le même espace mémoire.</p>
+        En général&nbsp;:
+        <ul>
+            <li><code>char</code> sur un octet (minimum 1)</li>
+            <li><code>short</code> sur 2 octets (minimum 2)</li>
+            <li><code>int</code> sur 4 octets (minimum 2)</li>
+            <li><code>long int</code> sur 8 octets (minimum 4)</li>
+            <li><code>float</code> sur 4 octets</li>
+            <li><code>double</code> sur 8 octets</li>
+        </ul>
 
-    En général&nbsp;:
-    <ul>
-        <li><code>char</code> sur un octet (minimum 1)</li>
-        <li><code>short</code> sur 2 octets (minimum 2)</li>
-        <li><code>int</code> sur 4 octets (minimum 2)</li>
-        <li><code>long int</code> sur 8 octets (minimum 4)</li>
-        <li><code>float</code> sur 4 octets</li>
-        <li><code>double</code> sur 8 octets</li>
-    </ul>
+        <p>Cependant, l'espace occupé par chaque type peut dépendre du système d'exploitation. La norme spécifie des
+            tailles minimum et des relations entre les types (un <code>long int</code> doit être au moins aussi long qu'un
+            <code>int</code>).</p>
 
-    <p>Cependant, l'espace occupé par chaque type peut dépendre du système d'exploitation. La norme spécifie des
-        tailles minimum et des relations entre les types (un <code>long int</code> doit être au moins aussi long qu'un
-        <code>int</code>).</p>
-
-    <p>On peut utiliser l'instruction <code>sizeof</code> pour obtenir la taille en octets d'une variable</p>
-</article>
+        <p>On peut utiliser l'instruction <code>sizeof</code> pour obtenir la taille en octets d'une variable</p>
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Structures de contrôle</h1>
     <div class="leftside">
         <pre><code class="cpp only" data-step="0">
@@ -319,16 +321,18 @@ switch (x % 3) {
             <li><code>switch</code> permet d'exécuter des instructions en fonction de la valeur d'une expression</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Un exemple</h1>
-    &rarr; Programme de calcul de racine d'un polynôme de degré 2
-</article>
+    <div>
+        &rarr; Programme de calcul de racine d'un polynôme de degré 2
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Conversion de type</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -358,13 +362,13 @@ b = a + c;
                 inférieur en positif, et supérieur en négatif)</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Tableaux</h1>
     <div class="leftside">
-    <pre><code class="cpp">
+        <pre><code class="cpp">
 /* déclarations */
 int tab[10];
 // le programme réserve 40 octets
@@ -382,7 +386,7 @@ for (int i=2; i&lt;10; i++) {
 
 // initialisation à la création
 int t[4] = {1, 2, 3, 4};
-    </code></pre>
+        </code></pre>
     </div>
     <div class="rightside">
         <ul>
@@ -395,28 +399,31 @@ int t[4] = {1, 2, 3, 4};
                 case, et se déplacer de <em>i</em> fois la taille d'un élément</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Tableaux</h1>
-    Suite à l'instruction<br>
-    <code style="margin-left: 5mm">int tab[4];</code>
+    <div>
+        Suite à l'instruction<br>
+        <code style="margin-left: 5mm">int tab[4];</code>
 
-    <ul>
-        <li>Le programme réserve 16 octets (4 par entier) pour le tableau</li>
-        <li>La variable <code>tab</code> contient l'adresse de la première case</li>
-        <li>La valeur qui se trouve à l'adresse <code>tab</code> est un <code>int</code></li>
-        <li>La valeur qui se trouve à l'adresse <code>(tab+1)</code> est un <code>int</code></li>
-        <li>Rien ne marque la fin du tableau, mais le contenu des cases à l'extérieur est indéterminé (et peut être
-            interdit d'accès au programme courant)</li>
-    </ul>
+        <ul>
+            <li>Le programme réserve 16 octets (4 par entier) pour le tableau</li>
+            <li>La variable <code>tab</code> contient l'adresse de la première case</li>
+            <li>La valeur qui se trouve à l'adresse <code>tab</code> est un <code>int</code></li>
+            <li>La valeur qui se trouve à l'adresse <code>(tab+1)</code> est un <code>int</code></li>
+            <li>Rien ne marque la fin du tableau, mais le contenu des cases à l'extérieur est indéterminé (et peut être
+                interdit d'accès au programme courant)</li>
+        </ul>
 
-    <img src="cours01/cours01-tableaux.svg" style="width: 100%" alt="tableaux">
-</article>
+        <br>
+        <img src="cours01/cours01-tableaux.svg" style="width: 100%" alt="tableaux">
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Pointeurs</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -443,12 +450,13 @@ a++;
                 pointeurs vers les objets et non pas les objets eux-mêmes</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Pointeurs</h1>
-    <pre><code class="cpp">float a = 3.14;        (float) a : 1234
+    <div>
+        <pre><code class="cpp">float a = 3.14;        (float) a : 1234
 <span class="uncover">float *p;              (float*) p : 1842</span>
 <span class="uncover">p = &amp;a;</span>                <span class="uncover">(int*) tab : 834</span>
 <span class="uncover" data-start="3">int tab[5];</span>            <span class="uncover">(int*) t : 2936</span>
@@ -457,21 +465,22 @@ a++;
 <span class="uncover">*(t+3) = 20;</span>
 <span class="uncover">t = p;</span>
 <span class="uncover">*p = 2.72;</span>
-    </code></pre>
+        </code></pre>
 
-    <img src="cours01/cours01-pointeurs-1.svg" class="only" data-step="0" style="width: 100%" alt="pointeurs">
-    <img src="cours01/cours01-pointeurs-2.svg" class="only" style="width: 100%" alt="pointeurs">
-    <img src="cours01/cours01-pointeurs-3.svg" class="only" style="width: 100%" alt="pointeurs">
-    <img src="cours01/cours01-pointeurs-4.svg" class="only" style="width: 100%" alt="pointeurs">
-    <img src="cours01/cours01-pointeurs-5.svg" class="only" style="width: 100%" alt="pointeurs">
-    <img src="cours01/cours01-pointeurs-6.svg" class="only" style="width: 100%" alt="pointeurs">
-    <img src="cours01/cours01-pointeurs-7.svg" class="only" style="width: 100%" alt="pointeurs">
-    <img src="cours01/cours01-pointeurs-8.svg" class="only" style="width: 100%" alt="pointeurs">
-    <img src="cours01/cours01-pointeurs-9.svg" class="only" style="width: 100%" alt="pointeurs">
-</article>
+        <img src="cours01/cours01-pointeurs-1.svg" class="only" data-step="0" style="width: 100%" alt="pointeurs">
+        <img src="cours01/cours01-pointeurs-2.svg" class="only" style="width: 100%" alt="pointeurs">
+        <img src="cours01/cours01-pointeurs-3.svg" class="only" style="width: 100%" alt="pointeurs">
+        <img src="cours01/cours01-pointeurs-4.svg" class="only" style="width: 100%" alt="pointeurs">
+        <img src="cours01/cours01-pointeurs-5.svg" class="only" style="width: 100%" alt="pointeurs">
+        <img src="cours01/cours01-pointeurs-6.svg" class="only" style="width: 100%" alt="pointeurs">
+        <img src="cours01/cours01-pointeurs-7.svg" class="only" style="width: 100%" alt="pointeurs">
+        <img src="cours01/cours01-pointeurs-8.svg" class="only" style="width: 100%" alt="pointeurs">
+        <img src="cours01/cours01-pointeurs-9.svg" class="only" style="width: 100%" alt="pointeurs">
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Valeur ou référence</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -501,10 +510,10 @@ n = "def"; <span class="uncover">// n = "abc", m = "def"</span>
                 l'autre</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Pointeurs comme arguments</h1>
     <div class="leftside">
        <pre><code class="cpp">
@@ -532,23 +541,25 @@ int main() {
                 résultat de leur exécution (ex&nbsp;: <code>scanf</code>)</li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="single">
+<section class="single">
     <h1>Tableaux et pointeurs</h1>
-    <p>Les opérations sur les tableaux reviennent à manipuler des pointeurs&nbsp;:</p>
-    <br>
+    <div>
+        <p>Les opérations sur les tableaux reviennent à manipuler des pointeurs&nbsp;:</p>
+        <br>
 
-    <ul>
-        <li>la déclaration <code>int t[];</code> est équivalente à <code>int *t;</code> (dans ce cas la taille du
-            tableau n'est pas définie et l'espace n'est pas réservé en mémoire)</li>
-        <li>pour accéder à une case du tableau, <code>t[5]</code> est équivalent à <code>*(t+5)</code></li>
-    </ul>
-</article>
+        <ul>
+            <li>la déclaration <code>int t[];</code> est équivalente à <code>int *t;</code> (dans ce cas la taille du
+                tableau n'est pas définie et l'espace n'est pas réservé en mémoire)</li>
+            <li>pour accéder à une case du tableau, <code>t[5]</code> est équivalent à <code>*(t+5)</code></li>
+        </ul>
+    </div>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Chaînes de caractères</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -581,10 +592,10 @@ int main() {
                 pour le caractère <code>'\0'</code></li>
         </ul>
     </div>
-</article>
+</section>
 
 
-<article class="split">
+<section class="split">
     <h1>Structures</h1>
     <div class="leftside">
         <pre><code class="cpp">
@@ -617,10 +628,11 @@ struct Voiture v3 = {2, "Fiat"};
             <li>On peut utiliser <code>sizeof</code> pour trouver la taille</li>
         </ul>
     </div>
-</article>
+</section>
 
 
 <script src="../js/highlight.pack.js"></script>
+<script src="../js/slides.js"></script>
 <script src="../js/myriad.js"></script>
 </body>
 </html>

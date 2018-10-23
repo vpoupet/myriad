@@ -2,6 +2,8 @@
 <html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -9,15 +11,15 @@
 <body>
 
 
-<article class="title" id="slide0">
+<a id="slide_anchor0"></a><section class="title">
     <h1>Cours n° 4 :<br>Création de processus</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
-    <time>5 mars 2018</time>
-<a href="#slide-1" class="prev_link"></a><a href="#slide1" class="next_link"></a></article>
+    <time datetime="2018-03-05">5 mars 2018</time>
+<div class="page_count">0 / 10</div><a href="#slide_anchor-1" class="prev_flat_link"></a><a href="#slide_anchor1" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide1">
+<a id="slide_anchor1"></a><section class="split">
     <h1>Hiérarchie de processus</h1>
     <div class="leftside">
         <pre><code class="hljs">$ ps ax
@@ -49,12 +51,13 @@
             </li><li>La commande <code>ps</code> permet d'obtenir le PID et le PPID d'un processus
         </li></ul>
     </div>
-<div class="page_count">1 / 10</div><a href="#slide0" class="prev_link"></a><a href="#slide2" class="next_link"></a></article>
+<div class="page_count">1 / 10</div><a href="#slide_anchor0" class="prev_flat_link"></a><a href="#slide_anchor2" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide2">
+<a id="slide_anchor2"></a><section class="single">
     <h1>Hiérarchie (pstree)</h1>
-    <pre><code class="hljs">
+    <div>
+        <pre><code class="hljs">
 $ <span class="highlight">pstree -p</span>
 
 <span class="highlight">init(1)</span>─┬─NetworkManager(793)─┬─dhclient(911)
@@ -75,11 +78,12 @@ $ <span class="highlight">pstree -p</span>
         │                       └─{mission-control}(1909)
         ├─sh(884)───initctl(886)
         └─udisks-daemon(1604)───udisks-daemon(1609)
-    </code></pre>
-<div class="page_count">2 / 10</div><a href="#slide1" class="prev_link"></a><a href="#slide3" class="next_link"></a></article>
+        </code></pre>
+    </div>
+<div class="page_count">2 / 10</div><a href="#slide_anchor1" class="prev_flat_link"></a><a href="#slide_anchor3" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide3">
+<a id="slide_anchor3"></a><section class="split">
     <h1>Création</h1>
     <div class="leftside">
         <div class="only" data-step="0" data-start="0" data-end="0">
@@ -121,7 +125,7 @@ $ <span class="highlight">pstree -p</span>
                 </li></ul>
         </li></ul>
     </div>
-<div class="page_count">3 / 10</div><a href="#slide2" class="prev_link"></a><a href="#slide4" class="next_link"></a></article><article class="split" id="slide4">
+<div class="page_count">3 / 10</div><a href="#slide_anchor2" class="prev_flat_link"></a><a href="#slide_anchor4" class="next_flat_link"></a></section><a id="slide_anchor4"></a><section class="split">
     <h1>Création</h1>
     <div class="leftside">
         
@@ -152,10 +156,10 @@ $ <span class="highlight">pstree -p</span>
                 </li></ul>
         </li></ul>
     </div>
-<div class="page_count">3 / 10</div><a href="#slide3" class="prev_link"></a><a href="#slide5" class="next_link"></a></article>
+<div class="page_count">3 / 10</div><a href="#slide_anchor3" class="prev_flat_link"></a><a href="#slide_anchor5" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide5">
+<a id="slide_anchor5"></a><section class="split">
     <h1>Attente de complétion</h1>
     <div class="leftside">
         <pre><code class="hljs">
@@ -176,10 +180,10 @@ SYNOPSIS
             </li><li>Le fils est supprimé de la table de processus quand son père reçoit le code de retour
         </li></ul>
     </div>
-<div class="page_count">4 / 10</div><a href="#slide4" class="prev_link"></a><a href="#slide6" class="next_link"></a></article>
+<div class="page_count">4 / 10</div><a href="#slide_anchor4" class="prev_flat_link"></a><a href="#slide_anchor6" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide6">
+<a id="slide_anchor6"></a><section class="split">
     <h1>Zombies</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="0" data-start="0" data-end="0">
@@ -207,7 +211,7 @@ SYNOPSIS
             </li><li>Si le parent est terminé avant le fils, le fils devient orphelin et est récupéré par <code>init</code> (qui appelle <code>wait</code> régulièrement)
         </li></ul>
     </div>
-<div class="page_count">5 / 10</div><a href="#slide5" class="prev_link"></a><a href="#slide7" class="next_link"></a></article><article class="split" id="slide7">
+<div class="page_count">5 / 10</div><a href="#slide_anchor5" class="prev_flat_link"></a><a href="#slide_anchor7" class="next_flat_link"></a></section><a id="slide_anchor7"></a><section class="split">
     <h1>Zombies</h1>
     <div class="leftside">
         <pre><code class="only hljs" data-start="1" data-end="1">
@@ -233,10 +237,10 @@ $ ps
             </li><li>Si le parent est terminé avant le fils, le fils devient orphelin et est récupéré par <code>init</code> (qui appelle <code>wait</code> régulièrement)
         </li></ul>
     </div>
-<div class="page_count">5 / 10</div><a href="#slide6" class="prev_link"></a><a href="#slide8" class="next_link"></a></article>
+<div class="page_count">5 / 10</div><a href="#slide_anchor6" class="prev_flat_link"></a><a href="#slide_anchor8" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide8">
+<a id="slide_anchor8"></a><section class="split">
     <h1>Éviter les zombies</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="0" data-start="0" data-end="0">
@@ -261,7 +265,7 @@ $ ps
             </li><li>On peut faire en sorte que le processus fils soit immédiatement adopté par <code>init</code>
         </li></ul>
     </div>
-<div class="page_count">6 / 10</div><a href="#slide7" class="prev_link"></a><a href="#slide9" class="next_link"></a></article><article class="split" id="slide9">
+<div class="page_count">6 / 10</div><a href="#slide_anchor7" class="prev_flat_link"></a><a href="#slide_anchor9" class="next_flat_link"></a></section><a id="slide_anchor9"></a><section class="split">
     <h1>Éviter les zombies</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="1" data-end="1">
@@ -291,7 +295,7 @@ $ ps
             </li><li>On peut faire en sorte que le processus fils soit immédiatement adopté par <code>init</code>
         </li></ul>
     </div>
-<div class="page_count">6 / 10</div><a href="#slide8" class="prev_link"></a><a href="#slide10" class="next_link"></a></article><article class="split" id="slide10">
+<div class="page_count">6 / 10</div><a href="#slide_anchor8" class="prev_flat_link"></a><a href="#slide_anchor10" class="next_flat_link"></a></section><a id="slide_anchor10"></a><section class="split">
     <h1>Éviter les zombies</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="2" data-end="2">
@@ -324,33 +328,37 @@ $ ps
             </li><li>On peut faire en sorte que le processus fils soit immédiatement adopté par <code>init</code>
         </li></ul>
     </div>
-<div class="page_count">6 / 10</div><a href="#slide9" class="prev_link"></a><a href="#slide11" class="next_link"></a></article>
+<div class="page_count">6 / 10</div><a href="#slide_anchor9" class="prev_flat_link"></a><a href="#slide_anchor11" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide11">
+<a id="slide_anchor11"></a><section class="single">
     <h1>fork</h1>
-    <p>La fonction <code>fork</code> est appelée par un processus mais renvoie deux résultats, dans deux processus
-        distincts</p>
-    <ul>
-        <li>Le père reçoit le PID du fils
-        </li><li>Le fils peut obtenir le PID du père&nbsp;: <code>getppid()</code>
-        </li><li>Si le fils et le père doivent avoir des comportements différents, il faut que les deux aient l'ensemble
-        du code<span class="uncover hidden" data-start="1">... sauf s'il existe un moyen de changer le code d'un processus</span>
-    </li></ul>
-<div class="page_count">7 / 10</div><a href="#slide10" class="prev_link"></a><a href="#slide12" class="next_link"></a></article><article class="single" id="slide12">
+    <div>
+        <p>La fonction <code>fork</code> est appelée par un processus mais renvoie deux résultats, dans deux processus
+            distincts</p>
+        <ul>
+            <li>Le père reçoit le PID du fils
+            </li><li>Le fils peut obtenir le PID du père&nbsp;: <code>getppid()</code>
+            </li><li>Si le fils et le père doivent avoir des comportements différents, il faut que les deux aient l'ensemble
+            du code<span class="uncover hidden" data-start="1">... sauf s'il existe un moyen de changer le code d'un processus</span>
+        </li></ul>
+    </div>
+<div class="page_count">7 / 10</div><a href="#slide_anchor10" class="prev_flat_link"></a><a href="#slide_anchor12" class="next_flat_link"></a></section><a id="slide_anchor12"></a><section class="single">
     <h1>fork</h1>
-    <p>La fonction <code>fork</code> est appelée par un processus mais renvoie deux résultats, dans deux processus
-        distincts</p>
-    <ul>
-        <li>Le père reçoit le PID du fils
-        </li><li>Le fils peut obtenir le PID du père&nbsp;: <code>getppid()</code>
-        </li><li>Si le fils et le père doivent avoir des comportements différents, il faut que les deux aient l'ensemble
-        du code<span class="uncover" data-start="1">... sauf s'il existe un moyen de changer le code d'un processus</span>
-    </li></ul>
-<div class="page_count">7 / 10</div><a href="#slide11" class="prev_link"></a><a href="#slide13" class="next_link"></a></article>
+    <div>
+        <p>La fonction <code>fork</code> est appelée par un processus mais renvoie deux résultats, dans deux processus
+            distincts</p>
+        <ul>
+            <li>Le père reçoit le PID du fils
+            </li><li>Le fils peut obtenir le PID du père&nbsp;: <code>getppid()</code>
+            </li><li>Si le fils et le père doivent avoir des comportements différents, il faut que les deux aient l'ensemble
+            du code<span class="uncover" data-start="1">... sauf s'il existe un moyen de changer le code d'un processus</span>
+        </li></ul>
+    </div>
+<div class="page_count">7 / 10</div><a href="#slide_anchor11" class="prev_flat_link"></a><a href="#slide_anchor13" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide13">
+<a id="slide_anchor13"></a><section class="split">
     <h1>Exécution</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-end="1">
@@ -376,7 +384,7 @@ $ ps
         </div>
         
     </div>
-<div class="page_count">8 / 10</div><a href="#slide12" class="prev_link"></a><a href="#slide14" class="next_link"></a></article><article class="split" id="slide14">
+<div class="page_count">8 / 10</div><a href="#slide_anchor12" class="prev_flat_link"></a><a href="#slide_anchor14" class="next_flat_link"></a></section><a id="slide_anchor14"></a><section class="split">
     <h1>Exécution</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-end="1">
@@ -403,7 +411,7 @@ $ ps
             </li></ul>
         </div>
     </div>
-<div class="page_count">8 / 10</div><a href="#slide13" class="prev_link"></a><a href="#slide15" class="next_link"></a></article><article class="split" id="slide15">
+<div class="page_count">8 / 10</div><a href="#slide_anchor13" class="prev_flat_link"></a><a href="#slide_anchor15" class="next_flat_link"></a></section><a id="slide_anchor15"></a><section class="split">
     <h1>Exécution</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-step="2" data-start="2" data-end="2">
@@ -432,7 +440,7 @@ $ ps
             </li></ul>
         </div>
     </div>
-<div class="page_count">8 / 10</div><a href="#slide14" class="prev_link"></a><a href="#slide16" class="next_link"></a></article><article class="split" id="slide16">
+<div class="page_count">8 / 10</div><a href="#slide_anchor14" class="prev_flat_link"></a><a href="#slide_anchor16" class="next_flat_link"></a></section><a id="slide_anchor16"></a><section class="split">
     <h1>Exécution</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="3" data-end="3">
@@ -465,10 +473,10 @@ $ ps
             </li></ul>
         </div>
     </div>
-<div class="page_count">8 / 10</div><a href="#slide15" class="prev_link"></a><a href="#slide17" class="next_link"></a></article>
+<div class="page_count">8 / 10</div><a href="#slide_anchor15" class="prev_flat_link"></a><a href="#slide_anchor17" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide17">
+<a id="slide_anchor17"></a><section class="split">
     <h1>Exemple : ls</h1>
     <div class="leftside">
         <div class="center">
@@ -484,24 +492,27 @@ $ ps
             </li><li>quand le fils termine, le père reçoit le code de retour, supprime le processus fils et reprend son exécution
         </li></ul>
     </div>
-<div class="page_count">9 / 10</div><a href="#slide16" class="prev_link"></a><a href="#slide18" class="next_link"></a></article>
+<div class="page_count">9 / 10</div><a href="#slide_anchor16" class="prev_flat_link"></a><a href="#slide_anchor18" class="next_flat_link"></a></section>
 
-<article class="single" id="slide18">
+<a id="slide_anchor18"></a><section class="single">
     <h1>Copie sur écriture</h1>
-    <p>L'utilisation de <code>fork</code>/<code>exec</code> est le moyen le plus classique (et parfois le seul disponible)
-    pour créer des nouveaux processus</p>
-    <ul>
-        <li>Si le nouveau processus va être remplacé par un autre programme (<code>exec</code>) il est inutile de
-            copier toute sa mémoire au moment du <code>fork</code>
-        </li><li>Pour alléger, on utilise souvent une technique appelée <em>copy on write</em>&nbsp;:
-            <ul>
-                <li>lorsque le nouveau processus est créé, on ne copie pas sa mémoire
-                </li><li>il dispose de pointeurs vers la mémoire du père pour la lecture
-                </li><li>la mémoire est copiée au moment de la première écriture par le fils
-            </li></ul>
-        </li><li>Dans le cas où <code>exec</code> suit <code>fork</code>, la mémoire n'est pas copiée
-    </li></ul>
-<div class="page_count">10 / 10</div><a href="#slide17" class="prev_link"></a><a href="#slide19" class="next_link"></a></article>
+    <div>
+        <p>L'utilisation de <code>fork</code>/<code>exec</code> est le moyen le plus classique (et parfois le seul disponible)
+        pour créer des nouveaux processus</p>
+        <ul>
+            <li>Si le nouveau processus va être remplacé par un autre programme (<code>exec</code>) il est inutile de
+                copier toute sa mémoire au moment du <code>fork</code>
+            </li><li>Pour alléger, on utilise souvent une technique appelée <em>copy on write</em>&nbsp;:
+                <ul>
+                    <li>lorsque le nouveau processus est créé, on ne copie pas sa mémoire
+                    </li><li>il dispose de pointeurs vers la mémoire du père pour la lecture
+                    </li><li>la mémoire est copiée au moment de la première écriture par le fils
+                </li></ul>
+            </li><li>Dans le cas où <code>exec</code> suit <code>fork</code>, la mémoire n'est pas copiée
+        </li></ul>
+    </div>
+<div class="page_count">10 / 10</div><a href="#slide_anchor17" class="prev_flat_link"></a><a href="#slide_anchor19" class="next_flat_link"></a></section>
+
 
 
 

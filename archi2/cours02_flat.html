@@ -2,6 +2,8 @@
 <html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../css/slides.css">
     <link rel="stylesheet" href="../css/myriad.css">
     <link rel="stylesheet" href="../css/highlight.css">
     <title>M2101 - Architecture et programmation bas niveau</title>
@@ -9,49 +11,53 @@
 <body>
 
 
-<article class="title" id="slide0">
+<a id="slide_anchor0"></a><section class="title">
     <h1>Cours n° 2 :<br>Appels systèmes<br>et entrée / sortie</h1>
     <div class="context">M2101 - Architecture et programmation bas niveau</div>
     <div class="author">Victor Poupet</div>
-    <time>12 février 2018</time>
-<a href="#slide-1" class="prev_link"></a><a href="#slide1" class="next_link"></a></article>
+    <time datetime="2018-02-12">12 février 2018</time>
+<div class="page_count">0 / 14</div><a href="#slide_anchor-1" class="prev_flat_link"></a><a href="#slide_anchor1" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide1">
+<a id="slide_anchor1"></a><section class="single">
     <h1>Système d'exploitation</h1>
-    <ul>
-        <li>Le système d'exploitation (OS) est le premier programme exécuté au démarrage de l'ordinateur
-        </li><li>C'est l'OS qui gère toute l'activité de l'ordinateur (mémoire, utilisateurs, processeur, périphériques,
-        réseau, etc.)
-        </li><li>En cours&nbsp;: <em>Unix</em> (mais les autres sont similaires)
-        </li><li>Les programmes communiquent avec l'OS par l'intérmédiaire d'appels systèmes (<em>system call</em>)
-    </li></ul>
-<div class="page_count">1 / 14</div><a href="#slide0" class="prev_link"></a><a href="#slide2" class="next_link"></a></article>
+    <div>
+        <ul>
+            <li>Le système d'exploitation (OS) est le premier programme exécuté au démarrage de l'ordinateur
+            </li><li>C'est l'OS qui gère toute l'activité de l'ordinateur (mémoire, utilisateurs, processeur, périphériques,
+            réseau, etc.)
+            </li><li>En cours&nbsp;: <em>Unix</em> (mais les autres sont similaires)
+            </li><li>Les programmes communiquent avec l'OS par l'intérmédiaire d'appels systèmes (<em>system call</em>)
+        </li></ul>
+    </div>
+<div class="page_count">1 / 14</div><a href="#slide_anchor0" class="prev_flat_link"></a><a href="#slide_anchor2" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide2">
+<a id="slide_anchor2"></a><section class="single">
     <h1>Appels systèmes</h1>
-    Les appels systèmes ressemblent à des procédures (appels de fonction), avec toutefois des différences
-    importantes&nbsp;:
-    <ul>
-        <li>Les appels systèmes sont très coûteux en ressources&nbsp;:
-            <ul>
-                <li>le système sauvegarde l'état
-                </li><li>l'OS prend le contrôle du CPU
-                </li><li>l'OS exécute une tâche spécifique
-                </li><li>l'OS sauvegarde son état
-                </li><li>le contrôle est rendu au processus qui a lancé l'appel
-            </li></ul>
-        </li><li>Les appels systèmes dépendent du système d'exploitation
-        </li><li>Il ne faut pas les utiliser directement si le programme doit être portable
-        </li><li>La réalisation détaillée d'un appel système demande une connaissance précise des registres du processeur
-        </li><li>Il faut être très prudent pour ne pas provoquer d'erreurs
-        </li><li>On utilise en général une fonction qui se charge de faire l'appel
-    </li></ul>
-<div class="page_count">2 / 14</div><a href="#slide1" class="prev_link"></a><a href="#slide3" class="next_link"></a></article>
+    <div>
+        Les appels systèmes ressemblent à des procédures (appels de fonction), avec toutefois des différences
+        importantes&nbsp;:
+        <ul>
+            <li>Les appels systèmes sont très coûteux en ressources&nbsp;:
+                <ul>
+                    <li>le système sauvegarde l'état
+                    </li><li>l'OS prend le contrôle du CPU
+                    </li><li>l'OS exécute une tâche spécifique
+                    </li><li>l'OS sauvegarde son état
+                    </li><li>le contrôle est rendu au processus qui a lancé l'appel
+                </li></ul>
+            </li><li>Les appels systèmes dépendent du système d'exploitation
+            </li><li>Il ne faut pas les utiliser directement si le programme doit être portable
+            </li><li>La réalisation détaillée d'un appel système demande une connaissance précise des registres du processeur
+            </li><li>Il faut être très prudent pour ne pas provoquer d'erreurs
+            </li><li>On utilise en général une fonction qui se charge de faire l'appel
+        </li></ul>
+    </div>
+<div class="page_count">2 / 14</div><a href="#slide_anchor1" class="prev_flat_link"></a><a href="#slide_anchor3" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide3">
+<a id="slide_anchor3"></a><section class="split">
     <h1>Entrée / Sortie</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -74,31 +80,33 @@
             </li><li>chaque appel est décrit dans sa page de manuel (ex : <code>man 2 open</code>)
         </li></ul>
     </div>
-<div class="page_count">3 / 14</div><a href="#slide2" class="prev_link"></a><a href="#slide4" class="next_link"></a></article>
+<div class="page_count">3 / 14</div><a href="#slide_anchor2" class="prev_flat_link"></a><a href="#slide_anchor4" class="next_flat_link"></a></section>
 
 
-<article class="single" id="slide4">
+<a id="slide_anchor4"></a><section class="single">
     <h1>man 2 open</h1>
-    <pre><code class="plaintext hljs">
-OPEN(2)                 BSD System Calls Manual                OPEN(2)
+    <div>
+        <pre><code class="plaintext hljs">
+    OPEN(2)                 BSD System Calls Manual                OPEN(2)
 
-NAME
-     <span class="highlight">open</span> -- open or create a file for reading or writing
+    NAME
+         <span class="highlight">open</span> -- open or create a file for reading or writing
 
-SYNOPSIS
-     <span class="highlight">#include &lt;fcntl.h&gt;</span>
+    SYNOPSIS
+         <span class="highlight">#include &lt;fcntl.h&gt;</span>
 
-     <span class="highlight">int open(const char *path, int oflag, ...);</span>
+         <span class="highlight">int open(const char *path, int oflag, ...);</span>
 
-DESCRIPTION
-     The file name specified by path is opened for reading and/or writing, as specified by the argument oflag; the file descriptor is returned to the calling process.
+    DESCRIPTION
+         The file name specified by path is opened for reading and/or writing, as specified by the argument oflag; the file descriptor is returned to the calling process.
 
-     The oflag argument may indicate that the file is to be created if it does not exist (by specifying the O_CREAT flag).  In this case, open requires a third argument mode_t mode; the file is created with mode mode as described in chmod(2) and modified by the process' umask value (see umask(2)).
-    </code></pre>
-<div class="page_count">4 / 14</div><a href="#slide3" class="prev_link"></a><a href="#slide5" class="next_link"></a></article>
+         The oflag argument may indicate that the file is to be created if it does not exist (by specifying the O_CREAT flag).  In this case, open requires a third argument mode_t mode; the file is created with mode mode as described in chmod(2) and modified by the process' umask value (see umask(2)).
+        </code></pre>
+    </div>
+<div class="page_count">4 / 14</div><a href="#slide_anchor3" class="prev_flat_link"></a><a href="#slide_anchor5" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide5">
+<a id="slide_anchor5"></a><section class="split">
     <h1>Open</h1>
     <div class="leftside">
         <pre><code class="cpp hljs"><span class="hljs-function"><span class="hljs-keyword">int</span> </span><span class="highlight"><span class="hljs-function"><span class="hljs-title">open</span></span></span><span class="hljs-function"><span class="hljs-params">(<span class="hljs-keyword">char</span> *path, <span class="hljs-keyword">int</span> flags[, <span class="hljs-keyword">int</span> mode])</span></span>;</code></pre>
@@ -123,10 +131,10 @@ main()
             </li><li>Tous les autres appels E/S utilisent un descripteur de fichier
         </li></ul>
     </div>
-<div class="page_count">5 / 14</div><a href="#slide4" class="prev_link"></a><a href="#slide6" class="next_link"></a></article>
+<div class="page_count">5 / 14</div><a href="#slide_anchor4" class="prev_flat_link"></a><a href="#slide_anchor6" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide6">
+<a id="slide_anchor6"></a><section class="split">
     <h1>Open (flags)</h1>
     <div class="leftside">
         <pre><code class="hljs"><span class="highlight">O_RDONLY</span> open for reading only
@@ -150,10 +158,10 @@ O_CLOEXEC mark as close-on-exec</code></pre>
             </li><li>Les valeurs possibles sont définies dans <code>/usr/include/sys/fcntl.h</code>
         </li></ul>
     </div>
-<div class="page_count">6 / 14</div><a href="#slide5" class="prev_link"></a><a href="#slide7" class="next_link"></a></article>
+<div class="page_count">6 / 14</div><a href="#slide_anchor5" class="prev_flat_link"></a><a href="#slide_anchor7" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide7">
+<a id="slide_anchor7"></a><section class="split">
     <h1>Close</h1>
     <div class="leftside">
         <pre><code class="cpp hljs"><span class="hljs-function"><span class="hljs-keyword">int</span> </span><span class="highlight"><span class="hljs-function"><span class="hljs-title">close</span></span></span><span class="hljs-function"><span class="hljs-params">(<span class="hljs-keyword">int</span> fd)</span></span>;</code></pre>
@@ -184,10 +192,10 @@ main() {
             </li><li>Le nombre de fichiers ouverts par un processus est limité (dépend du système, varie d'une centaine à plusieurs milliers)
         </li></ul>
     </div>
-<div class="page_count">7 / 14</div><a href="#slide6" class="prev_link"></a><a href="#slide8" class="next_link"></a></article>
+<div class="page_count">7 / 14</div><a href="#slide_anchor6" class="prev_flat_link"></a><a href="#slide_anchor8" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide8">
+<a id="slide_anchor8"></a><section class="split">
     <h1>Read</h1>
     <div class="leftside">
         <pre><code class="cpp hljs"><span class="hljs-function"><span class="hljs-keyword">int</span> </span><span class="highlight"><span class="hljs-function"><span class="hljs-title">read</span></span></span><span class="hljs-function"><span class="hljs-params">(<span class="hljs-keyword">int</span> fd, <span class="hljs-keyword">char</span> *buf, <span class="hljs-keyword">int</span> size)</span></span>;</code></pre>
@@ -220,10 +228,10 @@ main() {
             </li><li>le résultat est le nombre d'octets effectivement lus (peut être inférieur à <code>size</code> si on est en fin de fichier)
         </li></ul>
     </div>
-<div class="page_count">8 / 14</div><a href="#slide7" class="prev_link"></a><a href="#slide9" class="next_link"></a></article>
+<div class="page_count">8 / 14</div><a href="#slide_anchor7" class="prev_flat_link"></a><a href="#slide_anchor9" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide9">
+<a id="slide_anchor9"></a><section class="split">
     <h1>Write</h1>
     <div class="leftside">
     <pre><code class="cpp hljs"><span class="hljs-function"><span class="hljs-keyword">int</span> </span><span class="highlight"><span class="hljs-function"><span class="hljs-title">write</span></span></span><span class="hljs-function"><span class="hljs-params">(<span class="hljs-keyword">int</span> fd, <span class="hljs-keyword">char</span> *buf, <span class="hljs-keyword">int</span> size)</span></span>;</code></pre>
@@ -252,10 +260,10 @@ main() {
             </li><li>le résultat est le nombre d'octets effectivement écrits (devrait toujours être égal à <code>size</code>)
         </li></ul>
     </div>
-<div class="page_count">9 / 14</div><a href="#slide8" class="prev_link"></a><a href="#slide10" class="next_link"></a></article>
+<div class="page_count">9 / 14</div><a href="#slide_anchor8" class="prev_flat_link"></a><a href="#slide_anchor10" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide10">
+<a id="slide_anchor10"></a><section class="split">
     <h1>Pointeur de fichier</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -287,10 +295,10 @@ main() {
             </li><li>Le pointeur est automatiquement avancé par la lecture et l'écriture
         </li></ul>
     </div>
-<div class="page_count">10 / 14</div><a href="#slide9" class="prev_link"></a><a href="#slide11" class="next_link"></a></article>
+<div class="page_count">10 / 14</div><a href="#slide_anchor9" class="prev_flat_link"></a><a href="#slide_anchor11" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide11">
+<a id="slide_anchor11"></a><section class="split">
     <h1>Ouvertures multiples</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-end="1">
@@ -315,7 +323,7 @@ main() {
             </li><li>les ouvertures en mode <code>O_APPEND</code> restent à la fin du fichier
         </li></ul>
     </div>
-<div class="page_count">11 / 14</div><a href="#slide10" class="prev_link"></a><a href="#slide12" class="next_link"></a></article><article class="split" id="slide12">
+<div class="page_count">11 / 14</div><a href="#slide_anchor10" class="prev_flat_link"></a><a href="#slide_anchor12" class="next_flat_link"></a></section><a id="slide_anchor12"></a><section class="split">
     <h1>Ouvertures multiples</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-end="1">
@@ -340,7 +348,7 @@ main() {
             </li><li>les ouvertures en mode <code>O_APPEND</code> restent à la fin du fichier
         </li></ul>
     </div>
-<div class="page_count">11 / 14</div><a href="#slide11" class="prev_link"></a><a href="#slide13" class="next_link"></a></article><article class="split" id="slide13">
+<div class="page_count">11 / 14</div><a href="#slide_anchor11" class="prev_flat_link"></a><a href="#slide_anchor13" class="next_flat_link"></a></section><a id="slide_anchor13"></a><section class="split">
     <h1>Ouvertures multiples</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="2">
@@ -365,7 +373,7 @@ main() {
             </li><li>les ouvertures en mode <code>O_APPEND</code> restent à la fin du fichier
         </li></ul>
     </div>
-<div class="page_count">11 / 14</div><a href="#slide12" class="prev_link"></a><a href="#slide14" class="next_link"></a></article><article class="split" id="slide14">
+<div class="page_count">11 / 14</div><a href="#slide_anchor12" class="prev_flat_link"></a><a href="#slide_anchor14" class="next_flat_link"></a></section><a id="slide_anchor14"></a><section class="split">
     <h1>Ouvertures multiples</h1>
     <div class="leftside">
         <pre><code class="cpp only hljs" data-start="2">
@@ -390,10 +398,10 @@ main() {
             </li><li>les ouvertures en mode <code>O_APPEND</code> restent à la fin du fichier
         </li></ul>
     </div>
-<div class="page_count">11 / 14</div><a href="#slide13" class="prev_link"></a><a href="#slide15" class="next_link"></a></article>
+<div class="page_count">11 / 14</div><a href="#slide_anchor13" class="prev_flat_link"></a><a href="#slide_anchor15" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide15">
+<a id="slide_anchor15"></a><section class="split">
     <h1>stdin, stdout, stderr</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -414,10 +422,10 @@ main() {
         </li></ul>
         On peut directement utiliser ces descripteurs de fichiers sans avoir à utiliser <code>open</code>.
     </div>
-<div class="page_count">12 / 14</div><a href="#slide14" class="prev_link"></a><a href="#slide16" class="next_link"></a></article>
+<div class="page_count">12 / 14</div><a href="#slide_anchor14" class="prev_flat_link"></a><a href="#slide_anchor16" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide16">
+<a id="slide_anchor16"></a><section class="split">
     <h1>lseek</h1>
     <div class="leftside">
         <pre><code class="cpp hljs"><span class="hljs-keyword">off_t</span> <span class="highlight">lseek</span>(<span class="hljs-keyword">int</span> fd, <span class="hljs-keyword">off_t</span> offset, <span class="hljs-keyword">int</span> whence);</code></pre>
@@ -457,10 +465,10 @@ main() {
         </li></ul>
         Il est possible de déplacer le curseur au-delà de la fin du fichier
     </div>
-<div class="page_count">13 / 14</div><a href="#slide15" class="prev_link"></a><a href="#slide17" class="next_link"></a></article>
+<div class="page_count">13 / 14</div><a href="#slide_anchor15" class="prev_flat_link"></a><a href="#slide_anchor17" class="next_flat_link"></a></section>
 
 
-<article class="split" id="slide17">
+<a id="slide_anchor17"></a><section class="split">
     <h1>stdio.h</h1>
     <div class="leftside">
         <pre><code class="cpp hljs">
@@ -493,7 +501,8 @@ main() {
         Ces fonctions manipulent les fichiers par l'intermédiaire de pointeurs de fichiers (<em>file pointers</em>)
         de type <code>FILE*</code> (structure contenant un descripteur de fichier, et des informations supplémentaires)
     </div>
-<div class="page_count">14 / 14</div><a href="#slide16" class="prev_link"></a><a href="#slide18" class="next_link"></a></article>
+<div class="page_count">14 / 14</div><a href="#slide_anchor16" class="prev_flat_link"></a><a href="#slide_anchor18" class="next_flat_link"></a></section>
+
 
 
 
