@@ -98,7 +98,7 @@ section.title time {
   bottom: 2%;
   right: 2%;
 }
-section.title .page_count {
+section.title .page_counter {
   display: none;
 }
 section.section {
@@ -114,6 +114,9 @@ section.split {
   justify-content: space-between;
   align-items: center;
   padding-top: 3%;
+}
+section.no_page_counter .page_counter {
+  display: none;
 }
 
 .leftside {
@@ -141,18 +144,23 @@ ul li.skip {
   margin-bottom: 1em;
 }
 
-.page_count {
+.slide_footer {
   position: absolute;
+  width: 100%;
+  bottom: 0.5%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.page_counter {
   text-align: center;
   padding: 0;
-  bottom: 0.5%;
   width: 5em;
   border: 0.05em black solid;
   border-radius: 0.3em;
   font-size: 75%;
   background-color: rgba(255, 255, 255, 0.9);
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 p {

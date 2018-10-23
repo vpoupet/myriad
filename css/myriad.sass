@@ -88,7 +88,7 @@ section
       bottom: 2%
       right: 2%
 
-    .page_count
+    .page_counter
       display: none
 
   &.section
@@ -104,6 +104,9 @@ section
     justify-content: space-between
     align-items: center
     padding-top: 3%
+
+  &.no_page_counter .page_counter
+    display: none
 
 .leftside
   width: 47.5%
@@ -127,18 +130,22 @@ ul
   li.skip
     margin-bottom: 1em
 
-.page_count
+.slide_footer
   position: absolute
+  width: 100%
+  bottom: .5%
+  left: 0
+  display: flex
+  justify-content: center
+
+.page_counter
   text-align: center
   padding: 0
-  bottom: .5%
   width: 5em
   border: .05em black solid
   border-radius: .3em
   font-size: 75%
   background-color: rgba(255, 255, 255, .9)
-  left: 50%
-  transform: translateX(-50%)
 
 p
   margin: 0

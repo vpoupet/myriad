@@ -72,10 +72,17 @@ function Slide(section) {
             last_step = parseInt(element.dataset.end);
         }
     }
-
-    // add page number
     this.page_number = page_number;
-    section.appendChild(page_counter(page_number, nb_pages));
+
+    // add header and footer
+    let header = this.header();
+    if (header) {
+        section.insertBefore(this.header(), section.firstChild);
+    }
+    let footer = this.footer();
+    if (footer) {
+        section.appendChild(this.footer());
+    }
 
     this.last_step = last_step;
     this.section = section;
@@ -108,6 +115,49 @@ Slide.prototype.display_step = function(n) {
             }
         }
     }
+};
+
+
+/**
+ * Return the header to be appended to the slide (`null` if no header)
+ * This function can be redefined by themes.
+ *
+ * @returns {HTMLElement} element to be used as header (inserted before the slide content)
+ */
+Slide.prototype.header = function() {
+    return null;
+};
+
+
+/**
+ * Return an HTML element to be appended to the section as page counter.
+ * This function can be redefined by themes.
+ *
+ * @returns {HTMLElement}
+ */
+Slide.prototype.page_counter = function() {
+    let counter_div = document.createElement('div');
+    counter_div.classList.add('page_counter');
+    counter_div.innerText = this.page_number + ' / ' + nb_pages;
+    return counter_div;
+};
+
+
+/**
+ * Return the footer to be appended to the slide (`null` if no footer)
+ * This function can be redefined by themes.
+ *
+ * @returns {HTMLElement} element to be used as footer (inserted after the slide content)
+ */
+Slide.prototype.footer = function() {
+    let page_counter = this.page_counter();
+    if (page_counter) {
+        let footer_div = document.createElement('div');
+        footer_div.classList.add('slide_footer');
+        footer_div.appendChild(this.page_counter());
+        return footer_div;
+    }
+    return null;
 };
 
 
@@ -357,11 +407,10 @@ function flatten() {
 
 
 /**
- * Whether the given section is counted as a page for numbering
- *
+ * Whether the slide represented by the given section is counted as a page for numbering
  * This function can be redefined by themes.
  *
- * @param section {HTMLElement}
+ * @param section {HTMLElement} a section element representing a slide
  * @returns {boolean}
  */
 function count_as_page(section) {
@@ -369,25 +418,6 @@ function count_as_page(section) {
 }
 
 
-/**
- * Return an HTML element to be appended to the section corresponding to a slide to display its page counter.
- * The counter has class `page_count` and can be hidden in the CSS.
- *
- * This function can be redefined by themes.
- *
- * @param page_number {number} page number of the slide
- * @param nb_pages {number} total page number
- * @returns {HTMLElement}
- */
-function page_counter(page_number, nb_pages) {
-    let counter_div = document.createElement('div');
-    counter_div.classList.add('page_count');
-    counter_div.innerText = page_number + ' / ' + nb_pages;
-    return counter_div;
-}
-
-
 window.onload = function() {
-    // process slides
-    setup();
+    process_slides();
 };

@@ -1,72 +1,59 @@
 # Description
 
-*Myriad* is a lightweight CSS/Javascript library for preparing presentation slides in HTML.
+Lightweight CSS/Javascript library for preparing presentation slides in HTML.
 
 
 # How to use
 
-A presentation is written as a single HTML file. It should contain a reference to the `myriad.css` and `myriad.js` 
-files:
+A presentation is written as a single HTML file. It should contain a reference to the `slides.css` and `myriad.js` for
+basic slides functionality, as well as theme CSS and Javascript files (theme files should appear after as they might
+override functions or style rules): 
 
 ```html
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/slides.css">
     <link rel="stylesheet" href="./css/myriad.css">
     <title>Awesome Presentation</title>
 </head>
 <body>
 
+<script src="./js/styles.js"></script>
 <script src="./js/myriad.js"></script>
 </body>
 </html>
 ```
 
-Slides of the presentation correspond to `article` elements in the HTML.
+Slides of the presentation correspond to `section` elements in the HTML.
+
+# General slides functionality
+
 
 ## Structure of a slide
 
-The title of the slide should appear in a `h1` element.
+The title of the slide should appear in a `h1` element. The rest of the element will be used as content for the slide.
 
-The rest of the element will be used as content for the slide (footer with page number will be added automatically by
-the javascript)
+A _header_ and a _footer_ will be added automatically. It is possible to override the `header()` and `footer()` methods
+in the `Slides` prototype to modify header and footer content (by default there is no header, and the footer contains
+the page counter).
 
-There are currently 4 possible types of slides
+## Configuration
 
-### Title Slide
+* The function `count_as_page(section)` can be redefined to specify which slides count in the page numbering (depending on the
+contents of their section).
 
-`article` elements with the class `title` will be styled as title slides. These may have:
-* an `h1` element for the title of the presentation
-* an `h2` element for a subtitle
-* a `div` element with class `"author"` for the author of the presentation
-* a `div` element with class `"context"` for the context in which the presentation is given (conference name, course 
-title, etc.)
-* a `time` element for the date
+* Methods `header()`, `footer()` and `page_counter()` of `Slide.prototype` can be redefined to
+modify the contents of the header, footer and page counter respectively. These methods should return an HTML element or
+`null`.
 
-All other elements of a title slide (for instance an image) should be manually placed with absolute position.
+* If the `window.onload` function is redefined, it should explicitely call `process_slides()`.
 
-### Single slides
-
-`article` elements with the `single` class are styled as slides with a single block of content.
-
-### Split slides
-
-`article` elements with the `split` class are styled as two column slides. The left side has white background and the 
-right one has black background.
-
-The content of the left side should be placed in a `div` with class `"leftside"`, whereas the content of the right
-column should be placed in a `div` with class `rightside`.
-
-### Blank slides
-
-`article` elements with no styling class will be represented as blank slides with plain white background. They might
-have a title (`h1`) as other slides. By default blank slides will also have a line number but this might be avoided
-using the class `"not-page"` (for instance to display a fullscreen image with no extra element on top).
 
 ## Dynamic elements
 
-Slides might feature *dynamic* elements that appear or disappear in several *steps*. These can be controlled with the
+Slides might feature _dynamic_ elements that appear or disappear in several _steps_. These can be controlled with the
 classes `uncover` and `only`:
 * `uncover` elements are hidden when not active, but still occupy space on the slide
 * `only` elements are not represented at all while not active (don't take space at all)
@@ -102,13 +89,14 @@ item will be uncovered at step 1):
 </ul>
 ```
 
-# Navigation
+## Navigation
 
 Slides are automatically scaled to fill the screen and scrolling is disabled by the CSS (only mouse scrolling, finger
 scrolling on touch devices still works) to maintain alignment of the slides.
 
-**Note:** Because slides are represented vertically, if the window has a width/height ratio less than 4/3, parts of the next
-slide will appear under the current slide (so it looks better with an aspect ratio >= 4/3)
+**Note:** Because slides are represented vertically, if the window has a width/height ratio less than 4/3, parts of the 
+next slide will appear under the current slide (so it looks better with an aspect ratio >= 4/3). Ratio of slides can 
+be changed by editing the values in `slides.css`. 
 
 Navigation can be done with keyboard or mouse:
 * <kbd>&rarr;</kbd>, <kbd>D</kbd> or <kbd>space</kbd>: next step
@@ -119,6 +107,45 @@ Navigation can be done with keyboard or mouse:
 * <kbd>X</kbd>: realign scrolling to current slide
 * click on left third of current slide: previous step
 * click on rest of current slide: next step
+
+# Themes
+
+Themes can be created by adding CSS stylesheets and (optionally) redefining some of the _Javascript_ functions.
+
+## Myriad
+
+Myriad is a black and white theme to be used with `slides.js` and `slides.css`. It defines 4 types of slides
+
+### Title Slide
+
+`section` elements with the class `title` will be styled as title slides. These may have:
+* an `h1` element for the title of the presentation
+* an `h2` element for an optional subtitle
+* a `div` element with class `"author"` for the author of the presentation
+* a `div` element with class `"context"` for the context in which the presentation is given (conference name, course 
+title, etc.)
+* a `time` element for the date
+
+All other elements of a title slide (for instance an image) should be manually placed with absolute position.
+
+### Single slides
+
+`section` elements with the `single` class are styled as slides with a single block of content. It is recommended to
+group the contents of the slide (other than the title) in a `div` element.
+
+### Split slides
+
+`section` elements with the `split` class are styled as two column slides. The left side has white background and the 
+right one has black background.
+
+The content of the left side should be placed in a `div` with class `leftside`, whereas the content of the right
+column should be placed in a `div` with class `rightside`.
+
+### Blank slides
+
+`section` elements with no styling class will be represented as blank slides with plain white background. They might
+have a title (`h1`) as other slides. By default blank slides will also have a page counter but this might be avoided
+using the class `"no_page_counter"` (for instance to display a fullscreen image with no extra element on top).
 
 # Examples
 
