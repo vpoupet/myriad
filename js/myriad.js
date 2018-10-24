@@ -13,5 +13,5 @@ window.onload = function() {
 
     // process slides
     process_slides();
-    flatten();
+    // flatten();
 };

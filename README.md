@@ -121,8 +121,8 @@ Myriad is a black and white theme to be used with `slides.js` and `slides.css`. 
 `section` elements with the class `title` will be styled as title slides. These may have:
 * an `h1` element for the title of the presentation
 * an `h2` element for an optional subtitle
-* a `div` element with class `"author"` for the author of the presentation
-* a `div` element with class `"context"` for the context in which the presentation is given (conference name, course 
+* a `div` element with class `author` for the author of the presentation
+* a `div` element with class `context` for the context in which the presentation is given (conference name, course 
 title, etc.)
 * a `time` element for the date
 
