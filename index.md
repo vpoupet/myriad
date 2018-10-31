@@ -145,7 +145,7 @@ column should be placed in a `div` with class `rightside`.
 
 `section` elements with no styling class will be represented as blank slides with plain white background. They might
 have a title (`h1`) as other slides. By default blank slides will also have a page counter but this might be avoided
-using the class `"no_page_counter"` (for instance to display a fullscreen image with no extra element on top).
+using the class `"no-page-counter"` (for instance to display a fullscreen image with no extra element on top).
 
 # Examples
 

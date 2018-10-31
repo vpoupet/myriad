@@ -51,6 +51,8 @@
   font-weight: bold
   font-style: italic
 
+body
+  counter-reset: section-counter
 
 section
   font-family: "GillSans", "sans-serif"
@@ -89,11 +91,23 @@ section
       bottom: 2%
       right: 2%
 
-    .page_counter
+    .page-counter
       display: none
 
   &.section
     background-image: url("BG_Section.png")
+    padding: 0 1%
+
+    h1::before
+      content: counter(section-counter, upper-roman) ". "
+      counter-increment: section-counter
+
+    h1
+      position: relative
+      text-align: right
+
+    .page-counter
+      display: none
 
   &.single
     background-image: url("BG_Single.png")
@@ -106,7 +120,7 @@ section
     align-items: center
     padding-top: 3%
 
-  &.no_page_counter .page_counter
+  &.no-page-counter .page-counter
     display: none
 
 .leftside
@@ -131,7 +145,7 @@ ul
   li.skip
     margin-bottom: 1em
 
-.slide_footer
+.slide-footer
   position: absolute
   width: 100%
   bottom: .5%
@@ -139,7 +153,7 @@ ul
   display: flex
   justify-content: center
 
-.page_counter
+.page-counter
   text-align: center
   padding: 0
   width: 5em
@@ -162,7 +176,6 @@ pre
   line-height: 1.5
   white-space: pre-wrap
   font-variant-ligatures: none
-
 
 code
   font-family: "Menlo", "monospace"

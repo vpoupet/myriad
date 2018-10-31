@@ -137,7 +137,7 @@ Slide.prototype.header = function() {
  */
 Slide.prototype.page_counter = function() {
     let counter_div = document.createElement('div');
-    counter_div.classList.add('page_counter');
+    counter_div.classList.add('page-counter');
     counter_div.innerText = this.page_number + ' / ' + nb_pages;
     return counter_div;
 };
@@ -153,7 +153,7 @@ Slide.prototype.footer = function() {
     let page_counter = this.page_counter();
     if (page_counter) {
         let footer_div = document.createElement('div');
-        footer_div.classList.add('slide_footer');
+        footer_div.classList.add('slide-footer');
         footer_div.appendChild(this.page_counter());
         return footer_div;
     }

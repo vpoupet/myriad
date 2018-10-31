@@ -11,6 +11,15 @@ html {
   }
 }
 
+h1 {
+  font-size: 8.4vh;
+}
+@media (max-aspect-ratio: 4/3) {
+  h1 {
+    font-size: 6.3vw;
+  }
+}
+
 body {
   margin: 0;
   display: flex;
@@ -45,3 +54,5 @@ a.next_flat_link {
   top: 0;
   right: 0;
 }
+
+/*# sourceMappingURL=slides.css.map */

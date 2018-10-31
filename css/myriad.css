@@ -62,6 +62,10 @@
   font-weight: bold;
   font-style: italic;
 }
+body {
+  counter-reset: section-counter;
+}
+
 section {
   font-family: "GillSans", "sans-serif";
   background: white no-repeat;
@@ -98,11 +102,23 @@ section.title time {
   bottom: 2%;
   right: 2%;
 }
-section.title .page_counter {
+section.title .page-counter {
   display: none;
 }
 section.section {
   background-image: url("BG_Section.png");
+  padding: 0 1%;
+}
+section.section h1::before {
+  content: counter(section-counter, upper-roman) ". ";
+  counter-increment: section-counter;
+}
+section.section h1 {
+  position: relative;
+  text-align: right;
+}
+section.section .page-counter {
+  display: none;
 }
 section.single {
   background-image: url("BG_Single.png");
@@ -115,7 +131,7 @@ section.split {
   align-items: center;
   padding-top: 3%;
 }
-section.no_page_counter .page_counter {
+section.no-page-counter .page-counter {
   display: none;
 }
 
@@ -144,7 +160,7 @@ ul li.skip {
   margin-bottom: 1em;
 }
 
-.slide_footer {
+.slide-footer {
   position: absolute;
   width: 100%;
   bottom: 0.5%;
@@ -153,7 +169,7 @@ ul li.skip {
   justify-content: center;
 }
 
-.page_counter {
+.page-counter {
   text-align: center;
   padding: 0;
   width: 5em;
@@ -228,3 +244,5 @@ h2 {
   flex-direction: column;
   align-items: center;
 }
+
+/*# sourceMappingURL=myriad.css.map */
