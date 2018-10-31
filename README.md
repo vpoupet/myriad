@@ -89,6 +89,25 @@ item will be uncovered at step 1):
 </ul>
 ```
 
+## Units
+
+Because slides are automatically scaled to fit the view port, regular length units should be avoided (for font sizes,
+margins, positions, etc.). The stylesheet `slides.css` defines several variables that can be used as units :
+- `--width` and `--height` correspond to the width and height of a slide (one of them should be equal to one of the
+view port dimensions, the other is set to match the 4:3 ratio)
+- `--mm` corresponds to a millimeter if the slides are set to be 96mm x 128mm. This is the dimension of Beamer slides
+(a popular LaTeX style) and is chosen to be compatible with usual text font sizes (8 - 12pt)
+- `--pt` corresponds to 1pt if the slides are set to be 96mm x 128mm. Because of the chosen size, typical font size for
+slides should be around 10 times the value of `--pt`.
+
+These units should be used in the styling CSS instead of regular units. They can be used with the `calc` and `var`
+keywords. For instance, for setting a font size of 12pt for the whole document, one should use the rule
+```CSS
+html {
+  font-size: calc(12 * var(--pt));
+}
+```
+
 ## Navigation
 
 Slides are automatically scaled to fill the screen and scrolling is disabled by the CSS (only mouse scrolling, finger
@@ -114,9 +133,9 @@ Themes can be created by adding CSS stylesheets and (optionally) redefining some
 
 ## Myriad
 
-Myriad is a black and white theme to be used with `slides.js` and `slides.css`. It defines 4 types of slides
+Myriad is a black and white theme to be used with `slides.js` and `slides.css`. It defines 5 types of slides
 
-### Title Slide
+### Title Slides
 
 `section` elements with the class `title` will be styled as title slides. These may have:
 * an `h1` element for the title of the presentation
@@ -128,12 +147,18 @@ title, etc.)
 
 All other elements of a title slide (for instance an image) should be manually placed with absolute position.
 
-### Single slides
+### Section Slides
+
+`section` elements with the class `section` will be styled as (presentation) sections markers. These slides should only
+have a main title `h1` and optionally a subtitle `h2`. Sections are automatically counted and numbered in capital roman
+numerals before the title.
+
+### Single Slides
 
 `section` elements with the `single` class are styled as slides with a single block of content. It is recommended to
 group the contents of the slide (other than the title) in a `div` element.
 
-### Split slides
+### Split Slides
 
 `section` elements with the `split` class are styled as two column slides. The left side has white background and the 
 right one has black background.
@@ -141,8 +166,19 @@ right one has black background.
 The content of the left side should be placed in a `div` with class `leftside`, whereas the content of the right
 column should be placed in a `div` with class `rightside`.
 
-### Blank slides
+### Blank Slides
 
 `section` elements with no styling class will be represented as blank slides with plain white background. They might
 have a title (`h1`) as other slides. By default blank slides will also have a page counter but this might be avoided
 using the class `"no-page-counter"` (for instance to display a fullscreen image with no extra element on top).
+
+# Examples
+
+## Architecture et programmation bas niveau
+
+1. [Introduction au C](https://vpoupet.github.io/myriad/archi2/cours01.html)
+1. [Appels systèmes et entrée / sortie](https://vpoupet.github.io/myriad/archi2/cours02.html)
+1. [Processus](https://vpoupet.github.io/myriad/archi2/cours03.html)
+1. [Création de processus](https://vpoupet.github.io/myriad/archi2/cours04.html)
+1. [Processus légers](https://vpoupet.github.io/myriad/archi2/cours05.html)
+1. [Communication entre processus](https://vpoupet.github.io/myriad/archi2/cours06.html)

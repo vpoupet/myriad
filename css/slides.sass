@@ -2,14 +2,12 @@
   box-sizing: border-box
 
 html
-  font-size: 3.2vh
+  --mm: calc(100vh / 96)
   @media (max-aspect-ratio: 4/3)
-    font-size: 2.4vw
-
-h1
-  font-size: 8.4vh
-  @media (max-aspect-ratio: 4/3)
-    font-size: 6.3vw
+    --mm: calc(100vw / 128)
+  --height: calc(96 * var(--mm))
+  --width: calc(128 * var(--mm))
+  --pt: calc(.35 * var(--mm))
 
 body
   margin: 0
@@ -20,15 +18,12 @@ body
   overflow: hidden
 
 section
-  max-width: 133.33vh
-  width: 100vw
-  max-height: 75vw
-  height: 100vh
+  width: var(--width)
+  height: var(--height)
   position: relative
 
 a.prev_flat_link
   position: absolute
-  //background-color: rgba(255, 0, 0, .2)
   width: 30%
   height: 100%
   z-index: 1
@@ -37,7 +32,6 @@ a.prev_flat_link
 
 a.next_flat_link
   position: absolute
-  //background-color: rgba(0, 255, 0, .2)
   width: 70%
   height: 100%
   z-index: 1

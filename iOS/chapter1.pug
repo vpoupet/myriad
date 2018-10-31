@@ -3,11 +3,10 @@ html(lang="en")
   head
     include header.pug
     style
-      |
-
+      | html { font-size: calc(11 * var(--pt)); }
   body
     section.title
-      h1 An Introduction to iOS Development
+      h1 An Introduction to iOS<br>Development
       .author Victor Poupet
       .context Embedded Systems
       time(datetime="2018-07") July 2018
@@ -54,9 +53,10 @@ html(lang="en")
     section.split
       h1 Fragmentation
       .leftside
-        li iOS runs on a limited number of devices (similar architecture, similar iterface)
-        li Most devices run the latest version of iOS
-        li OS, hardware and SDK are developped by the same company
+        ul
+          li iOS runs on a limited number of devices (similar architecture, similar iterface)
+          li Most devices run the latest version of iOS
+          li OS, hardware and SDK are developped by the same company
       .rightside
         ul
           li Devices have varying screen size and resolution
@@ -98,5 +98,235 @@ html(lang="en")
           ul
             li no natural order to present things
             li examples require to use some elements before explaining them
+
+    section.section
+      h1 Mobile Development
+
+    section.single
+      h1 Generalities
+      p Developping for an embedded system
+      ul
+        li cross-compiling
+        li stronger contraints
+          ul
+            li memory
+            li energy
+            li CPU
+      br
+      p Conception based on user interface
+        ul
+          li Model-View-Controller architecture
+          li Reactive programming
+          li Event-based programming
+
+    section.split
+      h1 Mobile Terminals
+      .leftside
+        img(src="chapter1/iphone_ipad.jpg" style="width: 100%")
+      .rightside
+        ul
+          li Miniature computer
+          li Embedded system
+            ul
+              li limited resources
+          li Reactive system
+            ul
+              li based on user interface
+          li Smartphone vs.Tablet
+            ul
+              li screen size is different
+              li phone calls
+              li most of the rest is identical
+
+    section.split
+      h1 Architecture
+      .leftside
+        img(src="chapter1/appleA10.png" style="width: 100%")
+      .rightside
+        p Processor
+        ul
+          li ARM (designed by Apple)
+        br
+        p Storage
+        ul
+          li Flash memory
+        br
+        p Other hardware
+        ul
+          li Network
+          li Accelerometer, gyroscope
+          li GPS location
+          li Camera
+          li etc.
+
+    section.split
+      h1 iOS vs. Android
+      .leftside
+        img(
+          src="chapter1/iOS.png"
+          style="position: absolute;" +
+          "top: calc(12 * var(--mm));" +
+          "left: calc(32 * var(--mm));" +
+          "width: 20%")
+        p
+          strong Developper
+        ul
+          li Apple
+
+        br
+        p
+          strong Programming language
+        ul
+          li Swift and/or Objective C
+          li some C and C++
+
+        br
+        p
+          strong Development environment
+        ul
+          li XCode
+
+        br
+        p
+          strong Development kit
+        ul
+          li iOS SDK
+
+      .rightside
+        img(
+        src="chapter1/android.jpg"
+        style="position: absolute;" +
+        "top: calc(8 * var(--mm));" +
+        "right: calc(5 * var(--mm));" +
+        "width: 15%")
+
+        p
+          strong Developper
+        ul
+          li Google
+
+        br
+        p
+          strong Programming language
+        ul
+          li Java
+          li some C++
+          li (Kotlin, possibly Swift in the future)
+
+        br
+        p
+          strong Development environment
+        ul
+          li Eclipse
+
+        br
+        p
+          strong Development kit
+        ul
+          li Android SDK
+
+    section.single
+      h1 Cross-Compilation
+      img(src="chapter1/cross_compilation.svg" style="width:100%")
+
+    section.single
+      h1 Constraints
+      p Limited resources
+      ul
+        li Memory
+          ul
+            li Beware of memory leaks
+            li Java (Android): garbage collector
+            li Swift / Objective C (iOS): Automatic Reference Counting (ARC)
+        li Energy
+          ul
+            li Some activities are very demanding (GPS, camera, etc.)
+            li Avoid inefficient algorithms (CPU drains battery)
+      br
+      p Handle urgent events
+      ul
+        li Low memory alert
+        li Low battery alert
+        li Phone call interruption
+
+    section.single
+      h1 Other Constraints
+      strong User interface
+      ul
+        li Simple and convenient to use
+        li Should be reactive
+        li Should fit with the OS and other apps ("look and feel")
+
+      strong Fiability
+      ul
+        li Avoid errors and crashing (no error handling when app crashes)
+
+      strong Security
+      ul
+        li Device holds sensitive personal data
+        li Apps each have their own files directory and run in a sandbox (iOS only)
+
+      strong Speed
+      ul
+        li App should work on slower devices, with other apps using resources
+
+    section.single
+      h1 First Example
+      p &rarr; Writing the first app in XCode&nbsp;: <em>Greeting</em>
+
+    section.single
+      h1 Workflow
+      p Mobile development is built around the user interface (screen):
+      br
+      ul
+        li Design <em>Graphical User Interface</em> (GUI)
+        li Define and handle <em>events</em>
+
+    section.split
+      h1 Events
+      .leftside
+        p Interruption
+        ul
+          li stops execution and jumps to a specific address
+            ul
+              li low level
+              li hardware exceptions
+        br
+        p Examples&nbsp;:
+        ul
+          li division by zero
+          li reset button
+          li process interruption
+      .rightside
+        p Event
+        ul
+          li stops execution and runs a procedure
+            ul
+              li higher level
+              li handled by OS interface
+        br
+        p Examples&nbsp;:
+        ul
+          li click a button
+          li move the cursor
+          li thread finishes a computation
+
+    section.single
+      h1 Call-back
+      p Events are handled by "call-backs"
+      ul
+        li Enable an event
+          ul
+            li associate a routing procedure to an existing event
+        li Disable an event
+          ul
+            li remove association with procedure (event will not trigger the procedure if it happens)
+        li Wait for an event
+      p If an event is not enabled (or disabled), the OS will consider that there is nothing to be done.
+      p The running program will not be notified of unhandled events occurring.
+
+    section.single
+      h1 Example
+      p &rarr; Programmatical version of <em>Greeting</em>
 
   include footer.pug
