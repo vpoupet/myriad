@@ -214,3 +214,7 @@ Example&nbsp;:
 1. [Création de processus](https://vpoupet.github.io/myriad/archi2/cours04.html)
 1. [Processus légers](https://vpoupet.github.io/myriad/archi2/cours05.html)
 1. [Communication entre processus](https://vpoupet.github.io/myriad/archi2/cours06.html)
+
+## Single Presentations
+
+* [A Linear Acceleration for all Neighborhoods on 2D Cellular Automata](https://vpoupet.github.io/myriad/acclin/acclin.html)
