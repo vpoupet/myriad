@@ -1,332 +1,324 @@
-doctype html
-html(lang="en")
-  head
-    include header.pug
-    style
-      | html { font-size: calc(11 * var(--pt)); }
-  body
-    section.title
-      h1 An Introduction to iOS<br>Development
-      .author Victor Poupet
-      .context Embedded Systems
-      time(datetime="2018-07") July 2018
+extends chapterXX.pug
 
-    section.blank.no-page-counter
-      img(src="chapter1/Montpellier.jpg" style="height: 100%; width: 100%")
+append preamble
+  - title = "An Introduction to iOS<br>Development";
+  - date = "2018-07";
 
-    section.section
-      h1 A Word About iOS
+block document
+  section.blank.no-page-counter
+    img(src="chapter1/Montpellier.jpg" style="height: 100%; width: 100%")
 
-    section.split
-      h1 iOS
-      .leftside
-        .center
-          img(src="chapter1/screenshot.jpg" style="width: 80%")
-      .rightside
-        ul
-          li released in 2007 (with the first generation iPhone)
-          li Multi-touch interface (almost button-less)
-          li Gesture recognition (swipe, pinch, etc.)
-          li Somewhat based on Mac OSX
-          li Core Foundation and Foundation frameworks
-          li Cocoa touch instead of Cocoa
-          li Darwin (Unix-like system)
+  section.section
+    h1 A Word About iOS
 
-    section.split
-      h1 Version History
-      .leftside
-        img(src="chapter1/iOS_versions.jpg" style="width: 100%")
-      .rightside
-        ul
-          li 2007 - iPhone OS 1
-          li 2008 - iPhone OS 2 (iPhone SDK, App Store, 3rd party apps)
-          li 2009 - iPhone OS 3 (iPad)
-          li 2010 - iOS 4 (limited multitasking)
-          li 2011 - iOS 5 (iCloud)
-          li 2012 - iOS 6
-          li 2013 - iOS 7 (extended multitasking)
-          li 2014 - iOS 8 (Swift, Metal)
-          li 2015 - iOS 9 (split view)
-          li 2016 - iOS 10 (Siri, 3D touch)
-          li 2017 - iOS 11 (ARKit, Files, more multitasking)
-
-    section.split
-      h1 Fragmentation
-      .leftside
-        ul
-          li iOS runs on a limited number of devices (similar architecture, similar iterface)
-          li Most devices run the latest version of iOS
-          li OS, hardware and SDK are developped by the same company
-      .rightside
-        ul
-          li Devices have varying screen size and resolution
-          li Some features are not available to all devices (multitasking, Siri, camera, etc.)
-          li Two main device families&nbsp;:
-            ul
-              li iPhone
-              li iPad
-
-    section.single
-      h1 Distribution
-      p The only officially accepted way to add apps to an iOS terminal is to use Apple's <em>App Store</em>
-
+  section.split
+    h1 iOS
+    .leftside
+      .center
+        img(src="chapter1/screenshot.jpg" style="width: 80%")
+    .rightside
       ul
-        li Apple has total control over which apps are accepted on the store
-          ul
-            li delay between submission and availability
-            li Apple guidelines are strict and sometimes difficult to match
-            li guarantees a minimal quality of apps
-        li developper license (99$ / year) necessary to submit an app
-        li free developper account sufficient to develop and install apps on personal devices
-        li developpers receive 70% of the price of the sold app
+        li released in 2007 (with the first generation iPhone)
+        li Multi-touch interface (almost button-less)
+        li Gesture recognition (swipe, pinch, etc.)
+        li Somewhat based on Mac OSX
+        li Core Foundation and Foundation frameworks
+        li Cocoa touch instead of Cocoa
+        li Darwin (Unix-like system)
 
-    section.single
-      h1 About this Lecture
-      p iOS development is a vast topic
+  section.split
+    h1 Version History
+    .leftside
+      img(src="chapter1/iOS_versions.jpg" style="width: 100%")
+    .rightside
       ul
-        li many elements cannot be addressed in this lecture (including important ones)
-        li even with more time, one never fully knows all about iOS programming
-          ul
-            li hundreds of existing classes
-            li thousands of methods and attributes
-            li best way to learn is to look for examples, ask questions and read the documentation
-        li the API, SDK and language evolve quickly
-          ul
-            li examples and discussions on the Internet are already outdated
-            li this lecture is also already outdated
-        li most elements are interconnected
-          ul
-            li no natural order to present things
-            li examples require to use some elements before explaining them
+        li 2007 - iPhone OS 1
+        li 2008 - iPhone OS 2 (iPhone SDK, App Store, 3rd party apps)
+        li 2009 - iPhone OS 3 (iPad)
+        li 2010 - iOS 4 (limited multitasking)
+        li 2011 - iOS 5 (iCloud)
+        li 2012 - iOS 6
+        li 2013 - iOS 7 (extended multitasking)
+        li 2014 - iOS 8 (Swift, Metal)
+        li 2015 - iOS 9 (split view)
+        li 2016 - iOS 10 (Siri, 3D touch)
+        li 2017 - iOS 11 (ARKit, Files, more multitasking)
 
-    section.section
-      h1 Mobile Development
-
-    section.single
-      h1 Generalities
-      p Developping for an embedded system
+  section.split
+    h1 Fragmentation
+    .leftside
       ul
-        li cross-compiling
-        li stronger contraints
+        li iOS runs on a limited number of devices (similar architecture, similar iterface)
+        li Most devices run the latest version of iOS
+        li OS, hardware and SDK are developped by the same company
+    .rightside
+      ul
+        li Devices have varying screen size and resolution
+        li Some features are not available to all devices (multitasking, Siri, camera, etc.)
+        li Two main device families&nbsp;:
           ul
-            li memory
-            li energy
-            li CPU
+            li iPhone
+            li iPad
+
+  section.single
+    h1 Distribution
+    p The only officially accepted way to add apps to an iOS terminal is to use Apple's <em>App Store</em>
+
+    ul
+      li Apple has total control over which apps are accepted on the store
+        ul
+          li delay between submission and availability
+          li Apple guidelines are strict and sometimes difficult to match
+          li guarantees a minimal quality of apps
+      li developper license (99$ / year) necessary to submit an app
+      li free developper account sufficient to develop and install apps on personal devices
+      li developpers receive 70% of the price of the sold app
+
+  section.single
+    h1 About this Lecture
+    p iOS development is a vast topic
+    ul
+      li many elements cannot be addressed in this lecture (including important ones)
+      li even with more time, one never fully knows all about iOS programming
+        ul
+          li hundreds of existing classes
+          li thousands of methods and attributes
+          li best way to learn is to look for examples, ask questions and read the documentation
+      li the API, SDK and language evolve quickly
+        ul
+          li examples and discussions on the Internet are already outdated
+          li this lecture is also already outdated
+      li most elements are interconnected
+        ul
+          li no natural order to present things
+          li examples require to use some elements before explaining them
+
+  section.section
+    h1 Mobile Development
+
+  section.single
+    h1 Generalities
+    p Developping for an embedded system
+    ul
+      li cross-compiling
+      li stronger contraints
+        ul
+          li memory
+          li energy
+          li CPU
+    br
+    p Conception based on user interface
+      ul
+        li Model-View-Controller architecture
+        li Reactive programming
+        li Event-based programming
+
+  section.split
+    h1 Mobile Terminals
+    .leftside
+      img(src="chapter1/iphone_ipad.jpg" style="width: 100%")
+    .rightside
+      ul
+        li Miniature computer
+        li Embedded system
+          ul
+            li limited resources
+        li Reactive system
+          ul
+            li based on user interface
+        li Smartphone vs.Tablet
+          ul
+            li screen size is different
+            li phone calls
+            li most of the rest is identical
+
+  section.split
+    h1 Architecture
+    .leftside
+      img(src="chapter1/appleA10.png" style="width: 100%")
+    .rightside
+      p Processor
+      ul
+        li ARM (designed by Apple)
       br
-      p Conception based on user interface
-        ul
-          li Model-View-Controller architecture
-          li Reactive programming
-          li Event-based programming
+      p Storage
+      ul
+        li Flash memory
+      br
+      p Other hardware
+      ul
+        li Network
+        li Accelerometer, gyroscope
+        li GPS location
+        li Camera
+        li etc.
 
-    section.split
-      h1 Mobile Terminals
-      .leftside
-        img(src="chapter1/iphone_ipad.jpg" style="width: 100%")
-      .rightside
-        ul
-          li Miniature computer
-          li Embedded system
-            ul
-              li limited resources
-          li Reactive system
-            ul
-              li based on user interface
-          li Smartphone vs.Tablet
-            ul
-              li screen size is different
-              li phone calls
-              li most of the rest is identical
-
-    section.split
-      h1 Architecture
-      .leftside
-        img(src="chapter1/appleA10.png" style="width: 100%")
-      .rightside
-        p Processor
-        ul
-          li ARM (designed by Apple)
-        br
-        p Storage
-        ul
-          li Flash memory
-        br
-        p Other hardware
-        ul
-          li Network
-          li Accelerometer, gyroscope
-          li GPS location
-          li Camera
-          li etc.
-
-    section.split
-      h1 iOS vs. Android
-      .leftside
-        img(
-          src="chapter1/iOS.png"
-          style="position: absolute;" +
-          "top: calc(12 * var(--mm));" +
-          "left: calc(32 * var(--mm));" +
-          "width: 20%")
-        p
-          strong Developper
-        ul
-          li Apple
-
-        br
-        p
-          strong Programming language
-        ul
-          li Swift and/or Objective C
-          li some C and C++
-
-        br
-        p
-          strong Development environment
-        ul
-          li XCode
-
-        br
-        p
-          strong Development kit
-        ul
-          li iOS SDK
-
-      .rightside
-        img(
-        src="chapter1/android.jpg"
+  section.split
+    h1 iOS vs. Android
+    .leftside
+      img(
+        src="chapter1/iOS.png"
         style="position: absolute;" +
-        "top: calc(8 * var(--mm));" +
-        "right: calc(5 * var(--mm));" +
-        "width: 15%")
-
-        p
-          strong Developper
-        ul
-          li Google
-
-        br
-        p
-          strong Programming language
-        ul
-          li Java
-          li some C++
-          li (Kotlin, possibly Swift in the future)
-
-        br
-        p
-          strong Development environment
-        ul
-          li Eclipse
-
-        br
-        p
-          strong Development kit
-        ul
-          li Android SDK
-
-    section.single
-      h1 Cross-Compilation
-      img(src="chapter1/cross_compilation.svg" style="width:100%")
-
-    section.single
-      h1 Constraints
-      p Limited resources
+        "top: calc(12 * var(--mm));" +
+        "left: calc(32 * var(--mm));" +
+        "width: 20%")
+      p
+        strong Developper
       ul
-        li Memory
-          ul
-            li Beware of memory leaks
-            li Java (Android): garbage collector
-            li Swift / Objective C (iOS): Automatic Reference Counting (ARC)
-        li Energy
-          ul
-            li Some activities are very demanding (GPS, camera, etc.)
-            li Avoid inefficient algorithms (CPU drains battery)
+        li Apple
+
       br
-      p Handle urgent events
+      p
+        strong Programming language
       ul
-        li Low memory alert
-        li Low battery alert
-        li Phone call interruption
+        li Swift and/or Objective C
+        li some C and C++
 
-    section.single
-      h1 Other Constraints
-      strong User interface
-      ul
-        li Simple and convenient to use
-        li Should be reactive
-        li Should fit with the OS and other apps ("look and feel")
-
-      strong Fiability
-      ul
-        li Avoid errors and crashing (no error handling when app crashes)
-
-      strong Security
-      ul
-        li Device holds sensitive personal data
-        li Apps each have their own files directory and run in a sandbox (iOS only)
-
-      strong Speed
-      ul
-        li App should work on slower devices, with other apps using resources
-
-    section.single
-      h1 First Example
-      p &rarr; Writing the first app in XCode&nbsp;: <em>Greeting</em>
-
-    section.single
-      h1 Workflow
-      p Mobile development is built around the user interface (screen):
       br
+      p
+        strong Development environment
       ul
-        li Design <em>Graphical User Interface</em> (GUI)
-        li Define and handle <em>events</em>
+        li XCode
 
-    section.split
-      h1 Events
-      .leftside
-        p Interruption
-        ul
-          li stops execution and jumps to a specific address
-            ul
-              li low level
-              li hardware exceptions
-        br
-        p Examples&nbsp;:
-        ul
-          li division by zero
-          li reset button
-          li process interruption
-      .rightside
-        p Event
-        ul
-          li stops execution and runs a procedure
-            ul
-              li higher level
-              li handled by OS interface
-        br
-        p Examples&nbsp;:
-        ul
-          li click a button
-          li move the cursor
-          li thread finishes a computation
-
-    section.single
-      h1 Call-back
-      p Events are handled by "call-backs"
+      br
+      p
+        strong Development kit
       ul
-        li Enable an event
-          ul
-            li associate a routing procedure to an existing event
-        li Disable an event
-          ul
-            li remove association with procedure (event will not trigger the procedure if it happens)
-        li Wait for an event
-      p If an event is not enabled (or disabled), the OS will consider that there is nothing to be done.
-      p The running program will not be notified of unhandled events occurring.
+        li iOS SDK
 
-    section.single
-      h1 Example
-      p &rarr; Programmatical version of <em>Greeting</em>
+    .rightside
+      img(
+      src="chapter1/android.jpg"
+      style="position: absolute;" +
+      "top: calc(8 * var(--mm));" +
+      "right: calc(5 * var(--mm));" +
+      "width: 15%")
 
-  include footer.pug
+      p
+        strong Developper
+      ul
+        li Google
+
+      br
+      p
+        strong Programming language
+      ul
+        li Java
+        li some C++
+        li (Kotlin, possibly Swift in the future)
+
+      br
+      p
+        strong Development environment
+      ul
+        li Eclipse
+
+      br
+      p
+        strong Development kit
+      ul
+        li Android SDK
+
+  section.single
+    h1 Cross-Compilation
+    img(src="chapter1/cross_compilation.svg" style="width:100%")
+
+  section.single
+    h1 Constraints
+    p Limited resources
+    ul
+      li Memory
+        ul
+          li Beware of memory leaks
+          li Java (Android): garbage collector
+          li Swift / Objective C (iOS): Automatic Reference Counting (ARC)
+      li Energy
+        ul
+          li Some activities are very demanding (GPS, camera, etc.)
+          li Avoid inefficient algorithms (CPU drains battery)
+    br
+    p Handle urgent events
+    ul
+      li Low memory alert
+      li Low battery alert
+      li Phone call interruption
+
+  section.single
+    h1 Other Constraints
+    strong User interface
+    ul
+      li Simple and convenient to use
+      li Should be reactive
+      li Should fit with the OS and other apps ("look and feel")
+
+    strong Fiability
+    ul
+      li Avoid errors and crashing (no error handling when app crashes)
+
+    strong Security
+    ul
+      li Device holds sensitive personal data
+      li Apps each have their own files directory and run in a sandbox (iOS only)
+
+    strong Speed
+    ul
+      li App should work on slower devices, with other apps using resources
+
+  section.single
+    h1 First Example
+    p &rarr; Writing the first app in XCode&nbsp;: <em>Greeting</em>
+
+  section.single
+    h1 Workflow
+    p Mobile development is built around the user interface (screen):
+    br
+    ul
+      li Design <em>Graphical User Interface</em> (GUI)
+      li Define and handle <em>events</em>
+
+  section.split
+    h1 Events
+    .leftside
+      p Interruption
+      ul
+        li stops execution and jumps to a specific address
+          ul
+            li low level
+            li hardware exceptions
+      br
+      p Examples&nbsp;:
+      ul
+        li division by zero
+        li reset button
+        li process interruption
+    .rightside
+      p Event
+      ul
+        li stops execution and runs a procedure
+          ul
+            li higher level
+            li handled by OS interface
+      br
+      p Examples&nbsp;:
+      ul
+        li click a button
+        li move the cursor
+        li thread finishes a computation
+
+  section.single
+    h1 Call-back
+    p Events are handled by "call-backs"
+    ul
+      li Enable an event
+        ul
+          li associate a routing procedure to an existing event
+      li Disable an event
+        ul
+          li remove association with procedure (event will not trigger the procedure if it happens)
+      li Wait for an event
+    p If an event is not enabled (or disabled), the OS will consider that there is nothing to be done.
+    p The running program will not be notified of unhandled events occurring.
+
+  section.single
+    h1 Example
+    p &rarr; Programmatical version of <em>Greeting</em>

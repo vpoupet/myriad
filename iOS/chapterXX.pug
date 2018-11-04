@@ -1,0 +1,16 @@
+extends ../myriad.pug
+
+block preamble
+  -
+    root = "..";
+    context = "Embedded Systems";
+    author = "Victor Poupet";
+
+append header
+  link(rel="stylesheet" href="../css/highlight.css")
+  style
+    | html { --text-size: calc(11 * var(--pt)); }
+
+prepend footer
+  script(src="../js/highlight.pack.js")
+

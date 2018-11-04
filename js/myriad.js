@@ -4,14 +4,8 @@ function count_as_page (section) {
         section.classList.contains('section'));
 }
 
-window.onload = function() {
-    // configure and run highlight.hs
-    hljs.configure({
-        languages: [],  // disable automatic language detection
-    });
-    hljs.initHighlighting();
-
+window.addEventListener('load', function() {
     // process slides
     process_slides();
     // flatten();
-};
+});

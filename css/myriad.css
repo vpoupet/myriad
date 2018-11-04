@@ -64,7 +64,13 @@
   font-style: italic;
 }
 html {
-  font-size: calc(10 * var(--pt));
+  --text-size: calc(10 * var(--pt));
+  font-size: var(--text-size);
+  --dark-text-color: black;
+  --light-text-color: white;
+  --text-color: var(--dark-text-color);
+  --bg-color: white;
+  color: var(--text-color);
 }
 
 body {
@@ -87,21 +93,21 @@ section.title h1 {
   position: relative;
 }
 section.title .context {
-  color: white;
+  color: var(--light-text-color);
   text-align: right;
   position: absolute;
   top: calc(14 * var(--mm));
   right: calc(1 * var(--mm));
 }
 section.title .author {
-  color: white;
+  color: var(--light-text-color);
   text-align: left;
   position: absolute;
   bottom: calc(14 * var(--mm));
   left: calc(1 * var(--mm));
 }
 section.title time {
-  color: black;
+  color: var(--dark-text-color);
   text-align: right;
   position: absolute;
   bottom: calc(2 * var(--mm));
@@ -146,7 +152,9 @@ section.no-page-counter .page-counter {
 }
 
 .rightside {
-  color: white;
+  --text-color: var(--light-text-color);
+  --bg-color: black;
+  color: var(--text-color);
   width: calc(61 * var(--mm));
   padding-right: calc(1 * var(--mm));
 }
@@ -184,14 +192,10 @@ ul ul {
   border: calc(.1 * var(--mm)) black solid;
   border-radius: calc(1 * var(--mm));
   font-size: calc(8 * var(--pt));
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 p {
-  margin: 0;
-}
-
-object {
   margin: 0;
 }
 
@@ -221,8 +225,8 @@ h1 {
   font-family: "TitleFont", "sans-serif";
   font-weight: bold;
   font-size: calc(22 * var(--pt));
-  color: white;
-  -webkit-text-stroke-color: black;
+  color: var(--light-text-color);
+  -webkit-text-stroke-color: var(--dark-text-color);
   -webkit-text-stroke-width: 0.03em;
 }
 
@@ -233,6 +237,26 @@ h2 {
   font-family: "TitleFont", "sans-serif";
   color: white;
   font-size: calc(16 * var(--pt));
+}
+
+.box {
+  --border-width: calc(.5 * var(--mm));
+  border: var(--border-width) var(--text-color) solid;
+  margin-top: 2.5ex;
+}
+.box .box-title {
+  margin: -2.5ex 0px 0 2ex;
+  font-weight: bold;
+  background-color: var(--bg-color);
+  display: table;
+  padding: 0 1ex;
+}
+.box .box-content {
+  background-color: var(--bg-color);
+  width: calc(100% + calc(2 * var(--border-width)));
+  margin: calc(.5 * var(--mm)) 0 calc(2 * var(--mm)) calc(-1 * var(--border-width));
+  padding: 0 calc(1 * var(--mm));
+  overflow: hidden;
 }
 
 .no-display {
@@ -253,4 +277,6 @@ h2 {
   align-items: center;
 }
 
-/*# sourceMappingURL=myriad.css.map */
+.underline {
+  text-decoration: underline;
+}

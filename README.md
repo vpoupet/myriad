@@ -133,9 +133,13 @@ Themes can be created by adding CSS stylesheets and (optionally) redefining some
 
 ## Myriad
 
-Myriad is a black and white theme to be used with `slides.js` and `slides.css`. It defines 5 types of slides
+Myriad is a black and white theme to be used with `slides.js` and `slides.css`.
 
-### Title Slides
+### Slide Types
+
+Myriad defines 5 types of slides
+ 
+#### Title Slides
 
 `section` elements with the class `title` will be styled as title slides. These may have:
 * an `h1` element for the title of the presentation
@@ -147,18 +151,18 @@ title, etc.)
 
 All other elements of a title slide (for instance an image) should be manually placed with absolute position.
 
-### Section Slides
+#### Section Slides
 
 `section` elements with the class `section` will be styled as (presentation) sections markers. These slides should only
 have a main title `h1` and optionally a subtitle `h2`. Sections are automatically counted and numbered in capital roman
 numerals before the title.
 
-### Single Slides
+#### Single Slides
 
 `section` elements with the `single` class are styled as slides with a single block of content. It is recommended to
 group the contents of the slide (other than the title) in a `div` element.
 
-### Split Slides
+#### Split Slides
 
 `section` elements with the `split` class are styled as two column slides. The left side has white background and the 
 right one has black background.
@@ -166,11 +170,39 @@ right one has black background.
 The content of the left side should be placed in a `div` with class `leftside`, whereas the content of the right
 column should be placed in a `div` with class `rightside`.
 
-### Blank Slides
+#### Blank Slides
 
 `section` elements with no styling class will be represented as blank slides with plain white background. They might
 have a title (`h1`) as other slides. By default blank slides will also have a page counter but this might be avoided
 using the class `"no-page-counter"` (for instance to display a fullscreen image with no extra element on top).
+
+### Styling Classes
+
+Some classes are provided to style some elements on the slides&nbsp;:
+
+#### Boxes
+
+The class `box` (to be used on a `div` element) defines a "text box" that is represented with enclosing top and bottom
+borders. The box can have a title (optional), enclosed in an element of class `box-title`, and the content of the box should be in
+an element of class `box-content` (separate from the `.box` element).
+
+Example&nbsp;:
+```HTML
+<div class="box">
+    <div class="box-title">Theorem (Euclid)</div>
+    <div class="box-content">
+        There exist infinitely many prime numbers.
+    </div>
+</div>
+```
+
+#### Other Classes
+
+* `.no-display` for elements that should not be displayed (not rendered)
+* `.hidden` for elements that should be hidden (but use space)
+* `.highlight` highlights text with a yellow background
+* `.center` centers horizontally the contents of the element (vertical flex)
+* `.underline` underlines text
 
 # Examples
 
