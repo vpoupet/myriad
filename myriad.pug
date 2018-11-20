@@ -75,6 +75,8 @@ html(lang=language)
   body
     section.title
       h1 !{title}
+      if {subtitle}
+        h2 !{subtitle}
       .context !{context}
       .author !{author}
       if isShortDate(date)

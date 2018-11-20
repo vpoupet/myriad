@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../../css/slides.css">
+    <link rel="stylesheet" href="../../css/myriad.css">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <title>M2101 - Architecture et programmation bas niveau</title>
+</head>
+<body>
+
+
+<a id="slide_anchor0"></a><section class="title">
+    <h1>Cours n° 6 :<br>Communication entre<br>processus</h1>
+    <div class="context">M2101 - Architecture et programmation bas niveau</div>
+    <div class="author">Victor Poupet</div>
+    <time datetime="2018-03-19">19 mars 2018</time>
+<div class="slide-footer"><div class="page-counter">0 / 10</div></div><a href="#slide_anchor-1" class="prev_flat_link"></a><a href="#slide_anchor1" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor1"></a><section class="single">
+    <h1>Fork, et après ?</h1>
+    <div>
+        <p>À l'aide de la fonction <code>fork</code> on peut créer de nouveaux processus</p>
+        <ul>
+            <li>mais chaque processus a ses propres variables, et sa propre mémoire
+            </li><li>comment les faire communiquer pour effectuer une tâche en commun ?
+        </li></ul>
+
+        <br>
+        Exemples de communication&nbsp;:
+        <ul>
+            <li>une application réseau communique avec le serveur distant
+            </li><li>un serveur web démarre des processus fils pour traîter les requêtes
+            </li><li>le shell ordonne l'interruption d'un processus (<code>kill</code>)
+            </li><li>éviter les conflits lorsque plusieurs processus veulent accéder à un fichier
+            </li><li>deux commandes sont exécutées avec un <em>pipe</em> (ex : <code>ls | grep toto</code>)
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">1 / 10</div></div><a href="#slide_anchor0" class="prev_flat_link"></a><a href="#slide_anchor2" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor2"></a><section class="single">
+    <h1>Techniques IPC</h1>
+    <div>
+        <p>Il existe de nombreuses méthodes de communication <em>inter-processus</em> (IPC en anglais)&nbsp;:</p>
+        <ul>
+            <li>signaux
+            </li><li>tubes (<em>pipes</em>)
+            </li><li>FIFO
+            </li><li>Verrous
+            </li><li>Files de messages
+            </li><li>Sémaphores
+            </li><li>Segments de mémoire partagée
+            </li><li>Fichiers sur mémoire
+            </li><li>Sockets
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">2 / 10</div></div><a href="#slide_anchor1" class="prev_flat_link"></a><a href="#slide_anchor3" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor3"></a><section class="split">
+    <h1>Signaux</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-end="2">
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;signal.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">kill</span><span class="hljs-params">(<span class="hljs-keyword">pid_t</span> pid, <span class="hljs-keyword">int</span> sig)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">raise</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sigaction</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig, <span class="hljs-keyword">const</span> struct
+sigaction *act, struct sigaction *oact)</span></span>;
+        </code></pre>
+        
+    </div>
+    <div class="rightside">
+        <div class="only" data-step="0" data-start="0" data-end="0">
+            Un processus peut envoyer un <em>signal</em> à un autre
+            <ul>
+                <li>Il existe une liste de signaux qui peuvent être envoyés
+                </li><li>Le destinataire est désigné par son PID
+                </li><li>Chaque processus peut réagir aux signaux à l'aide de fonctions (handlers)
+                </li><li>Un processus peut ignorer un signal
+                </li><li>Il existe des handlers par défaut (ex : <code>SIGINT</code> provoque par défaut l'arrêt du processus)
+                </li><li>Certains handlers ne peuvent pas être modifiés (ex : <code>SIGKILL</code>, <code>SIGSTOP</code>)
+            </li></ul>
+        </div>
+        
+        
+
+    </div>
+<div class="slide-footer"><div class="page-counter">3 / 10</div></div><a href="#slide_anchor2" class="prev_flat_link"></a><a href="#slide_anchor4" class="next_flat_link"></a></section><a id="slide_anchor4"></a><section class="split">
+    <h1>Signaux</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-end="2">
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;signal.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">kill</span><span class="hljs-params">(<span class="hljs-keyword">pid_t</span> pid, <span class="hljs-keyword">int</span> sig)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">raise</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sigaction</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig, <span class="hljs-keyword">const</span> struct
+sigaction *act, struct sigaction *oact)</span></span>;
+        </code></pre>
+        
+    </div>
+    <div class="rightside">
+        
+        <div class="only" data-step="1" data-start="1" data-end="1">
+            Exemples de signaux&nbsp;:
+            <ul>
+                <li><code>SIGINT</code> (<code>^C</code>)
+                </li><li><code>SIGSTOP</code>
+                </li><li><code>SIGCONT</code>
+                </li><li><code>SIGTERM</code> (<code>kill</code>)
+                </li><li><code>SIGKILL</code> (<code>kill -9</code>)
+                </li><li><code>SIGQUIT</code> (fermeture du terminal)
+                </li><li><code>SIGCHLD</code> (fils terminé ou stoppé)
+                </li><li><code>SIGUSR1</code>
+                </li><li><code>SIGUSR2</code> (pas de comportement par défaut)
+            </li></ul>
+        </div>
+        
+
+    </div>
+<div class="slide-footer"><div class="page-counter">3 / 10</div></div><a href="#slide_anchor3" class="prev_flat_link"></a><a href="#slide_anchor5" class="next_flat_link"></a></section><a id="slide_anchor5"></a><section class="split">
+    <h1>Signaux</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-end="2">
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;signal.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">kill</span><span class="hljs-params">(<span class="hljs-keyword">pid_t</span> pid, <span class="hljs-keyword">int</span> sig)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">raise</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sigaction</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig, <span class="hljs-keyword">const</span> struct
+sigaction *act, struct sigaction *oact)</span></span>;
+        </code></pre>
+        
+    </div>
+    <div class="rightside">
+        
+        
+        <div class="only" data-start="2">
+            <code>struct sigaction</code> est un type contenant plusieurs champs, parmi lesquels&nbsp;:
+            <ul>
+                <li><code>sa_handler</code> : la fonction <em>handler</em> (ou <code>SIG_IGN</code> pour ignorer)
+                </li><li><code>sa_mask</code> : liste de signaux à ignorer pendant le traîtement
+                </li><li><code>sa_flags</code> : des options
+            </li></ul>
+        </div>
+
+    </div>
+<div class="slide-footer"><div class="page-counter">3 / 10</div></div><a href="#slide_anchor4" class="prev_flat_link"></a><a href="#slide_anchor6" class="next_flat_link"></a></section><a id="slide_anchor6"></a><section class="split">
+    <h1>Signaux</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-step="3" data-start="3" data-end="3">
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sigint_handler</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig)</span> </span>{
+  write(<span class="hljs-number">0</span>, <span class="hljs-string">"Recu SIGINT!\n"</span>, <span class="hljs-number">13</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sigint_handler</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig)</span></span>;
+  <span class="hljs-keyword">char</span> s[<span class="hljs-number">200</span>];
+
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sigaction</span> <span class="hljs-title">sa</span>;</span>
+  sa.sa_handler = sigint_handler;
+  sa.sa_flags = <span class="hljs-number">0</span>;
+  sigemptyset(&amp;sa.sa_mask);
+  sigaction(SIGINT, &amp;sa, <span class="hljs-literal">NULL</span>);
+
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Entrez du texte: "</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"message: %s\n"</span>, s);
+}</code></pre>
+        <div class="only" data-start="3">
+            <hr>
+            <pre><code class="only hljs" data-step="3" data-start="3" data-end="3">Entrez du texte: bonjour^CRecu SIGINT!
+fgets: Interrupted system call</code></pre>
+        </div>
+    </div>
+    <div class="rightside">
+        
+        
+        <div class="only" data-start="2">
+            <code>struct sigaction</code> est un type contenant plusieurs champs, parmi lesquels&nbsp;:
+            <ul>
+                <li><code>sa_handler</code> : la fonction <em>handler</em> (ou <code>SIG_IGN</code> pour ignorer)
+                </li><li><code>sa_mask</code> : liste de signaux à ignorer pendant le traîtement
+                </li><li><code>sa_flags</code> : des options
+            </li></ul>
+        </div>
+
+    </div>
+<div class="slide-footer"><div class="page-counter">3 / 10</div></div><a href="#slide_anchor5" class="prev_flat_link"></a><a href="#slide_anchor7" class="next_flat_link"></a></section><a id="slide_anchor7"></a><section class="split">
+    <h1>Signaux</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-step="4" data-start="4" data-end="4"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sigint_handler</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig)</span> </span>{
+  write(<span class="hljs-number">0</span>, <span class="hljs-string">"Recu SIGINT!\n"</span>, <span class="hljs-number">13</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sigint_handler</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sig)</span></span>;
+  <span class="hljs-keyword">char</span> s[<span class="hljs-number">200</span>];
+
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sigaction</span> <span class="hljs-title">sa</span>;</span>
+  sa.sa_handler = sigint_handler;
+  sa.sa_flags = SA_RESTART;
+  sigemptyset(&amp;sa.sa_mask);
+  sigaction(SIGINT, &amp;sa, <span class="hljs-literal">NULL</span>);
+
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Entrez du texte: "</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"message: %s\n"</span>, s);
+}</code></pre>
+        <div class="only" data-start="3">
+            <hr>
+            <pre><code class="only hljs" data-step="4" data-start="4" data-end="4">Entrez du texte: bonjour^CRecu SIGINT!
+coucou^CRecu SIGINT!
+salut
+message: salut</code></pre>
+        </div>
+    </div>
+    <div class="rightside">
+        
+        
+        <div class="only" data-start="2">
+            <code>struct sigaction</code> est un type contenant plusieurs champs, parmi lesquels&nbsp;:
+            <ul>
+                <li><code>sa_handler</code> : la fonction <em>handler</em> (ou <code>SIG_IGN</code> pour ignorer)
+                </li><li><code>sa_mask</code> : liste de signaux à ignorer pendant le traîtement
+                </li><li><code>sa_flags</code> : des options
+            </li></ul>
+        </div>
+
+    </div>
+<div class="slide-footer"><div class="page-counter">3 / 10</div></div><a href="#slide_anchor6" class="prev_flat_link"></a><a href="#slide_anchor8" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor8"></a><section class="split">
+    <h1>Tubes (<em>pipes</em>)</h1>
+    <div class="leftside">
+        <div class="only" data-step="0" data-start="0" data-end="0">
+            <pre><code class="cpp hljs"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">pipe</span><span class="hljs-params">(<span class="hljs-keyword">int</span> fildes[<span class="hljs-number">2</span>])</span></span>;</code></pre>
+            <hr>
+            <pre><code class="cpp hljs"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
+  <span class="hljs-keyword">int</span> pfds[<span class="hljs-number">2</span>];
+  <span class="hljs-keyword">char</span> buf[<span class="hljs-number">30</span>];
+
+  <span class="hljs-keyword">if</span> (pipe(pfds) == <span class="hljs-number">-1</span>) {
+    perror(<span class="hljs-string">"pipe"</span>);
+    <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);
+  }
+
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ecriture (%d)\n"</span>, pfds[<span class="hljs-number">1</span>]);
+  write(pfds[<span class="hljs-number">1</span>], <span class="hljs-string">"test"</span>, <span class="hljs-number">5</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"lecture (%d)\n"</span>, pfds[<span class="hljs-number">0</span>]);
+  read(pfds[<span class="hljs-number">0</span>], buf, <span class="hljs-number">5</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"recu: %s\n"</span>, buf);
+}</code></pre>
+        </div>
+        
+        
+    </div>
+    <div class="rightside">
+        Structure abstraite dans laquelle on peut lire et écrire des données
+        <ul>
+            <li>un appel à la fonction <code>pipe</code> créé deux descripteurs de fichiers (deux bouts)
+            </li><li>on lit dans le premier descripteur et on écrit dans le second
+            </li><li>les données lues sont supprimées (capacité limitée à environ 10 ko)
+            </li><li>c'est le mécanisme utilisé par le shell (ex&nbsp;:<code>cat a.txt|head -n 10</code>)
+            </li><li>le tube n'est pas accessible par un processus extérieur, mais les descripteurs de fichiers sont copiés par <code>fork</code>
+            </li><li>les tubes sont unidirectionnels
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">4 / 10</div></div><a href="#slide_anchor7" class="prev_flat_link"></a><a href="#slide_anchor9" class="next_flat_link"></a></section><a id="slide_anchor9"></a><section class="split">
+    <h1>Tubes (<em>pipes</em>)</h1>
+    <div class="leftside">
+        
+        <div class="only" data-start="1" data-end="1">
+            <pre><code class="cpp hljs"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
+  <span class="hljs-keyword">int</span> pfds[<span class="hljs-number">2</span>];
+  <span class="hljs-keyword">char</span> buf[<span class="hljs-number">30</span>];
+
+  pipe(pfds);
+  <span class="hljs-keyword">if</span> (!fork()) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"(FILS) ecriture\n"</span>);
+    write(pfds[<span class="hljs-number">1</span>], <span class="hljs-string">"test"</span>, <span class="hljs-number">5</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"(FILS) fin\n"</span>);
+    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"(PERE) lecture\n"</span>);
+    read(pfds[<span class="hljs-number">0</span>], buf, <span class="hljs-number">5</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"(PERE) lu: %s\n"</span>, buf);
+    wait(<span class="hljs-literal">NULL</span>);
+  }
+}</code></pre>
+            <hr>
+            <pre><code class="hljs">(PERE) lecture
+(FILS) ecriture
+(FILS) fin
+(PERE) lu: test</code></pre>
+        </div>
+        
+    </div>
+    <div class="rightside">
+        Structure abstraite dans laquelle on peut lire et écrire des données
+        <ul>
+            <li>un appel à la fonction <code>pipe</code> créé deux descripteurs de fichiers (deux bouts)
+            </li><li>on lit dans le premier descripteur et on écrit dans le second
+            </li><li>les données lues sont supprimées (capacité limitée à environ 10 ko)
+            </li><li>c'est le mécanisme utilisé par le shell (ex&nbsp;:<code>cat a.txt|head -n 10</code>)
+            </li><li>le tube n'est pas accessible par un processus extérieur, mais les descripteurs de fichiers sont copiés par <code>fork</code>
+            </li><li>les tubes sont unidirectionnels
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">4 / 10</div></div><a href="#slide_anchor8" class="prev_flat_link"></a><a href="#slide_anchor10" class="next_flat_link"></a></section><a id="slide_anchor10"></a><section class="split">
+    <h1>Tubes (<em>pipes</em>)</h1>
+    <div class="leftside">
+        
+        
+        <div class="only" data-start="2" data-end="2">
+            <pre><code class="hljs">$ ls | wc -l</code></pre>
+            <hr>
+            <pre><code class="cpp hljs"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
+  <span class="hljs-keyword">int</span> pfds[<span class="hljs-number">2</span>];
+  pipe(pfds);
+
+  <span class="hljs-keyword">if</span> (!fork()) {
+    close(<span class="hljs-number">1</span>); <span class="hljs-comment">// fermer stdout</span>
+    dup(pfds[<span class="hljs-number">1</span>]); <span class="hljs-comment">//stdout = pfds[1]</span>
+    execlp(<span class="hljs-string">"ls"</span>, <span class="hljs-string">"ls"</span>, <span class="hljs-literal">NULL</span>);
+  } <span class="hljs-keyword">else</span> {
+    close(<span class="hljs-number">0</span>); <span class="hljs-comment">// fermer stdin</span>
+    dup(pfds[<span class="hljs-number">0</span>]); <span class="hljs-comment">// stdin = pfds[0]</span>
+    execlp(<span class="hljs-string">"wc"</span>, <span class="hljs-string">"wc"</span>, <span class="hljs-string">"-l"</span>, <span class="hljs-literal">NULL</span>);
+  }
+}</code></pre>
+        </div>
+    </div>
+    <div class="rightside">
+        Structure abstraite dans laquelle on peut lire et écrire des données
+        <ul>
+            <li>un appel à la fonction <code>pipe</code> créé deux descripteurs de fichiers (deux bouts)
+            </li><li>on lit dans le premier descripteur et on écrit dans le second
+            </li><li>les données lues sont supprimées (capacité limitée à environ 10 ko)
+            </li><li>c'est le mécanisme utilisé par le shell (ex&nbsp;:<code>cat a.txt|head -n 10</code>)
+            </li><li>le tube n'est pas accessible par un processus extérieur, mais les descripteurs de fichiers sont copiés par <code>fork</code>
+            </li><li>les tubes sont unidirectionnels
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">4 / 10</div></div><a href="#slide_anchor9" class="prev_flat_link"></a><a href="#slide_anchor11" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor11"></a><section class="split">
+    <h1>Tubes nommés (FIFO)</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-step="0" data-start="0" data-end="0">
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
+  <span class="hljs-keyword">char</span> s[<span class="hljs-number">300</span>];
+  <span class="hljs-keyword">int</span> num, fd;
+
+  mknod(<span class="hljs-string">"my_fifo"</span>, S_IFIFO | <span class="hljs-number">0666</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"attente...\n"</span>);
+  fd = open(<span class="hljs-string">"my_fifo"</span>, O_WRONLY);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"connecté !\n"</span>);
+
+  <span class="hljs-keyword">while</span> (gets(s), !feof(<span class="hljs-built_in">stdin</span>)) {
+    write(fd, s, <span class="hljs-built_in">strlen</span>(s));
+  }
+}
+        </code></pre>
+    </div>
+    <div class="rightside">
+        File (<em>first in</em>, <em>first out</em>)
+        <ul>
+            <li>Fonctionne comme un <em>pipe</em>, mais a un nom dans le système de fichiers
+            </li><li>Accessible depuis l'extérieur
+            </li><li>Se manipule comme un fichier (<code>open</code>, <code>read</code>, <code>write</code>, <em>etc</em>.)
+            </li><li><code>open()</code> bloque jusqu'à ce que les deux extrêmités soient ouvertes
+            </li><li>Possibilité de connecter plusieurs processus à chaque extrêmité
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">5 / 10</div></div><a href="#slide_anchor10" class="prev_flat_link"></a><a href="#slide_anchor12" class="next_flat_link"></a></section><a id="slide_anchor12"></a><section class="split">
+    <h1>Tubes nommés (FIFO)</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-start="1" data-end="1">
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
+  <span class="hljs-keyword">char</span> s[<span class="hljs-number">300</span>];
+  <span class="hljs-keyword">int</span> num, fd;
+
+  mknod(<span class="hljs-string">"my_fifo"</span>, S_IFIFO | <span class="hljs-number">0666</span>, <span class="hljs-number">0</span>);
+
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"attente...\n"</span>);
+  fd = open(<span class="hljs-string">"my_fifo"</span>, O_RDONLY);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"connecté !\n"</span>);
+
+  <span class="hljs-keyword">do</span> {
+    num = read(fd, s, <span class="hljs-number">300</span>);
+    s[num] = <span class="hljs-string">'\0'</span>;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"lu: %s\n"</span>, s);
+  } <span class="hljs-keyword">while</span> (num &gt; <span class="hljs-number">0</span>);
+}
+        </code></pre>
+    </div>
+    <div class="rightside">
+        File (<em>first in</em>, <em>first out</em>)
+        <ul>
+            <li>Fonctionne comme un <em>pipe</em>, mais a un nom dans le système de fichiers
+            </li><li>Accessible depuis l'extérieur
+            </li><li>Se manipule comme un fichier (<code>open</code>, <code>read</code>, <code>write</code>, <em>etc</em>.)
+            </li><li><code>open()</code> bloque jusqu'à ce que les deux extrêmités soient ouvertes
+            </li><li>Possibilité de connecter plusieurs processus à chaque extrêmité
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">5 / 10</div></div><a href="#slide_anchor11" class="prev_flat_link"></a><a href="#slide_anchor13" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor13"></a><section class="split">
+    <h1>Verrous de fichiers</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs">
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">flock</span> <span class="hljs-title">fl</span>;</span>
+<span class="hljs-keyword">int</span> fd;
+
+fl.l_type = F_WRLCK; <span class="hljs-comment">// autres types: F_RDLCK, F_UNLCK</span>
+fl.l_whence = SEEK_SET; <span class="hljs-comment">// autres: SEEK_CUR, SEEK_END</span>
+fl.l_start = <span class="hljs-number">0</span>;
+fl.l_len = <span class="hljs-number">0</span>; <span class="hljs-comment">// tout le fichier</span>
+fl.l_pid = getpid();
+
+fd = open(<span class="hljs-string">"filename"</span>, O_WRONLY);
+
+fcntl(fd, F_SETLKW, &amp;fl);
+        </code></pre>
+    </div>
+    <div class="rightside">
+        On peut verrouiller une portion de fichier
+        <ul>
+            <li>verrous en lecture ou écriture
+            </li><li>un seul accès à la fois en écriture
+            </li><li>plusieurs accès possibles en lecture
+            </li><li>On précise la zone du fichier qui est bloquée (offset de départ, taille)
+        </li></ul>
+
+        <br>
+        On peut obtenir la même chose avec des sémaphores
+    </div>
+<div class="slide-footer"><div class="page-counter">6 / 10</div></div><a href="#slide_anchor12" class="prev_flat_link"></a><a href="#slide_anchor14" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor14"></a><section class="split">
+    <h1>Sémaphores</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs">
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sys/ipc.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sys/sem.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">semget</span><span class="hljs-params">(<span class="hljs-keyword">key_t</span> key, <span class="hljs-keyword">int</span> nsems, <span class="hljs-keyword">int</span> semflg)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">semctl</span><span class="hljs-params">(<span class="hljs-keyword">int</span> semid, <span class="hljs-keyword">int</span> semnum, <span class="hljs-keyword">int</span> cmd, ...)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">semop</span><span class="hljs-params">(<span class="hljs-keyword">int</span> semid, struct sembuf *sops, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nsops)</span></span>;
+        </code></pre>
+    </div>
+    <div class="rightside">
+        <div class="only" data-step="0" data-start="0" data-end="0">
+            Semblable aux verrous, mais plus versatiles
+            <ul>
+                <li>permettent de gérer des sections critiques (problèmes de concurrence)
+                </li><li>peuvent être utilisés pour verrouiller des fichiers
+                </li><li>sont créés à l'échelle de l'OS (donc accessibles par tous les processus)
+                </li><li>souvent plus rapide que les verrous de fichiers
+            </li></ul>
+
+            <br>
+            <strong>Attention&nbsp;:</strong> les sémaphores systèmes ne sont pas les mêmes que les sémaphores POSIX
+            (vus en TD)
+        </div>
+        
+    </div>
+<div class="slide-footer"><div class="page-counter">7 / 10</div></div><a href="#slide_anchor13" class="prev_flat_link"></a><a href="#slide_anchor15" class="next_flat_link"></a></section><a id="slide_anchor15"></a><section class="split">
+    <h1>Sémaphores</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs">
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sys/ipc.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sys/sem.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">semget</span><span class="hljs-params">(<span class="hljs-keyword">key_t</span> key, <span class="hljs-keyword">int</span> nsems, <span class="hljs-keyword">int</span> semflg)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">semctl</span><span class="hljs-params">(<span class="hljs-keyword">int</span> semid, <span class="hljs-keyword">int</span> semnum, <span class="hljs-keyword">int</span> cmd, ...)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">semop</span><span class="hljs-params">(<span class="hljs-keyword">int</span> semid, struct sembuf *sops, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> nsops)</span></span>;
+        </code></pre>
+    </div>
+    <div class="rightside">
+        
+        <div class="only" data-start="1" data-end="1">
+            Un sémaphore a une valeur (entier relatif)
+            <ul>
+                <li>la valeur correspond à des passages autorisés
+                </li><li>on peut augmenter la valeur
+                </li><li>on peut demander à diminuer la valeur&nbsp;: on doit attendre que la valeur soit supérieure à ce
+                qu'on veut retirer
+            </li></ul>
+        </div>
+    </div>
+<div class="slide-footer"><div class="page-counter">7 / 10</div></div><a href="#slide_anchor14" class="prev_flat_link"></a><a href="#slide_anchor16" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor16"></a><section class="split">
+    <h1>Mémoire partagée</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-step="0" data-start="0" data-end="0">
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">shmget</span><span class="hljs-params">(<span class="hljs-keyword">key_t</span> key, <span class="hljs-keyword">size_t</span> size, <span class="hljs-keyword">int</span> shmflg)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">shmat</span><span class="hljs-params">(<span class="hljs-keyword">int</span> shmid, <span class="hljs-keyword">void</span> *shmaddr, <span class="hljs-keyword">int</span> shmflg)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">shmdt</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *shmaddr)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">shmctl</span><span class="hljs-params">(<span class="hljs-keyword">int</span> shmid, <span class="hljs-keyword">int</span> cmd, struct shmid_ds *buf)</span></span>;
+        </code></pre>
+    </div>
+    <div class="rightside">
+        Bloc de mémoire commun à deux processus
+        <ul>
+            <li>on obtient un pointeur vers le bloc de mémoire
+            </li><li>toute modification est visible par les autres processus
+            </li><li>le processus peut se détacher du bloc partagé à l'aide de la commande <code>shmdt</code>
+            </li><li>le bloc doit être libéré explicitement à l'aide de la commande <code>shmctl</code>
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">8 / 10</div></div><a href="#slide_anchor15" class="prev_flat_link"></a><a href="#slide_anchor17" class="next_flat_link"></a></section><a id="slide_anchor17"></a><section class="split">
+    <h1>Mémoire partagée</h1>
+    <div class="leftside">
+        <pre><code class="cpp only hljs" data-start="1" data-end="1">
+<span class="hljs-keyword">key_t</span> key;
+<span class="hljs-keyword">int</span> shmid;
+<span class="hljs-keyword">char</span> *data;
+
+key = ftok(<span class="hljs-string">"/home/toto/fichier"</span>, <span class="hljs-string">'R'</span>);
+shmid = shmget(key, <span class="hljs-number">1024</span>, <span class="hljs-number">0644</span> |
+IPC_CREAT);
+data = shmat(shmid, (<span class="hljs-keyword">void</span> *)<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+<span class="hljs-keyword">if</span> (data == (<span class="hljs-keyword">char</span> *)(<span class="hljs-number">-1</span>)) {
+  perror(<span class="hljs-string">"shmat"</span>);
+}
+
+gets(data);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">"partagé: %s\n"</span>, data);
+
+shmctl(shmid, IPC_RMID, <span class="hljs-literal">NULL</span>);
+        </code></pre>
+    </div>
+    <div class="rightside">
+        Bloc de mémoire commun à deux processus
+        <ul>
+            <li>on obtient un pointeur vers le bloc de mémoire
+            </li><li>toute modification est visible par les autres processus
+            </li><li>le processus peut se détacher du bloc partagé à l'aide de la commande <code>shmdt</code>
+            </li><li>le bloc doit être libéré explicitement à l'aide de la commande <code>shmctl</code>
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">8 / 10</div></div><a href="#slide_anchor16" class="prev_flat_link"></a><a href="#slide_anchor18" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor18"></a><section class="split">
+    <h1>Fichiers sur mémoire</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs">
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">mmap</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *addr, <span class="hljs-keyword">size_t</span> len, <span class="hljs-keyword">int</span> prot, <span class="hljs-keyword">int</span> flags, <span class="hljs-keyword">int</span> fildes, <span class="hljs-keyword">off_t</span> off)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">munmap</span><span class="hljs-params">(<span class="hljs-keyword">caddr_t</span> addr, <span class="hljs-keyword">size_t</span> len)</span></span>;
+        </code></pre>
+        <hr>
+        <pre><code class="cpp hljs">
+<span class="hljs-keyword">int</span> fd, pagesize;
+<span class="hljs-keyword">char</span> *data;
+
+fd = open(<span class="hljs-string">"toto"</span>, O_RDONLY);
+pagesize = getpagesize();
+data = mmap((<span class="hljs-keyword">caddr_t</span>)<span class="hljs-number">0</span>, pagesize,
+PROT_READ, MAP_SHARED, fd, pagesize);
+        </code></pre>
+    </div>
+    <div class="rightside">
+        <div class="only" data-step="0" data-start="0" data-end="0">
+            Si on veut partager un fichier entre deux processus, il est parfois plus simple de mettre le fichier dans
+            la mémoire et de manipuler des adresses
+            <ul>
+                <li>on ouvre le fichier avec <code>open</code>
+                </li><li>on place le fichier en mémoire avec <code>mmap</code>
+            </li></ul>
+        </div>
+        
+        
+    </div>
+<div class="slide-footer"><div class="page-counter">9 / 10</div></div><a href="#slide_anchor17" class="prev_flat_link"></a><a href="#slide_anchor19" class="next_flat_link"></a></section><a id="slide_anchor19"></a><section class="split">
+    <h1>Fichiers sur mémoire</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs">
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">mmap</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *addr, <span class="hljs-keyword">size_t</span> len, <span class="hljs-keyword">int</span> prot, <span class="hljs-keyword">int</span> flags, <span class="hljs-keyword">int</span> fildes, <span class="hljs-keyword">off_t</span> off)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">munmap</span><span class="hljs-params">(<span class="hljs-keyword">caddr_t</span> addr, <span class="hljs-keyword">size_t</span> len)</span></span>;
+        </code></pre>
+        <hr>
+        <pre><code class="cpp hljs">
+<span class="hljs-keyword">int</span> fd, pagesize;
+<span class="hljs-keyword">char</span> *data;
+
+fd = open(<span class="hljs-string">"toto"</span>, O_RDONLY);
+pagesize = getpagesize();
+data = mmap((<span class="hljs-keyword">caddr_t</span>)<span class="hljs-number">0</span>, pagesize,
+PROT_READ, MAP_SHARED, fd, pagesize);
+        </code></pre>
+    </div>
+    <div class="rightside">
+        
+        <div class="only" data-start="1" data-end="1">
+            Arguments de <code>mmap</code>
+            <ul>
+                <li><code>addr</code>&nbsp;: adresse où mettre le fichier (en général on laisse l'OS choisir)
+                </li><li><code>len</code>&nbsp;: taille du bloc à mettre en mémoire
+                </li><li><code>prot</code>&nbsp;: permissions du bloc (doit être compatible avec les paramètre de <code>open</code>)
+                </li><li><code>flags</code>&nbsp;: options
+                </li><li><code>filedes</code>&nbsp;: descripteur obtenu par <code>open</code>
+                </li><li><code>off</code>&nbsp;: position du début du bloc à mettre en mémoire
+            </li></ul>
+        </div>
+        
+    </div>
+<div class="slide-footer"><div class="page-counter">9 / 10</div></div><a href="#slide_anchor18" class="prev_flat_link"></a><a href="#slide_anchor20" class="next_flat_link"></a></section><a id="slide_anchor20"></a><section class="split">
+    <h1>Fichiers sur mémoire</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs">
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">mmap</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *addr, <span class="hljs-keyword">size_t</span> len, <span class="hljs-keyword">int</span> prot, <span class="hljs-keyword">int</span> flags, <span class="hljs-keyword">int</span> fildes, <span class="hljs-keyword">off_t</span> off)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">munmap</span><span class="hljs-params">(<span class="hljs-keyword">caddr_t</span> addr, <span class="hljs-keyword">size_t</span> len)</span></span>;
+        </code></pre>
+        <hr>
+        <pre><code class="cpp hljs">
+<span class="hljs-keyword">int</span> fd, pagesize;
+<span class="hljs-keyword">char</span> *data;
+
+fd = open(<span class="hljs-string">"toto"</span>, O_RDONLY);
+pagesize = getpagesize();
+data = mmap((<span class="hljs-keyword">caddr_t</span>)<span class="hljs-number">0</span>, pagesize,
+PROT_READ, MAP_SHARED, fd, pagesize);
+        </code></pre>
+    </div>
+    <div class="rightside">
+        
+        
+        <div class="only" data-start="2" data-end="2">
+            <ul>
+                <li>Les fichiers en mémoire sont beaucoup plus rapides d'accès (mémoire rapide et pas d'appel système)
+                </li><li>Chaque processus doit placer le fichier en mémoire
+                </li><li>L'espace mémoire est libéré automatiquement lorsque le processus termine
+            </li></ul>
+        </div>
+    </div>
+<div class="slide-footer"><div class="page-counter">9 / 10</div></div><a href="#slide_anchor19" class="prev_flat_link"></a><a href="#slide_anchor21" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor21"></a><section class="split">
+    <h1>Sockets</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs">
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sys/socket.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">socket</span><span class="hljs-params">(<span class="hljs-keyword">int</span> domain, <span class="hljs-keyword">int</span> type, <span class="hljs-keyword">int</span> protocol)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bind</span><span class="hljs-params">(<span class="hljs-keyword">int</span> socket, <span class="hljs-keyword">const</span> struct sockaddr *address, <span class="hljs-keyword">socklen_t</span> address_len)</span></span>;
+<span class="hljs-keyword">ssize_t</span> recv(<span class="hljs-keyword">int</span> socket, <span class="hljs-keyword">void</span> *buffer, <span class="hljs-keyword">size_t</span> length, <span class="hljs-keyword">int</span> flags);
+<span class="hljs-keyword">ssize_t</span> send(<span class="hljs-keyword">int</span> socket, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *buffer, <span class="hljs-keyword">size_t</span> length, <span class="hljs-keyword">int</span> flags);
+        </code></pre>
+    </div>
+    <div class="rightside">
+        Tubes bi-directionnels à travers un réseau
+        <ul>
+            <li>ne sont pas limitées à une machine
+            </li><li><em>cf</em>. suite du cours...
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">10 / 10</div></div><a href="#slide_anchor20" class="prev_flat_link"></a><a href="#slide_anchor22" class="next_flat_link"></a></section>
+
+
+
+
+
+
+
+
+</body></html>

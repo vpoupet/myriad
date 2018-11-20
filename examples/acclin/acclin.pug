@@ -1,0 +1,331 @@
+extends ../../myriad.pug
+
+block preamble
+  - root = "../..";
+  - context = "Séminaire ALGO";
+  - author = 'Anaël Grandjean and <span class="underline">Victor Poupet</span>';
+  - date = "2015-06-23";
+  - title = "A Linear Acceleration for all Neighborhoods on 2D Cellular Automata";
+
+append header
+  link(rel="stylesheet" href="acclin.css")
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async)
+  | \(
+  | \newcommand{\TR}{\operatorname{TR}}
+  | \renewcommand{\epsilon}{\varepsilon}
+  | \newcommand{\ZZ}{\mathbb{Z}}
+  | \newcommand{\NN}{\mathbb{N}}
+  | \newcommand{\QQ}{\mathbb{Q}}
+  | \newcommand{\RR}{\mathbb{R}}
+  | \newcommand{\ACA}{\mathcal{A}}
+  | \newcommand{\ACQ}{\mathcal{Q}}
+  | \)
+
+block document
+  section.section
+    h1 Definitions
+
+  section.split
+    h1 Cellular Automata
+    .leftside
+      img.only(src="figures/2DCA-0.svg" data-step=0)
+      img.only(src="figures/2DCA-1.svg")
+      img.only(src="figures/2DCA-2.svg")
+      img.only(src="figures/2DCA-3.svg")
+      img.only(src="figures/2DCA-4.svg")
+    .rightside
+      p 2-dimensional cellular automata (2DCA) \(\ACA = (\ACQ, V, \delta)\)&nbsp;:
+      ul
+        li.uncover(data-start=1) \(\ACQ\) is a finite set (<em>states</em>)
+        li.uncover \(V\) is a finite subset of \(\ZZ^2\), \(0\in V\) (<em>neighborhood</em>)
+        li.uncover \(\delta:\ACQ^{V}\rightarrow \ACQ\) (<em>local function</em>)
+      br
+      p.uncover global function \(\Delta: \ACQ^{\ZZ^2}\rightarrow \ACQ^{\ZZ^2}\)
+
+  section.split
+    h1 Language Recognition
+    .leftside
+      .center
+        img(src="figures/languageRecognition.svg" style="width: 80%")
+    .rightside
+      p Languages of rectangular pictures in
+        | \[\Sigma^{**} = \bigcup_{n, m} \Sigma^{(n, m)}\]
+      p.uncover We consider 2DCA such that
+      ul.uncover(data-start=1)
+        li \(\Sigma\subseteq \ACQ\)
+        li \(\#\in \ACQ\) is a <em>quiescent</em> state
+        li \(\ACQ_{\operatorname{acc}} \subseteq \ACQ\) is a set of <em>accepting states</em>
+      br
+      ul.uncover
+        li Input is parallel
+        li Recognition on the origin cell
+      p.uncover Time complexity is as expected
+        | \[f: \NN^2 \rightarrow \NN\]
+
+  section.split
+    h1 Neighborhoods
+    .leftside
+      img.only(src="figures/iterations-01.svg" data-step=0)
+      img.only(src="figures/iterations-02.svg")
+      img.only(src="figures/iterations-03.svg")
+      img.only(src="figures/iterations-04.svg")
+      img.only(src="figures/iterations-05.svg" data-start=4)
+    .rightside
+      .box
+        .box-title Def. (Iterations)
+        .box-content
+          .tight
+            | \begin{align*}
+            | V^0 &= \{0\}\\
+            | V^{n+1} &= V + V^n\\
+            | &= \{x, y \ |\ x \in V, y\in V^n\}
+            | \end{align*}
+
+      p \(V^n\) is the set of cells that the origin can <em>see</em> in \(n\) time steps.
+      .box.uncover(data-start=4)
+        .box-title Def. (Scalar Product)
+        .box-content
+          .tight
+            | \begin{align*}
+            | kV = \{k.x \ |\ x \in V\}
+            | \end{align*}
+      .box.uncover
+        .box-title Def.
+        .box-content
+          .tight
+            | A neighborhood \(V\) is <em>complete</em> if
+            | \[\bigcup_{n\in\NN}V^n = \ZZ^2\]
+
+  section.split
+    h1 Convex Hull
+    .leftside
+      img.only(src="figures/convexHull1.svg" data-step=0)
+      img.only(src="figures/convexHull2.svg" data-start=1 data-end=2)
+      img.only(src="figures/convexHull3.svg" data-step=3)
+
+    .rightside
+      div.only(data-end=1)
+        .box
+          .box-title Def.
+          .box-content
+            p The convex hull of a neighborhood \(V\) is the smallest convex polygon (in \(\RR^2\)) containing \(V\).
+        br
+        p The vertices of the convex hull are elements of \(V\)
+      div.only(data-start=2)
+        .box
+          .box-title Prop.
+          .box-content
+            p If a neighborhood is complete, its convex hull contains an open ball around the origin.
+        br
+        .box.uncover
+          .box-title Prop.
+          .box-content.tight
+            | \(\forall x\in\QQ^2\), if \(x\) is on the border of the convex hull of \(V\) then
+            | \[x = \lambda u + (1-\lambda)v\]
+            | with \(u, v\in V\) and \(\lambda\in [0, 1]\cap \QQ\)
+
+  section.single
+    h1 Real Time
+    .box
+      .box-title Definition
+      .box-content
+        p The real time function corresponding to a given neighborhood \(V\) is defined as
+          | \begin{align*}
+          | \TR_V: \NN^2 &\rightarrow \NN\\
+          | (n, m) &\mapsto \min\{t \ |\ n\times m\subseteq V^t\}
+          | \end{align*}
+        div(style="width: 100%; height: 0")
+    br
+    ul.uncover
+      li Larger neighborhoods have less real time
+      li Complete neighborhoods with coinciding convex hulls on the positive quarter have same real time up to an
+        | additive constant
+
+  section.section
+    h1 Linear Acceleration<br> on the<br>Moore Neighborhood
+
+  section.single
+    h1 On the Moore Neighborhood
+    .box
+      .box-title Theorem
+      .box-content
+        p For any \(\epsilon > 0\), any language recognized in time \((\TR + f)\) by a 2DCA working on the Moore
+          | neighborhood can be recognized in time
+          | \[\TR + \lceil\epsilon f\rceil\]
+    br
+    .uncover
+      p Proof&nbsp;:
+      ul
+        li Compress the input by a factor \(k \geq \epsilon^{-1}\)
+          span(style="float: right") \(\frac{k-1}{k}\TR\) steps
+        li Simulate the original automaton, \(k\) steps at a time
+          span(style="float: right") \(\frac{1}{k}(\TR + f)\) steps
+
+  section.split
+    h1 Compression
+    .leftside.center
+      div(style="width: 80%")
+        img.only(src="figures/compression1.svg" data-step=0)
+        img.only(src="figures/compression2.svg")
+        img.only(src="figures/compression3.svg")
+        img.only(src="figures/compression4.svg")
+        img.only(src="figures/compression5.svg")
+        img.only(src="figures/compression6.svg")
+    .rightside
+      p A cell of the new automaton can contain up to \(k^2\) states of the original CA.
+      ul
+        li Send initial data towards the origin
+        li When a cell contains \(k\times k\) initial states it is full
+
+  section.split
+    h1 Simulation
+    .leftside.center
+      div(style="width: 80%")
+        img(src="figures/simulation.svg")
+    .rightside
+      p Proof by induction
+      ul
+        li A cell needs to see \(V^k + c\) for each \(c\) it contains
+        li The needed information is held by its immediate neighbors
+        li Cells can compute \(k\) steps of the original automaton on each state they hold
+
+  section.split
+    h1 Self Synchronization
+    .leftside.center
+      img(src="figures/selfsyncNeighborhood.svg" style="width: 60%")
+      br
+      img.only(src="figures/selfsync1.svg" style="width: 80%" data-end=2)
+      img.only(src="figures/selfsync2.svg" style="width: 80%" data-step=3)
+      img.only(src="figures/selfsync3.svg" style="width: 80%")
+      img.only(src="figures/selfsync4.svg" style="width: 80%")
+      img.only(src="figures/selfsync5.svg" style="width: 80%")
+      img.only(src="figures/selfsync6.svg" style="width: 80%")
+      img.only(src="figures/selfsync7.svg" style="width: 80%")
+    .rightside
+      p
+        strong Problem&nbsp;:
+        |  cells do not complete compression at the same time
+      p
+        strong Solution&nbsp;:
+        |  compute new states as soon as relevant information is available.
+      .box.uncover(data-start=1)
+        .box-title Claim
+        .box-content
+          p All cells are at least as fast as if they all started at the same time as the last.
+      ul.uncover
+        li assume \(V\) is complete
+        li time difference between neighbor cells is bounded by \(k\) such that \(-V\subseteq V^k\)
+        li cells know their simulated time mod. \((2k+1)\) and their last \(k\) states
+        li the last cell never waits
+
+  section.section
+    h1 Linear Acceleration
+
+  section.single
+    h1 Main Theorem
+    .box
+      .box-title Theorem
+      .box-content
+        | For any complete neighborhood \(V\) and any \(\epsilon > 0\), any language recognized in time \((\TR + f)\) by a
+        | 2DCA working on \(V\) can be recognized in time
+        | \[(1+\epsilon)\TR + \epsilon f\]
+    br
+    .uncover
+      p Proof&nbsp;:
+      ul
+        li Compress the input by a factor \(k \geq \epsilon^{-1}\)
+        li Simulate the original automaton, \(k\) steps at a time
+
+  section.split
+    h1 Simulation
+    .leftside.center
+      img(src="figures/simulationGeneral.svg" style="width: 80%")
+    .rightside
+      p
+        strong Problem&nbsp;:
+        |  After compression, a cell sees \(kV + c\) for the information it holds, not \(V^k + c\)
+      p.uncover
+        strong Solution&nbsp;:
+        |  Gather more information&nbsp;!
+      br
+      .uncover
+        ul
+          li \(m = (k-1)|V| - k + 1\)
+          li \(V^{m+k} \subseteq V^m + kV\)
+          li Cells gather the initial states in \(V^m + c\) for each \(c\) that was compressed to it
+          li Bounded time loss
+        br
+        p At each step, cells can compute \(k\) steps of the original automaton for each of the information they hold.
+
+  section.single
+    h1 Compression
+    p
+      strong Difficulty&nbsp;:
+      |  Optimal path towards the origin depends on the ratio \(\frac m n\)
+    ul
+      li Optimal path is a combination of two vertices of the convex hull
+      li Moore neighborhood&nbsp;: combination of diagonal and horizontal/vertical
+    br
+    p
+      strong Idea&nbsp;:
+    ul
+      li Compression can be done optimally on "Moore-like" neighborhoods
+      li Break other neighborhoods into Moore-like
+      li Perform "close-to-optimal" compression
+
+  section.split
+    h1 Moore-Like Neighborhoods
+    .leftside.center
+      img(src="figures/mooreLike.svg" style="width:80%")
+    .rightside
+      p Defintion: see picture.
+      .box
+        .box-title Claim
+        .box-content
+          p A Moore-like neighborhood can perform a compression of the input by a factor \((k+1)\) in time
+            | \[\frac{k}{k+1}\TR\]
+      br
+      p.uncover Proof&nbsp;: Same as for the Moore neighborhood
+
+  section.split
+    h1 Fixed Ratio
+    .leftside
+      img.only(src="figures/fixedRatio.svg" data-step=0)
+      img.only(src="figures/fixedRatioBis.svg")
+    .rightside
+      p For input words with a specific ratio \(\rho\), the complete neighborhood \(V\) can behave as a Moore-like
+        | neighborhood \(V'\)
+      ul.uncover(data-start=1)
+        li because \(V\) is complete, it contains a scaled down version of the rectangle in the negative quarter
+        li \(V\) and \(V'\) have same real time function for words of ratio \(\rho\)
+
+  section.split
+    h1 Approximate Ratio
+    .leftside
+      img.only(src="figures/fixedRatioEpsilon.svg" data-step=0)
+      img.only(src="figures/epsilonArgument.svg")
+    .rightside
+      ul
+        li Pick \(\epsilon>0\)
+        li Consider the set \(M_\epsilon\) of Moore-like neighborhoods spaced by \(\epsilon\)
+      br
+      p For any input picture, there is \(V'\in M_\epsilon\) that can compress it by \(k+1\) in time
+        | \[(1+\epsilon')\frac{k}{k+1}\TR_{V}\]
+
+  section.single
+    h1 Summary
+    ul
+      li Pick a small enough \(\epsilon\) and a large enough \(k\)
+      li Compress input by \((k+1)\) on all Moore-like neighborhoods in \(M_\epsilon\)
+        span(style="float: right") \((1+\epsilon)\frac{k}{k+1}\TR\)
+      li Use self synchronization when input is compressed
+      li Gather extra information on compressed cells
+        span(style="float: right") constant time
+      li Run accelerated simulation of original automaton
+        span(style="float: right") \(\frac{\TR+f}{k+1}\)
+    br
+    .center
+      div Total time&nbsp;: \((1+\epsilon)\TR + \epsilon f\)
+
+  section.blank.no-page-counter
+    img(src="figures/tableau.png" style="width: 100%; height: 100%")

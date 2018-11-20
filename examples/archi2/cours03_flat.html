@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="../../css/slides.css">
+    <link rel="stylesheet" href="../../css/myriad.css">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <title>M2101 - Architecture et programmation bas niveau</title>
+</head>
+<body>
+
+
+<a id="slide_anchor0"></a><section class="title">
+    <h1>Cours n° 3 :<br>Processus</h1>
+    <div class="context">M2101 - Architecture et programmation bas niveau</div>
+    <div class="author">Victor Poupet</div>
+    <time datetime="2018-02-26">26 février 2018</time>
+<div class="slide-footer"><div class="page-counter">0 / 11</div></div><a href="#slide_anchor-1" class="prev_flat_link"></a><a href="#slide_anchor1" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor1"></a><section class="single">
+    <h1>Parallélisme</h1>
+    <div>
+        Les OS modernes sont tous capables d'exécuter plusieurs tâches en parallèle
+        <ul>
+            <li>chaque tâche est réalisée par un <em>processus</em>
+            </li><li>en réalité un processeur ne peut exécuter qu'un seul processus à la fois à un instant donné
+            </li><li>pour les faire avancer en parallèle, le processeur alloue de petits intervalles de temps à chaque
+            processus, en alternance (ordonnancement)
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">1 / 11</div></div><a href="#slide_anchor0" class="prev_flat_link"></a><a href="#slide_anchor2" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor2"></a><section class="split">
+    <h1>Cycle d'un processus</h1>
+    <div class="leftside">
+        <img src="cours03/cours03-cycle.svg" style="width: 100%" alt="cycle d'un processus">
+    </div>
+    <div class="rightside">
+        Les processus ont 5 états possibles d'exécution&nbsp;:
+        <ul>
+            <li><strong>Nouveau&nbsp;:</strong> en cours de création
+            </li><li><strong>Prêt&nbsp;:</strong> toutes les ressources nécessaires sont disponibles mais pas actuellement
+            exécuté par le CPU
+            </li><li><strong>Exécution&nbsp;:</strong> en cours d'exécution par le CPU
+            </li><li><strong>En attente&nbsp;:</strong> ne peut pas poursuivre son exécution (attente clavier, fichier,
+            message d'un autre processus, etc.)
+            </li><li><strong>Terminé&nbsp;:</strong> l'exécution est finie
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">2 / 11</div></div><a href="#slide_anchor1" class="prev_flat_link"></a><a href="#slide_anchor3" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor3"></a><section class="single">
+    <h1>Bloc de contrôle</h1>
+    <div>
+        <p>Le <em>bloc de contrôle</em> d'un processus (<em>process control bloc</em> ou PCB) est une structure de données
+            utilisée par l'OS pour représenter ses informations&nbsp;:</p>
+        <ul>
+            <li>Identification
+                <ul>
+                    <li>identifiant du processus (PID)
+                    </li><li>identifiant du processus parent (PPID)
+                    </li><li>identifiant de l'utilisateur et du groupe exécutant le processus (UID et GID)
+                </li></ul>
+            </li><li>État du processeur
+                <ul>
+                    <li>registres
+                    </li><li>pointeurs de pile et exécution
+                </li></ul>
+            </li><li>Contrôle du processus
+                <ul>
+                    <li>état d'exécution (prêt, suspendu, etc.)
+                    </li><li>descripteurs de fichiers ouverts
+                    </li><li>privilèges
+                    </li><li>comptabilité (temps CPU, date d'exécution, <em>etc.</em>)
+                </li></ul>
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">3 / 11</div></div><a href="#slide_anchor2" class="prev_flat_link"></a><a href="#slide_anchor4" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor4"></a><section class="split">
+    <h1>Changement de processus</h1>
+    <div class="leftside">
+        <div class="center">
+            <img src="cours03/cours03-switch.svg" style="width: 70%" alt="changement de processus">
+        </div>
+    </div>
+    <div class="rightside">
+        Pour changer le processus en cours d'exécution, le processeur doit&nbsp;:
+        <ul>
+            <li>sauvegarder le PCB du processus en cours
+            </li><li>charger le PCB du nouveau processus
+            </li><li>reprendre l'exécution du nouveau processus
+        </li></ul>
+        Ce transfert peut être réalisé après une interruption de l'exécution du premier processus à l'aide d'un appel
+        système.
+    </div>
+<div class="slide-footer"><div class="page-counter">4 / 11</div></div><a href="#slide_anchor3" class="prev_flat_link"></a><a href="#slide_anchor5" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor5"></a><section class="single">
+    <h1>Anatomie d'un processus</h1>
+    <div>
+        La mémoire occupée par un processus est divisée en plusieurs sections&nbsp;:
+        <ul>
+            <li>une section <code>text</code> contenant les instructions (en langage machine) à exécuter par le processus
+            </li><li>une section <code>data</code> contenant les variables globales et statiques, allouées avant d'exécuter la
+            fonction <code>main</code>
+            </li><li>le tas (<em>heap</em>) utilisé pour l'allocation dynamique des variables, géré à l'aide de fonctions
+            d'allocation (<code>malloc</code>, <code>free</code>, <em>etc.</em>)
+            </li><li>la pile (<em>stack</em>) utilisée pour stocker les variables locales, les arguments et la valeur de retour
+            des procédures exécutées par le programme
+        </li></ul>
+
+        <br>
+        <p>En plus de ces données, si le programme est interrompu, il faut également sauvegarder le compteur d'exécution
+            ainsi que les valeurs contenues dans les registres du processeur</p>
+    </div>
+<div class="slide-footer"><div class="page-counter">5 / 11</div></div><a href="#slide_anchor4" class="prev_flat_link"></a><a href="#slide_anchor6" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor6"></a><section class="split">
+    <h1>size</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs"><span class="hljs-keyword">int</span> tab[<span class="hljs-number">5000</span>];
+<span class="hljs-keyword">int</span> tab2[<span class="hljs-number">1000</span>] = {<span class="hljs-number">1</span>};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">int</span> tab2[<span class="hljs-number">20000</span>];
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre>
+        <hr>
+        <pre><code class="hljs">$ size a.out
+text data bss   dec   hex  filename
+1072 4276 20032 25380 6324 a.out</code></pre>
+    </div>
+    <div class="rightside">
+        La fonction <code>size</code> permet d'obtenir (entre autres) la taille des sections <code>text</code>
+        et <code>data</code> correspondant à un exécutable
+        <ul>
+            <li>La section <code>data</code> d'un exécutable est divisée en deux parties&nbsp;:
+                <ul>
+                    <li><code>data</code> correspondant aux variables globales ou statiques initialisées
+                    </li><li><code>bss</code> correspondant aux variables globales ou statiques non initialisées ou
+                    initialisées à 0 (qui ne prennent donc pas de place dans l'exécutable)
+                </li></ul>
+            </li><li>L'espace des variables globales est préparé par le compilateur, et réservé à la création du processus
+            (la zone correspondant à <code>bss</code> est initialisée à 0)
+            </li><li>Les variables globales ne peuvent pas avoir une taille variable (définie à l'exécution)
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">6 / 11</div></div><a href="#slide_anchor5" class="prev_flat_link"></a><a href="#slide_anchor7" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor7"></a><section class="single">
+    <h1>text</h1>
+    <div>
+        <p>La section <code>text</code> de la mémoire contient la séquence d'instructions à exécuter</p>
+
+        <br>
+        <ul>
+            <li>Chargée au démarrage du programme et protégée en écriture
+            </li><li>Un registre du processeur contient l'adresse de l'instruction en cours (<em>program counter</em> ou PC)
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">7 / 11</div></div><a href="#slide_anchor6" class="prev_flat_link"></a><a href="#slide_anchor8" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor8"></a><section class="split">
+    <h1>Limites</h1>
+    <div class="leftside">
+        <pre><code class="hljs">
+$ ulimit -a
+
+core file size (blocks, -c) 0
+<span class="highlight">data seg size (kbytes, -d) unlimited</span>
+file size (blocks, -f) unlimited
+max locked memory (kbytes, -l) unlimited
+<span class="highlight">max memory size (kbytes, -m) unlimited</span>
+<span class="highlight">open files (-n) 256</span>
+pipe size (512 bytes, -p) 1
+<span class="highlight">stack size (kbytes, -s) 8192</span>
+cpu time (seconds, -t) unlimited
+max user processes (-u) 709
+virtual memory (kbytes, -v) unlimited
+        </code></pre>
+    </div>
+    <div class="rightside">
+        La fonction <code>ulimit</code> permet d'obtenir les limitations de taille imposées par le système
+        d'exploitation.
+    </div>
+<div class="slide-footer"><div class="page-counter">8 / 11</div></div><a href="#slide_anchor7" class="prev_flat_link"></a><a href="#slide_anchor9" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor9"></a><section class="split">
+    <h1>Allocation dynamique</h1>
+    <div class="leftside">
+        <pre><code class="cpp hljs">
+<span class="hljs-function"><span class="hljs-keyword">int</span> *<span class="hljs-title">fibo</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+  <span class="hljs-keyword">int</span> *t = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>)*(n+<span class="hljs-number">1</span>));
+  t[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+  t[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>; i&lt;=n; i++) {
+    t[i] = t[i<span class="hljs-number">-1</span>] + t[i<span class="hljs-number">-2</span>];
+  }
+  <span class="hljs-keyword">return</span> t;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">int</span> *t = fibo(<span class="hljs-number">100</span>);
+  <span class="hljs-keyword">int</span> a = t[<span class="hljs-number">10</span>];
+  <span class="hljs-keyword">int</span> b = t[<span class="hljs-number">100</span>];
+  <span class="hljs-built_in">free</span>(t);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"10: %d, 100: %d\n"</span>, a, b);
+}
+        </code></pre>
+    </div>
+    <div class="rightside">
+        Les fonctions de la famille <code>malloc</code> permettent de réserver de l'espace dynamiquement (dans le tas)
+        <ul>
+            <li>La fonction renvoie un pointeur indiquant où se trouve le bloc de mémoire libéré
+        </li></ul>
+
+        <br>
+        <p>La fonction <code>free</code> permet de marquer la mémoire allouée par <code>malloc</code> comme étant
+            libre</p>
+
+        <br>
+        <p>La taille du tas disponible pour un processus n'est en général pas limitée, et c'est donc là que doivent
+            être placés les objets de grande taille.</p>
+    </div>
+<div class="slide-footer"><div class="page-counter">9 / 11</div></div><a href="#slide_anchor8" class="prev_flat_link"></a><a href="#slide_anchor10" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor10"></a><section class="split">
+    <h1>La pile</h1>
+    <div class="leftside">
+        <div class="center">
+            <img src="cours03/cours03-pile.svg" style="width:70%" alt="pile">
+        </div>
+    </div>
+    <div class="rightside">
+        <div class="only" data-step="0" data-start="0" data-end="0">
+            La pile d'exécution est une structure LIFO (<em>last in, first out</em>)
+            <ul>
+                <li>divisée en blocs (<em>frames</em>) correspondant aux fonctions en cours
+                </li><li>lorsqu'une sous-fonction est appelée, l'état de la fonction en cours est sauvegardé, et un nouveau
+                bloc est placé sur la pile pour la sous-fonction
+                </li><li>lorsqu'une fonction termine, son bloc est supprimé de la pile et la fonction qui l'a appelée
+                reprend son exécution
+            </li></ul>
+        </div>
+        
+    </div>
+<div class="slide-footer"><div class="page-counter">10 / 11</div></div><a href="#slide_anchor9" class="prev_flat_link"></a><a href="#slide_anchor11" class="next_flat_link"></a></section><a id="slide_anchor11"></a><section class="split">
+    <h1>La pile</h1>
+    <div class="leftside">
+        <div class="center">
+            <img src="cours03/cours03-pile.svg" style="width:70%" alt="pile">
+        </div>
+    </div>
+    <div class="rightside">
+        
+        <div class="only" data-start="1" data-end="1">
+            Pour chaque fonction en cours d'exécution, la pile contient&nbsp;:
+            <ul>
+                <li>l'adresse de retour qui correspond à l'instruction où reprendre l'exécution de la fonction
+                    précédente lorsque la fonction courante termine
+                </li><li>les variables locales de la fonction
+                </li><li>les arguments passés à la fonction
+                </li><li>environnement à restaurer lorsque la fonction termine (privilèges, états de certains registres,
+                etc.)
+            </li></ul>
+            <br>
+            <p>Lorsque la fonction termine, le résultat est placé sur la pile pour être traité par la fonction
+                précédente.</p>
+        </div>
+    </div>
+<div class="slide-footer"><div class="page-counter">10 / 11</div></div><a href="#slide_anchor10" class="prev_flat_link"></a><a href="#slide_anchor12" class="next_flat_link"></a></section>
+
+
+<a id="slide_anchor12"></a><section class="split">
+    <h1><span style="display: inline-block; text-align: center; width: 50%">Pile</span><span style="display:
+    inline-block; text-align: center; width: 50%">Tas</span></h1>
+    <div class="leftside">
+        <ul>
+            <li>Fréquemment utilisée donc placée sur de la mémoire plus rapide
+            </li><li>Variables libérées automatiquement
+            </li><li>Connexe&nbsp;: ne se fragmente pas et facile d'accès
+            </li><li>Gestion automatique de la portée des variables
+            </li><li>Récursivité facile
+        </li></ul>
+    </div>
+    <div class="rightside">
+        <ul>
+            <li>Espace illimité
+            </li><li>Objets accessibles globalement
+            </li><li>Doit être libéré explicitement
+            </li><li>Objets peuvent être redimensionnés (<code>realloc</code>)
+        </li></ul>
+    </div>
+<div class="slide-footer"><div class="page-counter">11 / 11</div></div><a href="#slide_anchor11" class="prev_flat_link"></a><a href="#slide_anchor13" class="next_flat_link"></a></section>
+
+
+
+
+
+
+</body></html>

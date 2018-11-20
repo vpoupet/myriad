@@ -208,13 +208,14 @@ Example&nbsp;:
 
 ## Architecture et programmation bas niveau
 
-1. [Introduction au C](https://vpoupet.github.io/myriad/archi2/cours01.html)
-1. [Appels systèmes et entrée / sortie](https://vpoupet.github.io/myriad/archi2/cours02.html)
-1. [Processus](https://vpoupet.github.io/myriad/archi2/cours03.html)
-1. [Création de processus](https://vpoupet.github.io/myriad/archi2/cours04.html)
-1. [Processus légers](https://vpoupet.github.io/myriad/archi2/cours05.html)
-1. [Communication entre processus](https://vpoupet.github.io/myriad/archi2/cours06.html)
+1. [Introduction au C](https://vpoupet.github.io/myriad/examples/archi2/cours01.html)
+1. [Appels systèmes et entrée / sortie](https://vpoupet.github.io/myriad/examples/archi2/cours02.html)
+1. [Processus](https://vpoupet.github.io/myriad/examples/archi2/cours03.html)
+1. [Création de processus](https://vpoupet.github.io/myriad/examples/archi2/cours04.html)
+1. [Processus légers](https://vpoupet.github.io/myriad/examples/archi2/cours05.html)
+1. [Communication entre processus](https://vpoupet.github.io/myriad/examples/archi2/cours06.html)
 
 ## Single Presentations
 
-* [A Linear Acceleration for all Neighborhoods on 2D Cellular Automata](https://vpoupet.github.io/myriad/acclin/acclin.html)
+* [A Linear Acceleration for all Neighborhoods on 2D Cellular Automata](https://vpoupet.github.io/myriad/examples/acclin/acclin.html)
+* [An Introduction to iOS Development](https://vpoupet.github.io/myriad/examples/ios/ios.html)
