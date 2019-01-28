@@ -271,66 +271,45 @@ function process_slides() {
 
 
 /**
- * Parses all time HTML elements and replaces the ones containing simple dates (YYYY-MM-DD, YYYY-MM or YYYY) into
- * "full dates" (written with month names, and with a proper datetime attribute).
+ * Parses all `time` HTML elements and replaces the textContent of the ones containing a short date (YYYY-MM-DD,
+ * YYYY-MM or YYYY) by the corresponding full date (with month name). If a replacement occurs, the `datetime` attribute
+ * of the element is set as the short date.
  */
 function fixDate() {
     let months;
     let language = document.documentElement.lang;
-    if (language === "en") {
-        months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    } else if (language === "fr") {
+    if (language === "fr") {
         months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
     } else {
-        return;
+        months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     }
 
     for (let timeElement of document.getElementsByTagName("time")) {
         let date = timeElement.textContent;
-        // Read content of time element, and check if it is a short date (YYYY-MM-DD)
-        // If it isn't ignore the element, if it is, change it to a proper text date
-        let [yearStr, monthStr, dayStr] = date.split('-');
-        let year, month, day;
-        year = parseInt(yearStr);
-        if (Number.isNaN(year)) {
-            continue;
-        }
-        if (monthStr !== undefined) {
-            month = parseInt(monthStr);
-            if (!(1 <= month && month <= 12)) {
-                continue;
-            }
-        }
-        if (dayStr !== undefined) {
-            day = parseInt(dayStr);
-            if (!(1 <= day && day <= 31)) {
-                continue;
-            }
-        }
-
-        // If date is a short date, make full date
         let fullDate;
-        if (language === "fr") {
-            if (day) {
-                fullDate = `${day} ${months[month - 1]} ${year}`;
-            } else if (month) {
-                fullDate = `${months[month - 1]} ${year}`;
-            } else {
+        if (/^\d{4}(-\d{1,2}){0,2}$/.test(date)) {
+            let [year, month, day] = date.split('-').map(x => parseInt(x));
+            if (month === undefined) {
                 fullDate = `${year}`;
-            }
-        } else {
-            if (day) {
-                fullDate = `${months[month - 1]} ${day}, ${year}`;
-            } else if (month) {
-                fullDate = `${months[month - 1]} ${year}`;
+            } else if (day === undefined) {
+                if (1 <= month && month <= 12) {
+                    fullDate = `${months[month - 1]} ${year}`;
+                }
             } else {
-                fullDate = `${year}`;
+                if (1 <= month && month <= 12 && 1 <= day && day <= 31) {
+                    if (language === "fr") {
+                        fullDate = `${day} ${months[month - 1]} ${year}`;
+                    } else {
+                        fullDate = `${months[month - 1]} ${day}, ${year}`;
+                    }
+                }
             }
         }
 
-        // set datetime attribute and replace text content to full date
-        timeElement.setAttribute("datetime", date);
-        timeElement.textContent = fullDate;
+        if (fullDate !== undefined) {
+            timeElement.setAttribute("datetime", date);
+            timeElement.textContent = fullDate;
+        }
     }
 }
 
