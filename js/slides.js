@@ -286,11 +286,15 @@ function handle_click(event) {
         }
     }
     let rect = current_slide.section.getBoundingClientRect();
+
     let x = (event.clientX - rect.left) / rect.width; //x position within the element.
-    if (x <= .33) {
-        prev_step();
-    } else {
-        next_step();
+    let y = (event.clientY - rect.top) / rect.height; //y position within the element.
+    if (y <= .1 || y > .9) {
+        if (x <= .2) {
+            prev_step();
+        } else if (x >= .8) {
+            next_step();
+        }
     }
 }
 

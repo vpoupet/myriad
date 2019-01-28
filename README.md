@@ -124,8 +124,8 @@ Navigation can be done with keyboard or mouse:
 * <kbd>&uarr;</kbd> or <kbd>Z</kbd>: previous slide (first step)
 * <kbd>J</kbd>: jump to a page number (prompts the user for a number)
 * <kbd>X</kbd>: realign scrolling to current slide
-* click on left third of current slide: previous step
-* click on rest of current slide: next step
+* click on top-left corner of current slide: previous step
+* click on top-right corner of current slide: next step
 
 # Themes
 

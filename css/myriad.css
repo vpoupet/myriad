@@ -289,3 +289,7 @@ th, td {
   border: calc(.2 * var(--mm)) black solid;
   padding: 0 var(--mm);
 }
+
+a {
+  color: inherit;
+}
