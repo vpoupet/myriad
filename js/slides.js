@@ -262,8 +262,76 @@ function process_slides() {
         slides.push(slide);
     }
 
+    // transform short dates into detailed dates
+    fixDate();
+
     current_slide = slides[0];
     display_slide(current_slide);
+}
+
+
+/**
+ * Parses all time HTML elements and replaces the ones containing simple dates (YYYY-MM-DD, YYYY-MM or YYYY) into
+ * "full dates" (written with month names, and with a proper datetime attribute).
+ */
+function fixDate() {
+    let months;
+    let language = document.documentElement.lang;
+    if (language === "en") {
+        months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    } else if (language === "fr") {
+        months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+    } else {
+        return;
+    }
+
+    for (let timeElement of document.getElementsByTagName("time")) {
+        let date = timeElement.textContent;
+        // Read content of time element, and check if it is a short date (YYYY-MM-DD)
+        // If it isn't ignore the element, if it is, change it to a proper text date
+        let [yearStr, monthStr, dayStr] = date.split('-');
+        let year, month, day;
+        year = parseInt(yearStr);
+        if (Number.isNaN(year)) {
+            continue;
+        }
+        if (monthStr !== undefined) {
+            month = parseInt(monthStr);
+            if (!(1 <= month && month <= 12)) {
+                continue;
+            }
+        }
+        if (dayStr !== undefined) {
+            day = parseInt(dayStr);
+            if (!(1 <= day && day <= 31)) {
+                continue;
+            }
+        }
+
+        // If date is a short date, make full date
+        let fullDate;
+        if (language === "fr") {
+            if (day) {
+                fullDate = `${day} ${months[month - 1]} ${year}`;
+            } else if (month) {
+                fullDate = `${months[month - 1]} ${year}`;
+            } else {
+                fullDate = `${year}`;
+            }
+        } else {
+            if (day) {
+                fullDate = `${months[month - 1]} ${day}, ${year}`;
+            } else if (month) {
+                fullDate = `${months[month - 1]} ${year}`;
+            } else {
+                fullDate = `${year}`;
+            }
+        }
+
+        // set datetime attribute and replace text content to full date
+        timeElement.setAttribute("datetime", date);
+        timeElement.textContent = fullDate;
+    }
 }
 
 
