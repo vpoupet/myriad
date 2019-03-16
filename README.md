@@ -167,8 +167,7 @@ group the contents of the slide (other than the title) in a `div` element.
 `section` elements with the `split` class are styled as two column slides. The left side has white background and the 
 right one has black background.
 
-The content of the left side should be placed in a `div` with class `leftside`, whereas the content of the right
-column should be placed in a `div` with class `rightside`.
+The content of each side should be placed in a `div` with class `side`.
 
 #### Blank Slides
 
@@ -205,17 +204,6 @@ Example&nbsp;:
 * `.underline` underlines text
 
 # Examples
-
-## Architecture et programmation bas niveau
-
-1. [Introduction au C](https://vpoupet.github.io/myriad/examples/archi2/cours01.html)
-1. [Appels systèmes et entrée / sortie](https://vpoupet.github.io/myriad/examples/archi2/cours02.html)
-1. [Processus](https://vpoupet.github.io/myriad/examples/archi2/cours03.html)
-1. [Création de processus](https://vpoupet.github.io/myriad/examples/archi2/cours04.html)
-1. [Processus légers](https://vpoupet.github.io/myriad/examples/archi2/cours05.html)
-1. [Communication entre processus](https://vpoupet.github.io/myriad/examples/archi2/cours06.html)
-
-## Single Presentations
 
 * [A Linear Acceleration for all Neighborhoods on 2D Cellular Automata](https://vpoupet.github.io/myriad/examples/acclin/acclin.html)
 * [An Introduction to iOS Development](https://vpoupet.github.io/myriad/examples/ios/ios.html)

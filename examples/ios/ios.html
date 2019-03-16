@@ -25,10 +25,10 @@
     </section>
     <section class="split">
       <h1>iOS</h1>
-      <div class="leftside">
+      <div class="side">
         <div class="center"><img src="figures/screenshot.jpg" style="width: 80%"></div>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>released in 2007 (with the first generation iPhone)</li>
           <li>Multi-touch interface (almost button-less)</li>
@@ -42,8 +42,8 @@
     </section>
     <section class="split">
       <h1>Version History</h1>
-      <div class="leftside"><img src="figures/iOS_versions.jpg" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side"><img src="figures/iOS_versions.jpg" style="width: 100%"></div>
+      <div class="side">
         <ul>
           <li>2007 - iPhone OS 1</li>
           <li>2008 - iPhone OS 2 (iPhone SDK, App Store, 3rd party apps)</li>
@@ -61,14 +61,14 @@
     </section>
     <section class="split">
       <h1>Fragmentation</h1>
-      <div class="leftside">
+      <div class="side">
         <ul>
           <li>iOS runs on a limited number of devices (similar architecture, similar iterface)</li>
           <li>Most devices run the latest version of iOS</li>
           <li>OS, hardware and SDK are developped by the same company</li>
         </ul>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>Devices have varying screen size and resolution</li>
           <li>Some features are not available to all devices (multitasking, Siri, camera, etc.)</li>
@@ -149,8 +149,8 @@
     </section>
     <section class="split">
       <h1>Mobile Terminals</h1>
-      <div class="leftside"><img src="figures/iphone_ipad.jpg" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side"><img src="figures/iphone_ipad.jpg" style="width: 100%"></div>
+      <div class="side">
         <ul>
           <li>Miniature computer</li>
           <li>Embedded system
@@ -175,8 +175,8 @@
     </section>
     <section class="split">
       <h1>Architecture</h1>
-      <div class="leftside"><img src="figures/appleA10.png" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side"><img src="figures/appleA10.png" style="width: 100%"></div>
+      <div class="side">
         <p>Processor</p>
         <ul>
           <li>ARM (designed by Apple)</li>
@@ -197,7 +197,7 @@
     </section>
     <section class="split">
       <h1>iOS vs. Android</h1>
-      <div class="leftside"><img src="figures/iOS.png" style="position: absolute;top: calc(12 * var(--mm));left: calc(32 * var(--mm));width: 20%">
+      <div class="side"><img src="figures/iOS.png" style="position: absolute;top: calc(12 * var(--mm));left: calc(32 * var(--mm));width: 20%">
         <p><strong>Developper</strong></p>
         <ul>
           <li>Apple</li>
@@ -216,7 +216,7 @@
           <li>iOS SDK</li>
         </ul>
       </div>
-      <div class="rightside"><img src="figures/android.jpg" style="position: absolute;top: calc(8 * var(--mm));right: calc(5 * var(--mm));width: 15%">
+      <div class="side"><img src="figures/android.jpg" style="position: absolute;top: calc(8 * var(--mm));right: calc(5 * var(--mm));width: 15%">
         <p><strong>Developper</strong></p>
         <ul>
           <li>Google</li>
@@ -297,7 +297,7 @@
     </section>
     <section class="split">
       <h1>Events</h1>
-      <div class="leftside">
+      <div class="side">
         <p>Interruption</p>
         <ul>
           <li>stops execution and jumps to a specific address
@@ -314,7 +314,7 @@
           <li>process interruption</li>
         </ul>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>Event</p>
         <ul>
           <li>stops execution and runs a procedure
@@ -360,7 +360,7 @@
     </section>
     <section class="split">
       <h1>Swift</h1>
-      <div class="leftside">
+      <div class="side">
         <ul>
           <li>iOS applications should be programmed using objective C or Swift (since iOS 8)</li>
           <li>Swift is highly recommended (simpler, faster and better supported from now on)</li>
@@ -368,7 +368,7 @@
           <li>Heavily object-oriented</li>
         </ul>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>Developed by Apple and published in 2014</li>
           <li>Lighter and more elegant syntax</li>
@@ -379,7 +379,7 @@
     </section>
     <section class="split">
       <h1>General Syntax</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="cpp">let a = 10
 var b: Int = 12
 
@@ -403,7 +403,7 @@ if isPrime(x) {
   println("\(x) is not prime.")
 }</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>Variables are declared with <code>let</code> (immutable) or <code>var</code> (mutable)</li>
           <li>Variables are typed but type can be inferred by the compiler</li>
@@ -413,7 +413,7 @@ if isPrime(x) {
     </section>
     <section class="split">
       <h1>Optionals</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">var a: Int? = 12
 var b = 10
 
@@ -430,7 +430,7 @@ if let aValue = a {
   b += aValue
 }</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>Swift introduces “optional” versions of all types</p>
         <ul>
           <li>An optional type <code>T?</code> represents a value that can be either <code>nil</code> or a value of type <code>T</code></li>
@@ -441,14 +441,14 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Object Programming</h1>
-      <div class="leftside">
+      <div class="side">
         <p>In a “classical” program</p>
         <ul>
           <li>program has variables</li>
           <li>program calls functions that affect variables</li>
         </ul>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>In object-oriented programming</p>
         <ul>
           <li>variables contain <em>objects</em></li>
@@ -461,7 +461,7 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Classes and Instances</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">class Person {
   var name: String // a property
   var age: Int
@@ -483,7 +483,7 @@ if let aValue = a {
   }
 }</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>A class is a general description of how objects should be and behave</li>
           <li>Classes have properties and methods</li>
@@ -494,7 +494,7 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Inheritance</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">class Student: Person {
   var school: String?
   var year: Int?
@@ -521,7 +521,7 @@ if let aValue = a {
   }
 }</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>Classes can be defined as a refinement of an existing one</li>
           <ul>
@@ -544,8 +544,8 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Intializers</h1>
-      <div class="leftside center"><img src="figures/initializers.png" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/initializers.png" style="width: 100%"></div>
+      <div class="side">
         <p>Classes can have more than one initializer</p>
         <ul>
           <li>Some are <em>designated</em> initializers, others are <em>convenience</em> initializers</li>
@@ -560,7 +560,7 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Deinit</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">class Player {
 
   var coinsInPurse: Int
@@ -578,7 +578,7 @@ if let aValue = a {
   }
 }</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>When an object is removed from memory, its <code>deinit</code> function is called</p><br>
         <p>This function should be used to clean up the objects or data owned by the removed object</p><br>
         <p><code>deinit</code> is called automatically, and should never be called manually</p>
@@ -589,8 +589,8 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Model View Controller</h1>
-      <div class="leftside center"><img src="figures/mvc_sketch.jpg" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/mvc_sketch.jpg" style="width: 100%"></div>
+      <div class="side">
         <p>Design pattern, for structuring an application in 3 parts</p>
         <ul>
           <li><em>model</em>&nbsp;: data of the application</li>
@@ -601,8 +601,8 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Model View Controller</h1>
-      <div class="leftside center"><img src="figures/mvc.png" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/mvc.png" style="width: 100%"></div>
+      <div class="side">
         <ul>
           <li>Communication protocol between separate parts</li>
           <li>Internal implementation of parts is independent</li>
@@ -612,7 +612,7 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Model</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">class Player {
   var cards: [Card]
   var game: Game
@@ -638,7 +638,7 @@ if let aValue = a {
   ...
 }</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>In iOS, the model is represented by the data object classes</p>
         <ul>
           <li>the model can be stored in the terminal memory in different forms (<em>Core Data</em>, archiving, <em>NSUserDefaults</em>)</li>
@@ -648,8 +648,8 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>View</h1>
-      <div class="leftside center"><img src="figures/UIView.jpg" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/UIView.jpg" style="width: 100%"></div>
+      <div class="side">
         <p><em>Cocoa Touch</em> (iOS UI Framework) defines a class <code>UIView</code></p>
         <ul>
           <li>all views should inherit from <code>UIView</code></li>
@@ -661,7 +661,7 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>UIView</h1>
-      <div class="leftside">
+      <div class="side">
         <p>To create a user interface</p>
         <ul>
           <li>create a view hierarchy</li>
@@ -671,7 +671,7 @@ if let aValue = a {
           </ul>
         </ul>
       </div>
-      <div class="rightside">
+      <div class="side">
         <div class="only" data-step="0">
           <p>What is a view&nbsp;?</p>
           <ul>
@@ -699,7 +699,7 @@ if let aValue = a {
     </section>
     <section class="split">
       <h1>Position</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">let labelFrame = CGRect(x: 20, y: 50, width: 300, height: 50)
 let label = UILabel(frame: labelFrame)
 label.text = "Hello"
@@ -707,7 +707,7 @@ view.addSubview(label)
 
 label.center = CGPoint(x: 170, y: 200)</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <A>view is positioned relatively to its parent view&nbsp;:</A>
         <ul>
           <li>the <code>frame</code> is a <code>CGRect</code> that defines the position and size of a view relative to its parent</li>
@@ -718,7 +718,7 @@ label.center = CGPoint(x: 170, y: 200)</code></pre>
     </section>
     <section class="split">
       <h1>UIView Hierarchy</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">var superview: UIView?
 var subviews: [UIView]
 var window: UIWindow?
@@ -733,7 +733,7 @@ func insertSubview(UIView, belowSubview: UIView)
 func exchangeSubview(at: Int, withSubviewAt: Int)
 func isDescendant(of: UIView) -> Bool</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>The UIView class has methods to manipulate the hierarchy</li>
           <li>The superview owns its subviews</li>
@@ -774,8 +774,8 @@ func isDescendant(of: UIView) -> Bool</code></pre>
     </section>
     <section class="split">
       <h1>About the Views</h1>
-      <div class="leftside center"><img src="figures/coordinates.jpg" style="width: 60%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/coordinates.jpg" style="width: 60%"></div>
+      <div class="side">
         <p>Cartesian coordinates system</p>
         <ul>
           <li><em>(0, 0)</em> at the top-left corner</li>
@@ -832,7 +832,7 @@ func isDescendant(of: UIView) -> Bool</code></pre>
     </section>
     <section class="split">
       <h1>Kinds of View Controllers</h1>
-      <div class="leftside">
+      <div class="side">
         <p>Content view controllers display content</p>
         <ul>
           <li>simplest view controller</li>
@@ -841,7 +841,7 @@ func isDescendant(of: UIView) -> Bool</code></pre>
         </ul><br>
         <p>examples&nbsp;: table view controller, most user-made view controllers</p>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>Container view controllers arrange content of other view controllers</p>
         <ul>
           <li>contains content owned by other view controllers</li>
@@ -852,14 +852,14 @@ func isDescendant(of: UIView) -> Bool</code></pre>
     </section>
     <section class="split">
       <h1>Nested Content VC</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">let subVC = SomeViewController()
 
 addChildViewController(subVC)
 subVC.didMoveToParentViewController(self)
 view.addSubview(subVC.view)</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>Most of the time one content view controller is sufficient</p>
         <p>It is possible to nest content view controllers when necessary</p>
         <ul>
@@ -884,7 +884,7 @@ view.addSubview(subVC.view)</code></pre>
     </section>
     <section class="split">
       <h1>Create a Controller</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">var view: UIView!
 var isViewLoaded: Bool
 
@@ -900,7 +900,7 @@ func viewDidLayoutSubviews()
 func updateViewConstraints()
 ...</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>Create new class that inherits from <code>UIViewController</code></li>
           <li>Override relevant methods to define management of view</li>
@@ -950,7 +950,7 @@ func updateViewConstraints()
     </section>
     <section class="split">
       <h1>Switching Controllers</h1>
-      <div class="leftside">
+      <div class="side">
         <div class="only" data-step="0">
           <pre><code class="swift">let vc = MyViewController()
 UIApplication.sharedApplication().keyWindow!.
@@ -978,7 +978,7 @@ navigationController?.
           <p>Example&nbsp;: <em>Navigation Controller</em></p>
         </div>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>There are many ways to switch from a view controller to another one (and change the displayed view)</p>
         <ul>
           <li class="uncover" data-start="0">changing the root controller of the application window (should be avoided)</li>
@@ -1014,8 +1014,8 @@ navigationController?.
     </section>
     <section class="split">
       <h1>The Responder Chain</h1>
-      <div class="leftside"><img src="figures/responder_chain.png" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side"><img src="figures/responder_chain.png" style="width: 100%"></div>
+      <div class="side">
         <div class="only" data-step="0">
           <p>When an event is detected it is sent to a specific responder</p>
           <ul>
@@ -1036,8 +1036,8 @@ navigationController?.
     </section>
     <section class="split">
       <h1>Hit Test</h1>
-      <div class="leftside"><img src="figures/hit_test.png" style="width: 100%"></div>
-      <div class="rightside">
+      <div class="side"><img src="figures/hit_test.png" style="width: 100%"></div>
+      <div class="side">
         <p>Returns where a touch occurred</p>
         <ul>
           <li>recursive calls to <code>hitTest:withEvent:</code></li>
@@ -1050,7 +1050,7 @@ navigationController?.
     </section>
     <section class="split">
       <h1>UIEvent</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">var timestamp: NSTimeInterval
 var type: UIEventType
 var subtype: UIEventSubtype
@@ -1058,7 +1058,7 @@ func allTouches() -> Set<NSObject>?
 func touchesForView(_ view: UIView) -> Set<NSObject>?
 func touchesForWindow(_ window: UIWindow) -> Set<NSObject>?</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p><code>UIEvent</code> is the class of objects created when an event occurs</p>
         <ul>
           <li>an UIEvent object has a sub-type (none, motion or possible remote control events)</li>
@@ -1128,7 +1128,7 @@ func touchesForWindow(_ window: UIWindow) -> Set<NSObject>?</code></pre>
     </section>
     <section class="split">
       <h1>Gesture Recognizers</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">let tapRecognizer = UITapGestureRecognizer()
 tapRecognizer.numberOfTapsRequired = 2
 tapRecognizer.addTarget(self, action: "handleTap:")
@@ -1137,7 +1137,7 @@ view.addGestureRecognizer(tapRecognizer)</code></pre><br>
         <p>Warning&nbsp;: the view must have enabled the user interaction</p><br>
         <pre><code class="swift">view.userInteractionEnabled = true</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>To recognize a gesture&nbsp;:</p>
         <ul>
           <li>create a gesture recognizer</li>
@@ -1157,8 +1157,8 @@ view.addGestureRecognizer(tapRecognizer)</code></pre><br>
     </section>
     <section class="split">
       <h1>Objective</h1>
-      <div class="leftside center"><img src="figures/table_view.png" style="width: 65%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/table_view.png" style="width: 65%"></div>
+      <div class="side">
         <p>A table view is the standard way to display a list of elements&nbsp;:</p>
         <ul>
           <li>Manage large sets of data</li>
@@ -1176,7 +1176,7 @@ view.addGestureRecognizer(tapRecognizer)</code></pre><br>
     </section>
     <section class="split">
       <h1>Everything in a Table</h1>
-      <div class="leftside">
+      <div class="side">
         <p>Representation of data</p>
         <ul>
           <li>One column, many lines (cells)</li>
@@ -1189,7 +1189,7 @@ view.addGestureRecognizer(tapRecognizer)</code></pre><br>
         </ul><br>
         <p>Used by almost all apps</p>
       </div>
-      <div class="rightside">
+      <div class="side">
         <ul>
           <li>Table is divided in sections</li>
           <li>Table can have header and footer</li>
@@ -1220,7 +1220,7 @@ view.addGestureRecognizer(tapRecognizer)</code></pre><br>
     </section>
     <section class="split">
       <h1>Data Source</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">// methods in UITableViewDataSource
 tableView(_:cellForRowAt:) (*)
 numberOfSections(in:)
@@ -1232,7 +1232,7 @@ tableView(_:titleForFooterInSection:)
 
 (*) required methods</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>The data source must be able to answer questions such as&nbsp;:</p>
         <ul>
           <li>how many sections&nbsp;?</li>
@@ -1283,13 +1283,13 @@ tableView(_:titleForFooterInSection:)
     </section>
     <section class="split">
       <h1>Modification of a Table</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">tableView(_:commit:forRowAt:)
 tableView(_:canEditRowAt:)
 tableView(_:canMoveRowAt:)
 tableView(_:moveRowAt:to:)</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>The user interacts with the table view</p>
         <ul>
           <li>insertion of a cell</li>
@@ -1371,7 +1371,7 @@ apt = nil</code></pre>
     </section>
     <section class="split">
       <h1>Strong, Weak and Unowned</h1>
-      <div class="leftside">
+      <div class="side">
         <pre><code class="swift">class A {
   var x: Int          // strong
   weak var y: Int?    // weak
@@ -1379,7 +1379,7 @@ apt = nil</code></pre>
   ...
 }</code></pre>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>To break reference cycles, we use <em>weak</em> or <em>unowned</em> references</p>
         <ul>
           <li><em>weak</em> references for optional types</li>
@@ -1441,7 +1441,7 @@ john = nil</code></pre>
     </section>
     <section class="split">
       <h1>Device Motion</h1>
-      <div class="leftside">
+      <div class="side">
         <p>To react to motion</p>
         <ul>
           <li>instantiate a <code>CMMotionManager</code> object</li>
@@ -1451,7 +1451,7 @@ john = nil</code></pre>
           <li>stop updates when not needed</li>
         </ul>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p><code>CoreMotion</code> is independent from <code>UIKit</code></p>
         <ul>
           <li>No events, no responder chain</li>
@@ -1481,7 +1481,7 @@ john = nil</code></pre>
     </section>
     <section class="split">
       <h1>Geolocation</h1>
-      <div class="leftside">
+      <div class="side">
         <p>Similar to motion events</p>
         <ul>
           <li>instantiate <code>CLLocationManager</code></li>
@@ -1493,7 +1493,7 @@ john = nil</code></pre>
         </ul><br>
         <p>See <code>CLLocationManagerDelegate</code> protocol for possible interaction with the manager</p>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>Using location services requires user authorization</p>
         <ul>
           <li>ask for authorization on first use</li>
@@ -1519,11 +1519,11 @@ john = nil</code></pre>
     </section>
     <section class="split">
       <h1>Notification Center</h1>
-      <div class="leftside">
+      <div class="side">
         <p>Default notification center&nbsp;: <code>NotificationCenter.default</code></p><br>
         <p>Many notifications already defined by API</p>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>Notification has</p>
         <ul>
           <li>name (<code>Notification.Name</code>)</li>
@@ -1579,14 +1579,14 @@ func specialAction(notification: NSNotification) {
     </section>
     <section class="split">
       <h1>Grand Central Dispatch</h1>
-      <div class="leftside">
+      <div class="side">
         <p>To dispatch an asynchronous task</p>
         <ul>
           <li>get or create queue</li>
           <li>call <code>async</code> on the queue with code to be executed</li>
         </ul>
       </div>
-      <div class="rightside">
+      <div class="side">
         <div class="only" data-step="0">
           <p>Queues can be</p>
           <ul>
@@ -1646,14 +1646,14 @@ bgQueue.async {
     </section>
     <section class="split">
       <h1>UserDefaults</h1>
-      <div class="leftside">
+      <div class="side">
         <p>To read or write values&nbsp;:</p>
         <ul>
           <li>get a reference to the shared instance <code>UserDefaults.standard</code></li>
           <li>get or set values for a given key</li>
         </ul>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>Associate values to keys (Strings)</p>
         <p>Usually used for storing default values or user preferences</p><br>
         <p>Can store</p>

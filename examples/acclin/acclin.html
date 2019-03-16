@@ -30,8 +30,8 @@
     </section>
     <section class="split">
       <h1>Cellular Automata</h1>
-      <div class="leftside"><img class="only" src="figures/2DCA-0.svg" data-step="0"><img class="only" src="figures/2DCA-1.svg"><img class="only" src="figures/2DCA-2.svg"><img class="only" src="figures/2DCA-3.svg"><img class="only" src="figures/2DCA-4.svg"></div>
-      <div class="rightside">
+      <div class="side"><img class="only" src="figures/2DCA-0.svg" data-step="0"><img class="only" src="figures/2DCA-1.svg"><img class="only" src="figures/2DCA-2.svg"><img class="only" src="figures/2DCA-3.svg"><img class="only" src="figures/2DCA-4.svg"></div>
+      <div class="side">
         <p>2-dimensional cellular automata (2DCA) \(\ACA = (\ACQ, V, \delta)\)&nbsp;:</p>
         <ul>
           <li class="uncover" data-start="1">\(\ACQ\) is a finite set (<em>states</em>)</li>
@@ -43,10 +43,10 @@
     </section>
     <section class="split">
       <h1>Language Recognition</h1>
-      <div class="leftside">
+      <div class="side">
         <div class="center"><img src="figures/languageRecognition.svg" style="width: 80%"></div>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>
           Languages of rectangular pictures in\[\Sigma^{**} = \bigcup_{n, m} \Sigma^{(n, m)}\]</p>
         <p class="uncover">We consider 2DCA such that</p>
@@ -65,8 +65,8 @@
     </section>
     <section class="split">
       <h1>Neighborhoods</h1>
-      <div class="leftside"><img class="only" src="figures/iterations-01.svg" data-step="0"><img class="only" src="figures/iterations-02.svg"><img class="only" src="figures/iterations-03.svg"><img class="only" src="figures/iterations-04.svg"><img class="only" src="figures/iterations-05.svg" data-start="4"></div>
-      <div class="rightside">
+      <div class="side"><img class="only" src="figures/iterations-01.svg" data-step="0"><img class="only" src="figures/iterations-02.svg"><img class="only" src="figures/iterations-03.svg"><img class="only" src="figures/iterations-04.svg"><img class="only" src="figures/iterations-05.svg" data-start="4"></div>
+      <div class="side">
         <div class="box">
           <div class="box-title">Def. (Iterations)</div>
           <div class="box-content">
@@ -103,8 +103,8 @@
     </section>
     <section class="split">
       <h1>Convex Hull</h1>
-      <div class="leftside"><img class="only" src="figures/convexHull1.svg" data-step="0"><img class="only" src="figures/convexHull2.svg" data-start="1" data-end="2"><img class="only" src="figures/convexHull3.svg" data-step="3"></div>
-      <div class="rightside">
+      <div class="side"><img class="only" src="figures/convexHull1.svg" data-step="0"><img class="only" src="figures/convexHull2.svg" data-start="1" data-end="2"><img class="only" src="figures/convexHull3.svg" data-step="3"></div>
+      <div class="side">
         <div class="only" data-end="1">
           <div class="box">
             <div class="box-title">Def.</div>
@@ -176,10 +176,10 @@
     </section>
     <section class="split">
       <h1>Compression</h1>
-      <div class="leftside center">
+      <div class="side center">
         <div style="width: 80%"><img class="only" src="figures/compression1.svg" data-step="0"><img class="only" src="figures/compression2.svg"><img class="only" src="figures/compression3.svg"><img class="only" src="figures/compression4.svg"><img class="only" src="figures/compression5.svg"><img class="only" src="figures/compression6.svg"></div>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>A cell of the new automaton can contain up to \(k^2\) states of the original CA.</p>
         <ul>
           <li>Send initial data towards the origin</li>
@@ -189,10 +189,10 @@
     </section>
     <section class="split">
       <h1>Simulation</h1>
-      <div class="leftside center">
+      <div class="side center">
         <div style="width: 80%"><img src="figures/simulation.svg"></div>
       </div>
-      <div class="rightside">
+      <div class="side">
         <p>Proof by induction</p>
         <ul>
           <li>A cell needs to see \(V^k + c\) for each \(c\) it contains</li>
@@ -203,8 +203,8 @@
     </section>
     <section class="split">
       <h1>Self Synchronization</h1>
-      <div class="leftside center"><img src="figures/selfsyncNeighborhood.svg" style="width: 60%"><br><img class="only" src="figures/selfsync1.svg" style="width: 80%" data-end="2"><img class="only" src="figures/selfsync2.svg" style="width: 80%" data-step="3"><img class="only" src="figures/selfsync3.svg" style="width: 80%"><img class="only" src="figures/selfsync4.svg" style="width: 80%"><img class="only" src="figures/selfsync5.svg" style="width: 80%"><img class="only" src="figures/selfsync6.svg" style="width: 80%"><img class="only" src="figures/selfsync7.svg" style="width: 80%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/selfsyncNeighborhood.svg" style="width: 60%"><br><img class="only" src="figures/selfsync1.svg" style="width: 80%" data-end="2"><img class="only" src="figures/selfsync2.svg" style="width: 80%" data-step="3"><img class="only" src="figures/selfsync3.svg" style="width: 80%"><img class="only" src="figures/selfsync4.svg" style="width: 80%"><img class="only" src="figures/selfsync5.svg" style="width: 80%"><img class="only" src="figures/selfsync6.svg" style="width: 80%"><img class="only" src="figures/selfsync7.svg" style="width: 80%"></div>
+      <div class="side">
         <p><strong>Problem&nbsp;:</strong> cells do not complete compression at the same time</p>
         <p><strong>Solution&nbsp;:</strong> compute new states as soon as relevant information is available.</p>
         <div class="box uncover" data-start="1">
@@ -244,8 +244,8 @@
     </section>
     <section class="split">
       <h1>Simulation</h1>
-      <div class="leftside center"><img src="figures/simulationGeneral.svg" style="width: 80%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/simulationGeneral.svg" style="width: 80%"></div>
+      <div class="side">
         <p><strong>Problem&nbsp;:</strong> After compression, a cell sees \(kV + c\) for the information it holds, not \(V^k + c\)</p>
         <p class="uncover"><strong>Solution&nbsp;:</strong> Gather more information&nbsp;!</p><br>
         <div class="uncover">
@@ -275,8 +275,8 @@
     </section>
     <section class="split">
       <h1>Moore-Like Neighborhoods</h1>
-      <div class="leftside center"><img src="figures/mooreLike.svg" style="width:80%"></div>
-      <div class="rightside">
+      <div class="side center"><img src="figures/mooreLike.svg" style="width:80%"></div>
+      <div class="side">
         <p>Defintion: see picture.</p>
         <div class="box">
           <div class="box-title">Claim</div>
@@ -290,8 +290,8 @@
     </section>
     <section class="split">
       <h1>Fixed Ratio</h1>
-      <div class="leftside"><img class="only" src="figures/fixedRatio.svg" data-step="0"><img class="only" src="figures/fixedRatioBis.svg"></div>
-      <div class="rightside">
+      <div class="side"><img class="only" src="figures/fixedRatio.svg" data-step="0"><img class="only" src="figures/fixedRatioBis.svg"></div>
+      <div class="side">
         <p>
           For input words with a specific ratio \(\rho\), the complete neighborhood \(V\) can behave as a Moore-likeneighborhood \(V'\)</p>
         <ul class="uncover" data-start="1">
@@ -302,8 +302,8 @@
     </section>
     <section class="split">
       <h1>Approximate Ratio</h1>
-      <div class="leftside"><img class="only" src="figures/fixedRatioEpsilon.svg" data-step="0"><img class="only" src="figures/epsilonArgument.svg"></div>
-      <div class="rightside">
+      <div class="side"><img class="only" src="figures/fixedRatioEpsilon.svg" data-step="0"><img class="only" src="figures/epsilonArgument.svg"></div>
+      <div class="side">
         <ul>
           <li>Pick \(\epsilon>0\)</li>
           <li>Consider the set \(M_\epsilon\) of Moore-like neighborhoods spaced by \(\epsilon\)</li>

@@ -27,13 +27,13 @@ block document
 
   section.split
     h1 Cellular Automata
-    .leftside
+    .side
       img.only(src="figures/2DCA-0.svg" data-step=0)
       img.only(src="figures/2DCA-1.svg")
       img.only(src="figures/2DCA-2.svg")
       img.only(src="figures/2DCA-3.svg")
       img.only(src="figures/2DCA-4.svg")
-    .rightside
+    .side
       p 2-dimensional cellular automata (2DCA) \(\ACA = (\ACQ, V, \delta)\)&nbsp;:
       ul
         li.uncover(data-start=1) \(\ACQ\) is a finite set (<em>states</em>)
@@ -44,10 +44,10 @@ block document
 
   section.split
     h1 Language Recognition
-    .leftside
+    .side
       .center
         img(src="figures/languageRecognition.svg" style="width: 80%")
-    .rightside
+    .side
       p Languages of rectangular pictures in
         | \[\Sigma^{**} = \bigcup_{n, m} \Sigma^{(n, m)}\]
       p.uncover We consider 2DCA such that
@@ -64,13 +64,13 @@ block document
 
   section.split
     h1 Neighborhoods
-    .leftside
+    .side
       img.only(src="figures/iterations-01.svg" data-step=0)
       img.only(src="figures/iterations-02.svg")
       img.only(src="figures/iterations-03.svg")
       img.only(src="figures/iterations-04.svg")
       img.only(src="figures/iterations-05.svg" data-start=4)
-    .rightside
+    .side
       .box
         .box-title Def. (Iterations)
         .box-content
@@ -98,12 +98,12 @@ block document
 
   section.split
     h1 Convex Hull
-    .leftside
+    .side
       img.only(src="figures/convexHull1.svg" data-step=0)
       img.only(src="figures/convexHull2.svg" data-start=1 data-end=2)
       img.only(src="figures/convexHull3.svg" data-step=3)
 
-    .rightside
+    .side
       div.only(data-end=1)
         .box
           .box-title Def.
@@ -163,7 +163,7 @@ block document
 
   section.split
     h1 Compression
-    .leftside.center
+    .side.center
       div(style="width: 80%")
         img.only(src="figures/compression1.svg" data-step=0)
         img.only(src="figures/compression2.svg")
@@ -171,7 +171,7 @@ block document
         img.only(src="figures/compression4.svg")
         img.only(src="figures/compression5.svg")
         img.only(src="figures/compression6.svg")
-    .rightside
+    .side
       p A cell of the new automaton can contain up to \(k^2\) states of the original CA.
       ul
         li Send initial data towards the origin
@@ -179,10 +179,10 @@ block document
 
   section.split
     h1 Simulation
-    .leftside.center
+    .side.center
       div(style="width: 80%")
         img(src="figures/simulation.svg")
-    .rightside
+    .side
       p Proof by induction
       ul
         li A cell needs to see \(V^k + c\) for each \(c\) it contains
@@ -191,7 +191,7 @@ block document
 
   section.split
     h1 Self Synchronization
-    .leftside.center
+    .side.center
       img(src="figures/selfsyncNeighborhood.svg" style="width: 60%")
       br
       img.only(src="figures/selfsync1.svg" style="width: 80%" data-end=2)
@@ -201,7 +201,7 @@ block document
       img.only(src="figures/selfsync5.svg" style="width: 80%")
       img.only(src="figures/selfsync6.svg" style="width: 80%")
       img.only(src="figures/selfsync7.svg" style="width: 80%")
-    .rightside
+    .side
       p
         strong Problem&nbsp;:
         |  cells do not complete compression at the same time
@@ -238,9 +238,9 @@ block document
 
   section.split
     h1 Simulation
-    .leftside.center
+    .side.center
       img(src="figures/simulationGeneral.svg" style="width: 80%")
-    .rightside
+    .side
       p
         strong Problem&nbsp;:
         |  After compression, a cell sees \(kV + c\) for the information it holds, not \(V^k + c\)
@@ -275,9 +275,9 @@ block document
 
   section.split
     h1 Moore-Like Neighborhoods
-    .leftside.center
+    .side.center
       img(src="figures/mooreLike.svg" style="width:80%")
-    .rightside
+    .side
       p Defintion: see picture.
       .box
         .box-title Claim
@@ -289,10 +289,10 @@ block document
 
   section.split
     h1 Fixed Ratio
-    .leftside
+    .side
       img.only(src="figures/fixedRatio.svg" data-step=0)
       img.only(src="figures/fixedRatioBis.svg")
-    .rightside
+    .side
       p For input words with a specific ratio \(\rho\), the complete neighborhood \(V\) can behave as a Moore-like
         | neighborhood \(V'\)
       ul.uncover(data-start=1)
@@ -301,10 +301,10 @@ block document
 
   section.split
     h1 Approximate Ratio
-    .leftside
+    .side
       img.only(src="figures/fixedRatioEpsilon.svg" data-step=0)
       img.only(src="figures/epsilonArgument.svg")
-    .rightside
+    .side
       ul
         li Pick \(\epsilon>0\)
         li Consider the set \(M_\epsilon\) of Moore-like neighborhoods spaced by \(\epsilon\)

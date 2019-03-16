@@ -12,10 +12,10 @@ block document
 
   section.split
     h1 iOS
-    .leftside
+    .side
       .center
         img(src="figures/screenshot.jpg" style="width: 80%")
-    .rightside
+    .side
       ul
         li released in 2007 (with the first generation iPhone)
         li Multi-touch interface (almost button-less)
@@ -27,9 +27,9 @@ block document
 
   section.split
     h1 Version History
-    .leftside
+    .side
       img(src="figures/iOS_versions.jpg" style="width: 100%")
-    .rightside
+    .side
       ul
         li 2007 - iPhone OS 1
         li 2008 - iPhone OS 2 (iPhone SDK, App Store, 3rd party apps)
@@ -45,12 +45,12 @@ block document
 
   section.split
     h1 Fragmentation
-    .leftside
+    .side
       ul
         li iOS runs on a limited number of devices (similar architecture, similar iterface)
         li Most devices run the latest version of iOS
         li OS, hardware and SDK are developped by the same company
-    .rightside
+    .side
       ul
         li Devices have varying screen size and resolution
         li Some features are not available to all devices (multitasking, Siri, camera, etc.)
@@ -114,9 +114,9 @@ block document
 
   section.split
     h1 Mobile Terminals
-    .leftside
+    .side
       img(src="figures/iphone_ipad.jpg" style="width: 100%")
-    .rightside
+    .side
       ul
         li Miniature computer
         li Embedded system
@@ -133,9 +133,9 @@ block document
 
   section.split
     h1 Architecture
-    .leftside
+    .side
       img(src="figures/appleA10.png" style="width: 100%")
-    .rightside
+    .side
       p Processor
       ul
         li ARM (designed by Apple)
@@ -154,7 +154,7 @@ block document
 
   section.split
     h1 iOS vs. Android
-    .leftside
+    .side
       img(
       src="figures/iOS.png"
       style="position: absolute;" +
@@ -185,7 +185,7 @@ block document
       ul
         li iOS SDK
 
-    .rightside
+    .side
       img(
       src="figures/android.jpg"
       style="position: absolute;" +
@@ -277,7 +277,7 @@ block document
 
   section.split
     h1 Events
-    .leftside
+    .side
       p Interruption
       ul
         li stops execution and jumps to a specific address
@@ -290,7 +290,7 @@ block document
         li division by zero
         li reset button
         li process interruption
-    .rightside
+    .side
       p Event
       ul
         li stops execution and runs a procedure
@@ -327,13 +327,13 @@ block document
 
   section.split
     h1 Swift
-    .leftside
+    .side
       ul
         li iOS applications should be programmed using objective C or Swift (since iOS 8)
         li Swift is highly recommended (simpler, faster and better supported from now on)
         li Modern syntax inspired by modern languages
         li Heavily object-oriented
-    .rightside
+    .side
       ul
         li Developed by Apple and published in 2014
         li Lighter and more elegant syntax
@@ -342,7 +342,7 @@ block document
 
   section.split
     h1 General Syntax
-    .leftside
+    .side
       pre
         code.cpp
           | let a = 10
@@ -367,7 +367,7 @@ block document
           | } else {
           |   println("\(x) is not prime.")
           | }
-    .rightside
+    .side
       ul
         li Variables are declared with <code>let</code> (immutable) or <code>var</code> (mutable)
         li Variables are typed but type can be inferred by the compiler
@@ -375,7 +375,7 @@ block document
 
   section.split
     h1 Optionals
-    .leftside
+    .side
       pre
         code.swift
           | var a: Int? = 12
@@ -393,7 +393,7 @@ block document
           |   // conditional unwrapping
           |   b += aValue
           | }
-    .rightside
+    .side
       p Swift introduces “optional” versions of all types
       ul
         li An optional type <code>T?</code> represents a value that can be either <code>nil</code> or a value of type <code>T</code>
@@ -402,12 +402,12 @@ block document
 
   section.split
     h1 Object Programming
-    .leftside
+    .side
       p In a “classical” program
       ul
         li program has variables
         li program calls functions that affect variables
-    .rightside
+    .side
       p In object-oriented programming
       ul
         li variables contain <em>objects</em>
@@ -418,7 +418,7 @@ block document
 
   section.split
     h1 Classes and Instances
-    .leftside
+    .side
       pre
         code.swift
           | class Person {
@@ -441,7 +441,7 @@ block document
           |     return age - other.age
           |   }
           | }
-    .rightside
+    .side
       ul
         li A class is a general description of how objects should be and behave
         li Classes have properties and methods
@@ -449,7 +449,7 @@ block document
         li Different instances of the same class can have different values of their properties
   section.split
     h1 Inheritance
-    .leftside
+    .side
       pre
         code.swift
           | class Student: Person {
@@ -477,7 +477,7 @@ block document
           |     return nil
           |   }
           | }
-    .rightside
+    .side
       ul
         li Classes can be defined as a refinement of an existing one
         ul
@@ -497,9 +497,9 @@ block document
 
   section.split
     h1 Intializers
-    .leftside.center
+    .side.center
       img(src="figures/initializers.png" style="width: 100%")
-    .rightside
+    .side
       p Classes can have more than one initializer
       ul
         li Some are <em>designated</em> initializers, others are <em>convenience</em> initializers
@@ -512,7 +512,7 @@ block document
 
   section.split
     h1 Deinit
-    .leftside
+    .side
       pre
         code.swift
           | class Player {
@@ -531,7 +531,7 @@ block document
           |     Bank.get(coins)
           |   }
           | }
-    .rightside
+    .side
       p When an object is removed from memory, its <code>deinit</code> function is called
       <br>
       p This function should be used to clean up the objects or data owned by the removed object
@@ -543,9 +543,9 @@ block document
 
   section.split
     h1 Model View Controller
-    .leftside.center
+    .side.center
       img(src="figures/mvc_sketch.jpg" style="width: 100%")
-    .rightside
+    .side
       p Design pattern, for structuring an application in 3 parts
       ul
         li <em>model</em>&nbsp;: data of the application
@@ -554,9 +554,9 @@ block document
 
   section.split
     h1 Model View Controller
-    .leftside.center
+    .side.center
       img(src="figures/mvc.png" style="width: 100%")
-    .rightside
+    .side
       ul
         li Communication protocol between separate parts
         li Internal implementation of parts is independent
@@ -564,7 +564,7 @@ block document
 
   section.split
     h1 Model
-    .leftside
+    .side
       pre
         code.swift
           | class Player {
@@ -591,7 +591,7 @@ block document
           |
           |   ...
           | }
-    .rightside
+    .side
       p In iOS, the model is represented by the data object classes
       ul
         li the model can be stored in the terminal memory in different forms (<em>Core Data</em>, archiving, <em>NSUserDefaults</em>)
@@ -599,9 +599,9 @@ block document
 
   section.split
     h1 View
-    .leftside.center
+    .side.center
       img(src="figures/UIView.jpg" style="width: 100%")
-    .rightside
+    .side
       p <em>Cocoa Touch</em> (iOS UI Framework) defines a class <code>UIView</code>
       ul
         li all views should inherit from <code>UIView</code>
@@ -612,14 +612,14 @@ block document
 
   section.split
     h1 UIView
-    .leftside
+    .side
       p To create a user interface
       ul
         li create a view hierarchy
         li associate specific code (in the controller) to the possible events that the view elements can react to
         ul
           li using the existing subclasses ensures a uniform experience for the users across apps
-    .rightside
+    .side
       .only(data-step=0)
         p What is a view&nbsp;?
         ul
@@ -640,7 +640,7 @@ block document
 
   section.split
     h1 Position
-    .leftside
+    .side
       pre
         code.swift
           | let labelFrame = CGRect(x: 20, y: 50, width: 300, height: 50)
@@ -649,7 +649,7 @@ block document
           | view.addSubview(label)
           |
           | label.center = CGPoint(x: 170, y: 200)
-    .rightside
+    .side
       A view is positioned relatively to its parent view&nbsp;:
       ul
         li the <code>frame</code> is a <code>CGRect</code> that defines the position and size of a view relative to its parent
@@ -658,7 +658,7 @@ block document
 
   section.split
     h1 UIView Hierarchy
-    .leftside
+    .side
       pre
         code.swift
           | var superview: UIView?
@@ -674,7 +674,7 @@ block document
           | func insertSubview(UIView, belowSubview: UIView)
           | func exchangeSubview(at: Int, withSubviewAt: Int)
           | func isDescendant(of: UIView) -> Bool
-    .rightside
+    .side
       ul
         li The UIView class has methods to manipulate the hierarchy
         li The superview owns its subviews
@@ -716,9 +716,9 @@ block document
 
   section.split
     h1 About the Views
-    .leftside.center
+    .side.center
       img(src="figures/coordinates.jpg" style="width: 60%")
-    .rightside
+    .side
       p Cartesian coordinates system
       ul
         li <em>(0, 0)</em> at the top-left corner
@@ -772,7 +772,7 @@ block document
 
   section.split
     h1 Kinds of View Controllers
-    .leftside
+    .side
       p Content view controllers display content
       ul
         li simplest view controller
@@ -780,7 +780,7 @@ block document
         li a view hierarchy is usually managed by a single content VC
       br
       p examples&nbsp;: table view controller, most user-made view controllers
-    .rightside
+    .side
       p Container view controllers arrange content of other view controllers
       ul
         li contains content owned by other view controllers
@@ -790,7 +790,7 @@ block document
 
   section.split
     h1 Nested Content VC
-    .leftside
+    .side
       pre
         code.swift
           | let subVC = SomeViewController()
@@ -798,7 +798,7 @@ block document
           | addChildViewController(subVC)
           | subVC.didMoveToParentViewController(self)
           | view.addSubview(subVC.view)
-    .rightside
+    .side
       p Most of the time one content view controller is sufficient
       p It is possible to nest content view controllers when necessary
       ul
@@ -824,7 +824,7 @@ block document
 
   section.split
     h1 Create a Controller
-    .leftside
+    .side
       pre
         code.swift
           | var view: UIView!
@@ -841,7 +841,7 @@ block document
           | func viewDidLayoutSubviews()
           | func updateViewConstraints()
           | ...
-    .rightside
+    .side
       ul
         li Create new class that inherits from <code>UIViewController</code>
         li Override relevant methods to define management of view
@@ -889,7 +889,7 @@ block document
 
   section.split
     h1 Switching Controllers
-    .leftside
+    .side
       .only(data-step=0)
         pre
           code.swift
@@ -921,7 +921,7 @@ block document
             |   popViewControllerAnimated(true)
         br
         p Example&nbsp;: <em>Navigation Controller</em>
-    .rightside
+    .side
       p There are many ways to switch from a view controller to another one (and change the displayed view)
       ul
         li.uncover(data-start=0) changing the root controller of the application window (should be avoided)
@@ -953,9 +953,9 @@ block document
 
   section.split
     h1 The Responder Chain
-    .leftside
+    .side
       img(src="figures/responder_chain.png" style="width: 100%")
-    .rightside
+    .side
       .only(data-step=0)
         p When an event is detected it is sent to a specific responder
         ul
@@ -971,9 +971,9 @@ block document
 
   section.split
     h1 Hit Test
-    .leftside
+    .side
       img(src="figures/hit_test.png" style="width: 100%")
-    .rightside
+    .side
       p Returns where a touch occurred
       ul
         li recursive calls to <code>hitTest:withEvent:</code>
@@ -985,7 +985,7 @@ block document
 
   section.split
     h1 UIEvent
-    .leftside
+    .side
       pre
         code.swift
           | var timestamp: NSTimeInterval
@@ -994,7 +994,7 @@ block document
           | func allTouches() -> Set<NSObject>?
           | func touchesForView(_ view: UIView) -> Set<NSObject>?
           | func touchesForWindow(_ window: UIWindow) -> Set<NSObject>?
-    .rightside
+    .side
       p <code>UIEvent</code> is the class of objects created when an event occurs
       ul
         li an UIEvent object has a sub-type (none, motion or possible remote control events)
@@ -1063,7 +1063,7 @@ block document
 
   section.split
     h1 Gesture Recognizers
-    .leftside
+    .side
       pre
         code.swift
           | let tapRecognizer = UITapGestureRecognizer()
@@ -1077,7 +1077,7 @@ block document
       pre
         code.swift
           | view.userInteractionEnabled = true
-    .rightside
+    .side
       p To recognize a gesture&nbsp;:
       ul
         li create a gesture recognizer
@@ -1095,9 +1095,9 @@ block document
 
   section.split
     h1 Objective
-    .leftside.center
+    .side.center
       img(src="figures/table_view.png" style="width: 65%")
-    .rightside
+    .side
       p A table view is the standard way to display a list of elements&nbsp;:
       ul
         li Manage large sets of data
@@ -1116,7 +1116,7 @@ block document
 
   section.split
     h1 Everything in a Table
-    .leftside
+    .side
       p Representation of data
       ul
         li One column, many lines (cells)
@@ -1128,7 +1128,7 @@ block document
 
       br
       p Used by almost all apps
-    .rightside
+    .side
       ul
         li Table is divided in sections
         li Table can have header and footer
@@ -1156,7 +1156,7 @@ block document
 
   section.split
     h1 Data Source
-    .leftside
+    .side
       pre
         code.swift
           | // methods in UITableViewDataSource
@@ -1169,7 +1169,7 @@ block document
           | tableView(_:titleForFooterInSection:)
           |
           | (*) required methods
-    .rightside
+    .side
       p The data source must be able to answer questions such as&nbsp;:
       ul
         li how many sections&nbsp;?
@@ -1218,14 +1218,14 @@ block document
 
   section.split
     h1 Modification of a Table
-    .leftside
+    .side
       pre
         code.swift
           | tableView(_:commit:forRowAt:)
           | tableView(_:canEditRowAt:)
           | tableView(_:canMoveRowAt:)
           | tableView(_:moveRowAt:to:)
-    .rightside
+    .side
       p The user interacts with the table view
       ul
         li insertion of a cell
@@ -1323,7 +1323,7 @@ block document
 
   section.split
     h1 Strong, Weak and Unowned
-    .leftside
+    .side
       pre
         code.swift
           | class A {
@@ -1332,7 +1332,7 @@ block document
           |   unowned var z: Int  // unowned
           |   ...
           | }
-    .rightside
+    .side
       p To break reference cycles, we use <em>weak</em> or <em>unowned</em> references
       ul
         li <em>weak</em> references for optional types
@@ -1401,7 +1401,7 @@ block document
 
   section.split
     h1 Device Motion
-    .leftside
+    .side
       p To react to motion
       ul
         li instantiate a <code>CMMotionManager</code> object
@@ -1409,7 +1409,7 @@ block document
         li (optional) define a handler for measure updates
         li start updates for the desired measure
         li stop updates when not needed
-    .rightside
+    .side
       p <code>CoreMotion</code> is independent from <code>UIKit</code>
       ul
         li No events, no responder chain
@@ -1438,7 +1438,7 @@ block document
 
   section.split
     h1 Geolocation
-    .leftside
+    .side
       p Similar to motion events
       ul
         li instantiate <code>CLLocationManager</code>
@@ -1450,7 +1450,7 @@ block document
 
       br
       p See <code>CLLocationManagerDelegate</code> protocol for possible interaction with the manager
-    .rightside
+    .side
       p Using location services requires user authorization
       ul
         li ask for authorization on first use
@@ -1476,11 +1476,11 @@ block document
 
   section.split
     h1 Notification Center
-    .leftside
+    .side
       p Default notification center&nbsp;: <code>NotificationCenter.default</code>
       br
       p Many notifications already defined by API
-    .rightside
+    .side
       p Notification has
       ul
         li name (<code>Notification.Name</code>)
@@ -1536,12 +1536,12 @@ block document
 
   section.split
     h1 Grand Central Dispatch
-    .leftside
+    .side
       p To dispatch an asynchronous task
       ul
         li get or create queue
         li call <code>async</code> on the queue with code to be executed
-    .rightside
+    .side
       .only(data-step=0)
         p Queues can be
         ul
@@ -1596,12 +1596,12 @@ block document
 
   section.split
     h1 UserDefaults
-    .leftside
+    .side
       p To read or write values&nbsp;:
       ul
         li get a reference to the shared instance <code>UserDefaults.standard</code>
         li get or set values for a given key
-    .rightside
+    .side
       p Associate values to keys (Strings)
       p Usually used for storing default values or user preferences
       br

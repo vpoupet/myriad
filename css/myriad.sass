@@ -131,16 +131,13 @@ section
   &.no-page-counter .page-counter
     display: none
 
-.leftside
+.side
   width: calc(61 * var(--mm))
   padding-left: calc(1 * var(--mm))
-
-.rightside
-  --text-color: var(--light-text-color)
-  --bg-color: black
-  color: var(--text-color)
-  width: calc(61 * var(--mm))
-  padding-right: calc(1 * var(--mm))
+  &:nth-of-type(2)
+    --text-color: var(--light-text-color)
+    --bg-color: black
+    color: var(--text-color)
 
 ul
   margin: 0
