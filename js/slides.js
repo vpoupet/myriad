@@ -468,7 +468,4 @@ function count_as_page(section) {
     return !section.classList.contains('not-page');
 }
 
-
-window.onload = function() {
-    process_slides();
-};
+window.addEventListener("load", process_slides, false);

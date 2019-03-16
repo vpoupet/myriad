@@ -210,24 +210,32 @@ h2
   font-size: calc(16 * var(--pt))
 
 .box
-  --border-width: calc(.5 * var(--mm))
-  border: var(--border-width) var(--text-color) solid
-  margin-top: 2.5ex
-
-  .box-title
-    margin: -2.5ex 0px 0 2ex
-    font-weight: bold
-    background-color: var(--bg-color)
-    display: table
-    padding: 0 1ex
-
+  --border-width: calc(.8 * var(--mm))
+  margin: calc(4 * var(--mm)) 0 calc(2 * var(--mm)) 0
+  .box-top
+    display: flex
+    height: calc(2 * var(--mm))
+    flex-direction: row
+    .box-top-left
+      width: calc(3 * var(--mm))
+      border-top: var(--border-width) var(--text-color) solid
+      border-left: var(--border-width) var(--text-color) solid
+    .box-top-right
+      flex-grow: 1
+      border-top: var(--border-width) var(--text-color) solid
+      border-right: var(--border-width) var(--text-color) solid
+    .box-title
+      font-weight: bold
+      margin: 0 calc(1 * var(--mm))
+      position: relative
+      top: calc(-3 * var(--mm))
+  .box-bottom
+    height: calc(2 * var(--mm))
+    border-bottom: var(--border-width) var(--text-color) solid
+    border-left: var(--border-width) var(--text-color) solid
+    border-right: var(--border-width) var(--text-color) solid
   .box-content
-    background-color: var(--bg-color)
-    width: calc(100% + calc(2 * var(--border-width)))
-    margin: calc(.5 * var(--mm)) 0 calc(2 * var(--mm)) calc(-1 * var(--border-width))
     padding: 0 calc(1 * var(--mm))
-    overflow: hidden
-
 
 .no-display
   display: none !important
