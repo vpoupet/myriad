@@ -120,7 +120,7 @@ section.section {
   background-image: url("BG_Section.png");
   padding: 0 calc(1 * var(--mm));
 }
-section.section h1::before {
+section.section h1:before {
   content: counter(section-counter, upper-roman) ". ";
   counter-increment: section-counter;
 }
