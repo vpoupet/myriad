@@ -280,6 +280,9 @@ h2 {
 .highlight {
   background: #FF7;
 }
+.highlight .side:nth-of-type(2) {
+  background: #663;
+}
 
 .center {
   display: flex;
