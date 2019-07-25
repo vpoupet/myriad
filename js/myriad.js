@@ -20,9 +20,7 @@ window.addEventListener(
             let bottom = document.createElement("div");
             bottom.classList.add("box-bottom");
             top.appendChild(top_left);
-            if (title !== undefined) {
-                top.appendChild(title);
-            }
+            if (title !== undefined) top.appendChild(title);
             top.appendChild(top_right);
             box.insertBefore(top, content);
             box.appendChild(bottom);

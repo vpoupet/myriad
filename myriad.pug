@@ -1,8 +1,8 @@
 -
-  let root = ".";
+  let root = "https://vpoupet.github.io/myriad/";
   let context = "";
   let author = "";
-  let date = "";
+  let date = new Date().toJSON().slice(0, 10);
   let language = "en";
   let months_en = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let months_fr = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
@@ -73,16 +73,17 @@ html(lang=language)
       link(rel="stylesheet" href=root+"/css/slides.css")
       link(rel="stylesheet" href=root+"/css/myriad.css")
   body
-    section.title
-      h1 !{title}
-      if {subtitle}
-        h2 !{subtitle}
-      .context !{context}
-      .author !{author}
-      if isShortDate(date)
-        time(datetime=date) !{fullDate(date)}
-      else
-        time !{date}
+    if title
+      section.title
+        h1 !{title}
+        if subtitle
+          h2 !{subtitle}
+        .context !{context}
+        .author !{author}
+        if isShortDate(date)
+          time(datetime=date) !{fullDate(date)}
+        else
+          time !{date}
     block document
     block footer
       script(src=root+"/js/slides.js")
