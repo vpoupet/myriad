@@ -173,9 +173,9 @@ ul
 p
   margin: 0
 
-img
+img, svg
   height: auto
-  width: auto
+  width: 100%
 
 pre
   line-height: 1.5
@@ -210,11 +210,11 @@ h2
   font-size: calc(16 * var(--pt))
 
 .box
-  --border-width: calc(.8 * var(--mm))
+  --border-width: calc(.5 * var(--mm))
   margin: calc(4 * var(--mm)) 0 calc(2 * var(--mm)) 0
   .box-top
     display: flex
-    height: calc(2 * var(--mm))
+    height: calc(1.5 * var(--mm))
     flex-direction: row
     .box-top-left
       width: calc(3 * var(--mm))
@@ -230,7 +230,7 @@ h2
       position: relative
       top: calc(-3 * var(--mm))
   .box-bottom
-    height: calc(2 * var(--mm))
+    height: calc(1.5 * var(--mm))
     border-bottom: var(--border-width) var(--text-color) solid
     border-left: var(--border-width) var(--text-color) solid
     border-right: var(--border-width) var(--text-color) solid

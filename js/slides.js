@@ -2,17 +2,26 @@
  * List of slides
  * @type {Slide[]}
  */
-let slides;
+let _slides;
+
+/**
+ * Dictionary of slides that have an id
+ * @type {Object.<string, Slide>}
+ */
+let _slideLabels = {};
+
 /**
  * Currently active slide
  * @type {Slide}
  */
 let current_slide;
+
 /**
  * Total number of pages (number of slides that count as pages)
  * @type {number}
  */
 let nb_pages;
+
 /**
  * Current page number (used when parsing all slides to add number count)
  * @type {number}
@@ -32,133 +41,145 @@ let page_number;
  * @param section {HTMLElement} the section element that contains the information of the slide
  * @constructor
  */
-function Slide(section) {
-    // events handlers
-    section.addEventListener('click', handle_click);
+class Slide {
+    constructor(section) {
+        this.section = section;
 
-    // prepare dynamic elements (steps)
-    let last_step = 0;
-    let active_step = 0;
-    let dynamic_elements = section.querySelectorAll('.uncover, .only');
+        // events handlers
+        section.addEventListener('click', handle_click);
 
-    for (let j = 0; j < dynamic_elements.length; j++) {
-        let element = dynamic_elements[j];
+        this.parseDynamicElements();
+        this.page_number = page_number;
 
-        // fix start/end values for dynamic elements
-        if ('step' in element.dataset) {
-            // if step value, start and end are set to step
-            element.dataset.start = element.dataset.step;
-            element.dataset.end = element.dataset.step;
+        // add header and footer
+        let header = this.header();
+        if (header) {
+            section.insertBefore(this.header(), section.firstChild);
         }
-        if (!('start' in element.dataset || 'end' in element.dataset)) {
-            // if no step, start or end value, implement default behavior:
-            // - "uncover" from (active_step + 1) until the end of the slide)
-            // - "only" for (active_step + 1) only
-            active_step += 1;
-            element.dataset.start = String(active_step);
-            if (element.classList.contains('only')) {
-                element.dataset.end = String(active_step);
+        let footer = this.footer();
+        if (footer) {
+            section.appendChild(this.footer());
+        }
+
+        if (section.id !== "") {
+            let id = section.id;
+            _slideLabels[id] = this;
+        }
+
+        this.index = _slides.length;
+        this.display_step(0);
+    }
+
+    parseDynamicElements() {
+        // prepare dynamic elements (steps)
+        let last_step = 0;
+        let active_step = 0;
+        let dynamic_elements = this.section.querySelectorAll('.uncover, .only');
+
+        for (let j = 0; j < dynamic_elements.length; j++) {
+            let element = dynamic_elements[j];
+
+            // fix start/end values for dynamic elements
+            if ('step' in element.dataset) {
+                // if step value, start and end are set to step
+                element.dataset.start = element.dataset.step;
+                element.dataset.end = element.dataset.step;
             }
-        } else if ('start' in element.dataset) {
-            // remember starting step for next default "uncover" and "only"
-            active_step = parseInt(element.dataset.start);
-        }
+            if (!('start' in element.dataset || 'end' in element.dataset)) {
+                // if no step, start or end value, implement default behavior:
+                // - "uncover" from (active_step + 1) until the end of the slide)
+                // - "only" for (active_step + 1) only
+                active_step += 1;
+                element.dataset.start = String(active_step);
+                if (element.classList.contains('only')) {
+                    element.dataset.end = String(active_step);
+                }
+            } else if ('start' in element.dataset) {
+                // remember starting step for next default "uncover" and "only"
+                active_step = parseInt(element.dataset.start);
+            }
 
-        // remember highest step
-        if (element.dataset.start > last_step) {
-            last_step = parseInt(element.dataset.start);
+            // remember highest step
+            if (element.dataset.start > last_step) {
+                last_step = parseInt(element.dataset.start);
+            }
+            if (element.dataset.end > last_step) {
+                last_step = parseInt(element.dataset.end);
+            }
         }
-        if (element.dataset.end > last_step) {
-            last_step = parseInt(element.dataset.end);
+        this.last_step = last_step;
+    }
+
+    onload(){}
+
+    onunload(){}
+
+    /**
+     * Shows and hides dynamic elements to reflect the state of the slide at step n
+     * @param n {number} step number to display
+     */
+    display_step(n) {
+        this.current_step = n;
+        let dynamic_elements = this.section.querySelectorAll('.uncover, .only');
+
+        for (let i = 0; i < dynamic_elements.length; i++) {
+            let element = dynamic_elements[i];
+            if (n < element.dataset.start || element.dataset.end < n) {
+                if (element.classList.contains('only')) {
+                    element.classList.add('no-display');
+                } else {
+                    element.classList.add('hidden');
+                }
+            } else {
+                if (element.classList.contains('only')) {
+                    element.classList.remove("no-display");
+                } else {
+                    element.classList.remove("hidden");
+                }
+            }
         }
     }
-    this.page_number = page_number;
 
-    // add header and footer
-    let header = this.header();
-    if (header) {
-        section.insertBefore(this.header(), section.firstChild);
-    }
-    let footer = this.footer();
-    if (footer) {
-        section.appendChild(this.footer());
+    /**
+     * Return the header to be appended to the slide (`null` if no header)
+     * This function can be redefined by themes.
+     *
+     * @returns {HTMLElement} element to be used as header (inserted before the slide content)
+     */
+    header() {
+        return null;
     }
 
-    this.last_step = last_step;
-    this.section = section;
-    this.index = slides.length;
-    this.display_step(0);
+    /**
+     * Return an HTML element to be appended to the section as page counter.
+     * This function can be redefined by themes.
+     *
+     * @returns {HTMLElement}
+     */
+    page_counter() {
+        let counter_div = document.createElement('div');
+        counter_div.classList.add('page-counter');
+        counter_div.innerText = this.page_number + ' / ' + nb_pages;
+        return counter_div;
+    }
+
+    /**
+     * Return the footer to be appended to the slide (`null` if no footer)
+     * This function can be redefined by themes.
+     *
+     * @returns {HTMLElement} element to be used as footer (inserted after the slide content)
+     */
+    footer() {
+        let page_counter = this.page_counter();
+        if (page_counter) {
+            let footer_div = document.createElement('div');
+            footer_div.classList.add('slide-footer');
+            footer_div.appendChild(this.page_counter());
+            return footer_div;
+        }
+        return null;
+    }
 }
-
-
-/**
- * Shows and hides dynamic elements to reflect the state of the slide at step n
- * @param n {number} step number to display
- */
-Slide.prototype.display_step = function(n) {
-    this.current_step = n;
-    let dynamic_elements = this.section.querySelectorAll('.uncover, .only');
-
-    for (let i = 0; i < dynamic_elements.length; i++) {
-        let element = dynamic_elements[i];
-        if (n < element.dataset.start || element.dataset.end < n) {
-            if (element.classList.contains('only')) {
-                element.classList.add('no-display');
-            } else {
-                element.classList.add('hidden');
-            }
-        } else {
-            if (element.classList.contains('only')) {
-                element.classList.remove("no-display");
-            } else {
-                element.classList.remove("hidden");
-            }
-        }
-    }
-};
-
-
-/**
- * Return the header to be appended to the slide (`null` if no header)
- * This function can be redefined by themes.
- *
- * @returns {HTMLElement} element to be used as header (inserted before the slide content)
- */
-Slide.prototype.header = function() {
-    return null;
-};
-
-
-/**
- * Return an HTML element to be appended to the section as page counter.
- * This function can be redefined by themes.
- *
- * @returns {HTMLElement}
- */
-Slide.prototype.page_counter = function() {
-    let counter_div = document.createElement('div');
-    counter_div.classList.add('page-counter');
-    counter_div.innerText = this.page_number + ' / ' + nb_pages;
-    return counter_div;
-};
-
-
-/**
- * Return the footer to be appended to the slide (`null` if no footer)
- * This function can be redefined by themes.
- *
- * @returns {HTMLElement} element to be used as footer (inserted after the slide content)
- */
-Slide.prototype.footer = function() {
-    let page_counter = this.page_counter();
-    if (page_counter) {
-        let footer_div = document.createElement('div');
-        footer_div.classList.add('slide-footer');
-        footer_div.appendChild(this.page_counter());
-        return footer_div;
-    }
-    return null;
-};
 
 
 /**
@@ -168,10 +189,22 @@ Slide.prototype.footer = function() {
  * @param end {boolean} whether the last step (true) or the first step (false) of the slide should be displayed
  */
 function display_slide(slide, end=false) {
-    if (current_slide !== slide) {
+    sessionStorage.slideIndex = slide.index;
+
+    if (current_slide !== undefined) {
         current_slide.display_step(0);
+        current_slide.onunload();
         current_slide = slide;
     }
+    current_slide.onload();
+
+    // if (current_slide !== slide) {
+    //     current_slide.display_step(0);
+    //     current_slide.onunload();
+    //     current_slide = slide;
+    // }
+    // current_slide.onload();
+
     current_slide.section.scrollIntoView();
     if (end) {
         current_slide.display_step(slide.last_step);
@@ -186,9 +219,9 @@ function display_slide(slide, end=false) {
  */
 function next_slide() {
     let index = current_slide.index;
-    if (index + 1 < slides.length) {
+    if (index + 1 < _slides.length) {
         // move to next slide
-        display_slide(slides[index + 1]);
+        display_slide(_slides[index + 1]);
     } else {
         // jump to last step if last slide
         current_slide.display_step(current_slide.last_step);
@@ -205,7 +238,7 @@ function prev_slide(end=false) {
     let index = current_slide.index;
     if (index - 1 >= 0) {
         // move to previous slide
-        display_slide(slides[index - 1], end);
+        display_slide(_slides[index - 1], end);
     } else {
         // if already on first slide, jump to first step
         current_slide.display_step(0);
@@ -242,30 +275,34 @@ function prev_step() {
  * Should be called in `window.onload`.
  */
 function process_slides() {
-    slides = [];
+    _slides = [];
     let sections = document.querySelectorAll('section');
 
     // count number of pages
     nb_pages = 0;
-    for (let i = 0; i < sections.length; i++) {
-        if (count_as_page(sections[i])) {
+    for (let section of sections) {
+        if (count_as_page(section)) {
             nb_pages += 1;
         }
     }
 
     page_number = 0;
-    for (let i = 0; i < sections.length; i++) {
-        if (count_as_page(sections[i])) {
+    for (let section of sections) {
+        if (count_as_page(section)) {
             page_number += 1;
         }
-        let slide = new Slide(sections[i]);
-        slides.push(slide);
+        let slide = new Slide(section);
+        _slides.push(slide);
     }
 
     // transform short dates into detailed dates
     fixDate();
 
-    current_slide = slides[0];
+    let index = sessionStorage.slideIndex;
+    if (index === undefined) {
+        index = 0;
+    }
+    current_slide = _slides[index];
     display_slide(current_slide);
 }
 
@@ -326,9 +363,9 @@ function handle_click(event) {
     // get clicked section
     let section = event.target.closest('section');
     if (section !== current_slide.section) {
-        for (let i = 0; i < slides.length; i++) {
-            if (slides[i].section === section) {
-                return display_slide(slides[i]);
+        for (let i = 0; i < _slides.length; i++) {
+            if (_slides[i].section === section) {
+                return display_slide(_slides[i]);
             }
         }
     }
@@ -379,7 +416,8 @@ document.addEventListener('keydown', (event) => {
             break;
         case "x":
             event.preventDefault();
-            current_slide.section.scrollIntoView();
+            display_slide(current_slide);
+            // current_slide.section.scrollIntoView();
             break;
         case "j":
             let n = parseInt(window.prompt("Go to page"));
@@ -398,13 +436,13 @@ document.addEventListener('keydown', (event) => {
  */
 function goto(n) {
     if (n <= 0) {
-        display_slide(slides[0]);
+        display_slide(_slides[0]);
     } else if (n > nb_pages) {
-        display_slide(slides[slides.length - 1]);
+        display_slide(_slides[_slides.length - 1]);
     } else {
-        for (let i = 0; i < slides.length; i++) {
-            if (slides[i].page_number === n) {
-                return display_slide(slides[i]);
+        for (let i = 0; i < _slides.length; i++) {
+            if (_slides[i].page_number === n) {
+                return display_slide(_slides[i]);
             }
         }
     }
@@ -423,8 +461,8 @@ function goto(n) {
  */
 function flatten() {
     let step_counter = 0;
-    for (let i = 0; i < slides.length; i++) {
-        let slide = slides[i];
+    for (let i = 0; i < _slides.length; i++) {
+        let slide = _slides[i];
         for (let j = 0; j <= slide.last_step; j++) {
             slide.display_step(j);
             let section = slide.section.cloneNode(true);
