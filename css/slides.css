@@ -3,14 +3,17 @@
 }
 
 html {
-  --mm: calc(100vh / 96);
-  --height: calc(96 * var(--mm));
-  --width: calc(128 * var(--mm));
+  --height: 100vh;
+  --width: calc(4/3 * var(--height));
+  --mm: calc(var(--height) / 96);
   --pt: calc(.35 * var(--mm));
 }
 @media (max-aspect-ratio: 4/3) {
   html {
-    --mm: calc(100vw / 128);
+    --width: 100vw;
+    --height: calc(var(--width) / (4/3));
+    --mm: calc(var(--height) / 96);
+    --pt: calc(.35 * var(--mm));
   }
 }
 
@@ -46,3 +49,5 @@ a.next_flat_link {
   top: 0;
   right: 0;
 }
+
+/*# sourceMappingURL=slides.css.map */

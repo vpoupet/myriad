@@ -1,25 +1,20 @@
 -
   let root = "https://vpoupet.github.io/myriad/";
   let context = "";
+  let title = "";
   let author = "";
   let date = new Date().toJSON().slice(0, 10);
   let language = "en";
-  let months_en = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  let months_fr = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
 
   function fullDate(date) {
     let months;
-    if (!months) {
-      months = months_en;
-      if (language === "fr") {
-        months = months_fr;
-      }
-    }
     let [year, month, day] = date.split('-');
     year = parseInt(year);
     month = parseInt(month);
     day = parseInt(day);
     if (language === "fr") {
+      months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre",
+                "novembre", "décembre"];
       if (day) {
         return `${day} ${months[month - 1]} ${year}`;
       } else if (month) {
@@ -28,6 +23,8 @@
         return `${year}`;
       }
     } else {
+      months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+                "November", "December"];
       if (day) {
         return `${months[month - 1]} ${day}, ${year}`;
       } else if (month) {
@@ -69,7 +66,7 @@ html(lang=language)
       if page_title
         title !{page_title}
       else
-        title !{context}
+        title !{title}
       link(rel="stylesheet" href=root+"/css/slides.css")
       link(rel="stylesheet" href=root+"/css/myriad.css")
   body

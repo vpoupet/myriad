@@ -7,6 +7,19 @@ function count_as_page (section) {
 window.addEventListener(
     "load",
     function() {
+        // add "single" or "split" class to sections with no explicit type
+        for (let section of document.getElementsByTagName("section")) {
+            if (!section.classList.contains("blank") &&
+                !section.classList.contains("title") &&
+                !section.classList.contains("section")) {
+                if (section.getElementsByClassName("side").length > 0) {
+                    section.classList.add("split");
+                } else {
+                    section.classList.add("single");
+                }
+            }
+        }
+        // make boxes
         let boxes = document.getElementsByClassName("box");
         for (let box of boxes) {
             let title = box.getElementsByClassName("box-title")[0];
