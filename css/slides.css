@@ -21,7 +21,6 @@ body {
   flex-direction: column;
   align-items: center;
   background: #CCC;
-  overflow: hidden;
 }
 body > * {
   height: 0;
