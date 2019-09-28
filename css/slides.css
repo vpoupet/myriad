@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --height: 100vh;
+  --width: calc(4/3 * var(--height));
+  --mm: calc(var(--height) / 96);
+  --pt: calc(.35 * var(--mm));
+}
+@media (max-aspect-ratio: 4/3) {
+  html {
+    --width: 100vw;
+    --height: calc(var(--width) / (4/3));
+    --mm: calc(var(--height) / 96);
+    --pt: calc(.35 * var(--mm));
+  }
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #CCC;
+  overflow: hidden;
+}
+
+section {
+  width: var(--width);
+  height: var(--height);
+  position: relative;
+}
+
+a.prev_flat_link {
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+a.next_flat_link {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  right: 0;
+}
+
+/*# sourceMappingURL=slides.css.map */
