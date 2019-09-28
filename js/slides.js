@@ -67,6 +67,7 @@ class Slide {
         }
 
         this.index = _slides.length;
+        section.classList.add("no-display");
         this.display_step(0);
     }
 
@@ -192,20 +193,17 @@ function display_slide(slide, end=false) {
     sessionStorage.slideIndex = slide.index;
 
     if (current_slide !== undefined) {
+        // unload and hide the previous slide
         current_slide.display_step(0);
         current_slide.onunload();
+        current_slide.section.classList.add("no-display");
         current_slide = slide;
     }
+
+    // show and load the new slide
+    current_slide.section.classList.remove("no-display");
     current_slide.onload();
 
-    // if (current_slide !== slide) {
-    //     current_slide.display_step(0);
-    //     current_slide.onunload();
-    //     current_slide = slide;
-    // }
-    // current_slide.onload();
-
-    current_slide.section.scrollIntoView();
     if (end) {
         current_slide.display_step(slide.last_step);
     } else {

@@ -1,3 +1,8 @@
 .tight .MJXc-display {
   margin: 0;
 }
+
+#MathJax-Element-1-Frame {
+  height: 0;
+  padding: 0;
+}

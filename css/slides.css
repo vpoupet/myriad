@@ -12,8 +12,6 @@ html {
   html {
     --width: 100vw;
     --height: calc(var(--width) / (4/3));
-    --mm: calc(var(--height) / 96);
-    --pt: calc(.35 * var(--mm));
   }
 }
 
@@ -24,6 +22,10 @@ body {
   align-items: center;
   background: #CCC;
   overflow: hidden;
+}
+body > * {
+  height: 0;
+  padding: 0;
 }
 
 section {
@@ -49,5 +51,3 @@ a.next_flat_link {
   top: 0;
   right: 0;
 }
-
-/*# sourceMappingURL=slides.css.map */

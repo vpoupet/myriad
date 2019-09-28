@@ -25,7 +25,7 @@ block document
   section.section
     h1 Definitions
 
-  section.split
+  section
     h1 Cellular Automata
     .side
       img.only(src="figures/2DCA-0.svg" data-step=0)
@@ -42,7 +42,7 @@ block document
       br
       p.uncover global function \(\Delta: \ACQ^{\ZZ^2}\rightarrow \ACQ^{\ZZ^2}\)
 
-  section.split
+  section
     h1 Language Recognition
     .side
       .center
@@ -62,7 +62,7 @@ block document
       p.uncover Time complexity is as expected
         | \[f: \NN^2 \rightarrow \NN\]
 
-  section.split
+  section
     h1 Neighborhoods
     .side
       img.only(src="figures/iterations-01.svg" data-step=0)
@@ -96,7 +96,7 @@ block document
             | A neighborhood \(V\) is <em>complete</em> if
             | \[\bigcup_{n\in\NN}V^n = \ZZ^2\]
 
-  section.split
+  section
     h1 Convex Hull
     .side
       img.only(src="figures/convexHull1.svg" data-step=0)
@@ -124,7 +124,7 @@ block document
             | \[x = \lambda u + (1-\lambda)v\]
             | with \(u, v\in V\) and \(\lambda\in [0, 1]\cap \QQ\)
 
-  section.single
+  section
     h1 Real Time
     .box
       .box-title Definition
@@ -144,7 +144,7 @@ block document
   section.section
     h1 Linear Acceleration<br> on the<br>Moore Neighborhood
 
-  section.single
+  section
     h1 On the Moore Neighborhood
     .box
       .box-title Theorem
@@ -161,7 +161,7 @@ block document
         li Simulate the original automaton, \(k\) steps at a time
           span(style="float: right") \(\frac{1}{k}(\TR + f)\) steps
 
-  section.split
+  section
     h1 Compression
     .side.center
       div(style="width: 80%")
@@ -177,7 +177,7 @@ block document
         li Send initial data towards the origin
         li When a cell contains \(k\times k\) initial states it is full
 
-  section.split
+  section
     h1 Simulation
     .side.center
       div(style="width: 80%")
@@ -189,7 +189,7 @@ block document
         li The needed information is held by its immediate neighbors
         li Cells can compute \(k\) steps of the original automaton on each state they hold
 
-  section.split
+  section
     h1 Self Synchronization
     .side.center
       img(src="figures/selfsyncNeighborhood.svg" style="width: 60%")
@@ -221,7 +221,7 @@ block document
   section.section
     h1 Linear Acceleration
 
-  section.single
+  section
     h1 Main Theorem
     .box
       .box-title Theorem
@@ -236,7 +236,7 @@ block document
         li Compress the input by a factor \(k \geq \epsilon^{-1}\)
         li Simulate the original automaton, \(k\) steps at a time
 
-  section.split
+  section
     h1 Simulation
     .side.center
       img(src="figures/simulationGeneral.svg" style="width: 80%")
@@ -257,7 +257,7 @@ block document
         br
         p At each step, cells can compute \(k\) steps of the original automaton for each of the information they hold.
 
-  section.single
+  section
     h1 Compression
     p
       strong Difficulty&nbsp;:
@@ -273,7 +273,7 @@ block document
       li Break other neighborhoods into Moore-like
       li Perform "close-to-optimal" compression
 
-  section.split
+  section
     h1 Moore-Like Neighborhoods
     .side.center
       img(src="figures/mooreLike.svg" style="width:80%")
@@ -287,7 +287,7 @@ block document
       br
       p.uncover Proof&nbsp;: Same as for the Moore neighborhood
 
-  section.split
+  section
     h1 Fixed Ratio
     .side
       img.only(src="figures/fixedRatio.svg" data-step=0)
@@ -299,7 +299,7 @@ block document
         li because \(V\) is complete, it contains a scaled down version of the rectangle in the negative quarter
         li \(V\) and \(V'\) have same real time function for words of ratio \(\rho\)
 
-  section.split
+  section
     h1 Approximate Ratio
     .side
       img.only(src="figures/fixedRatioEpsilon.svg" data-step=0)
@@ -312,7 +312,7 @@ block document
       p For any input picture, there is \(V'\in M_\epsilon\) that can compress it by \(k+1\) in time
         | \[(1+\epsilon')\frac{k}{k+1}\TR_{V}\]
 
-  section.single
+  section
     h1 Summary
     ul
       li Pick a small enough \(\epsilon\) and a large enough \(k\)
@@ -327,5 +327,5 @@ block document
     .center
       div Total time&nbsp;: \((1+\epsilon)\TR + \epsilon f\)
 
-  section.no-page-counter
+  section.blank.no-page-counter
     img(src="figures/tableau.png" style="width: 100%; height: 100%")
