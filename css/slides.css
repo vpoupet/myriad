@@ -22,15 +22,11 @@ body {
   align-items: center;
   background: #CCC;
 }
-body > * {
-  height: 0;
-  padding: 0;
-}
 
 section {
   width: var(--width);
   height: var(--height);
-  position: relative;
+  position: absolute;
 }
 
 a.prev_flat_link {
