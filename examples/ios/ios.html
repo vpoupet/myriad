@@ -2,384 +2,387 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>An Introduction to<br>iOS Development</title>
+    <title>An Introduction to iOS Development</title>
     <link rel="stylesheet" href="../../css/slides.css">
     <link rel="stylesheet" href="../../css/myriad.css">
     <link rel="stylesheet" href="highlight.css">
-    <style>
-      html { --text-size: calc(11 * var(--pt)); }
-      pre code { font-size: calc(6 * var(--pt)); }
-    </style>
+    <style>pre code { font-size: calc(6 * var(--pt)); }</style>
   </head>
   <body>
     <section class="title">
       <h1>An Introduction to<br>iOS Development</h1>
       <div class="context">Embedded Systems</div>
       <div class="author">Victor Poupet</div>
-      <time datetime="2018-07">July 2018</time>
+      <time>2018-07</time>
     </section>
-    <section class="no-page-counter"><img src="figures/Montpellier.jpg" style="height: 100%; width: 100%"></section>
-    <section class="section">
-      <h1>A Word About iOS</h1>
-    </section>
-    <section class="split">
-      <h1>iOS</h1>
-      <div class="side">
-        <div class="center"><img src="figures/screenshot.jpg" style="width: 80%"></div>
-      </div>
-      <div class="side">
+    <script src="highlight.pack.js"></script>
+    <script src="ios.js"></script>
+    <script src="../../js/slides.js"></script>
+    <script src="../../js/myriad.js"></script>
+  </body>
+</html>
+<section class="blank no-page-counter"><img src="figures/Montpellier.jpg" style="height: 100%; width: 100%"></section>
+<section class="section">
+  <h1>A Word About iOS</h1>
+</section>
+<section>
+  <h1>iOS</h1>
+  <div class="side">
+    <div class="center"><img src="figures/screenshot.jpg" style="width: 80%"></div>
+  </div>
+  <div class="side">
+    <ul>
+      <li>released in 2007 (with the first generation iPhone)</li>
+      <li>Multi-touch interface (almost button-less)</li>
+      <li>Gesture recognition (swipe, pinch, etc.)</li>
+      <li>Somewhat based on Mac OSX</li>
+      <li>Core Foundation and Foundation frameworks</li>
+      <li>Cocoa touch instead of Cocoa</li>
+      <li>Darwin (Unix-like system)</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Version History</h1>
+  <div class="side"><img src="figures/iOS_versions.jpg" style="width: 100%"></div>
+  <div class="side">
+    <ul>
+      <li>2007 - iPhone OS 1</li>
+      <li>2008 - iPhone OS 2 (iPhone SDK, App Store, 3rd party apps)</li>
+      <li>2009 - iPhone OS 3 (iPad)</li>
+      <li>2010 - iOS 4 (limited multitasking)</li>
+      <li>2011 - iOS 5 (iCloud)</li>
+      <li>2012 - iOS 6</li>
+      <li>2013 - iOS 7 (extended multitasking)</li>
+      <li>2014 - iOS 8 (Swift, Metal)</li>
+      <li>2015 - iOS 9 (split view)</li>
+      <li>2016 - iOS 10 (Siri, 3D touch)</li>
+      <li>2017 - iOS 11 (ARKit, Files, more multitasking)</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Fragmentation</h1>
+  <div class="side">
+    <ul>
+      <li>iOS runs on a limited number of devices (similar architecture, similar iterface)</li>
+      <li>Most devices run the latest version of iOS</li>
+      <li>OS, hardware and SDK are developped by the same company</li>
+    </ul>
+  </div>
+  <div class="side">
+    <ul>
+      <li>Devices have varying screen size and resolution</li>
+      <li>Some features are not available to all devices (multitasking, Siri, camera, etc.)</li>
+      <li>Two main device families&nbsp;:
         <ul>
-          <li>released in 2007 (with the first generation iPhone)</li>
-          <li>Multi-touch interface (almost button-less)</li>
-          <li>Gesture recognition (swipe, pinch, etc.)</li>
-          <li>Somewhat based on Mac OSX</li>
-          <li>Core Foundation and Foundation frameworks</li>
-          <li>Cocoa touch instead of Cocoa</li>
-          <li>Darwin (Unix-like system)</li>
+          <li>iPhone</li>
+          <li>iPad</li>
         </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Version History</h1>
-      <div class="side"><img src="figures/iOS_versions.jpg" style="width: 100%"></div>
-      <div class="side">
-        <ul>
-          <li>2007 - iPhone OS 1</li>
-          <li>2008 - iPhone OS 2 (iPhone SDK, App Store, 3rd party apps)</li>
-          <li>2009 - iPhone OS 3 (iPad)</li>
-          <li>2010 - iOS 4 (limited multitasking)</li>
-          <li>2011 - iOS 5 (iCloud)</li>
-          <li>2012 - iOS 6</li>
-          <li>2013 - iOS 7 (extended multitasking)</li>
-          <li>2014 - iOS 8 (Swift, Metal)</li>
-          <li>2015 - iOS 9 (split view)</li>
-          <li>2016 - iOS 10 (Siri, 3D touch)</li>
-          <li>2017 - iOS 11 (ARKit, Files, more multitasking)</li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Fragmentation</h1>
-      <div class="side">
-        <ul>
-          <li>iOS runs on a limited number of devices (similar architecture, similar iterface)</li>
-          <li>Most devices run the latest version of iOS</li>
-          <li>OS, hardware and SDK are developped by the same company</li>
-        </ul>
-      </div>
-      <div class="side">
-        <ul>
-          <li>Devices have varying screen size and resolution</li>
-          <li>Some features are not available to all devices (multitasking, Siri, camera, etc.)</li>
-          <li>Two main device families&nbsp;:
-            <ul>
-              <li>iPhone</li>
-              <li>iPad</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Distribution</h1>
-      <p>The only officially accepted way to add apps to an iOS terminal is to use Apple's <em>App Store</em></p>
+      </li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Distribution</h1>
+  <p>The only officially accepted way to add apps to an iOS terminal is to use Apple's <em>App Store</em></p>
+  <ul>
+    <li>Apple has total control over which apps are accepted on the store
       <ul>
-        <li>Apple has total control over which apps are accepted on the store
-          <ul>
-            <li>delay between submission and availability</li>
-            <li>Apple guidelines are strict and sometimes difficult to match</li>
-            <li>guarantees a minimal quality of apps</li>
-          </ul>
-        </li>
-        <li>developper license (99$ / year) necessary to submit an app</li>
-        <li>free developper account sufficient to develop and install apps on personal devices</li>
-        <li>developpers receive 70% of the price of the sold app</li>
+        <li>delay between submission and availability</li>
+        <li>Apple guidelines are strict and sometimes difficult to match</li>
+        <li>guarantees a minimal quality of apps</li>
       </ul>
-    </section>
-    <section class="single">
-      <h1>About this Lecture</h1>
-      <p>iOS development is a vast topic</p>
+    </li>
+    <li>developper license (99$ / year) necessary to submit an app</li>
+    <li>free developper account sufficient to develop and install apps on personal devices</li>
+    <li>developpers receive 70% of the price of the sold app</li>
+  </ul>
+</section>
+<section>
+  <h1>About this Lecture</h1>
+  <p>iOS development is a vast topic</p>
+  <ul>
+    <li>many elements cannot be addressed in this lecture (including important ones)</li>
+    <li>even with more time, one never fully knows all about iOS programming
       <ul>
-        <li>many elements cannot be addressed in this lecture (including important ones)</li>
-        <li>even with more time, one never fully knows all about iOS programming
-          <ul>
-            <li>hundreds of existing classes</li>
-            <li>thousands of methods and attributes</li>
-            <li>best way to learn is to look for examples, ask questions and read the documentation</li>
-          </ul>
-        </li>
-        <li>the API, SDK and language evolve quickly
-          <ul>
-            <li>examples and discussions on the Internet are already outdated</li>
-            <li>this lecture is also already outdated</li>
-          </ul>
-        </li>
-        <li>most elements are interconnected
-          <ul>
-            <li>no natural order to present things</li>
-            <li>examples require to use some elements before explaining them</li>
-          </ul>
-        </li>
+        <li>hundreds of existing classes</li>
+        <li>thousands of methods and attributes</li>
+        <li>best way to learn is to look for examples, ask questions and read the documentation</li>
       </ul>
-    </section>
-    <section class="section">
-      <h1>Mobile Development</h1>
-    </section>
-    <section class="single">
-      <h1>Generalities</h1>
-      <p>Developping for an embedded system</p>
+    </li>
+    <li>the API, SDK and language evolve quickly
       <ul>
-        <li>cross-compiling</li>
-        <li>stronger contraints
-          <ul>
-            <li>memory</li>
-            <li>energy</li>
-            <li>CPU</li>
-          </ul>
-        </li>
-      </ul><br>
-      <p>Conception based on user interface
-        <ul>
-          <li>Model-View-Controller architecture</li>
-          <li>Reactive programming</li>
-          <li>Event-based programming</li>
-        </ul>
-      </p>
-    </section>
-    <section class="split">
-      <h1>Mobile Terminals</h1>
-      <div class="side"><img src="figures/iphone_ipad.jpg" style="width: 100%"></div>
-      <div class="side">
-        <ul>
-          <li>Miniature computer</li>
-          <li>Embedded system
-            <ul>
-              <li>limited resources</li>
-            </ul>
-          </li>
-          <li>Reactive system
-            <ul>
-              <li>based on user interface</li>
-            </ul>
-          </li>
-          <li>Smartphone vs.Tablet
-            <ul>
-              <li>screen size is different</li>
-              <li>phone calls</li>
-              <li>most of the rest is identical</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Architecture</h1>
-      <div class="side"><img src="figures/appleA10.png" style="width: 100%"></div>
-      <div class="side">
-        <p>Processor</p>
-        <ul>
-          <li>ARM (designed by Apple)</li>
-        </ul><br>
-        <p>Storage</p>
-        <ul>
-          <li>Flash memory</li>
-        </ul><br>
-        <p>Other hardware</p>
-        <ul>
-          <li>Network</li>
-          <li>Accelerometer, gyroscope</li>
-          <li>GPS location</li>
-          <li>Camera</li>
-          <li>etc.</li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>iOS vs. Android</h1>
-      <div class="side"><img src="figures/iOS.png" style="position: absolute;top: calc(12 * var(--mm));left: calc(32 * var(--mm));width: 20%">
-        <p><strong>Developper</strong></p>
-        <ul>
-          <li>Apple</li>
-        </ul><br>
-        <p><strong>Programming language</strong></p>
-        <ul>
-          <li>Swift and/or Objective C</li>
-          <li>some C and C++</li>
-        </ul><br>
-        <p><strong>Development environment</strong></p>
-        <ul>
-          <li>XCode</li>
-        </ul><br>
-        <p><strong>Development kit</strong></p>
-        <ul>
-          <li>iOS SDK</li>
-        </ul>
-      </div>
-      <div class="side"><img src="figures/android.jpg" style="position: absolute;top: calc(8 * var(--mm));right: calc(5 * var(--mm));width: 15%">
-        <p><strong>Developper</strong></p>
-        <ul>
-          <li>Google</li>
-        </ul><br>
-        <p><strong>Programming language</strong></p>
-        <ul>
-          <li>Java</li>
-          <li>some C++</li>
-          <li>(Kotlin, possibly Swift in the future)</li>
-        </ul><br>
-        <p><strong>Development environment</strong></p>
-        <ul>
-          <li>Eclipse</li>
-        </ul><br>
-        <p><strong>Development kit</strong></p>
-        <ul>
-          <li>Android SDK</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Cross-Compilation</h1><img src="figures/cross_compilation.svg" style="width:100%">
-    </section>
-    <section class="single">
-      <h1>Constraints</h1>
-      <p>Limited resources</p>
-      <ul>
-        <li>Memory
-          <ul>
-            <li>Beware of memory leaks</li>
-            <li>Java (Android): garbage collector</li>
-            <li>Swift / Objective C (iOS): Automatic Reference Counting (ARC)</li>
-          </ul>
-        </li>
-        <li>Energy
-          <ul>
-            <li>Some activities are very demanding (GPS, camera, etc.)</li>
-            <li>Avoid inefficient algorithms (CPU drains battery)</li>
-          </ul>
-        </li>
-      </ul><br>
-      <p>Handle urgent events</p>
-      <ul>
-        <li>Low memory alert</li>
-        <li>Low battery alert</li>
-        <li>Phone call interruption</li>
+        <li>examples and discussions on the Internet are already outdated</li>
+        <li>this lecture is also already outdated</li>
       </ul>
-    </section>
-    <section class="single">
-      <h1>Other Constraints</h1><strong>User interface</strong>
+    </li>
+    <li>most elements are interconnected
       <ul>
-        <li>Simple and convenient to use</li>
-        <li>Should be reactive</li>
-        <li>Should fit with the OS and other apps ("look and feel")</li>
-      </ul><strong>Fiability</strong>
-      <ul>
-        <li>Avoid errors and crashing (no error handling when app crashes)</li>
-      </ul><strong>Security</strong>
-      <ul>
-        <li>Device holds sensitive personal data</li>
-        <li>Apps each have their own files directory and run in a sandbox (iOS only)</li>
-      </ul><strong>Speed</strong>
-      <ul>
-        <li>App should work on slower devices, with other apps using resources</li>
+        <li>no natural order to present things</li>
+        <li>examples require to use some elements before explaining them</li>
       </ul>
-    </section>
-    <section class="single">
-      <h1>First Example</h1>
-      <p>&rarr; Writing the first app in XCode&nbsp;: <em>Greeting</em></p>
-    </section>
-    <section class="single">
-      <h1>Workflow</h1>
-      <p>Mobile development is built around the user interface (screen):</p><br>
+    </li>
+  </ul>
+</section>
+<section class="section">
+  <h1>Mobile Development</h1>
+</section>
+<section>
+  <h1>Generalities</h1>
+  <p>Developping for an embedded system</p>
+  <ul>
+    <li>cross-compiling</li>
+    <li>stronger contraints
       <ul>
-        <li>Design <em>Graphical User Interface</em> (GUI)</li>
-        <li>Define and handle <em>events</em></li>
+        <li>memory</li>
+        <li>energy</li>
+        <li>CPU</li>
       </ul>
-    </section>
-    <section class="split">
-      <h1>Events</h1>
-      <div class="side">
-        <p>Interruption</p>
+    </li>
+  </ul><br>
+  <p>Conception based on user interface
+    <ul>
+      <li>Model-View-Controller architecture</li>
+      <li>Reactive programming</li>
+      <li>Event-based programming</li>
+    </ul>
+  </p>
+</section>
+<section>
+  <h1>Mobile Terminals</h1>
+  <div class="side"><img src="figures/iphone_ipad.jpg" style="width: 100%"></div>
+  <div class="side">
+    <ul>
+      <li>Miniature computer</li>
+      <li>Embedded system
         <ul>
-          <li>stops execution and jumps to a specific address
-            <ul>
-              <li>low level</li>
-              <li>hardware exceptions</li>
-            </ul>
-          </li>
-        </ul><br>
-        <p>Examples&nbsp;:</p>
-        <ul>
-          <li>division by zero</li>
-          <li>reset button</li>
-          <li>process interruption</li>
+          <li>limited resources</li>
         </ul>
-      </div>
-      <div class="side">
-        <p>Event</p>
+      </li>
+      <li>Reactive system
         <ul>
-          <li>stops execution and runs a procedure
-            <ul>
-              <li>higher level</li>
-              <li>handled by OS interface</li>
-            </ul>
-          </li>
-        </ul><br>
-        <p>Examples&nbsp;:</p>
-        <ul>
-          <li>click a button</li>
-          <li>move the cursor</li>
-          <li>thread finishes a computation</li>
+          <li>based on user interface</li>
         </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Call-back</h1>
-      <p>Events are handled by "call-backs"</p>
+      </li>
+      <li>Smartphone vs.Tablet
+        <ul>
+          <li>screen size is different</li>
+          <li>phone calls</li>
+          <li>most of the rest is identical</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Architecture</h1>
+  <div class="side"><img src="figures/appleA10.png" style="width: 100%"></div>
+  <div class="side">
+    <p>Processor</p>
+    <ul>
+      <li>ARM (designed by Apple)</li>
+    </ul><br>
+    <p>Storage</p>
+    <ul>
+      <li>Flash memory</li>
+    </ul><br>
+    <p>Other hardware</p>
+    <ul>
+      <li>Network</li>
+      <li>Accelerometer, gyroscope</li>
+      <li>GPS location</li>
+      <li>Camera</li>
+      <li>etc.</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>iOS vs. Android</h1>
+  <div class="side"><img src="figures/iOS.png" style="position: absolute;top: calc(12 * var(--mm));left: calc(32 * var(--mm));width: 20%">
+    <p><strong>Developper</strong></p>
+    <ul>
+      <li>Apple</li>
+    </ul><br>
+    <p><strong>Programming language</strong></p>
+    <ul>
+      <li>Swift and/or Objective C</li>
+      <li>some C and C++</li>
+    </ul><br>
+    <p><strong>Development environment</strong></p>
+    <ul>
+      <li>XCode</li>
+    </ul><br>
+    <p><strong>Development kit</strong></p>
+    <ul>
+      <li>iOS SDK</li>
+    </ul>
+  </div>
+  <div class="side"><img src="figures/android.jpg" style="position: absolute;top: calc(8 * var(--mm));right: calc(5 * var(--mm));width: 15%">
+    <p><strong>Developper</strong></p>
+    <ul>
+      <li>Google</li>
+    </ul><br>
+    <p><strong>Programming language</strong></p>
+    <ul>
+      <li>Java</li>
+      <li>some C++</li>
+      <li>(Kotlin, possibly Swift in the future)</li>
+    </ul><br>
+    <p><strong>Development environment</strong></p>
+    <ul>
+      <li>Eclipse</li>
+    </ul><br>
+    <p><strong>Development kit</strong></p>
+    <ul>
+      <li>Android SDK</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Cross-Compilation</h1><img src="figures/cross_compilation.svg" style="width:100%">
+</section>
+<section>
+  <h1>Constraints</h1>
+  <p>Limited resources</p>
+  <ul>
+    <li>Memory
       <ul>
-        <li>Enable an event
-          <ul>
-            <li>associate a routing procedure to an existing event</li>
-          </ul>
-        </li>
-        <li>Disable an event
-          <ul>
-            <li>remove association with procedure (event will not trigger the procedure if it happens)</li>
-          </ul>
-        </li>
-        <li>Wait for an event</li>
+        <li>Beware of memory leaks</li>
+        <li>Java (Android): garbage collector</li>
+        <li>Swift / Objective C (iOS): Automatic Reference Counting (ARC)</li>
       </ul>
-      <p>If an event is not enabled (or disabled), the OS will consider that there is nothing to be done.</p>
-      <p>The running program will not be notified of unhandled events occurring.</p>
-    </section>
-    <section class="single">
-      <h1>Example</h1>
-      <p>&rarr; Programmatical version of <em>Greeting</em></p>
-    </section>
-    <section class="section">
-      <h1>A Short Introduction<br>to Swift</h1>
-    </section>
-    <section class="split">
-      <h1>Swift</h1>
-      <div class="side">
+    </li>
+    <li>Energy
+      <ul>
+        <li>Some activities are very demanding (GPS, camera, etc.)</li>
+        <li>Avoid inefficient algorithms (CPU drains battery)</li>
+      </ul>
+    </li>
+  </ul><br>
+  <p>Handle urgent events</p>
+  <ul>
+    <li>Low memory alert</li>
+    <li>Low battery alert</li>
+    <li>Phone call interruption</li>
+  </ul>
+</section>
+<section>
+  <h1>Other Constraints</h1><strong>User interface</strong>
+  <ul>
+    <li>Simple and convenient to use</li>
+    <li>Should be reactive</li>
+    <li>Should fit with the OS and other apps ("look and feel")</li>
+  </ul><strong>Fiability</strong>
+  <ul>
+    <li>Avoid errors and crashing (no error handling when app crashes)</li>
+  </ul><strong>Security</strong>
+  <ul>
+    <li>Device holds sensitive personal data</li>
+    <li>Apps each have their own files directory and run in a sandbox (iOS only)</li>
+  </ul><strong>Speed</strong>
+  <ul>
+    <li>App should work on slower devices, with other apps using resources</li>
+  </ul>
+</section>
+<section>
+  <h1>First Example</h1>
+  <p>&rarr; Writing the first app in XCode&nbsp;: <em>Greeting</em></p>
+</section>
+<section>
+  <h1>Workflow</h1>
+  <p>Mobile development is built around the user interface (screen):</p><br>
+  <ul>
+    <li>Design <em>Graphical User Interface</em> (GUI)</li>
+    <li>Define and handle <em>events</em></li>
+  </ul>
+</section>
+<section>
+  <h1>Events</h1>
+  <div class="side">
+    <p>Interruption</p>
+    <ul>
+      <li>stops execution and jumps to a specific address
         <ul>
-          <li>iOS applications should be programmed using objective C or Swift (since iOS 8)</li>
-          <li>Swift is highly recommended (simpler, faster and better supported from now on)</li>
-          <li>Modern syntax inspired by modern languages</li>
-          <li>Heavily object-oriented</li>
+          <li>low level</li>
+          <li>hardware exceptions</li>
         </ul>
-      </div>
-      <div class="side">
+      </li>
+    </ul><br>
+    <p>Examples&nbsp;:</p>
+    <ul>
+      <li>division by zero</li>
+      <li>reset button</li>
+      <li>process interruption</li>
+    </ul>
+  </div>
+  <div class="side">
+    <p>Event</p>
+    <ul>
+      <li>stops execution and runs a procedure
         <ul>
-          <li>Developed by Apple and published in 2014</li>
-          <li>Lighter and more elegant syntax</li>
-          <li>Better performance with LLVM compiler</li>
-          <li>Can be tested with playgrounds or read-eval-print loop (REPL)</li>
+          <li>higher level</li>
+          <li>handled by OS interface</li>
         </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>General Syntax</h1>
-      <div class="side">
-        <pre><code class="cpp">let a = 10
+      </li>
+    </ul><br>
+    <p>Examples&nbsp;:</p>
+    <ul>
+      <li>click a button</li>
+      <li>move the cursor</li>
+      <li>thread finishes a computation</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Call-back</h1>
+  <p>Events are handled by "call-backs"</p>
+  <ul>
+    <li>Enable an event
+      <ul>
+        <li>associate a routing procedure to an existing event</li>
+      </ul>
+    </li>
+    <li>Disable an event
+      <ul>
+        <li>remove association with procedure (event will not trigger the procedure if it happens)</li>
+      </ul>
+    </li>
+    <li>Wait for an event</li>
+  </ul>
+  <p>If an event is not enabled (or disabled), the OS will consider that there is nothing to be done.</p>
+  <p>The running program will not be notified of unhandled events occurring.</p>
+</section>
+<section>
+  <h1>Example</h1>
+  <p>&rarr; Programmatical version of <em>Greeting</em></p>
+</section>
+<section class="section">
+  <h1>A Short Introduction<br>to Swift</h1>
+</section>
+<section>
+  <h1>Swift</h1>
+  <div class="side">
+    <ul>
+      <li>iOS applications should be programmed using objective C or Swift (since iOS 8)</li>
+      <li>Swift is highly recommended (simpler, faster and better supported from now on)</li>
+      <li>Modern syntax inspired by modern languages</li>
+      <li>Heavily object-oriented</li>
+    </ul>
+  </div>
+  <div class="side">
+    <ul>
+      <li>Developed by Apple and published in 2014</li>
+      <li>Lighter and more elegant syntax</li>
+      <li>Better performance with LLVM compiler</li>
+      <li>Can be tested with playgrounds or read-eval-print loop (REPL)</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>General Syntax</h1>
+  <div class="side">
+    <pre><code class="cpp">let a = 10
 var b: Int = 12
 
 b += a
@@ -401,19 +404,19 @@ if isPrime(x) {
 } else {
   println("\(x) is not prime.")
 }</code></pre>
-      </div>
-      <div class="side">
-        <ul>
-          <li>Variables are declared with <code>let</code> (immutable) or <code>var</code> (mutable)</li>
-          <li>Variables are typed but type can be inferred by the compiler</li>
-          <li>Functions are declared with <code>func</code>, arguments and return values are typed</li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Optionals</h1>
-      <div class="side">
-        <pre><code class="swift">var a: Int? = 12
+  </div>
+  <div class="side">
+    <ul>
+      <li>Variables are declared with <code>let</code> (immutable) or <code>var</code> (mutable)</li>
+      <li>Variables are typed but type can be inferred by the compiler</li>
+      <li>Functions are declared with <code>func</code>, arguments and return values are typed</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Optionals</h1>
+  <div class="side">
+    <pre><code class="swift">var a: Int? = 12
 var b = 10
 
 b += a  // error, a could be nil
@@ -428,40 +431,40 @@ if let aValue = a {
   // conditional unwrapping
   b += aValue
 }</code></pre>
-      </div>
-      <div class="side">
-        <p>Swift introduces “optional” versions of all types</p>
-        <ul>
-          <li>An optional type <code>T?</code> represents a value that can be either <code>nil</code> or a value of type <code>T</code></li>
-          <li>Always make sure an optional is not nil before using its value</li>
-          <li>Optionals can be unwrapped to work with the non <code>nil</code> value</li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Object Programming</h1>
-      <div class="side">
-        <p>In a “classical” program</p>
-        <ul>
-          <li>program has variables</li>
-          <li>program calls functions that affect variables</li>
-        </ul>
-      </div>
-      <div class="side">
-        <p>In object-oriented programming</p>
-        <ul>
-          <li>variables contain <em>objects</em></li>
-          <li>objects contain their own “sub-variables” called <em>properties</em></li>
-          <li class="skip">objects carry their own functions called <em>methods</em></li>
-          <li>possible to access and modify the properies of each object</li>
-          <li>possible to call a specific object method (each objects does its own work)</li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Classes and Instances</h1>
-      <div class="side">
-        <pre><code class="swift">class Person {
+  </div>
+  <div class="side">
+    <p>Swift introduces “optional” versions of all types</p>
+    <ul>
+      <li>An optional type <code>T?</code> represents a value that can be either <code>nil</code> or a value of type <code>T</code></li>
+      <li>Always make sure an optional is not nil before using its value</li>
+      <li>Optionals can be unwrapped to work with the non <code>nil</code> value</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Object Programming</h1>
+  <div class="side">
+    <p>In a “classical” program</p>
+    <ul>
+      <li>program has variables</li>
+      <li>program calls functions that affect variables</li>
+    </ul>
+  </div>
+  <div class="side">
+    <p>In object-oriented programming</p>
+    <ul>
+      <li>variables contain <em>objects</em></li>
+      <li>objects contain their own “sub-variables” called <em>properties</em></li>
+      <li class="skip">objects carry their own functions called <em>methods</em></li>
+      <li>possible to access and modify the properies of each object</li>
+      <li>possible to call a specific object method (each objects does its own work)</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Classes and Instances</h1>
+  <div class="side">
+    <pre><code class="swift">class Person {
   var name: String // a property
   var age: Int
 
@@ -481,20 +484,20 @@ if let aValue = a {
     return age - other.age
   }
 }</code></pre>
-      </div>
-      <div class="side">
-        <ul>
-          <li>A class is a general description of how objects should be and behave</li>
-          <li>Classes have properties and methods</li>
-          <li>An instance is a specific object, that matches the description of the class</li>
-          <li>Different instances of the same class can have different values of their properties</li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Inheritance</h1>
-      <div class="side">
-        <pre><code class="swift">class Student: Person {
+  </div>
+  <div class="side">
+    <ul>
+      <li>A class is a general description of how objects should be and behave</li>
+      <li>Classes have properties and methods</li>
+      <li>An instance is a specific object, that matches the description of the class</li>
+      <li>Different instances of the same class can have different values of their properties</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Inheritance</h1>
+  <div class="side">
+    <pre><code class="swift">class Student: Person {
   var school: String?
   var year: Int?
 
@@ -519,48 +522,48 @@ if let aValue = a {
     return nil
   }
 }</code></pre>
-      </div>
-      <div class="side">
-        <ul>
-          <li>Classes can be defined as a refinement of an existing one</li>
-          <ul>
-            <li>the existing class is the parent of the new class (child)</li>
-            <li>inherits properties and methods from its parent</li>
-          </ul>
-          <li>Methods can be redefined in the child (override)</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Creating Objects</h1>
-      <p>To create an object</p>
+  </div>
+  <div class="side">
+    <ul>
+      <li>Classes can be defined as a refinement of an existing one</li>
       <ul>
-        <li>allocate the necessary memory</li>
-        <li>initialize the object according to the specifications of the class</li>
+        <li>the existing class is the parent of the new class (child)</li>
+        <li>inherits properties and methods from its parent</li>
       </ul>
-      <p>These steps are performed by the <code>init</code> function</p><br>
-      <p>Objects are removed from memory automatically when nothing points to them (see later section)</p>
-    </section>
-    <section class="split">
-      <h1>Intializers</h1>
-      <div class="side center"><img src="figures/initializers.png" style="width: 100%"></div>
-      <div class="side">
-        <p>Classes can have more than one initializer</p>
-        <ul>
-          <li>Some are <em>designated</em> initializers, others are <em>convenience</em> initializers</li>
-          <li>Designated initializers must call a designated initializer from the parent class</li>
-          <li>Convenience initializers must call another initializer from the same class (and ultimately a designated initializer)</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Illustration</h1>
-      <p>Back to the <em>Greeting</em> app.</p>
-    </section>
-    <section class="split">
-      <h1>Deinit</h1>
-      <div class="side">
-        <pre><code class="swift">class Player {
+      <li>Methods can be redefined in the child (override)</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Creating Objects</h1>
+  <p>To create an object</p>
+  <ul>
+    <li>allocate the necessary memory</li>
+    <li>initialize the object according to the specifications of the class</li>
+  </ul>
+  <p>These steps are performed by the <code>init</code> function</p><br>
+  <p>Objects are removed from memory automatically when nothing points to them (see later section)</p>
+</section>
+<section>
+  <h1>Intializers</h1>
+  <div class="side center"><img src="figures/initializers.png" style="width: 100%"></div>
+  <div class="side">
+    <p>Classes can have more than one initializer</p>
+    <ul>
+      <li>Some are <em>designated</em> initializers, others are <em>convenience</em> initializers</li>
+      <li>Designated initializers must call a designated initializer from the parent class</li>
+      <li>Convenience initializers must call another initializer from the same class (and ultimately a designated initializer)</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Illustration</h1>
+  <p>Back to the <em>Greeting</em> app.</p>
+</section>
+<section>
+  <h1>Deinit</h1>
+  <div class="side">
+    <pre><code class="swift">class Player {
 
   var coinsInPurse: Int
 
@@ -576,43 +579,43 @@ if let aValue = a {
     Bank.get(coins)
   }
 }</code></pre>
-      </div>
-      <div class="side">
-        <p>When an object is removed from memory, its <code>deinit</code> function is called</p><br>
-        <p>This function should be used to clean up the objects or data owned by the removed object</p><br>
-        <p><code>deinit</code> is called automatically, and should never be called manually</p>
-      </div>
-    </section>
-    <section class="section">
-      <h1>Graphical User Interface</h1>
-    </section>
-    <section class="split">
-      <h1>Model View Controller</h1>
-      <div class="side center"><img src="figures/mvc_sketch.jpg" style="width: 100%"></div>
-      <div class="side">
-        <p>Design pattern, for structuring an application in 3 parts</p>
-        <ul>
-          <li><em>model</em>&nbsp;: data of the application</li>
-          <li><em>view</em>&nbsp;: user interface, representation of data from the model</li>
-          <li><em>controller</em>&nbsp;: management logic (program)</li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Model View Controller</h1>
-      <div class="side center"><img src="figures/mvc.png" style="width: 100%"></div>
-      <div class="side">
-        <ul>
-          <li>Communication protocol between separate parts</li>
-          <li>Internal implementation of parts is independent</li>
-          <li>Better structure, easier to maintain</li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Model</h1>
-      <div class="side">
-        <pre><code class="swift">class Player {
+  </div>
+  <div class="side">
+    <p>When an object is removed from memory, its <code>deinit</code> function is called</p><br>
+    <p>This function should be used to clean up the objects or data owned by the removed object</p><br>
+    <p><code>deinit</code> is called automatically, and should never be called manually</p>
+  </div>
+</section>
+<section class="section">
+  <h1>Graphical User Interface</h1>
+</section>
+<section>
+  <h1>Model View Controller</h1>
+  <div class="side center"><img src="figures/mvc_sketch.jpg" style="width: 100%"></div>
+  <div class="side">
+    <p>Design pattern, for structuring an application in 3 parts</p>
+    <ul>
+      <li><em>model</em>&nbsp;: data of the application</li>
+      <li><em>view</em>&nbsp;: user interface, representation of data from the model</li>
+      <li><em>controller</em>&nbsp;: management logic (program)</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Model View Controller</h1>
+  <div class="side center"><img src="figures/mvc.png" style="width: 100%"></div>
+  <div class="side">
+    <ul>
+      <li>Communication protocol between separate parts</li>
+      <li>Internal implementation of parts is independent</li>
+      <li>Better structure, easier to maintain</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Model</h1>
+  <div class="side">
+    <pre><code class="swift">class Player {
   var cards: [Card]
   var game: Game
   var points: Int
@@ -636,89 +639,89 @@ if let aValue = a {
 
   ...
 }</code></pre>
-      </div>
-      <div class="side">
-        <p>In iOS, the model is represented by the data object classes</p>
+  </div>
+  <div class="side">
+    <p>In iOS, the model is represented by the data object classes</p>
+    <ul>
+      <li>the model can be stored in the terminal memory in different forms (<em>Core Data</em>, archiving, <em>NSUserDefaults</em>)</li>
+      <li>organization of the data structures with classes and attributes</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>View</h1>
+  <div class="side center"><img src="figures/UIView.jpg" style="width: 90%"></div>
+  <div class="side">
+    <p><em>Cocoa Touch</em> (iOS UI Framework) defines a class <code>UIView</code></p>
+    <ul>
+      <li>all views should inherit from <code>UIView</code></li>
+      <li>many subclasses are already defined</li>
+      <li>developers can subclass any existing class to add specific behavior</li>
+    </ul><br>
+    <p><strong>Note&nbsp;:</strong> the elements added to the Storyboard are subclasses of <code>UIView</code></p>
+  </div>
+</section>
+<section>
+  <h1>UIView</h1>
+  <div class="side">
+    <p>To create a user interface</p>
+    <ul>
+      <li>create a view hierarchy</li>
+      <li>associate specific code (in the controller) to the possible events that the view elements can react to</li>
+      <ul>
+        <li>using the existing subclasses ensures a uniform experience for the users across apps</li>
+      </ul>
+    </ul>
+  </div>
+  <div class="side">
+    <div class="only" data-step="0">
+      <p>What is a view&nbsp;?</p>
+      <ul>
+        <li>A rectangle</li>
         <ul>
-          <li>the model can be stored in the terminal memory in different forms (<em>Core Data</em>, archiving, <em>NSUserDefaults</em>)</li>
-          <li>organization of the data structures with classes and attributes</li>
+          <li>in which it is possible to draw</li>
+          <li>that reacts to events</li>
+          <li>contained in a window (UIWindow)</li>
         </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>View</h1>
-      <div class="side center"><img src="figures/UIView.jpg" style="width: 100%"></div>
-      <div class="side">
-        <p><em>Cocoa Touch</em> (iOS UI Framework) defines a class <code>UIView</code></p>
+      </ul>
+    </div>
+    <div class="only">
+      <p>View hierarchy</p>
+      <ul>
+        <li>each view is placed in a superview</li>
+        <li>a view can have any number of subviews</li>
+        <li>lower level views are drawn on top of higher level</li>
         <ul>
-          <li>all views should inherit from <code>UIView</code></li>
-          <li>many subclasses are already defined</li>
-          <li>developers can subclass any existing class to add specific behavior</li>
-        </ul><br>
-        <p><strong>Note&nbsp;:</strong> the elements added to the Storyboard are subclasses of <code>UIView</code></p>
-      </div>
-    </section>
-    <section class="split">
-      <h1>UIView</h1>
-      <div class="side">
-        <p>To create a user interface</p>
-        <ul>
-          <li>create a view hierarchy</li>
-          <li>associate specific code (in the controller) to the possible events that the view elements can react to</li>
-          <ul>
-            <li>using the existing subclasses ensures a uniform experience for the users across apps</li>
-          </ul>
+          <li>subviews of a same view are drawn one after the other</li>
+          <li>views can have transparent elements</li>
         </ul>
-      </div>
-      <div class="side">
-        <div class="only" data-step="0">
-          <p>What is a view&nbsp;?</p>
-          <ul>
-            <li>A rectangle</li>
-            <ul>
-              <li>in which it is possible to draw</li>
-              <li>that reacts to events</li>
-              <li>contained in a window (UIWindow)</li>
-            </ul>
-          </ul>
-        </div>
-        <div class="only">
-          <p>View hierarchy</p>
-          <ul>
-            <li>each view is placed in a superview</li>
-            <li>a view can have any number of subviews</li>
-            <li>lower level views are drawn on top of higher level</li>
-            <ul>
-              <li>subviews of a same view are drawn one after the other</li>
-              <li>views can have transparent elements</li>
-            </ul>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Position</h1>
-      <div class="side">
-        <pre><code class="swift">let labelFrame = CGRect(x: 20, y: 50, width: 300, height: 50)
+      </ul>
+    </div>
+  </div>
+</section>
+<section>
+  <h1>Position</h1>
+  <div class="side">
+    <pre><code class="swift">let labelFrame = CGRect(x: 20, y: 50, width: 300, height: 50)
 let label = UILabel(frame: labelFrame)
 label.text = "Hello"
 view.addSubview(label)
 
 label.center = CGPoint(x: 170, y: 200)</code></pre>
-      </div>
-      <div class="side">
-        <A>view is positioned relatively to its parent view&nbsp;:</A>
-        <ul>
-          <li>the <code>frame</code> is a <code>CGRect</code> that defines the position and size of a view relative to its parent</li>
-          <li>the <code>center</code> is a <code>CGPoint</code> that positions the view without changing its size</li>
-          <li>the <code>bounds</code> is a <code>CGRect</code> describing the frame of the view in its own coordinates. Usually origin is <em>(0, 0)</em></li>
-        </ul>
-      </div>
-    </section>
-    <section class="split">
-      <h1>UIView Hierarchy</h1>
-      <div class="side">
-        <pre><code class="swift">var superview: UIView?
+  </div>
+  <div class="side">
+    <A>view is positioned relatively to its parent view&nbsp;:</A>
+    <ul>
+      <li>the <code>frame</code> is a <code>CGRect</code> that defines the position and size of a view relative to its parent</li>
+      <li>the <code>center</code> is a <code>CGPoint</code> that positions the view without changing its size</li>
+      <li>the <code>bounds</code> is a <code>CGRect</code> describing the frame of the view in its own coordinates. Usually origin is <em>(0, 0)</em></li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>UIView Hierarchy</h1>
+  <div class="side">
+    <pre><code class="swift">var superview: UIView?
 var subviews: [UIView]
 var window: UIWindow?
 
@@ -731,17 +734,17 @@ func insertSubview(UIView, aboveSubview: UIView)
 func insertSubview(UIView, belowSubview: UIView)
 func exchangeSubview(at: Int, withSubviewAt: Int)
 func isDescendant(of: UIView) -> Bool</code></pre>
-      </div>
-      <div class="side">
-        <ul>
-          <li>The UIView class has methods to manipulate the hierarchy</li>
-          <li>The superview owns its subviews</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Example&nbsp;: <em>Dominion</em></h1>
-      <pre><code style="font-size: calc(5 * var(--pt))">GameView
+  </div>
+  <div class="side">
+    <ul>
+      <li>The UIView class has methods to manipulate the hierarchy</li>
+      <li>The superview owns its subviews</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Example&nbsp;: <em>Dominion</em></h1>
+  <pre><code style="font-size: calc(5 * var(--pt))">GameView
   LogView
     UITextView
   StacksView
@@ -770,121 +773,121 @@ func isDescendant(of: UIView) -> Bool</code></pre>
     HandView
       CardView (x3)
         UIImage</code></pre><img src="figures/dominion.png" style="position: absolute; width: 65%; right: var(--mm)">
-    </section>
-    <section class="split">
-      <h1>About the Views</h1>
-      <div class="side center"><img src="figures/coordinates.jpg" style="width: 60%"></div>
-      <div class="side">
-        <p>Cartesian coordinates system</p>
-        <ul>
-          <li><em>(0, 0)</em> at the top-left corner</li>
-          <li>coordinates are in points (not pixels)</li>
-          <li>handles screen density differences seamlessly</li>
-          <ul>
-            <li>iPhone/iPod 3.5" (1 to 4)&nbsp;: 320 &times; 480</li>
-            <li>iPhone/iPod 4" (5)&nbsp;: 320 &times; 568</li>
-            <li>iPhone 4.7" (6 to 8)&nbsp;: 375 &times; 667</li>
-            <li>iPhone 5.5" (6+ to 8+)&nbsp;: 414 &times; 736</li>
-            <li>iPhone X&nbsp;: 375 &times; 812</li>
-            <li>iPad/iPad mini&nbsp;: 768 &times; 1024</li>
-            <li>iPad Pro 10.5"&nbsp;: 834 &times; 1112</li>
-            <li>iPad Pro 12.9"&nbsp;: 1024 &times; 1366</li>
-          </ul>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Create a View</h1>
-      <p>Create a class that inherits from <code>UIView</code></p>
+</section>
+<section>
+  <h1>About the Views</h1>
+  <div class="side center"><img src="figures/coordinates.jpg" style="width: 60%"></div>
+  <div class="side">
+    <p>Cartesian coordinates system</p>
+    <ul>
+      <li><em>(0, 0)</em> at the top-left corner</li>
+      <li>coordinates are in points (not pixels)</li>
+      <li>handles screen density differences seamlessly</li>
       <ul>
-        <li>If necessary, define the method <code>drawRect</code></li>
-        <li>If the view must be refreshed, use <code>setNeedsDisplay</code></li>
-      </ul><br>
-      <p>See example&nbsp;: <em>Multiplication</em></p>
-    </section>
-    <section class="single">
-      <h1>UIViewController</h1><img src="figures/viewcontroller.png" style="width: calc(100 * var(--mm)); position: absolute; top: calc(15 * var(--mm)); right: 0">
-      <ul style="z-index: 1; position: absolute; top: calc(43 * var(--mm)); width: 70%">
-        <li><em>View controllers</em> are objects that manage a view hierarchy</li>
-        <li>The class <code>UIViewController</code> implements view controllers</li>
-        <li>Each controller has a single main view</li>
-        <li>View controllers are responsible for loading, displaying and releasing the view when needed</li>
-        <li>View controllers also (should) manage the events that take place in the view</li>
+        <li>iPhone/iPod 3.5" (1 to 4)&nbsp;: 320 &times; 480</li>
+        <li>iPhone/iPod 4" (5)&nbsp;: 320 &times; 568</li>
+        <li>iPhone 4.7" (6 to 8)&nbsp;: 375 &times; 667</li>
+        <li>iPhone 5.5" (6+ to 8+)&nbsp;: 414 &times; 736</li>
+        <li>iPhone X&nbsp;: 375 &times; 812</li>
+        <li>iPad/iPad mini&nbsp;: 768 &times; 1024</li>
+        <li>iPad Pro 10.5"&nbsp;: 834 &times; 1112</li>
+        <li>iPad Pro 12.9"&nbsp;: 1024 &times; 1366</li>
       </ul>
-    </section>
-    <section class="single">
-      <h1>Classes Hierarchy</h1>
-      <div class="center"><img src="figures/viewcontrollerhierarchy.png" style="width: 65%"></div>
-    </section>
-    <section class="single">
-      <h1>View Controller Cycle</h1>
-      <div class="only" data-step="0">
-        <p>Important methods&nbsp;:</p>
-        <ul>
-          <li><code>init</code>&nbsp;: initialization of the view controller</li>
-          <li><code>loadView</code>, <code>viewDidLoad</code>&nbsp;: creation of the view</li>
-          <li><code>viewWillAppear</code>, <code>viewDidAppear</code>&nbsp;: the view is displayed on screen</li>
-          <li><code>viewWillDisappear</code>, <code>viewDidDisappear</code>&nbsp;: the view is removed from screen</li>
-        </ul>
-      </div>
-      <div class="only center"><img src="figures/viewcontrollercycle.png" style="height: calc(70 * var(--mm))"></div>
-    </section>
-    <section class="split">
-      <h1>Kinds of View Controllers</h1>
-      <div class="side">
-        <p>Content view controllers display content</p>
-        <ul>
-          <li>simplest view controller</li>
-          <li>manages one view hierarchy</li>
-          <li>a view hierarchy is usually managed by a single content VC</li>
-        </ul><br>
-        <p>examples&nbsp;: table view controller, most user-made view controllers</p>
-      </div>
-      <div class="side">
-        <p>Container view controllers arrange content of other view controllers</p>
-        <ul>
-          <li>contains content owned by other view controllers</li>
-          <li>manages a list of other view controllers (children)</li>
-        </ul><br>
-        <p>examples&nbsp;: navigation controller, tab bar controller, split view controller</p>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Nested Content VC</h1>
-      <div class="side">
-        <pre><code class="swift">let subVC = SomeViewController()
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Create a View</h1>
+  <p>Create a class that inherits from <code>UIView</code></p>
+  <ul>
+    <li>If necessary, define the method <code>drawRect</code></li>
+    <li>If the view must be refreshed, use <code>setNeedsDisplay</code></li>
+  </ul><br>
+  <p>See example&nbsp;: <em>Multiplication</em></p>
+</section>
+<section>
+  <h1>UIViewController</h1><img src="figures/viewcontroller.png" style="width: calc(100 * var(--mm)); position: absolute; top: calc(15 * var(--mm)); right: 0">
+  <ul style="z-index: 1; position: absolute; top: calc(43 * var(--mm)); width: 70%">
+    <li><em>View controllers</em> are objects that manage a view hierarchy</li>
+    <li>The class <code>UIViewController</code> implements view controllers</li>
+    <li>Each controller has a single main view</li>
+    <li>View controllers are responsible for loading, displaying and releasing the view when needed</li>
+    <li>View controllers also (should) manage the events that take place in the view</li>
+  </ul>
+</section>
+<section>
+  <h1>Classes Hierarchy</h1>
+  <div class="center"><img src="figures/viewcontrollerhierarchy.png" style="width: 65%"></div>
+</section>
+<section>
+  <h1>View Controller Cycle</h1>
+  <div class="only" data-step="0">
+    <p>Important methods&nbsp;:</p>
+    <ul>
+      <li><code>init</code>&nbsp;: initialization of the view controller</li>
+      <li><code>loadView</code>, <code>viewDidLoad</code>&nbsp;: creation of the view</li>
+      <li><code>viewWillAppear</code>, <code>viewDidAppear</code>&nbsp;: the view is displayed on screen</li>
+      <li><code>viewWillDisappear</code>, <code>viewDidDisappear</code>&nbsp;: the view is removed from screen</li>
+    </ul>
+  </div>
+  <div class="only center"><img src="figures/viewcontrollercycle.png" style="height: calc(70 * var(--mm))"></div>
+</section>
+<section>
+  <h1>Kinds of View Controllers</h1>
+  <div class="side">
+    <p>Content view controllers display content</p>
+    <ul>
+      <li>simplest view controller</li>
+      <li>manages one view hierarchy</li>
+      <li>a view hierarchy is usually managed by a single content VC</li>
+    </ul><br>
+    <p>examples&nbsp;: table view controller, most user-made view controllers</p>
+  </div>
+  <div class="side">
+    <p>Container view controllers arrange content of other view controllers</p>
+    <ul>
+      <li>contains content owned by other view controllers</li>
+      <li>manages a list of other view controllers (children)</li>
+    </ul><br>
+    <p>examples&nbsp;: navigation controller, tab bar controller, split view controller</p>
+  </div>
+</section>
+<section>
+  <h1>Nested Content VC</h1>
+  <div class="side">
+    <pre><code class="swift">let subVC = SomeViewController()
 
 addChildViewController(subVC)
 subVC.didMoveToParentViewController(self)
 view.addSubview(subVC.view)</code></pre>
-      </div>
-      <div class="side">
-        <p>Most of the time one content view controller is sufficient</p>
-        <p>It is possible to nest content view controllers when necessary</p>
-        <ul>
-          <li>create the sub controller</li>
-          <li>add it as a child to the main controller</li>
-          <li>notify the child that it has been added to the parent</li>
-          <li>add the child's view to the parent's view</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Navigation Controller</h1>
-      <div class="center"><img src="figures/navigation.png" style="width: 65%"></div>
-    </section>
-    <section class="single">
-      <h1>Tab Bar Controller</h1>
-      <div class="center"><img src="figures/tabbar.png" style="width: 65%"></div>
-    </section>
-    <section class="single">
-      <h1>Split View Controller</h1>
-      <div class="center"><img src="figures/splitview.png" style="width: 65%"></div>
-    </section>
-    <section class="split">
-      <h1>Create a Controller</h1>
-      <div class="side">
-        <pre><code class="swift">var view: UIView!
+  </div>
+  <div class="side">
+    <p>Most of the time one content view controller is sufficient</p>
+    <p>It is possible to nest content view controllers when necessary</p>
+    <ul>
+      <li>create the sub controller</li>
+      <li>add it as a child to the main controller</li>
+      <li>notify the child that it has been added to the parent</li>
+      <li>add the child's view to the parent's view</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Navigation Controller</h1>
+  <div class="center"><img src="figures/navigation.png" style="width: 65%"></div>
+</section>
+<section>
+  <h1>Tab Bar Controller</h1>
+  <div class="center"><img src="figures/tabbar.png" style="width: 65%"></div>
+</section>
+<section>
+  <h1>Split View Controller</h1>
+  <div class="center"><img src="figures/splitview.png" style="width: 65%"></div>
+</section>
+<section>
+  <h1>Create a Controller</h1>
+  <div class="side">
+    <pre><code class="swift">var view: UIView!
 var isViewLoaded: Bool
 
 func loadView()
@@ -898,71 +901,71 @@ func viewWillLayoutSubviews()
 func viewDidLayoutSubviews()
 func updateViewConstraints()
 ...</code></pre>
-      </div>
-      <div class="side">
-        <ul>
-          <li>Create new class that inherits from <code>UIViewController</code></li>
-          <li>Override relevant methods to define management of view</li>
-          <li>Define when the controller should be loaded</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Initialization</h1>
-      <p>The UIViewController class defines two possible initializers</p>
-      <ul>
-        <li><code>init(nibName nibName: String?, bundle nibBundle: NSBundle?)</code> is used when creating a new view controller programmatically</li>
-        <li><code>init(coder aDecoder: NSCoder)</code> is used when the view controller is automatically created by iOS (from a storyboard for instance)</li>
-      </ul><br>
-      <p><strong>Warning&nbsp;:</strong> The view is not loaded at the initialization of the controller</p>
-      <ul>
-        <li>Accessing view elements will crash the application</li>
-        <li>Initialization of the view should be done in <code>viewDidLoad</code> and <code>viewDidAppear</code></li>
-      </ul>
-    </section>
-    <section class="single">
-      <h1>Initialization</h1>
-      <ul>
-        <li>Simplest way (with empty view)&nbsp;:
-          <pre><code class="swift"> let viewController = UIViewController(nibName: nil, bundle: nil)</code></pre>
-        </li>
-        <li>When subclassing (with empty view)&nbsp;:
-          <pre><code class="swift">class MyViewController: UIViewController {
+  </div>
+  <div class="side">
+    <ul>
+      <li>Create new class that inherits from <code>UIViewController</code></li>
+      <li>Override relevant methods to define management of view</li>
+      <li>Define when the controller should be loaded</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Initialization</h1>
+  <p>The UIViewController class defines two possible initializers</p>
+  <ul>
+    <li><code>init(nibName nibName: String?, bundle nibBundle: NSBundle?)</code> is used when creating a new view controller programmatically</li>
+    <li><code>init(coder aDecoder: NSCoder)</code> is used when the view controller is automatically created by iOS (from a storyboard for instance)</li>
+  </ul><br>
+  <p><strong>Warning&nbsp;:</strong> The view is not loaded at the initialization of the controller</p>
+  <ul>
+    <li>Accessing view elements will crash the application</li>
+    <li>Initialization of the view should be done in <code>viewDidLoad</code> and <code>viewDidAppear</code></li>
+  </ul>
+</section>
+<section>
+  <h1>Initialization</h1>
+  <ul>
+    <li>Simplest way (with empty view)&nbsp;:
+      <pre><code class="swift"> let viewController = UIViewController(nibName: nil, bundle: nil)</code></pre>
+    </li>
+    <li>When subclassing (with empty view)&nbsp;:
+      <pre><code class="swift">class MyViewController: UIViewController {
   init() {
     super.init(nibName: nil, bundle: nil)
   }
 }</code></pre>
-        </li>
-        <li>If using a <code>Nib</code> file (view is created with Nib contents)&nbsp;:
-          <pre><code class="swift">class MyViewController: UIViewController {
+    </li>
+    <li>If using a <code>Nib</code> file (view is created with Nib contents)&nbsp;:
+      <pre><code class="swift">class MyViewController: UIViewController {
   init() {
   super.init(nibName: "nameOfNibFile", bundle: nil)
   }
 }</code></pre>
-        </li>
-      </ul>
-    </section>
-    <section class="single">
-      <h1>Example</h1>
-      <p>A simple example&nbsp;: <em>Quiz</em></p>
-      <p>Slightly more complex example&nbsp;: <em>Tabs</em> (<code>UITabBarController</code>)</p>
-    </section>
-    <section class="split">
-      <h1>Switching Controllers</h1>
-      <div class="side">
-        <div class="only" data-step="0">
-          <pre><code class="swift">let vc = MyViewController()
+    </li>
+  </ul>
+</section>
+<section>
+  <h1>Example</h1>
+  <p>A simple example&nbsp;: <em>Quiz</em></p>
+  <p>Slightly more complex example&nbsp;: <em>Tabs</em> (<code>UITabBarController</code>)</p>
+</section>
+<section>
+  <h1>Switching Controllers</h1>
+  <div class="side">
+    <div class="only" data-step="0">
+      <pre><code class="swift">let vc = MyViewController()
 UIApplication.sharedApplication().keyWindow!.
   rootViewController = vc</code></pre>
-        </div>
-        <div class="only">
-          <pre><code class="swift">let vc = MyViewController()
+    </div>
+    <div class="only">
+      <pre><code class="swift">let vc = MyViewController()
 presentViewController(vc, animated: true, completion: nil)
 dismissViewControllerAnimated(true, completion: nil)</code></pre><br>
-          <p>Example&nbsp;: <em>SwitchController</em></p>
-        </div>
-        <div class="only" data-start="2">
-          <pre><code class="swift">// create a navigation controller and its
+      <p>Example&nbsp;: <em>SwitchController</em></p>
+    </div>
+    <div class="only" data-start="2">
+      <pre><code class="swift">// create a navigation controller and its
 // root controller
 let vc = ViewController()
 let nc = UINavigationController(rootViewController: vc)
@@ -974,101 +977,101 @@ navigationController?.pushViewController(vc2, animated: true)
 // the previous one)
 navigationController?.
   popViewControllerAnimated(true)</code></pre><br>
-          <p>Example&nbsp;: <em>Navigation Controller</em></p>
-        </div>
-      </div>
-      <div class="side">
-        <p>There are many ways to switch from a view controller to another one (and change the displayed view)</p>
-        <ul>
-          <li class="uncover" data-start="0">changing the root controller of the application window (should be avoided)</li>
-          <li class="uncover">presenting a new controller</li>
-          <li class="uncover">using a navigation controller</li>
-        </ul><br>
-        <p class="uncover">Controller transitions can be defined in the Interface Builder (storyboards)</p>
-      </div>
-    </section>
-    <section class="section">
-      <h1>Responding to Events</h1>
-    </section>
-    <section class="single">
-      <h1>Touch and Motion</h1><img src="figures/events.png" style="width: 45%; position:absolute; top: 40%; right: 1%">
-      <p>There are 4 kinds of basic events to interact with the UI&nbsp;:</p>
+      <p>Example&nbsp;: <em>Navigation Controller</em></p>
+    </div>
+  </div>
+  <div class="side">
+    <p>There are many ways to switch from a view controller to another one (and change the displayed view)</p>
+    <ul>
+      <li class="uncover" data-start="0">changing the root controller of the application window (should be avoided)</li>
+      <li class="uncover">presenting a new controller</li>
+      <li class="uncover">using a navigation controller</li>
+    </ul><br>
+    <p class="uncover">Controller transitions can be defined in the Interface Builder (storyboards)</p>
+  </div>
+</section>
+<section class="section">
+  <h1>Responding to Events</h1>
+</section>
+<section>
+  <h1>Touch and Motion</h1><img src="figures/events.png" style="width: 45%; position:absolute; top: 40%; right: 1%">
+  <p>There are 4 kinds of basic events to interact with the UI&nbsp;:</p>
+  <ul>
+    <li>touch events</li>
+    <ul>
+      <li>single or multiple touches on the screen tap, double-tap, move, etc.</li>
+    </ul>
+    <li>motion events (iOS 3)</li>
+    <ul>
+      <li>detected by the accelerometer<br>and gyroscope</li>
+      <li>shake, rotation, acceleration...</li>
+    </ul>
+    <li>Remote control events (iOS 4)</li>
+    <li>Presses events (iOS 9)</li>
+  </ul>
+  <p>The class of objects that are prepared to handle such events is <code>UIResponder</code></p>
+  <ul>
+    <li>Subclasses include <code>UIApplication</code>, <code>UIWindow</code>, <code>UIView</code> and <code>UIViewController</code></li>
+  </ul>
+</section>
+<section>
+  <h1>The Responder Chain</h1>
+  <div class="side"><img src="figures/responder_chain.png" style="width: 100%"></div>
+  <div class="side">
+    <div class="only" data-step="0">
+      <p>When an event is detected it is sent to a specific responder</p>
       <ul>
-        <li>touch events</li>
-        <ul>
-          <li>single or multiple touches on the screen tap, double-tap, move, etc.</li>
-        </ul>
-        <li>motion events (iOS 3)</li>
-        <ul>
-          <li>detected by the accelerometer<br>and gyroscope</li>
-          <li>shake, rotation, acceleration...</li>
-        </ul>
-        <li>Remote control events (iOS 4)</li>
-        <li>Presses events (iOS 9)</li>
+        <li>for a touch, the view where it happened</li>
+        <li>for another event, the <em>first responder</em></li>
       </ul>
-      <p>The class of objects that are prepared to handle such events is <code>UIResponder</code></p>
+    </div>
+    <div class="only">
+      <p>The event goes through the responder chain until a responder handles it</p>
       <ul>
-        <li>Subclasses include <code>UIApplication</code>, <code>UIWindow</code>, <code>UIView</code> and <code>UIViewController</code></li>
+        <li>from a view to its super view</li>
+        <li>from a top view to its controller</li>
+        <li>from a controller to the super view of its view</li>
+        <li>from the main controller to the window, and the application</li>
       </ul>
-    </section>
-    <section class="split">
-      <h1>The Responder Chain</h1>
-      <div class="side"><img src="figures/responder_chain.png" style="width: 100%"></div>
-      <div class="side">
-        <div class="only" data-step="0">
-          <p>When an event is detected it is sent to a specific responder</p>
-          <ul>
-            <li>for a touch, the view where it happened</li>
-            <li>for another event, the <em>first responder</em></li>
-          </ul>
-        </div>
-        <div class="only">
-          <p>The event goes through the responder chain until a responder handles it</p>
-          <ul>
-            <li>from a view to its super view</li>
-            <li>from a top view to its controller</li>
-            <li>from a controller to the super view of its view</li>
-            <li>from the main controller to the window, and the application</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Hit Test</h1>
-      <div class="side"><img src="figures/hit_test.png" style="width: 100%"></div>
-      <div class="side">
-        <p>Returns where a touch occurred</p>
-        <ul>
-          <li>recursive calls to <code>hitTest:withEvent:</code></li>
-          <li>if the touch is in a view, all its sub views are tested</li>
-          <li>if a touch is out of the bounds of a given view, its subviews are not tested</li>
-          <li>return the lowest view in the hierarchy that contains the point of touch</li>
-        </ul><br>
-        <p>Only the point where the touch started counts</p>
-      </div>
-    </section>
-    <section class="split">
-      <h1>UIEvent</h1>
-      <div class="side">
-        <pre><code class="swift">var timestamp: NSTimeInterval
+    </div>
+  </div>
+</section>
+<section>
+  <h1>Hit Test</h1>
+  <div class="side"><img src="figures/hit_test.png" style="width: 100%"></div>
+  <div class="side">
+    <p>Returns where a touch occurred</p>
+    <ul>
+      <li>recursive calls to <code>hitTest:withEvent:</code></li>
+      <li>if the touch is in a view, all its sub views are tested</li>
+      <li>if a touch is out of the bounds of a given view, its subviews are not tested</li>
+      <li>return the lowest view in the hierarchy that contains the point of touch</li>
+    </ul><br>
+    <p>Only the point where the touch started counts</p>
+  </div>
+</section>
+<section>
+  <h1>UIEvent</h1>
+  <div class="side">
+    <pre><code class="swift">var timestamp: NSTimeInterval
 var type: UIEventType
 var subtype: UIEventSubtype
 func allTouches() -> Set<NSObject>?
 func touchesForView(_ view: UIView) -> Set<NSObject>?
 func touchesForWindow(_ window: UIWindow) -> Set<NSObject>?</code></pre>
-      </div>
-      <div class="side">
-        <p><code>UIEvent</code> is the class of objects created when an event occurs</p>
-        <ul>
-          <li>an UIEvent object has a sub-type (none, motion or possible remote control events)</li>
-          <li>touch events contains a set of <code>UITouch</code> objects</li>
-          <li>all events have a time stamps that corresponds to the time when the event was created</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>UIEventSubtype</h1>
-      <pre><code class="swift">enum UIEventSubtype : Int {
+  </div>
+  <div class="side">
+    <p><code>UIEvent</code> is the class of objects created when an event occurs</p>
+    <ul>
+      <li>an UIEvent object has a sub-type (none, motion or possible remote control events)</li>
+      <li>touch events contains a set of <code>UITouch</code> objects</li>
+      <li>all events have a time stamps that corresponds to the time when the event was created</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>UIEventSubtype</h1>
+  <pre><code class="swift">enum UIEventSubtype : Int {
   case None
   case MotionShake
   case RemoteControlPlay
@@ -1082,145 +1085,145 @@ func touchesForWindow(_ window: UIWindow) -> Set<NSObject>?</code></pre>
   case RemoteControlBeginSeekingForward
   case RemoteControlEndSeekingForward
 }</code></pre>
-    </section>
-    <section class="single">
-      <h1>Shake</h1>
-      <p><em>UIKit</em> detects 3 events associated with a shake</p>
-      <ul>
-        <li><code>motionBegan(_:with:)</code> when a shake motion begins</li>
-        <li><code>motionEnded(_: ith:)</code> when a shake motion ends</li>
-        <li><code>motionCancelled(_:with:)</code> when a shake motion is cancelled by another event (app becomes inactive, view disappears, etc.)</li>
-        <ul>
-          <li>clean state after <code>motionBegan</code></li>
-        </ul>
-      </ul><br>
-      <p>The motion for a shake is <code>UIEventSubtypeMotionShake</code></p>
-    </section>
-    <section class="single">
-      <h1>Touch</h1>
-      <p>There are 4 methods to handle touch events</p>
-      <ul>
-        <li><code>touchesBegan(_:with:)</code></li>
-        <li><code>touchesMoved(_:with:)</code></li>
-        <li><code>touchesEnded(_:with:)</code></li>
-        <li><code>touchesCancelled(_:with:)</code></li>
-      </ul><br>
-      <p>The first parameter of each method contains the set of UITouch objects that are relevant to the method (began, moved, ended or cancelled)</p>
-    </section>
-    <section class="single">
-      <h1>Example</h1>
-      <p>Touch events in <em>Bezier</em></p>
-    </section>
-    <section class="single">
-      <h1>Gesture Recognizers</h1>
-      <p>Some specific gestures can be recognized automatically&nbsp;:</p>
-      <ul>
-        <li>single / multiple tap</li>
-        <li>pinch / zoom</li>
-        <li>rotate</li>
-        <li>swipe</li>
-        <li>pan</li>
-        <li>screen-edge pan</li>
-        <li>long press</li>
-      </ul><br>
-      <p>The class <code>UIGestureRecognizer</code> (and its subclasses) handle such events</p>
-    </section>
-    <section class="split">
-      <h1>Gesture Recognizers</h1>
-      <div class="side">
-        <pre><code class="swift">let tapRecognizer = UITapGestureRecognizer()
+</section>
+<section>
+  <h1>Shake</h1>
+  <p><em>UIKit</em> detects 3 events associated with a shake</p>
+  <ul>
+    <li><code>motionBegan(_:with:)</code> when a shake motion begins</li>
+    <li><code>motionEnded(_: ith:)</code> when a shake motion ends</li>
+    <li><code>motionCancelled(_:with:)</code> when a shake motion is cancelled by another event (app becomes inactive, view disappears, etc.)</li>
+    <ul>
+      <li>clean state after <code>motionBegan</code></li>
+    </ul>
+  </ul><br>
+  <p>The motion for a shake is <code>UIEventSubtypeMotionShake</code></p>
+</section>
+<section>
+  <h1>Touch</h1>
+  <p>There are 4 methods to handle touch events</p>
+  <ul>
+    <li><code>touchesBegan(_:with:)</code></li>
+    <li><code>touchesMoved(_:with:)</code></li>
+    <li><code>touchesEnded(_:with:)</code></li>
+    <li><code>touchesCancelled(_:with:)</code></li>
+  </ul><br>
+  <p>The first parameter of each method contains the set of UITouch objects that are relevant to the method (began, moved, ended or cancelled)</p>
+</section>
+<section>
+  <h1>Example</h1>
+  <p>Touch events in <em>Bezier</em></p>
+</section>
+<section>
+  <h1>Gesture Recognizers</h1>
+  <p>Some specific gestures can be recognized automatically&nbsp;:</p>
+  <ul>
+    <li>single / multiple tap</li>
+    <li>pinch / zoom</li>
+    <li>rotate</li>
+    <li>swipe</li>
+    <li>pan</li>
+    <li>screen-edge pan</li>
+    <li>long press</li>
+  </ul><br>
+  <p>The class <code>UIGestureRecognizer</code> (and its subclasses) handle such events</p>
+</section>
+<section>
+  <h1>Gesture Recognizers</h1>
+  <div class="side">
+    <pre><code class="swift">let tapRecognizer = UITapGestureRecognizer()
 tapRecognizer.numberOfTapsRequired = 2
 tapRecognizer.addTarget(self, action: "handleTap:")
 tapRecognizer.delegate = self
 view.addGestureRecognizer(tapRecognizer)</code></pre><br>
-        <p>Warning&nbsp;: the view must have enabled the user interaction</p><br>
-        <pre><code class="swift">view.userInteractionEnabled = true</code></pre>
-      </div>
-      <div class="side">
-        <p>To recognize a gesture&nbsp;:</p>
-        <ul>
-          <li>create a gesture recognizer</li>
-          <li>configure the recognizer</li>
-          <li>add a method as target for the recognizer</li>
-          <li>(optional) set the delegate</li>
-          <li>add the recognizer to a view</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Example</h1>
-      <p>Double tap recognizer in <em>Bezier</em></p>
-    </section>
-    <section class="section">
-      <h1>Focus on Table Views</h1>
-    </section>
-    <section class="split">
-      <h1>Objective</h1>
-      <div class="side center"><img src="figures/table_view.png" style="width: 65%"></div>
-      <div class="side">
-        <p>A table view is the standard way to display a list of elements&nbsp;:</p>
-        <ul>
-          <li>Manage large sets of data</li>
-          <ul>
-            <li>many elements</li>
-            <li>structured data</li>
-          </ul>
-          <li>Use efficiently the limited screen space</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Examples</h1>
-      <div><img src="figures/tabView1.png" style="width: 25%"><img src="figures/tabView2.png" style="width: 25%"><img src="figures/tabView3.png" style="width: 25%"><img src="figures/tabView4.png" style="width: 25%"></div>
-    </section>
-    <section class="split">
-      <h1>Everything in a Table</h1>
-      <div class="side">
-        <p>Representation of data</p>
-        <ul>
-          <li>One column, many lines (cells)</li>
-          <li>Separate sections</li>
-          <li>Vertical scrolling</li>
-          <li>Efficient memory management</li>
-          <ul>
-            <li>very useful for very large data sets</li>
-          </ul>
-        </ul><br>
-        <p>Used by almost all apps</p>
-      </div>
-      <div class="side">
-        <ul>
-          <li>Table is divided in sections</li>
-          <li>Table can have header and footer</li>
-          <li>Sections can have header and footer</li>
-          <li>Data elements represented by a cell</li>
-        </ul><br>
-        <p>All of these elements are fully customizable views</p>
-      </div>
-    </section>
-    <section class="single">
-      <h1>MVC Structure</h1>
-      <p>Table views are a prime example of MVC</p>
+    <p>Warning&nbsp;: the view must have enabled the user interaction</p><br>
+    <pre><code class="swift">view.userInteractionEnabled = true</code></pre>
+  </div>
+  <div class="side">
+    <p>To recognize a gesture&nbsp;:</p>
+    <ul>
+      <li>create a gesture recognizer</li>
+      <li>configure the recognizer</li>
+      <li>add a method as target for the recognizer</li>
+      <li>(optional) set the delegate</li>
+      <li>add the recognizer to a view</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Example</h1>
+  <p>Double tap recognizer in <em>Bezier</em></p>
+</section>
+<section class="section">
+  <h1>Focus on Table Views</h1>
+</section>
+<section>
+  <h1>Objective</h1>
+  <div class="side center"><img src="figures/table_view.png" style="width: 65%"></div>
+  <div class="side">
+    <p>A table view is the standard way to display a list of elements&nbsp;:</p>
+    <ul>
+      <li>Manage large sets of data</li>
       <ul>
-        <li><em>Model :</em> data to fill the table (represented by an app-specific class)</li>
-        <li><em>View :</em> table view, with a cell per data element</li>
-        <li><em>Controller :</em> usually a subclass of <code>UIViewController</code></li>
-        <ul>
-          <li>gets the data from the model to make the cells</li>
-          <li>updates the table view if the model changes</li>
-          <li>reacts to events on the table view and updates the model accordingly (<em>eg.</em> deletion of a cell)</li>
-        </ul>
-      </ul><br>
-      <p>The view controller implements functions to act as</p>
-      <ul>
-        <li><code>UITableViewDataSource</code></li>
-        <li><code>UITableViewDelegate</code></li>
+        <li>many elements</li>
+        <li>structured data</li>
       </ul>
-    </section>
-    <section class="split">
-      <h1>Data Source</h1>
-      <div class="side">
-        <pre><code class="swift">// methods in UITableViewDataSource
+      <li>Use efficiently the limited screen space</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Examples</h1>
+  <div><img src="figures/tabView1.png" style="width: 25%"><img src="figures/tabView2.png" style="width: 25%"><img src="figures/tabView3.png" style="width: 25%"><img src="figures/tabView4.png" style="width: 25%"></div>
+</section>
+<section>
+  <h1>Everything in a Table</h1>
+  <div class="side">
+    <p>Representation of data</p>
+    <ul>
+      <li>One column, many lines (cells)</li>
+      <li>Separate sections</li>
+      <li>Vertical scrolling</li>
+      <li>Efficient memory management</li>
+      <ul>
+        <li>very useful for very large data sets</li>
+      </ul>
+    </ul><br>
+    <p>Used by almost all apps</p>
+  </div>
+  <div class="side">
+    <ul>
+      <li>Table is divided in sections</li>
+      <li>Table can have header and footer</li>
+      <li>Sections can have header and footer</li>
+      <li>Data elements represented by a cell</li>
+    </ul><br>
+    <p>All of these elements are fully customizable views</p>
+  </div>
+</section>
+<section>
+  <h1>MVC Structure</h1>
+  <p>Table views are a prime example of MVC</p>
+  <ul>
+    <li><em>Model :</em> data to fill the table (represented by an app-specific class)</li>
+    <li><em>View :</em> table view, with a cell per data element</li>
+    <li><em>Controller :</em> usually a subclass of <code>UIViewController</code></li>
+    <ul>
+      <li>gets the data from the model to make the cells</li>
+      <li>updates the table view if the model changes</li>
+      <li>reacts to events on the table view and updates the model accordingly (<em>eg.</em> deletion of a cell)</li>
+    </ul>
+  </ul><br>
+  <p>The view controller implements functions to act as</p>
+  <ul>
+    <li><code>UITableViewDataSource</code></li>
+    <li><code>UITableViewDelegate</code></li>
+  </ul>
+</section>
+<section>
+  <h1>Data Source</h1>
+  <div class="side">
+    <pre><code class="swift">// methods in UITableViewDataSource
 tableView(_:cellForRowAt:) (*)
 numberOfSections(in:)
 tableView(_:numberOfRowsInSection:) (*)
@@ -1230,105 +1233,105 @@ tableView(_:titleForHeaderInSection:)
 tableView(_:titleForFooterInSection:)
 
 (*) required methods</code></pre>
-      </div>
-      <div class="side">
-        <p>The data source must be able to answer questions such as&nbsp;:</p>
-        <ul>
-          <li>how many sections&nbsp;?</li>
-          <li>how many cells in section 3&nbsp;?</li>
-          <li>what is in the 4th cell of section 2&nbsp;?</li>
-          <li>what is the header for section 1&nbsp;?</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Making a Cell</h1>
-      <ul>
-        <li>Implement method <code>tableView(_:cellForRowAt:)</code></li>
-        <li>Returns a <code>UITableViewCell</code></li>
-        <li>Argument is an <code>NSIndexPath</code>, that locates a cell by its section and row</li>
-      </ul>
-    </section>
-    <section class="single">
-      <h1>Cell Management</h1>
-      <p>Problem&nbsp;:</p>
-      <ul>
-        <li>Table data sources can contain hundreds of (or even much more) objects</li>
-        <li>Scrolling through a table must be seamless and efficient</li>
-      </ul><br>
-      <p>Solution :</p>
-      <ul>
-        <li>Create an efficient cell generating mechanism by reusing existing cells that are out of display</li>
-      </ul>
-    </section>
-    <section class="single">
-      <h1>Reuse Cells</h1>
-      <p>Tight memory management</p>
-      <ul>
-        <li>Allocate displayed cells</li>
-        <li>Cells out of display marked as unused (can be released at any time)</li>
-        <li>When displaying new cell</li>
-        <ul>
-          <li>take an allocated cell out of display</li>
-          <li>reuse cell by changing relevant fields only</li>
-        </ul>
-      </ul>
-      <p>Access to cells should always use this system</p><br>
-      <pre><code class="swift">func tableView(_: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  </div>
+  <div class="side">
+    <p>The data source must be able to answer questions such as&nbsp;:</p>
+    <ul>
+      <li>how many sections&nbsp;?</li>
+      <li>how many cells in section 3&nbsp;?</li>
+      <li>what is in the 4th cell of section 2&nbsp;?</li>
+      <li>what is the header for section 1&nbsp;?</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Making a Cell</h1>
+  <ul>
+    <li>Implement method <code>tableView(_:cellForRowAt:)</code></li>
+    <li>Returns a <code>UITableViewCell</code></li>
+    <li>Argument is an <code>NSIndexPath</code>, that locates a cell by its section and row</li>
+  </ul>
+</section>
+<section>
+  <h1>Cell Management</h1>
+  <p>Problem&nbsp;:</p>
+  <ul>
+    <li>Table data sources can contain hundreds of (or even much more) objects</li>
+    <li>Scrolling through a table must be seamless and efficient</li>
+  </ul><br>
+  <p>Solution :</p>
+  <ul>
+    <li>Create an efficient cell generating mechanism by reusing existing cells that are out of display</li>
+  </ul>
+</section>
+<section>
+  <h1>Reuse Cells</h1>
+  <p>Tight memory management</p>
+  <ul>
+    <li>Allocate displayed cells</li>
+    <li>Cells out of display marked as unused (can be released at any time)</li>
+    <li>When displaying new cell</li>
+    <ul>
+      <li>take an allocated cell out of display</li>
+      <li>reuse cell by changing relevant fields only</li>
+    </ul>
+  </ul>
+  <p>Access to cells should always use this system</p><br>
+  <pre><code class="swift">func tableView(_: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
   let cell = tableView.dequeueReusableCellWithIdentifier("normalCell", forIndexPath: indexPath)
   cell.textLabel?.text = "new label"
   return cell
 }</code></pre>
-    </section>
-    <section class="split">
-      <h1>Modification of a Table</h1>
-      <div class="side">
-        <pre><code class="swift">tableView(_:commit:forRowAt:)
+</section>
+<section>
+  <h1>Modification of a Table</h1>
+  <div class="side">
+    <pre><code class="swift">tableView(_:commit:forRowAt:)
 tableView(_:canEditRowAt:)
 tableView(_:canMoveRowAt:)
 tableView(_:moveRowAt:to:)</code></pre>
-      </div>
-      <div class="side">
-        <p>The user interacts with the table view</p>
-        <ul>
-          <li>insertion of a cell</li>
-          <li>deletion of a cell</li>
-          <li>moving a cell</li>
-        </ul><br>
-        <p>User interaction calls functions from the <code>UITableViewDataSource</code> protocol</p><br>
-        <p>Controller must make changes to data</p>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Delegate</h1>
-      <p>The table view delegate helps manage other features of the table view</p>
-      <ul>
-        <li>configure rows and sections</li>
-        <li>handle selections of cells</li>
-        <li>editing mode</li>
-        <li>manage headers and footers</li>
-        <li>help reorganizing cells</li>
-        <li>etc.</li>
-      </ul><br>
-      <p>Example : <em>TableViews</em></p>
-    </section>
-    <section class="section">
-      <h1>Memory Management</h1>
-    </section>
-    <section class="single">
-      <h1>ARC</h1>
-      <p>Swift uses Automatic Reference Counting (ARC) to manage objects in memory</p>
-      <ul>
-        <li>associate a counter to each object in memory</li>
-        <li>count how many properties, constants and variables refer to the object</li>
-        <li class="skip">whenever counter reaches 0, the object is removed from memory</li>
-        <li>reference counting only applies to instances of classes (reference types)</li>
-      </ul><br>
-      <p>Most of the time, ARC works fine automatically</p>
-    </section>
-    <section class="single">
-      <h1>Reference Cycle</h1>
-      <pre><code class="swift">class Person {
+  </div>
+  <div class="side">
+    <p>The user interacts with the table view</p>
+    <ul>
+      <li>insertion of a cell</li>
+      <li>deletion of a cell</li>
+      <li>moving a cell</li>
+    </ul><br>
+    <p>User interaction calls functions from the <code>UITableViewDataSource</code> protocol</p><br>
+    <p>Controller must make changes to data</p>
+  </div>
+</section>
+<section>
+  <h1>Delegate</h1>
+  <p>The table view delegate helps manage other features of the table view</p>
+  <ul>
+    <li>configure rows and sections</li>
+    <li>handle selections of cells</li>
+    <li>editing mode</li>
+    <li>manage headers and footers</li>
+    <li>help reorganizing cells</li>
+    <li>etc.</li>
+  </ul><br>
+  <p>Example : <em>TableViews</em></p>
+</section>
+<section class="section">
+  <h1>Memory Management</h1>
+</section>
+<section>
+  <h1>ARC</h1>
+  <p>Swift uses Automatic Reference Counting (ARC) to manage objects in memory</p>
+  <ul>
+    <li>associate a counter to each object in memory</li>
+    <li>count how many properties, constants and variables refer to the object</li>
+    <li class="skip">whenever counter reaches 0, the object is removed from memory</li>
+    <li>reference counting only applies to instances of classes (reference types)</li>
+  </ul><br>
+  <p>Most of the time, ARC works fine automatically</p>
+</section>
+<section>
+  <h1>Reference Cycle</h1>
+  <pre><code class="swift">class Person {
   var apartment: Apartment?
   ...
 }
@@ -1344,200 +1347,200 @@ apt.tenant = john
 john = nil
 apt = nil
 // neither object is deinitialized</code></pre><br>
-      <p class="uncover"><strong>Problem&nbsp;:</strong> sometimes two (or more) objects refer to each other and are not removed from memory</p>
-    </section>
-    <section class="single">
-      <h1>Reference Cycle</h1>
-      <pre class="only" data-step="0"><code class="swift">john = Person(...)
+  <p class="uncover"><strong>Problem&nbsp;:</strong> sometimes two (or more) objects refer to each other and are not removed from memory</p>
+</section>
+<section>
+  <h1>Reference Cycle</h1>
+  <pre class="only" data-step="0"><code class="swift">john = Person(...)
 apt = Apartment(...)
 &nbsp;
 &nbsp;
 &nbsp;
 &nbsp;</code></pre>
-      <pre class="only"><code class="swift">john = Person(...)
+  <pre class="only"><code class="swift">john = Person(...)
 apt = Apartment(...)
 john.apartment = apt
 apt.tenant = john
 &nbsp;
 &nbsp;</code></pre>
-      <pre class="only"><code class="swift">john = Person(...)
+  <pre class="only"><code class="swift">john = Person(...)
 apt = Apartment(...)
 john.apartment = apt
 apt.tenant = john
 john = nil
 apt = nil</code></pre>
-      <div class="center"><img class="only" src="figures/arc1.svg" style="width: 80%" data-step="0"><img class="only" src="figures/arc2.svg" style="width: 80%"><img class="only" src="figures/arc3.svg" style="width: 80%"></div>
-    </section>
-    <section class="split">
-      <h1>Strong, Weak and Unowned</h1>
-      <div class="side">
-        <pre><code class="swift">class A {
+  <div class="center"><img class="only" src="figures/arc1.svg" style="width: 80%" data-step="0"><img class="only" src="figures/arc2.svg" style="width: 80%"><img class="only" src="figures/arc3.svg" style="width: 80%"></div>
+</section>
+<section>
+  <h1>Strong, Weak and Unowned</h1>
+  <div class="side">
+    <pre><code class="swift">class A {
   var x: Int          // strong
   weak var y: Int?    // weak
   unowned var z: Int  // unowned
   ...
 }</code></pre>
-      </div>
-      <div class="side">
-        <p>To break reference cycles, we use <em>weak</em> or <em>unowned</em> references</p>
-        <ul>
-          <li><em>weak</em> references for optional types</li>
-          <ul>
-            <li>reference counter is not incremented</li>
-            <li>if referenced object is deinitialized, it is replaced by <code>nil</code></li>
-          </ul>
-          <li><em>unowned</em> references for other types</li>
-          <ul>
-            <li>does not increment counter</li>
-            <li>should always have a value</li>
-            <li>causes error if accessed after deinitialization</li>
-          </ul>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Breaking the Cycle</h1>
-      <div class="center">
-        <pre class="only" data-step="0"><code class="swift">john = Person(...)                  class Apartment {
+  </div>
+  <div class="side">
+    <p>To break reference cycles, we use <em>weak</em> or <em>unowned</em> references</p>
+    <ul>
+      <li><em>weak</em> references for optional types</li>
+      <ul>
+        <li>reference counter is not incremented</li>
+        <li>if referenced object is deinitialized, it is replaced by <code>nil</code></li>
+      </ul>
+      <li><em>unowned</em> references for other types</li>
+      <ul>
+        <li>does not increment counter</li>
+        <li>should always have a value</li>
+        <li>causes error if accessed after deinitialization</li>
+      </ul>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Breaking the Cycle</h1>
+  <div class="center">
+    <pre class="only" data-step="0"><code class="swift">john = Person(...)                  class Apartment {
 apt = Apartment(...)                  weak var tenant: Person?
 john.apartment = apt                  ...
 apt.tenant = john                   }
 &nbsp;
 &nbsp;</code></pre>
-        <pre class="only"><code class="swift">john = Person(...)                  class Apartment {
+    <pre class="only"><code class="swift">john = Person(...)                  class Apartment {
 apt = Apartment(...)                  weak var tenant: Person?
 john.apartment = apt                  ...
 apt.tenant = john                   }
 apt = nil
 &nbsp;</code></pre>
-        <pre class="only" data-start="2"><code class="swift">john = Person(...)                  class Apartment {
+    <pre class="only" data-start="2"><code class="swift">john = Person(...)                  class Apartment {
 apt = Apartment(...)                  weak var tenant: Person?
 john.apartment = apt                  ...
 apt.tenant = john                   }
 apt = nil
 john = nil</code></pre>
-      </div>
-      <div class="center"><img class="only" src="figures/arc4.svg" style="width: 80%" data-step="0"><img class="only" src="figures/arc5.svg" style="width: 80%"><img class="only" src="figures/arc6.svg" style="width: 80%"><img class="only" src="figures/arc7.svg" style="width: 80%"></div>
-    </section>
-    <section class="single">
-      <h1>Illustration</h1>
-      <p><em>Automatic Reference Counting</em> in a Playground</p>
-    </section>
-    <section class="section">
-      <h1>Other Interesting<br>Things</h1>
-    </section>
-    <section class="single">
-      <h1>Device Motion</h1><img src="figures/axes.png" style="position: absolute; right: 5%; top: 35%; width: 35%">
-      <p>The iDevices contain motion detectors that can measure</p>
-      <ul>
-        <li>acceleration</li>
-        <li>rotation</li>
-        <li>magnetic fields</li>
-        <li>altitude</li>
-      </ul><br>
-      <p><em>CoreMotion</em> framework</p>
-      <p>Main class is <code>CMMotionManager</code></p>
-    </section>
-    <section class="split">
-      <h1>Device Motion</h1>
-      <div class="side">
-        <p>To react to motion</p>
-        <ul>
-          <li>instantiate a <code>CMMotionManager</code> object</li>
-          <li>configure the motion manager</li>
-          <li>(optional) define a handler for measure updates</li>
-          <li>start updates for the desired measure</li>
-          <li>stop updates when not needed</li>
-        </ul>
-      </div>
-      <div class="side">
-        <p><code>CoreMotion</code> is independent from <code>UIKit</code></p>
-        <ul>
-          <li>No events, no responder chain</li>
-          <li>Everything goes through the motion manager</li>
-        </ul><br>
-        <p>data can be</p>
-        <ul>
-          <li>pulled&nbsp;: app queries the manager when needed</li>
-          <li>pushed&nbsp;: manager sends updates automatically to the handler</li>
-        </ul>
-        <p>Cannot be tested on simulator</p>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Geolocation</h1><img src="figures/maps.png" style="position: absolute; right: 2%; top: 20%; width: 30%">
-      <div style="width: 70%">
-        <p>iOS devices can track geographic location</p>
-        <ul>
-          <li>using GPS technology, Wi-Fi or cellular networks</li>
-          <li>compute current latitude and longitude of device</li>
-          <li>can obtain orientation (compass) for devices with magnetometer</li>
-          <li>interface with <code>MapKit</code> for displaying geographic information</li>
-        </ul><br>
-        <p><em>CoreLocation</em> framework</p>
-        <p>use <code>CLLocationManager</code> class</p>
-      </div>
-    </section>
-    <section class="split">
-      <h1>Geolocation</h1>
-      <div class="side">
-        <p>Similar to motion events</p>
-        <ul>
-          <li>instantiate <code>CLLocationManager</code></li>
-          <li>configure manager</li>
-          <li>set <em>delegate</em></li>
-          <li>start recording location</li>
-          <li>set handler for location update</li>
-          <li>stop recording when not needed</li>
-        </ul><br>
-        <p>See <code>CLLocationManagerDelegate</code> protocol for possible interaction with the manager</p>
-      </div>
-      <div class="side">
-        <p>Using location services requires user authorization</p>
-        <ul>
-          <li>ask for authorization on first use</li>
-          <li>two levels of authorization : foreground only or foreground and background</li>
-        </ul><br>
-        <ul>
-          <li>Possible to define regions and react to user entering/leaving these regions</li>
-          <li>Significant location change service saves battery by sending updates only when location changes significantly</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Notification Center</h1>
-      <p><strong>Idea&nbsp;:</strong> broadcast information between elements across your app</p>
-      <ul>
-        <li>Works as a bulletin board</li>
-        <li>Any function can post notifications to notification center</li>
-        <li>Any object can observe for a specific notification</li>
-        <li>When notification is sent, all observers are notified and execute a call-back</li>
-      </ul><br>
-      <p>Part of the <em>Foundation</em> framework</p>
-      <p>Use <code>NotificationCenter</code> class and related elements</p>
-    </section>
-    <section class="split">
-      <h1>Notification Center</h1>
-      <div class="side">
-        <p>Default notification center&nbsp;: <code>NotificationCenter.default</code></p><br>
-        <p>Many notifications already defined by API</p>
-      </div>
-      <div class="side">
-        <p>Notification has</p>
-        <ul>
-          <li>name (<code>Notification.Name</code>)</li>
-          <li>sending object (<code>AnyObject</code>)</li>
-          <li>optional dictionary for more data</li>
-        </ul><br>
-        <ul>
-          <li>Observers can register for notifications by name and/or sender</li>
-          <li>Notification call-backs can be run on separate thread</li>
-        </ul>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Notification Center (Example)</h1>
-      <pre><code class="swift">// declare a new notification name
+  </div>
+  <div class="center"><img class="only" src="figures/arc4.svg" style="width: 80%" data-step="0"><img class="only" src="figures/arc5.svg" style="width: 80%"><img class="only" src="figures/arc6.svg" style="width: 80%"><img class="only" src="figures/arc7.svg" style="width: 80%"></div>
+</section>
+<section>
+  <h1>Illustration</h1>
+  <p><em>Automatic Reference Counting</em> in a Playground</p>
+</section>
+<section class="section">
+  <h1>Other Interesting<br>Things</h1>
+</section>
+<section>
+  <h1>Device Motion</h1><img src="figures/axes.png" style="position: absolute; right: 5%; top: 35%; width: 35%">
+  <p>The iDevices contain motion detectors that can measure</p>
+  <ul>
+    <li>acceleration</li>
+    <li>rotation</li>
+    <li>magnetic fields</li>
+    <li>altitude</li>
+  </ul><br>
+  <p><em>CoreMotion</em> framework</p>
+  <p>Main class is <code>CMMotionManager</code></p>
+</section>
+<section>
+  <h1>Device Motion</h1>
+  <div class="side">
+    <p>To react to motion</p>
+    <ul>
+      <li>instantiate a <code>CMMotionManager</code> object</li>
+      <li>configure the motion manager</li>
+      <li>(optional) define a handler for measure updates</li>
+      <li>start updates for the desired measure</li>
+      <li>stop updates when not needed</li>
+    </ul>
+  </div>
+  <div class="side">
+    <p><code>CoreMotion</code> is independent from <code>UIKit</code></p>
+    <ul>
+      <li>No events, no responder chain</li>
+      <li>Everything goes through the motion manager</li>
+    </ul><br>
+    <p>data can be</p>
+    <ul>
+      <li>pulled&nbsp;: app queries the manager when needed</li>
+      <li>pushed&nbsp;: manager sends updates automatically to the handler</li>
+    </ul>
+    <p>Cannot be tested on simulator</p>
+  </div>
+</section>
+<section>
+  <h1>Geolocation</h1><img src="figures/maps.png" style="position: absolute; right: 2%; top: 20%; width: 30%">
+  <div style="width: 70%">
+    <p>iOS devices can track geographic location</p>
+    <ul>
+      <li>using GPS technology, Wi-Fi or cellular networks</li>
+      <li>compute current latitude and longitude of device</li>
+      <li>can obtain orientation (compass) for devices with magnetometer</li>
+      <li>interface with <code>MapKit</code> for displaying geographic information</li>
+    </ul><br>
+    <p><em>CoreLocation</em> framework</p>
+    <p>use <code>CLLocationManager</code> class</p>
+  </div>
+</section>
+<section>
+  <h1>Geolocation</h1>
+  <div class="side">
+    <p>Similar to motion events</p>
+    <ul>
+      <li>instantiate <code>CLLocationManager</code></li>
+      <li>configure manager</li>
+      <li>set <em>delegate</em></li>
+      <li>start recording location</li>
+      <li>set handler for location update</li>
+      <li>stop recording when not needed</li>
+    </ul><br>
+    <p>See <code>CLLocationManagerDelegate</code> protocol for possible interaction with the manager</p>
+  </div>
+  <div class="side">
+    <p>Using location services requires user authorization</p>
+    <ul>
+      <li>ask for authorization on first use</li>
+      <li>two levels of authorization : foreground only or foreground and background</li>
+    </ul><br>
+    <ul>
+      <li>Possible to define regions and react to user entering/leaving these regions</li>
+      <li>Significant location change service saves battery by sending updates only when location changes significantly</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Notification Center</h1>
+  <p><strong>Idea&nbsp;:</strong> broadcast information between elements across your app</p>
+  <ul>
+    <li>Works as a bulletin board</li>
+    <li>Any function can post notifications to notification center</li>
+    <li>Any object can observe for a specific notification</li>
+    <li>When notification is sent, all observers are notified and execute a call-back</li>
+  </ul><br>
+  <p>Part of the <em>Foundation</em> framework</p>
+  <p>Use <code>NotificationCenter</code> class and related elements</p>
+</section>
+<section>
+  <h1>Notification Center</h1>
+  <div class="side">
+    <p>Default notification center&nbsp;: <code>NotificationCenter.default</code></p><br>
+    <p>Many notifications already defined by API</p>
+  </div>
+  <div class="side">
+    <p>Notification has</p>
+    <ul>
+      <li>name (<code>Notification.Name</code>)</li>
+      <li>sending object (<code>AnyObject</code>)</li>
+      <li>optional dictionary for more data</li>
+    </ul><br>
+    <ul>
+      <li>Observers can register for notifications by name and/or sender</li>
+      <li>Notification call-backs can be run on separate thread</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <h1>Notification Center (Example)</h1>
+  <pre><code class="swift">// declare a new notification name
 extension Notification.Name {
   static let specialEvent = Notification.Name("Special Event")
 }
@@ -1559,60 +1562,60 @@ NotificationCenter.default.addObserver(
 func specialAction(notification: NSNotification) {
   println("A special event occurred!")
 }</code></pre>
-    </section>
-    <section class="single">
-      <h1>Grand Central Dispatch</h1>
-      <p>Sometimes, some tasks should be executed asynchronously (in parallel)</p>
+</section>
+<section>
+  <h1>Grand Central Dispatch</h1>
+  <p>Sometimes, some tasks should be executed asynchronously (in parallel)</p>
+  <ul>
+    <li>long computations that shouldn't slow down UI</li>
+    <li>wait for a special event (ex: semaphore)</li>
+    <li>run tasks in parallel</li>
+  </ul><br>
+  <p>Tasks are organized in queues</p>
+  <ul>
+    <li>Different queues can have different priorities and properties</li>
+    <li>Implements threads</li>
+  </ul><br>
+  <p>Part of the <em>Foundation</em> framework</p>
+  <p>The whole set of functions is denoted as <em>Grand Central Dispatch</em> (GCD)</p>
+</section>
+<section>
+  <h1>Grand Central Dispatch</h1>
+  <div class="side">
+    <p>To dispatch an asynchronous task</p>
+    <ul>
+      <li>get or create queue</li>
+      <li>call <code>async</code> on the queue with code to be executed</li>
+    </ul>
+  </div>
+  <div class="side">
+    <div class="only" data-step="0">
+      <p>Queues can be</p>
       <ul>
-        <li>long computations that shouldn't slow down UI</li>
-        <li>wait for a special event (ex: semaphore)</li>
-        <li>run tasks in parallel</li>
-      </ul><br>
-      <p>Tasks are organized in queues</p>
+        <li><em>serial&nbsp;:</em> tasks are run one after the other</li>
+        <li><em>concurrent&nbsp;:</em> tasks execute in parallel</li>
+      </ul>
+    </div>
+    <div class="only">
+      <p>Some queues are already defined</p>
       <ul>
-        <li>Different queues can have different priorities and properties</li>
-        <li>Implements threads</li>
-      </ul><br>
-      <p>Part of the <em>Foundation</em> framework</p>
-      <p>The whole set of functions is denoted as <em>Grand Central Dispatch</em> (GCD)</p>
-    </section>
-    <section class="split">
-      <h1>Grand Central Dispatch</h1>
-      <div class="side">
-        <p>To dispatch an asynchronous task</p>
+        <li><em>main queue</em> (serial)&nbsp;: created when app starts. Only queue that should modify the UI</li>
+        <li><em>global</em> (concurrent) queues&nbsp;:</li>
         <ul>
-          <li>get or create queue</li>
-          <li>call <code>async</code> on the queue with code to be executed</li>
+          <li><code>userInteractive</code></li>
+          <li><code>userInitiated</code></li>
+          <li><code>default</code></li>
+          <li><code>utility</code></li>
+          <li><code>background</code></li>
+          <li><code>unspecified</code></li>
         </ul>
-      </div>
-      <div class="side">
-        <div class="only" data-step="0">
-          <p>Queues can be</p>
-          <ul>
-            <li><em>serial&nbsp;:</em> tasks are run one after the other</li>
-            <li><em>concurrent&nbsp;:</em> tasks execute in parallel</li>
-          </ul>
-        </div>
-        <div class="only">
-          <p>Some queues are already defined</p>
-          <ul>
-            <li><em>main queue</em> (serial)&nbsp;: created when app starts. Only queue that should modify the UI</li>
-            <li><em>global</em> (concurrent) queues&nbsp;:</li>
-            <ul>
-              <li><code>userInteractive</code></li>
-              <li><code>userInitiated</code></li>
-              <li><code>default</code></li>
-              <li><code>utility</code></li>
-              <li><code>background</code></li>
-              <li><code>unspecified</code></li>
-            </ul>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <section class="single">
-      <h1>Grand Central Dispatch (Example)</h1>
-      <pre><code class="swift">// create a queue
+      </ul>
+    </div>
+  </div>
+</section>
+<section>
+  <h1>Grand Central Dispatch (Example)</h1>
+  <pre><code class="swift">// create a queue
 let queue = DispatchQueue(label: "uniqueID")
 let queue = DispatchQueue(label: "uniqueID", qos: .userInitiated)
 // use existing
@@ -1632,44 +1635,44 @@ bgQueue.async {
     // finishes
   }
 }</code></pre>
-    </section>
-    <section class="single">
-      <h1>Persisting Data</h1>
-      <p>There are many options available to store persistent data on an iDevice</p>
-      <ul>
-        <li><code>UserDefaults</code>&nbsp;: simplest solution, stores simple information</li>
-        <li><code>NSCoding</code>&nbsp;: intermediate solution, stores complex objects to file</li>
-        <li><code>CoreData</code>&nbsp;: most complete solution, stores objects to a database</li>
-        <li>other solutions&nbsp;: saving on iCloud or online server</li>
-      </ul>
-    </section>
-    <section class="split">
-      <h1>UserDefaults</h1>
-      <div class="side">
-        <p>To read or write values&nbsp;:</p>
-        <ul>
-          <li>get a reference to the shared instance <code>UserDefaults.standard</code></li>
-          <li>get or set values for a given key</li>
-        </ul>
-      </div>
-      <div class="side">
-        <p>Associate values to keys (Strings)</p>
-        <p>Usually used for storing default values or user preferences</p><br>
-        <p>Can store</p>
-        <ul>
-          <li><code>Data</code></li>
-          <li><code>String</code></li>
-          <li><code>Number</code></li>
-          <li><code>Date</code></li>
-          <li><code>Array</code></li>
-          <li><code>Dictionary</code></li>
-        </ul><br>
-        <p>Very simple to use, but limited</p>
-      </div>
-    </section>
-    <section class="single">
-      <h1>NSUserDefaults (Example)</h1>
-      <pre><code class="swift">// get a reference to the UserDefaults
+</section>
+<section>
+  <h1>Persisting Data</h1>
+  <p>There are many options available to store persistent data on an iDevice</p>
+  <ul>
+    <li><code>UserDefaults</code>&nbsp;: simplest solution, stores simple information</li>
+    <li><code>NSCoding</code>&nbsp;: intermediate solution, stores complex objects to file</li>
+    <li><code>CoreData</code>&nbsp;: most complete solution, stores objects to a database</li>
+    <li>other solutions&nbsp;: saving on iCloud or online server</li>
+  </ul>
+</section>
+<section>
+  <h1>UserDefaults</h1>
+  <div class="side">
+    <p>To read or write values&nbsp;:</p>
+    <ul>
+      <li>get a reference to the shared instance <code>UserDefaults.standard</code></li>
+      <li>get or set values for a given key</li>
+    </ul>
+  </div>
+  <div class="side">
+    <p>Associate values to keys (Strings)</p>
+    <p>Usually used for storing default values or user preferences</p><br>
+    <p>Can store</p>
+    <ul>
+      <li><code>Data</code></li>
+      <li><code>String</code></li>
+      <li><code>Number</code></li>
+      <li><code>Date</code></li>
+      <li><code>Array</code></li>
+      <li><code>Dictionary</code></li>
+    </ul><br>
+    <p>Very simple to use, but limited</p>
+  </div>
+</section>
+<section>
+  <h1>NSUserDefaults (Example)</h1>
+  <pre><code class="swift">// get a reference to the UserDefaults
 let defaults = UserDefaults.standard
 
 // set the value for key "userNameKey"
@@ -1678,77 +1681,77 @@ defaults.set("Guybrush Threepwood", forKey: "userNameKey")
 // get the value for key "userNameKey"
 let name = defaults.string(forKey: "userNameKey")
 println(name!)</code></pre>
-    </section>
-    <section class="single">
-      <h1>CoreData vs. NSCoding</h1>
-      <table class="only" data-step="0">
-        <tr>
-          <th></th>
-          <th>CoreData</th>
-          <th>NSCoding</th>
-        </tr>
-        <tr>
-          <td>Entity Modeling</td>
-          <td>Yes</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Querying</td>
-          <td>Yes</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Speed</td>
-          <td>Fast</td>
-          <td>Slow</td>
-        </tr>
-        <tr>
-          <td>Serialization Format</td>
-          <td>SQLite, XML, or NSData</td>
-          <td>NSData</td>
-        </tr>
-        <tr>
-          <td>Migrations</td>
-          <td>Automatic</td>
-          <td>Manual</td>
-        </tr>
-        <tr>
-          <td>Undo Manager</td>
-          <td>Automatic</td>
-          <td>Manual</td>
-        </tr>
-      </table>
-      <table class="only">
-        <tr>
-          <th></th>
-          <th>CoreData</th>
-          <th>NSCoding</th>
-        </tr>
-        <tr>
-          <td>Persists State</td>
-          <td>Yes</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Pain in the Ass</td>
-          <td>Yes</td>
-          <td>No</td>
-        </tr>
-      </table>
-    </section>
-    <section class="single">
-      <h1>NSCoding</h1>
-      <p>The NSCoding protocol requires two methods</p>
-      <ul>
-        <li><code>encode(with coder: NSCoder)</code> describes how to convert the object into an <code>NSData</code> object (byte sequence)</li>
-        <li><code>init(coder decoder: NSCoder)</code> describes how to create the object from an <code>NSData</code> object</li>
-      </ul><br>
-      <p>Classes <code>NSKeyedArchiver</code> and <code>NSKeyedUnarchiver</code> perform the conversions</p><br>
-      <It>works if all archived properties also conform to <code>NSCoding</code></It>
-    </section>
-    <section class="single">
-      <h1>NSCoding</h1>
-      <pre class="only" data-step="0"><code class="swift">// define a class and describe how to archive/unarchive it
+</section>
+<section>
+  <h1>CoreData vs. NSCoding</h1>
+  <table class="only" data-step="0">
+    <tr>
+      <th></th>
+      <th>CoreData</th>
+      <th>NSCoding</th>
+    </tr>
+    <tr>
+      <td>Entity Modeling</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Querying</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Speed</td>
+      <td>Fast</td>
+      <td>Slow</td>
+    </tr>
+    <tr>
+      <td>Serialization Format</td>
+      <td>SQLite, XML, or NSData</td>
+      <td>NSData</td>
+    </tr>
+    <tr>
+      <td>Migrations</td>
+      <td>Automatic</td>
+      <td>Manual</td>
+    </tr>
+    <tr>
+      <td>Undo Manager</td>
+      <td>Automatic</td>
+      <td>Manual</td>
+    </tr>
+  </table>
+  <table class="only">
+    <tr>
+      <th></th>
+      <th>CoreData</th>
+      <th>NSCoding</th>
+    </tr>
+    <tr>
+      <td>Persists State</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Pain in the Ass</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+  </table>
+</section>
+<section>
+  <h1>NSCoding</h1>
+  <p>The NSCoding protocol requires two methods</p>
+  <ul>
+    <li><code>encode(with coder: NSCoder)</code> describes how to convert the object into an <code>NSData</code> object (byte sequence)</li>
+    <li><code>init(coder decoder: NSCoder)</code> describes how to create the object from an <code>NSData</code> object</li>
+  </ul><br>
+  <p>Classes <code>NSKeyedArchiver</code> and <code>NSKeyedUnarchiver</code> perform the conversions</p><br>
+  <It>works if all archived properties also conform to <code>NSCoding</code></It>
+</section>
+<section>
+  <h1>NSCoding</h1>
+  <pre class="only" data-step="0"><code class="swift">// define a class and describe how to archive/unarchive it
 class Person: NSObject, NSCoding {
   let name: String
   let age: Int
@@ -1766,7 +1769,7 @@ class Person: NSObject, NSCoding {
     coder.encode(age, forKey: "age")
   }
 }</code></pre>
-      <pre class="only"><code class="swift">var people = [Person]()
+  <pre class="only"><code class="swift">var people = [Person]()
 people.append(Person(name: "Sherlock Holmes", age: 25))
 people.append(Person(name: "Mycroft Holmes", age: 32))
 
@@ -1777,52 +1780,46 @@ UserDefaults.standard.set(encodedData, forKey: "people")
 // retrieve data and decode into objects
 let data = UserDefaults.standard.data(forKey: "people")!
 let myPeopleList = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Person]</code></pre>
-    </section>
-    <section class="single">
-      <h1>NSCoding Example</h1>
-      <p>Saving the cards list in the <em>TableViews</em> app.</p>
-    </section>
-    <section class="single">
-      <h1>2D Graphics</h1>
-      <p>There are two main options for managing and animating 2D objects</p>
-      <ul>
-        <li><em>CoreAnimation</em> framework</li>
-        <ul>
-          <li>basic animation on most view properties (position, size, color, etc.)</li>
-          <li>drawing methods on view using layers</li>
-        </ul>
-        <li><em>SpriteKit</em> framework</li>
-        <ul>
-          <li>sprite and image management</li>
-          <li>animations and sequences of actions (combines transformations and events on view elements)</li>
-          <li>2D physics engine available (collision detection, gravity, inertia, etc.)</li>
-        </ul>
-      </ul><br>
-      <p>You could also redo everything by hand on <code>UIView</code> by redefining <code>drawRect</code>...</p>
-    </section>
-    <section class="single">
-      <h1>3D Graphics</h1>
-      <p>Possible options for 3D graphics and animations&nbsp;:</p>
-      <ul>
-        <li><em>SceneKit</em>&nbsp;: 3D equivalent to <em>SpriteKit</em>, with scenes, objects, animations and physics engine</li>
-        <li><em>OpenGL ES</em>&nbsp;: platform-neutral API implemented for iOS</li>
-        <li><em>Metal</em>&nbsp;: Apple specific low-level 3D instructions set</li>
-      </ul>
-    </section>
-    <section class="single">
-      <h1>Bibliography</h1>
-      <ul>
-        <li><a href="https://developer.apple.com/library/ios/navigation/">Apple iOS Developer Library</a></li>
-        <li><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language">The Swift Programming Language</a></li>
-        <li>XCODE Documentation</li>
-        <li><a href="http://stackoverflow.com">StackOverflow</a> forums (look for "iOS" and/or "Swift" tags)</li>
-        <li><a href="http://nshipster.com">NSHipster</a> (blog about aspects of iOS/Mac OS X programming)</li>
-        <li>Many tutorials on the web (use your favorite web search engine)</li>
-      </ul>
-    </section>
-    <script src="highlight.pack.js"></script>
-    <script src="chapterXX.js"></script>
-    <script src="../../js/slides.js"></script>
-    <script src="../../js/myriad.js"></script>
-  </body>
-</html>
+</section>
+<section>
+  <h1>NSCoding Example</h1>
+  <p>Saving the cards list in the <em>TableViews</em> app.</p>
+</section>
+<section>
+  <h1>2D Graphics</h1>
+  <p>There are two main options for managing and animating 2D objects</p>
+  <ul>
+    <li><em>CoreAnimation</em> framework</li>
+    <ul>
+      <li>basic animation on most view properties (position, size, color, etc.)</li>
+      <li>drawing methods on view using layers</li>
+    </ul>
+    <li><em>SpriteKit</em> framework</li>
+    <ul>
+      <li>sprite and image management</li>
+      <li>animations and sequences of actions (combines transformations and events on view elements)</li>
+      <li>2D physics engine available (collision detection, gravity, inertia, etc.)</li>
+    </ul>
+  </ul><br>
+  <p>You could also redo everything by hand on <code>UIView</code> by redefining <code>drawRect</code>...</p>
+</section>
+<section>
+  <h1>3D Graphics</h1>
+  <p>Possible options for 3D graphics and animations&nbsp;:</p>
+  <ul>
+    <li><em>SceneKit</em>&nbsp;: 3D equivalent to <em>SpriteKit</em>, with scenes, objects, animations and physics engine</li>
+    <li><em>OpenGL ES</em>&nbsp;: platform-neutral API implemented for iOS</li>
+    <li><em>Metal</em>&nbsp;: Apple specific low-level 3D instructions set</li>
+  </ul>
+</section>
+<section>
+  <h1>Bibliography</h1>
+  <ul>
+    <li><a href="https://developer.apple.com/library/ios/navigation/">Apple iOS Developer Library</a></li>
+    <li><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language">The Swift Programming Language</a></li>
+    <li>XCODE Documentation</li>
+    <li><a href="http://stackoverflow.com">StackOverflow</a> forums (look for "iOS" and/or "Swift" tags)</li>
+    <li><a href="http://nshipster.com">NSHipster</a> (blog about aspects of iOS/Mac OS X programming)</li>
+    <li>Many tutorials on the web (use your favorite web search engine)</li>
+  </ul>
+</section>

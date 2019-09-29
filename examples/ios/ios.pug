@@ -1,16 +1,51 @@
-extends chapterXX.pug
+-
+  root = "../..";
+  language = "en";
+  context = "Embedded Systems";
+  title = "An Introduction to<br>iOS Development";
+  author = "Victor Poupet";
+  date = "2018-07";
 
-append preamble
-  - date = "2018-07";
+doctype html
+block preamble
+html(lang=language)
+  head
+    block header
+      meta(charset="UTF-8")
+      if page_title
+        title !{page_title}
+      else
+        title !{title.replace('<br>', ' ')}
+      link(rel="stylesheet" href=root + "/css/slides.css")
+      link(rel="stylesheet" href=root + "/css/myriad.css")
+      link(rel="stylesheet" href="highlight.css")
+      style
+        | pre code { font-size: calc(6 * var(--pt)); }
+  body
+    if title
+      section.title
+        h1 !{title}
+        if subtitle
+          h2 !{subtitle}
+        .context !{context}
+        .author !{author}
+        time !{date}
+    block document
+    block footer
+      script(src="highlight.pack.js")
+      script(src="ios.js")
+      script(src=root + "/js/slides.js")
+      script(src=root + "/js/myriad.js")
+
 
 block document
-  section.no-page-counter
+  section.blank.no-page-counter
     img(src="figures/Montpellier.jpg" style="height: 100%; width: 100%")
 
   section.section
     h1 A Word About iOS
 
-  section.split
+  section
     h1 iOS
     .side
       .center
@@ -25,7 +60,7 @@ block document
         li Cocoa touch instead of Cocoa
         li Darwin (Unix-like system)
 
-  section.split
+  section
     h1 Version History
     .side
       img(src="figures/iOS_versions.jpg" style="width: 100%")
@@ -43,7 +78,7 @@ block document
         li 2016 - iOS 10 (Siri, 3D touch)
         li 2017 - iOS 11 (ARKit, Files, more multitasking)
 
-  section.split
+  section
     h1 Fragmentation
     .side
       ul
@@ -59,7 +94,7 @@ block document
             li iPhone
             li iPad
 
-  section.single
+  section
     h1 Distribution
     p The only officially accepted way to add apps to an iOS terminal is to use Apple's <em>App Store</em>
 
@@ -73,7 +108,7 @@ block document
       li free developper account sufficient to develop and install apps on personal devices
       li developpers receive 70% of the price of the sold app
 
-  section.single
+  section
     h1 About this Lecture
     p iOS development is a vast topic
     ul
@@ -95,7 +130,7 @@ block document
   section.section
     h1 Mobile Development
 
-  section.single
+  section
     h1 Generalities
     p Developping for an embedded system
     ul
@@ -112,7 +147,7 @@ block document
         li Reactive programming
         li Event-based programming
 
-  section.split
+  section
     h1 Mobile Terminals
     .side
       img(src="figures/iphone_ipad.jpg" style="width: 100%")
@@ -131,7 +166,7 @@ block document
             li phone calls
             li most of the rest is identical
 
-  section.split
+  section
     h1 Architecture
     .side
       img(src="figures/appleA10.png" style="width: 100%")
@@ -152,7 +187,7 @@ block document
         li Camera
         li etc.
 
-  section.split
+  section
     h1 iOS vs. Android
     .side
       img(
@@ -218,11 +253,11 @@ block document
       ul
         li Android SDK
 
-  section.single
+  section
     h1 Cross-Compilation
     img(src="figures/cross_compilation.svg" style="width:100%")
 
-  section.single
+  section
     h1 Constraints
     p Limited resources
     ul
@@ -242,7 +277,7 @@ block document
       li Low battery alert
       li Phone call interruption
 
-  section.single
+  section
     h1 Other Constraints
     strong User interface
     ul
@@ -263,11 +298,11 @@ block document
     ul
       li App should work on slower devices, with other apps using resources
 
-  section.single
+  section
     h1 First Example
     p &rarr; Writing the first app in XCode&nbsp;: <em>Greeting</em>
 
-  section.single
+  section
     h1 Workflow
     p Mobile development is built around the user interface (screen):
     br
@@ -275,7 +310,7 @@ block document
       li Design <em>Graphical User Interface</em> (GUI)
       li Define and handle <em>events</em>
 
-  section.split
+  section
     h1 Events
     .side
       p Interruption
@@ -304,7 +339,7 @@ block document
         li move the cursor
         li thread finishes a computation
 
-  section.single
+  section
     h1 Call-back
     p Events are handled by "call-backs"
     ul
@@ -318,14 +353,14 @@ block document
     p If an event is not enabled (or disabled), the OS will consider that there is nothing to be done.
     p The running program will not be notified of unhandled events occurring.
 
-  section.single
+  section
     h1 Example
     p &rarr; Programmatical version of <em>Greeting</em>
 
   section.section
     h1 A Short Introduction<br>to Swift
 
-  section.split
+  section
     h1 Swift
     .side
       ul
@@ -340,7 +375,7 @@ block document
         li Better performance with LLVM compiler
         li Can be tested with playgrounds or read-eval-print loop (REPL)
 
-  section.split
+  section
     h1 General Syntax
     .side
       pre
@@ -373,7 +408,7 @@ block document
         li Variables are typed but type can be inferred by the compiler
         li Functions are declared with <code>func</code>, arguments and return values are typed
 
-  section.split
+  section
     h1 Optionals
     .side
       pre
@@ -400,7 +435,7 @@ block document
         li Always make sure an optional is not nil before using its value
         li Optionals can be unwrapped to work with the non <code>nil</code> value
 
-  section.split
+  section
     h1 Object Programming
     .side
       p In a “classical” program
@@ -416,7 +451,7 @@ block document
         li possible to access and modify the properies of each object
         li possible to call a specific object method (each objects does its own work)
 
-  section.split
+  section
     h1 Classes and Instances
     .side
       pre
@@ -447,7 +482,7 @@ block document
         li Classes have properties and methods
         li An instance is a specific object, that matches the description of the class
         li Different instances of the same class can have different values of their properties
-  section.split
+  section
     h1 Inheritance
     .side
       pre
@@ -485,7 +520,7 @@ block document
           li inherits properties and methods from its parent
         li Methods can be redefined in the child (override)
 
-  section.single
+  section
     h1 Creating Objects
     p To create an object
     ul
@@ -495,7 +530,7 @@ block document
     <br>
     p Objects are removed from memory automatically when nothing points to them (see later section)
 
-  section.split
+  section
     h1 Intializers
     .side.center
       img(src="figures/initializers.png" style="width: 100%")
@@ -506,11 +541,11 @@ block document
         li Designated initializers must call a designated initializer from the parent class
         li Convenience initializers must call another initializer from the same class (and ultimately a designated initializer)
 
-  section.single
+  section
     h1 Illustration
     p Back to the <em>Greeting</em> app.
 
-  section.split
+  section
     h1 Deinit
     .side
       pre
@@ -541,7 +576,7 @@ block document
   section.section
     h1 Graphical User Interface
 
-  section.split
+  section
     h1 Model View Controller
     .side.center
       img(src="figures/mvc_sketch.jpg" style="width: 100%")
@@ -552,7 +587,7 @@ block document
         li <em>view</em>&nbsp;: user interface, representation of data from the model
         li <em>controller</em>&nbsp;: management logic (program)
 
-  section.split
+  section
     h1 Model View Controller
     .side.center
       img(src="figures/mvc.png" style="width: 100%")
@@ -562,7 +597,7 @@ block document
         li Internal implementation of parts is independent
         li Better structure, easier to maintain
 
-  section.split
+  section
     h1 Model
     .side
       pre
@@ -597,10 +632,10 @@ block document
         li the model can be stored in the terminal memory in different forms (<em>Core Data</em>, archiving, <em>NSUserDefaults</em>)
         li organization of the data structures with classes and attributes
 
-  section.split
+  section
     h1 View
     .side.center
-      img(src="figures/UIView.jpg" style="width: 100%")
+      img(src="figures/UIView.jpg" style="width: 90%")
     .side
       p <em>Cocoa Touch</em> (iOS UI Framework) defines a class <code>UIView</code>
       ul
@@ -610,7 +645,7 @@ block document
       br
       p <strong>Note&nbsp;:</strong> the elements added to the Storyboard are subclasses of <code>UIView</code>
 
-  section.split
+  section
     h1 UIView
     .side
       p To create a user interface
@@ -638,7 +673,7 @@ block document
             li subviews of a same view are drawn one after the other
             li views can have transparent elements
 
-  section.split
+  section
     h1 Position
     .side
       pre
@@ -656,7 +691,7 @@ block document
         li the <code>center</code> is a <code>CGPoint</code> that positions the view without changing its size
         li the <code>bounds</code> is a <code>CGRect</code> describing the frame of the view in its own coordinates. Usually origin is <em>(0, 0)</em>
 
-  section.split
+  section
     h1 UIView Hierarchy
     .side
       pre
@@ -679,7 +714,7 @@ block document
         li The UIView class has methods to manipulate the hierarchy
         li The superview owns its subviews
 
-  section.single
+  section
     h1 Example&nbsp;: <em>Dominion</em>
     pre
       code(style='font-size: calc(5 * var(--pt))')
@@ -714,7 +749,7 @@ block document
         |         UIImage
     img(src="figures/dominion.png" style="position: absolute; width: 65%; right: var(--mm)")
 
-  section.split
+  section
     h1 About the Views
     .side.center
       img(src="figures/coordinates.jpg" style="width: 60%")
@@ -734,7 +769,7 @@ block document
           li iPad Pro 10.5"&nbsp;: 834 &times; 1112
           li iPad Pro 12.9"&nbsp;: 1024 &times; 1366
 
-  section.single
+  section
     h1 Create a View
     p Create a class that inherits from <code>UIView</code>
     ul
@@ -743,7 +778,7 @@ block document
     br
     p See example&nbsp;: <em>Multiplication</em>
 
-  section.single
+  section
     h1 UIViewController
     img(src="figures/viewcontroller.png" style="width: calc(100 * var(--mm)); position: absolute; top: calc(15 * var(--mm)); right: 0")
     ul(style="z-index: 1; position: absolute; top: calc(43 * var(--mm)); width: 70%")
@@ -753,12 +788,12 @@ block document
       li View controllers are responsible for loading, displaying and releasing the view when needed
       li View controllers also (should) manage the events that take place in the view
 
-  section.single
+  section
     h1 Classes Hierarchy
     .center
       img(src="figures/viewcontrollerhierarchy.png" style="width: 65%")
 
-  section.single
+  section
     h1 View Controller Cycle
     .only(data-step=0)
       p Important methods&nbsp;:
@@ -770,7 +805,7 @@ block document
     .only.center
       img(src="figures/viewcontrollercycle.png" style="height: calc(70 * var(--mm))")
 
-  section.split
+  section
     h1 Kinds of View Controllers
     .side
       p Content view controllers display content
@@ -788,7 +823,7 @@ block document
       br
       p examples&nbsp;: navigation controller, tab bar controller, split view controller
 
-  section.split
+  section
     h1 Nested Content VC
     .side
       pre
@@ -807,22 +842,22 @@ block document
         li notify the child that it has been added to the parent
         li add the child's view to the parent's view
 
-  section.single
+  section
     h1 Navigation Controller
     .center
       img(src="figures/navigation.png" style="width: 65%")
 
-  section.single
+  section
     h1 Tab Bar Controller
     .center
       img(src="figures/tabbar.png" style="width: 65%")
 
-  section.single
+  section
     h1 Split View Controller
     .center
       img(src="figures/splitview.png" style="width: 65%")
 
-  section.split
+  section
     h1 Create a Controller
     .side
       pre
@@ -847,7 +882,7 @@ block document
         li Override relevant methods to define management of view
         li Define when the controller should be loaded
 
-  section.single
+  section
     h1 Initialization
     p The UIViewController class defines two possible initializers
     ul
@@ -859,7 +894,7 @@ block document
       li Accessing view elements will crash the application
       li Initialization of the view should be done in <code>viewDidLoad</code> and <code>viewDidAppear</code>
 
-  section.single
+  section
     h1 Initialization
     ul
       li Simplest way (with empty view)&nbsp;:
@@ -882,12 +917,12 @@ block document
             |   super.init(nibName: "nameOfNibFile", bundle: nil)
             |   }
             | }
-  section.single
+  section
     h1 Example
     p A simple example&nbsp;: <em>Quiz</em>
     p Slightly more complex example&nbsp;: <em>Tabs</em> (<code>UITabBarController</code>)
 
-  section.split
+  section
     h1 Switching Controllers
     .side
       .only(data-step=0)
@@ -933,7 +968,7 @@ block document
   section.section
     h1 Responding to Events
 
-  section.single
+  section
     h1 Touch and Motion
     img(src="figures/events.png" style="width: 45%; position:absolute; top: 40%; right: 1%")
     p There are 4 kinds of basic events to interact with the UI&nbsp;:
@@ -951,7 +986,7 @@ block document
     ul
       li Subclasses include <code>UIApplication</code>, <code>UIWindow</code>, <code>UIView</code> and <code>UIViewController</code>
 
-  section.split
+  section
     h1 The Responder Chain
     .side
       img(src="figures/responder_chain.png" style="width: 100%")
@@ -969,7 +1004,7 @@ block document
           li from a controller to the super view of its view
           li from the main controller to the window, and the application
 
-  section.split
+  section
     h1 Hit Test
     .side
       img(src="figures/hit_test.png" style="width: 100%")
@@ -983,7 +1018,7 @@ block document
       br
       p Only the point where the touch started counts
 
-  section.split
+  section
     h1 UIEvent
     .side
       pre
@@ -1001,7 +1036,7 @@ block document
         li touch events contains a set of <code>UITouch</code> objects
         li all events have a time stamps that corresponds to the time when the event was created
 
-  section.single
+  section
     h1 UIEventSubtype
     pre
       code.swift
@@ -1020,7 +1055,7 @@ block document
         |   case RemoteControlEndSeekingForward
         | }
 
-  section.single
+  section
     h1 Shake
     p <em>UIKit</em> detects 3 events associated with a shake
     ul
@@ -1032,7 +1067,7 @@ block document
     br
     p The motion for a shake is <code>UIEventSubtypeMotionShake</code>
 
-  section.single
+  section
     h1 Touch
     p There are 4 methods to handle touch events
     ul
@@ -1043,11 +1078,11 @@ block document
     br
     p The first parameter of each method contains the set of UITouch objects that are relevant to the method (began, moved, ended or cancelled)
 
-  section.single
+  section
     h1 Example
     p Touch events in <em>Bezier</em>
 
-  section.single
+  section
     h1 Gesture Recognizers
     p Some specific gestures can be recognized automatically&nbsp;:
     ul
@@ -1061,7 +1096,7 @@ block document
     br
     p The class <code>UIGestureRecognizer</code> (and its subclasses) handle such events
 
-  section.split
+  section
     h1 Gesture Recognizers
     .side
       pre
@@ -1086,14 +1121,14 @@ block document
         li (optional) set the delegate
         li add the recognizer to a view
 
-  section.single
+  section
     h1 Example
     p Double tap recognizer in <em>Bezier</em>
 
   section.section
     h1 Focus on Table Views
 
-  section.split
+  section
     h1 Objective
     .side.center
       img(src="figures/table_view.png" style="width: 65%")
@@ -1106,7 +1141,7 @@ block document
           li structured data
         li Use efficiently the limited screen space
 
-  section.single
+  section
     h1 Examples
     div
       img(src="figures/tabView1.png" style="width: 25%")
@@ -1114,7 +1149,7 @@ block document
       img(src="figures/tabView3.png" style="width: 25%")
       img(src="figures/tabView4.png" style="width: 25%")
 
-  section.split
+  section
     h1 Everything in a Table
     .side
       p Representation of data
@@ -1137,7 +1172,7 @@ block document
       br
       p All of these elements are fully customizable views
 
-  section.single
+  section
     h1 MVC Structure
     p Table views are a prime example of MVC
     ul
@@ -1154,7 +1189,7 @@ block document
       li <code>UITableViewDataSource</code>
       li <code>UITableViewDelegate</code>
 
-  section.split
+  section
     h1 Data Source
     .side
       pre
@@ -1177,14 +1212,14 @@ block document
         li what is in the 4th cell of section 2&nbsp;?
         li what is the header for section 1&nbsp;?
 
-  section.single
+  section
     h1 Making a Cell
     ul
       li Implement method <code>tableView(_:cellForRowAt:)</code>
       li Returns a <code>UITableViewCell</code>
       li Argument is an <code>NSIndexPath</code>, that locates a cell by its section and row
 
-  section.single
+  section
     h1 Cell Management
     p Problem&nbsp;:
     ul
@@ -1196,7 +1231,7 @@ block document
     ul
       li Create an efficient cell generating mechanism by reusing existing cells that are out of display
 
-  section.single
+  section
     h1 Reuse Cells
     p Tight memory management
     ul
@@ -1216,7 +1251,7 @@ block document
         |   return cell
         | }
 
-  section.split
+  section
     h1 Modification of a Table
     .side
       pre
@@ -1238,7 +1273,7 @@ block document
       br
       p Controller must make changes to data
 
-  section.single
+  section
     h1 Delegate
     p The table view delegate helps manage other features of the table view
     ul
@@ -1255,7 +1290,7 @@ block document
   section.section
     h1 Memory Management
 
-  section.single
+  section
     h1 ARC
     p Swift uses Automatic Reference Counting (ARC) to manage objects in memory
     ul
@@ -1267,7 +1302,7 @@ block document
     br
     p Most of the time, ARC works fine automatically
 
-  section.single
+  section
     h1 Reference Cycle
     pre
       code.swift
@@ -1290,7 +1325,7 @@ block document
     br
     p.uncover <strong>Problem&nbsp;:</strong> sometimes two (or more) objects refer to each other and are not removed from memory
 
-  section.single
+  section
     h1 Reference Cycle
     pre.only(data-step=0)
       code.swift
@@ -1321,7 +1356,7 @@ block document
       img.only(src="figures/arc2.svg" style="width: 80%")
       img.only(src="figures/arc3.svg" style="width: 80%")
 
-  section.split
+  section
     h1 Strong, Weak and Unowned
     .side
       pre
@@ -1345,7 +1380,7 @@ block document
           li should always have a value
           li causes error if accessed after deinitialization
 
-  section.single
+  section
     h1 Breaking the Cycle
     .center
       pre.only(data-step=0)
@@ -1378,14 +1413,14 @@ block document
       img.only(src="figures/arc6.svg" style="width: 80%")
       img.only(src="figures/arc7.svg" style="width: 80%")
 
-  section.single
+  section
     h1 Illustration
     p <em>Automatic Reference Counting</em> in a Playground
 
   section.section
     h1 Other Interesting<br>Things
 
-  section.single
+  section
     h1 Device Motion
     img(src="figures/axes.png" style="position: absolute; right: 5%; top: 35%; width: 35%")
     p The iDevices contain motion detectors that can measure
@@ -1399,7 +1434,7 @@ block document
     p <em>CoreMotion</em> framework
     p Main class is <code>CMMotionManager</code>
 
-  section.split
+  section
     h1 Device Motion
     .side
       p To react to motion
@@ -1422,7 +1457,7 @@ block document
         li pushed&nbsp;: manager sends updates automatically to the handler
       p Cannot be tested on simulator
 
-  section.single
+  section
     h1 Geolocation
     img(src="figures/maps.png" style="position: absolute; right: 2%; top: 20%; width: 30%")
     div(style="width: 70%")
@@ -1436,7 +1471,7 @@ block document
       p <em>CoreLocation</em> framework
       p use <code>CLLocationManager</code> class
 
-  section.split
+  section
     h1 Geolocation
     .side
       p Similar to motion events
@@ -1461,7 +1496,7 @@ block document
         li Possible to define regions and react to user entering/leaving these regions
         li Significant location change service saves battery by sending updates only when location changes significantly
 
-  section.single
+  section
     h1 Notification Center
     p <strong>Idea&nbsp;:</strong> broadcast information between elements across your app
     ul
@@ -1474,7 +1509,7 @@ block document
     p Part of the <em>Foundation</em> framework
     p Use <code>NotificationCenter</code> class and related elements
 
-  section.split
+  section
     h1 Notification Center
     .side
       p Default notification center&nbsp;: <code>NotificationCenter.default</code>
@@ -1491,7 +1526,7 @@ block document
         li Observers can register for notifications by name and/or sender
         li Notification call-backs can be run on separate thread
 
-  section.single
+  section
     h1 Notification Center (Example)
     pre
       code.swift
@@ -1518,7 +1553,7 @@ block document
         |   println("A special event occurred!")
         | }
 
-  section.single
+  section
     h1 Grand Central Dispatch
     p Sometimes, some tasks should be executed asynchronously (in parallel)
     ul
@@ -1534,7 +1569,7 @@ block document
     p Part of the <em>Foundation</em> framework
     p The whole set of functions is denoted as <em>Grand Central Dispatch</em> (GCD)
 
-  section.split
+  section
     h1 Grand Central Dispatch
     .side
       p To dispatch an asynchronous task
@@ -1560,7 +1595,7 @@ block document
             li <code>background</code>
             li <code>unspecified</code>
 
-  section.single
+  section
     h1 Grand Central Dispatch (Example)
     pre
       code.swift
@@ -1585,7 +1620,7 @@ block document
         |   }
         | }
 
-  section.single
+  section
     h1 Persisting Data
     p There are many options available to store persistent data on an iDevice
     ul
@@ -1594,7 +1629,7 @@ block document
       li <code>CoreData</code>&nbsp;: most complete solution, stores objects to a database
       li other solutions&nbsp;: saving on iCloud or online server
 
-  section.split
+  section
     h1 UserDefaults
     .side
       p To read or write values&nbsp;:
@@ -1616,7 +1651,7 @@ block document
       br
       p Very simple to use, but limited
 
-  section.single
+  section
     h1 NSUserDefaults (Example)
     pre
       code.swift
@@ -1630,7 +1665,7 @@ block document
         | let name = defaults.string(forKey: "userNameKey")
         | println(name!)
 
-  section.single
+  section
     h1 CoreData vs. NSCoding
     table.only(data-step=0)
       tr
@@ -1675,7 +1710,7 @@ block document
         td Yes
         td No
 
-  section.single
+  section
     h1 NSCoding
     p The NSCoding protocol requires two methods
     ul
@@ -1686,7 +1721,7 @@ block document
     br
     It works if all archived properties also conform to <code>NSCoding</code>
 
-  section.single
+  section
     h1 NSCoding
     pre.only(data-step=0)
       code.swift
@@ -1722,11 +1757,11 @@ block document
         | let data = UserDefaults.standard.data(forKey: "people")!
         | let myPeopleList = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Person]
 
-  section.single
+  section
     h1 NSCoding Example
     p Saving the cards list in the <em>TableViews</em> app.
 
-  section.single
+  section
     h1 2D Graphics
     p There are two main options for managing and animating 2D objects
     ul
@@ -1742,7 +1777,7 @@ block document
     br
     p You could also redo everything by hand on <code>UIView</code> by redefining <code>drawRect</code>...
 
-  section.single
+  section
     h1 3D Graphics
     p Possible options for 3D graphics and animations&nbsp;:
     ul
@@ -1750,7 +1785,7 @@ block document
       li <em>OpenGL ES</em>&nbsp;: platform-neutral API implemented for iOS
       li <em>Metal</em>&nbsp;: Apple specific low-level 3D instructions set
 
-  section.single
+  section
     h1 Bibliography
     ul
       li

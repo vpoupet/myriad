@@ -351,30 +351,20 @@ function fixDate() {
 
 /**
  * React to click event:
- *   - in leftmost third of current slide: previous step
- *   - in rest of current slide: next step
- *   - in another slide: make clicked slide active (and adjust scrolling to it)
+ *   - in bottom-left corner: previous step
+ *   - in bottom-right corner: next step
  *
  * @param event {MouseEvent} click event
  */
 function handle_click(event) {
-    // get clicked section
-    let section = event.target.closest('section');
-    if (section !== current_slide.section) {
-        for (let i = 0; i < _slides.length; i++) {
-            if (_slides[i].section === section) {
-                return display_slide(_slides[i]);
-            }
-        }
-    }
     let rect = current_slide.section.getBoundingClientRect();
 
     let x = (event.clientX - rect.left) / rect.width; //x position within the element.
     let y = (event.clientY - rect.top) / rect.height; //y position within the element.
-    if (y <= .1 || y > .9) {
-        if (x <= .2) {
+    if (y > .95) {
+        if (x <= .1) {
             prev_step();
-        } else if (x >= .8) {
+        } else if (x >= .9) {
             next_step();
         }
     }
@@ -386,7 +376,6 @@ function handle_click(event) {
  *   - D, Right Arrow or Space: next step
  *   - S or Down Arrow: next slide
  *   - Z or Up Arrow: previous slide
- *   - X: adjust scroll to current slide
  *   - J: jump to a specific page (prompts user for page number)
  */
 document.addEventListener('keydown', (event) => {
@@ -411,11 +400,6 @@ document.addEventListener('keydown', (event) => {
         case "ArrowUp":
             event.preventDefault();
             prev_slide();
-            break;
-        case "x":
-            event.preventDefault();
-            display_slide(current_slide);
-            // current_slide.section.scrollIntoView();
             break;
         case "j":
             let n = parseInt(window.prompt("Go to page"));
@@ -461,6 +445,7 @@ function flatten() {
     let step_counter = 0;
     for (let i = 0; i < _slides.length; i++) {
         let slide = _slides[i];
+        slide.section.classList.remove("no-display");
         for (let j = 0; j <= slide.last_step; j++) {
             slide.display_step(j);
             let section = slide.section.cloneNode(true);

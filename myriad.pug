@@ -1,61 +1,11 @@
 -
-  let root = "https://vpoupet.github.io/myriad/";
-  let context = "";
-  let title = "";
-  let author = "";
-  let date = new Date().toJSON().slice(0, 10);
-  let language = "en";
-
-  function fullDate(date) {
-    let months;
-    let [year, month, day] = date.split('-');
-    year = parseInt(year);
-    month = parseInt(month);
-    day = parseInt(day);
-    if (language === "fr") {
-      months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre",
-                "novembre", "décembre"];
-      if (day) {
-        return `${day} ${months[month - 1]} ${year}`;
-      } else if (month) {
-        return `${months[month - 1]} ${year}`;
-      } else {
-        return `${year}`;
-      }
-    } else {
-      months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-                "November", "December"];
-      if (day) {
-        return `${months[month - 1]} ${day}, ${year}`;
-      } else if (month) {
-        return `${months[month - 1]} ${year}`;
-      } else {
-        return `${year}`;
-      }
-    }
-  }
-
-  function isShortDate(date) {
-    let [year, month, day] = date.split('-');
-    year = parseInt(year);
-    if (Number.isNaN(year)) {
-      return false;
-    }
-    if (month !== undefined) {
-        month = parseInt(month);
-        if (!(1 <= month && month <= 12)) {
-            return false;
-        }
-    }
-    if (day !== undefined) {
-      day = parseInt(day);
-      if (!(1 <= day && day <= 31)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
+  root = "https://vpoupet.github.io/myriad";
+  context = "";
+  title = "";
+  subtitle = "";
+  author = "";
+  date = new Date().toJSON().slice(0, 10);
+  language = "en";
 
 doctype html
 block preamble
@@ -66,9 +16,9 @@ html(lang=language)
       if page_title
         title !{page_title}
       else
-        title !{title}
-      link(rel="stylesheet" href=root+"/css/slides.css")
-      link(rel="stylesheet" href=root+"/css/myriad.css")
+        title !{title.replace('<br>', ' ')}
+      link(rel="stylesheet" href=root + "/css/slides.css")
+      link(rel="stylesheet" href=root + "/css/myriad.css")
   body
     if title
       section.title
@@ -77,12 +27,8 @@ html(lang=language)
           h2 !{subtitle}
         .context !{context}
         .author !{author}
-        if isShortDate(date)
-          time(datetime=date) !{fullDate(date)}
-        else
-          time !{date}
+        time !{date}
     block document
     block footer
-      script(src=root+"/js/slides.js")
-      script(src=root+"/js/myriad.js")
-
+      script(src=root + "/js/slides.js")
+      script(src=root + "/js/myriad.js")
