@@ -59,6 +59,7 @@ html
   --text-color: var(--dark-text-color)
   --bg-color: white
   color: var(--text-color)
+  --side-width: calc(var(--width) / 2 - 2 * var(--mm))
 
 body
   counter-reset: section-counter
@@ -75,7 +76,7 @@ section
     background: white no-repeat
 
   &.title
-    background-image: url("BG_Title.png")
+    background-image: url("../images/BG_Title.svg")
     padding: 0 calc(.5 * var(--mm)) 0 calc(.5 * var(--mm))
     h1
       position: relative
@@ -105,8 +106,8 @@ section
       display: none
 
   &.section
-    background-image: url("BG_Section.png")
-    padding: 0 calc(.5 * var(--mm)) 0 calc(31 * var(--mm))
+    background-image: url("../images/BG_Section.svg")
+    padding: 0 calc(1 * var(--mm)) 0 calc(32 * var(--mm))
 
     h1:before
       content: counter(section-counter, upper-roman) ". "
@@ -121,19 +122,18 @@ section
 
   &.single
     padding: calc(13 * var(--mm)) calc(3 * var(--mm)) calc(4.5 * var(--mm)) calc(3 * var(--mm))
-    background-image: url("BG_Single.png")
+    background-image: url("../images/BG_Single.svg")
 
   &.split
-    background-image: url("BG_SplitThin.png")
+    background-image: url("../images/BG_Split.svg")
     flex-direction: row
     justify-content: space-between
     align-items: center
     padding: calc(10 * var(--mm)) 0 calc(4.5 * var(--mm)) 0
 
     .side
-      --side-width: calc(var(--width) / 2 - 3 * var(--mm))
       width: var(--side-width)
-      padding-left: calc(1 * var(--mm))
+      padding: 0 calc(1 * var(--mm))
       position: relative
       &:nth-of-type(2)
         --text-color: var(--light-text-color)
