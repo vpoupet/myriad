@@ -5,7 +5,7 @@ Lightweight CSS/Javascript library for preparing presentation slides in HTML.
 
 # How to use
 
-A presentation is written as a single HTML file. It should contain a reference to the `slides.css` and `myriad.js` for
+A presentation is written as a single HTML file. It should contain a reference to the `slides.js` and `slides.css` for
 basic slides functionality, as well as theme CSS and Javascript files (theme files should appear after as they might
 override functions or style rules): 
 
@@ -14,14 +14,14 @@ override functions or style rules):
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/slides.css">
-    <link rel="stylesheet" href="./css/myriad.css">
+    <link rel="stylesheet" href=".../css/slides.css">
+    <link rel="stylesheet" href=".../css/myriad.css">
     <title>Awesome Presentation</title>
 </head>
 <body>
 
-<script src="./js/styles.js"></script>
-<script src="./js/myriad.js"></script>
+<script src=".../js/styles.js"></script>
+<script src=".../js/myriad.js"></script>
 </body>
 </html>
 ```
@@ -48,7 +48,7 @@ contents of their section).
 modify the contents of the header, footer and page counter respectively. These methods should return an HTML element or
 `null`.
 
-* If the `window.onload` function is redefined, it should explicitely call `process_slides()`.
+* If the `window.onload` function is redefined, it should explicitly call `process_slides()`.
 
 
 ## Dynamic elements
@@ -110,12 +110,7 @@ html {
 
 ## Navigation
 
-Slides are automatically scaled to fill the screen and scrolling is disabled by the CSS (only mouse scrolling, finger
-scrolling on touch devices still works) to maintain alignment of the slides.
-
-**Note:** Because slides are represented vertically, if the window has a width/height ratio less than 4/3, parts of the 
-next slide will appear under the current slide (so it looks better with an aspect ratio >= 4/3). Ratio of slides can 
-be changed by editing the values in `slides.css`. 
+Slides are automatically scaled to fill the screen and only one slide is shown at a time.
 
 Navigation can be done with keyboard or mouse:
 * <kbd>&rarr;</kbd>, <kbd>D</kbd> or <kbd>space</kbd>: next step
@@ -123,9 +118,8 @@ Navigation can be done with keyboard or mouse:
 * <kbd>&darr;</kbd> or <kbd>S</kbd>: next slide (first step)
 * <kbd>&uarr;</kbd> or <kbd>Z</kbd>: previous slide (first step)
 * <kbd>J</kbd>: jump to a page number (prompts the user for a number)
-* <kbd>X</kbd>: realign scrolling to current slide
-* click on top-left corner of current slide: previous step
-* click on top-right corner of current slide: next step
+* click on bottom-left corner of current slide: previous step
+* click on bottom-right corner of current slide: next step
 
 # Themes
 
@@ -159,8 +153,7 @@ numerals before the title.
 
 #### Single Slides
 
-`section` elements with the `single` class are styled as slides with a single block of content. It is recommended to
-group the contents of the slide (other than the title) in a `div` element.
+`section` elements with the `single` class are styled as slides with a single block of content.
 
 #### Split Slides
 
@@ -168,6 +161,9 @@ group the contents of the slide (other than the title) in a `div` element.
 right one has black background.
 
 The content of each side should be placed in a `div` with class `side`.
+
+**Note:** Because `single` and `split` slides are by far the most common in a presentation, a slide with no explicit
+type class will be automatically marked as `single` or `split`, depending on whether it contains `.side` elements.
 
 #### Blank Slides
 
@@ -183,7 +179,7 @@ Some classes are provided to style some elements on the slides&nbsp;:
 
 The class `box` (to be used on a `div` element) defines a "text box" that is represented with enclosing top and bottom
 borders. The box can have a title (optional), enclosed in an element of class `box-title`, and the content of the box should be in
-an element of class `box-content` (separate from the `.box` element).
+an element of class `box-content` (inside the `.box` element).
 
 Example&nbsp;:
 ```HTML

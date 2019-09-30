@@ -11,13 +11,13 @@
 }
 @font-face {
   font-family: GillSans;
-  src: url("../fonts/GillSans-Regular.ttf");
+  src: url("../fonts/GillSans-SemiBold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: GillSans;
-  src: url("../fonts/GillSans-Italic.ttf");
+  src: url("../fonts/GillSans-SemiBoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
@@ -71,7 +71,7 @@ html {
   --text-color: var(--dark-text-color);
   --bg-color: white;
   color: var(--text-color);
-  --side-width: calc(var(--width) / 2 - 2 * var(--mm));
+  --side-width: calc(var(--width) / 2 - 2.5 * var(--mm));
 }
 
 body {
@@ -136,7 +136,7 @@ section.section .page-counter {
   display: none;
 }
 section.single {
-  padding: calc(13 * var(--mm)) calc(3 * var(--mm)) calc(4.5 * var(--mm)) calc(3 * var(--mm));
+  padding: calc(10 * var(--mm)) calc(3 * var(--mm)) calc(4.5 * var(--mm)) calc(3 * var(--mm));
   background-image: url("../images/BG_Single.svg");
 }
 section.split {
@@ -149,7 +149,6 @@ section.split {
 section.split .side {
   width: var(--side-width);
   padding: 0 calc(1 * var(--mm));
-  position: relative;
 }
 section.split .side:nth-of-type(2) {
   --text-color: var(--light-text-color);
@@ -274,14 +273,6 @@ h2 {
 }
 .box .box-content {
   padding: 0 calc(1 * var(--mm));
-}
-
-.no-display {
-  display: none !important;
-}
-
-.hidden {
-  visibility: hidden !important;
 }
 
 .highlight {

@@ -49,3 +49,11 @@ a.next_flat_link {
   top: 0;
   right: 0;
 }
+
+.no-display {
+  display: none !important;
+}
+
+.hidden {
+  visibility: hidden !important;
+}

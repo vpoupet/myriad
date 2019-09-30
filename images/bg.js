@@ -1,19 +1,34 @@
-function randomSquare(minX, maxX, minY, maxY, minSize, maxSize, minAngle = 0, maxAngle = 180, minDur = 20, maxDur = 40) {
+function randomSquare(minX, maxX, minY, maxY, minSize, maxSize, minAngle = undefined, maxAngle = undefined, minDur = 10, maxDur = 40) {
     const cx = minX + Math.random() * (maxX - minX);
     const cy = minY + Math.random() * (maxY - minY);
     const size = minSize + Math.random() * (maxSize - minSize);
-    const angleStart = minAngle + Math.random() * (maxAngle - minAngle);
-    const angleEnd = minAngle + Math.random() * (maxAngle - minAngle);
     const rotationTime = minDur + Math.random() * (maxDur - minDur);
-    return SVG.Rect(cx - size / 2, cy - size / 2, size, size).add(
-        SVG.new("animateTransform").update({
-            attributeName: "transform",
-            type: "rotate",
-            values: `${angleStart} ${cx} ${cy}; ${angleEnd} ${cx} ${cy}; ${angleStart} ${cx} ${cy}`,
-            dur: `${rotationTime}s`,
-            repeatCount: "indefinite",
-        })
-    )
+    if (minAngle === undefined) {
+        const angleStart = Math.random() * 90;
+        const rotationDirection = Math.random() < .5 ? 1 : -1;
+        return SVG.Rect(cx - size / 2, cy - size / 2, size, size).add(
+            SVG.new("animateTransform").update({
+                attributeName: "transform",
+                type: "rotate",
+                from: `${angleStart} ${cx} ${cy}`,
+                to: `${angleStart + rotationDirection * 180} ${cx} ${cy}`,
+                dur: `${rotationTime}s`,
+                repeatCount: "indefinite",
+            })
+        )
+    } else {
+        const angleStart = minAngle + Math.random() * (maxAngle - minAngle);
+        const angleEnd = minAngle + Math.random() * (maxAngle - minAngle);
+        return SVG.Rect(cx - size / 2, cy - size / 2, size, size).add(
+            SVG.new("animateTransform").update({
+                attributeName: "transform",
+                type: "rotate",
+                values: `${angleStart} ${cx} ${cy}; ${angleEnd} ${cx} ${cy}; ${angleStart} ${cx} ${cy}`,
+                dur: `${rotationTime}s`,
+                repeatCount: "indefinite",
+            })
+        )
+    }
 }
 
 function shadow_filter() {
@@ -57,13 +72,13 @@ function make_section_bg() {
     const bg_section = SVG.Group().update({filter: "url(#shadow-filter)"});
     bg_section.appendChild(SVG.Rect(67, 0, 64, 96));
     for (let i = 0; i <= 96; i += 8) {
-        bg_section.appendChild(randomSquare(1.5, 2.5, i - .5, i + .5, 1.5, 2, -40, 40, 4, 8));
+        bg_section.appendChild(randomSquare(1.5, 2.5, i - .5, i + .5, 1.5, 2, -45, 45, 4, 8));
     }
     for (let i = 4; i <= 96; i += 8) {
-        bg_section.appendChild(randomSquare(5.5, 6.5, i - .5, i + .5, 2.5, 3, -20, 20, 2, 4));
+        bg_section.appendChild(randomSquare(5.5, 6.5, i - .5, i + .5, 2.5, 3, -30, 30, 2, 4));
     }
     for (let i = 0; i <= 96; i += 8) {
-        bg_section.appendChild(randomSquare(9.5, 10.5, i - .5, i + .5, 3.5, 4, -10, 10, 1, 2));
+        bg_section.appendChild(randomSquare(9.5, 10.5, i - .5, i + .5, 3.5, 4, -15, 15, 1, 2));
     }
     for (let i = 4; i <= 96; i += 8) {
         bg_section.appendChild(SVG.Rect(12, i - 2, 4, 4));
