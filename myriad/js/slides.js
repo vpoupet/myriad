@@ -297,10 +297,10 @@ function process_slides() {
     fixDate();
 
     let index = sessionStorage.slideIndex;
-    if (index === undefined) {
-        index = 0;
-    }
     current_slide = _slides[index];
+    if (current_slide === undefined) {
+        current_slide = _slides[0];
+    }
     display_slide(current_slide);
 }
 
