@@ -67,7 +67,6 @@ class Slide {
         }
 
         this.index = _slides.length;
-        section.classList.add("no-display");
         this.display_step(0);
     }
 
@@ -196,12 +195,12 @@ function display_slide(slide, end=false) {
         // unload and hide the previous slide
         current_slide.display_step(0);
         current_slide.onunload();
-        current_slide.section.classList.add("no-display");
+        current_slide.section.classList.remove("display");
         current_slide = slide;
     }
 
     // show and load the new slide
-    current_slide.section.classList.remove("no-display");
+    current_slide.section.classList.add("display");
     current_slide.onload();
 
     if (end) {
@@ -445,7 +444,6 @@ function flatten() {
     let step_counter = 0;
     for (let i = 0; i < _slides.length; i++) {
         let slide = _slides[i];
-        slide.section.classList.remove("no-display");
         for (let j = 0; j <= slide.last_step; j++) {
             slide.display_step(j);
             let section = slide.section.cloneNode(true);
