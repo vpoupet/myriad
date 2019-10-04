@@ -1,34 +1,51 @@
-function randomSquare(minX, maxX, minY, maxY, minSize, maxSize, minAngle = undefined, maxAngle = undefined, minDur = 10, maxDur = 40) {
-    const cx = minX + Math.random() * (maxX - minX);
-    const cy = minY + Math.random() * (maxY - minY);
-    const size = minSize + Math.random() * (maxSize - minSize);
-    const rotationTime = minDur + Math.random() * (maxDur - minDur);
-    if (minAngle === undefined) {
-        const angleStart = Math.random() * 90;
+const ANIMATE = false;
+
+function randRange(min, max) {
+    return min + Math.random() * (max - min);
+}
+
+function rotatingSquare(cx, cy, size, duration=undefined) {
+    const angle = randRange(0, 90);
+    if (duration === undefined) duration = randRange(10, 40);
+
+    const rect = SVG.Rect(cx - size / 2, cy - size / 2, size, size);
+    if (!ANIMATE) {
+        rect.rotate(angle, cx, cy);
+    } else {
         const rotationDirection = Math.random() < .5 ? 1 : -1;
-        return SVG.Rect(cx - size / 2, cy - size / 2, size, size).add(
+        rect.add(
             SVG.new("animateTransform").update({
                 attributeName: "transform",
                 type: "rotate",
-                from: `${angleStart} ${cx} ${cy}`,
-                to: `${angleStart + rotationDirection * 180} ${cx} ${cy}`,
-                dur: `${rotationTime}s`,
+                from: `${angle} ${cx} ${cy}`,
+                to: `${angle + rotationDirection * 180} ${cx} ${cy}`,
+                dur: `${duration}s`,
                 repeatCount: "indefinite",
             })
-        )
+        );
+    }
+    return rect;
+}
+
+function wigglingSquare(cx, cy, size, angleMax, duration) {
+    const angleStart = randRange(-angleMax, angleMax);
+    const angleEnd = randRange(-angleMax, angleMax);
+
+    const rect = SVG.Rect(cx - size / 2, cy - size / 2, size, size);
+    if (!ANIMATE) {
+        rect.rotate(angleStart, cx, cy);
     } else {
-        const angleStart = minAngle + Math.random() * (maxAngle - minAngle);
-        const angleEnd = minAngle + Math.random() * (maxAngle - minAngle);
-        return SVG.Rect(cx - size / 2, cy - size / 2, size, size).add(
+        rect.add(
             SVG.new("animateTransform").update({
                 attributeName: "transform",
                 type: "rotate",
                 values: `${angleStart} ${cx} ${cy}; ${angleEnd} ${cx} ${cy}; ${angleStart} ${cx} ${cy}`,
-                dur: `${rotationTime}s`,
+                dur: `${duration}s`,
                 repeatCount: "indefinite",
             })
-        )
+        );
     }
+    return rect;
 }
 
 function shadow_filter() {
@@ -45,83 +62,69 @@ function shadow_filter() {
 }
 
 function make_title_bg() {
-    const bg_title = SVG.Group().update({filter: "url(#shadow-filter)"});
-    bg_title.appendChild(SVG.Polyline([new Point(0, 25), new Point(128, 5), new Point(128, 71), new Point(0, 91)], true));
+    const main = SVG.Group().update({filter: "url(#shadow-filter)"});
+    main.appendChild(SVG.Polyline([new Point(0, 25), new Point(128, 5), new Point(128, 71), new Point(0, 91)], true));
     const slope = 20 / 128;
     for (let i = 0; i <= 128; i += 8) {
-        bg_title.appendChild(randomSquare(i, i + 2, 23 - slope * i, 27 - slope * i, 8, 10));
-        bg_title.appendChild(randomSquare(i, i + 2, 89 - slope * i, 93 - slope * i, 8, 10));
+        main.appendChild(rotatingSquare(randRange(i, i + 2), randRange(23 - slope * i, 27 - slope * i), randRange(8, 10)));
+        main.appendChild(rotatingSquare(randRange(i, i + 2), randRange(89 - slope * i, 93 - slope * i), randRange(8, 10)));
     }
     for (let i = 0; i <= 128; i += 8) {
-        bg_title.appendChild(randomSquare(i, i + 2, 18 - slope * i, 22 - slope * i, 4, 5));
-        bg_title.appendChild(randomSquare(i, i + 2, 98 - slope * i, 94 - slope * i, 4, 5));
+        main.appendChild(rotatingSquare(randRange(i, i + 2), randRange(18 - slope * i, 22 - slope * i), randRange(4, 5)));
+        main.appendChild(rotatingSquare(randRange(i, i + 2), randRange(98 - slope * i, 94 - slope * i), randRange(4, 5)));
     }
     for (let i = 0; i <= 128; i += 6) {
-        bg_title.appendChild(randomSquare(i, i + 4, 14 - slope * i, 18 - slope * i, 1.5, 2));
-        bg_title.appendChild(randomSquare(i, i + 4, 98 - slope * i, 102 - slope * i, 1.5, 2));
+        main.appendChild(rotatingSquare(randRange(i, i + 4), randRange(14 - slope * i, 18 - slope * i), randRange(1.5, 2)));
+        main.appendChild(rotatingSquare(randRange(i, i + 4), randRange(98 - slope * i, 102 - slope * i), randRange(1.5, 2)));
     }
     return SVG.Image(128, 96)
         .add(SVG.new("defs").add(shadow_filter()))
         .add(SVG.Rect(0, 0, 128, 96).update({fill: "white"}))
-        .add(bg_title)
+        .add(main)
     // .add(SVG.Line(0, 25, 128, 5).update({stroke: "red", stroke_width: .1}))
     // .add(SVG.Line(0, 91, 128, 71).update({stroke: "red", stroke_width: .1}));
 }
 
 function make_section_bg() {
-    const bg_section = SVG.Group().update({filter: "url(#shadow-filter)"});
-    bg_section.appendChild(SVG.Rect(67, 0, 64, 96));
+    const main = SVG.Group().update({filter: "url(#shadow-filter)"});
+    const mask = SVG.new("mask").update({id: "section-mask"});
+    mask.appendChild(SVG.Rect(16, 0, 128, 96).update({fill: "white"})); // mask background
     for (let i = 0; i <= 96; i += 8) {
-        bg_section.appendChild(randomSquare(1.5, 2.5, i - .5, i + .5, 1.5, 2, -45, 45, 4, 8));
+        main.appendChild(wigglingSquare(randRange(1.5, 2.5), randRange(i - .5, i + .5), randRange(1.5, 2), 30, randRange(4, 8)));
+        main.appendChild(wigglingSquare(randRange(5.5, 6.5), randRange(i + 3.5, i + 4.5), randRange(2.5, 3), 20, randRange(2, 4)));
+        main.appendChild(wigglingSquare(randRange(9.5, 10.5), randRange(i - .5, i + .5), randRange(3.5, 4), 10, randRange(1, 2)));
+        main.appendChild(SVG.Rect(12, i + 2, 4, 4)); //
+        mask.appendChild(SVG.Rect(16, i + 2, 4, 4));
+        mask.appendChild(wigglingSquare(randRange(21.5, 22.5), randRange(i - .5, i + .5), randRange(3.5, 4), 10, randRange(1, 2)));
+        mask.appendChild(wigglingSquare(randRange(25.5, 26.5), randRange(i + 3.5, i + 4.5), randRange(2.5, 3), 20, randRange(2, 4)));
+        mask.appendChild(wigglingSquare(randRange(29.5, 30.5), randRange(i - .5, i + .5), randRange(1.5, 2), 30, randRange(4, 8)));
     }
-    for (let i = 4; i <= 96; i += 8) {
-        bg_section.appendChild(randomSquare(5.5, 6.5, i - .5, i + .5, 2.5, 3, -30, 30, 2, 4));
-    }
-    for (let i = 0; i <= 96; i += 8) {
-        bg_section.appendChild(randomSquare(9.5, 10.5, i - .5, i + .5, 3.5, 4, -15, 15, 1, 2));
-    }
-    for (let i = 4; i <= 96; i += 8) {
-        bg_section.appendChild(SVG.Rect(12, i - 2, 4, 4));
-    }
-    const bg_section_mask = SVG.new("mask").update({id: "section-mask"});
-    bg_section_mask.appendChild(SVG.Rect(16, 0, 128, 96).update({fill: "white"}));
-    for (let i = 4; i <= 96; i += 8) {
-        bg_section_mask.appendChild(SVG.Rect(16, i - 2, 4, 4).update({fill: "black"}));
-    }
-    for (let i = 0; i <= 96; i += 8) {
-        bg_section_mask.appendChild(randomSquare(21.5, 22.5, i - .5, i + .5, 3.5, 4, -10, 10, 1, 2).update({fill: "black"}));
-    }
-    for (let i = 4; i <= 96; i += 8) {
-        bg_section_mask.appendChild(randomSquare(25.5, 26.5, i - .5, i + .5, 2.5, 3, -20, 20, 2, 4).update({fill: "black"}));
-    }
-    for (let i = 0; i <= 96; i += 8) {
-        bg_section_mask.appendChild(randomSquare(29.5, 30.5, i - .5, i + .5, 1.5, 2, -40, 40, 4, 8).update({fill: "black"}));
-    }
-    bg_section.appendChild(SVG.Rect(16, 0, 128, 96).update({mask: "url(#section-mask)"}));
+    main.appendChild(SVG.Rect(67, 0, 64, 96));
+    main.appendChild(SVG.Rect(16, 0, 128, 96).update({mask: "url(#section-mask)"}));
 
     return SVG.Image(128, 96)
-        .add(SVG.new("defs").add(shadow_filter()).add(bg_section_mask))
+        .add(SVG.new("defs").add(shadow_filter()).add(mask))
         .add(SVG.Rect(0, 0, 128, 96).update({fill: "white"}))
-        .add(bg_section)
+        .add(main)
     // .add(SVG.Line(31, 0, 32, 96).update({stroke: "red", stroke_width: .1}));
 }
 
 function make_single_bg() {
-    const bg_single = SVG.Group().update({filter: "url(#shadow-filter)"});
+    const main = SVG.Group().update({filter: "url(#shadow-filter)"});
     for (let i = 0; i <= 128; i += 8) {
-        bg_single.appendChild(randomSquare(i, i + 1, -1, 0, 7, 10));
+        main.appendChild(rotatingSquare(randRange(i, i + 1), randRange(-1, 0), randRange(7, 10)));
     }
     for (let i = 0; i < 128; i += 6) {
-        bg_single.appendChild(randomSquare(i, i + 3, 4, 6, 3, 4));
+        main.appendChild(rotatingSquare(randRange(i, i + 3), randRange(4, 6), randRange(3, 4)));
     }
     for (let i = 0; i < 128; i += 3) {
-        bg_single.appendChild(randomSquare(i, i + 3, 7, 9, 1, 1.5));
+        main.appendChild(rotatingSquare(randRange(i, i + 3), randRange(7, 9), randRange(1, 1.5)));
     }
 
     return SVG.Image(128, 96)
         .add(SVG.new("defs").add(shadow_filter()))
         .add(SVG.Rect(0, 0, 128, 96).update({fill: "white"}))
-        .add(bg_single)
+        .add(main)
     // .add(SVG.Line(0, 10, 128, 10).update({stroke: "red", stroke_width: .1}));
 }
 
@@ -129,13 +132,13 @@ function make_split_bg() {
     const bg_split = SVG.Group().update({filter: "url(#shadow-filter)"});
     bg_split.appendChild(SVG.Rect(67, 0, 64, 96));
     for (let i = 0; i <= 128; i += 3) {
-        bg_split.appendChild(randomSquare(67, 69, i, i + 2, 4, 5,))
+        bg_split.appendChild(rotatingSquare(randRange(67, 69), randRange(i, i + 2), randRange(4, 5)));
     }
     for (let i = 0; i <= 128; i += 4) {
-        bg_split.appendChild(randomSquare(63, 66, i, i + 3, 1.5, 3))
+        bg_split.appendChild(rotatingSquare(randRange(63, 66), randRange(i, i + 3), randRange(1.5, 3)));
     }
     for (let i = 0; i <= 128; i += 4) {
-        bg_split.appendChild(randomSquare(62, 63, i, i + 3, 1, 1.5))
+        bg_split.appendChild(rotatingSquare(randRange(62, 63), randRange(i, i + 3), randRange(1, 1.5)));
     }
 
     return SVG.Image(128, 96)
@@ -147,9 +150,30 @@ function make_split_bg() {
 }
 
 window.onload = function () {
-    document.body.append(make_title_bg());
-    document.body.append(make_section_bg());
-    document.body.append(make_single_bg());
-    document.body.append(make_split_bg());
+    const bgs = {
+        BG_Title: make_title_bg(),
+        BG_Section: make_section_bg(),
+        BG_Single: make_single_bg(),
+        BG_Split: make_split_bg(),
+    };
 
+    for (let name in bgs) {
+        const button = document.createElement("button");
+        button.innerText = name;
+        button.addEventListener("click", () => {
+            const serializer = new XMLSerializer();
+            const svg_blob = new Blob([serializer.serializeToString(bgs[name])],
+                {'type': "image/svg+xml"});
+            const url = URL.createObjectURL(svg_blob);
+
+            const downloadLink = document.createElement("a");
+            downloadLink.href = url;
+            downloadLink.download = name + ".svg";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        });
+        document.body.appendChild(button);
+        document.body.appendChild(bgs[name]);
+    }
 };

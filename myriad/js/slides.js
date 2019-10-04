@@ -45,9 +45,6 @@ class Slide {
     constructor(section) {
         this.section = section;
 
-        // events handlers
-        section.addEventListener('click', handle_click);
-
         this.parseDynamicElements();
         this.page_number = page_number;
 
@@ -301,6 +298,16 @@ function process_slides() {
         current_slide = _slides[0];
     }
     display_slide(current_slide);
+
+    // add clickable areas to move one step forward/backward
+    const prev_link = document.createElement("div");
+    prev_link.id = "prev-link";
+    prev_link.addEventListener("click", prev_step);
+    document.body.appendChild(prev_link);
+    const next_link = document.createElement("div");
+    next_link.id = "next-link";
+    next_link.addEventListener("click", next_step);
+    document.body.appendChild(next_link);
 }
 
 
@@ -347,27 +354,6 @@ function fixDate() {
     }
 }
 
-
-/**
- * React to click event:
- *   - in bottom-left corner: previous step
- *   - in bottom-right corner: next step
- *
- * @param event {MouseEvent} click event
- */
-function handle_click(event) {
-    let rect = current_slide.section.getBoundingClientRect();
-
-    let x = (event.clientX - rect.left) / rect.width; //x position within the element.
-    let y = (event.clientY - rect.top) / rect.height; //y position within the element.
-    if (y > .95) {
-        if (x <= .1) {
-            prev_step();
-        } else if (x >= .9) {
-            next_step();
-        }
-    }
-}
 
 /**
  * React to key presses. Available actions:
@@ -457,6 +443,7 @@ function flatten() {
             next_link.href = '#slide_anchor' + (step_counter + 1);
             next_link.classList.add('next_flat_link');
             section.appendChild(next_link);
+            section.classList.add("flat");
             step_counter += 1;
             document.body.insertBefore(anchor, slide.section);
             document.body.insertBefore(section, slide.section);
@@ -473,6 +460,9 @@ function flatten() {
     for (let i = scripts.length - 1; i >= 0; i--) {
         scripts[i].remove();
     }
+    // remove next/previous step clickable elements
+    document.getElementById("prev-link").remove();
+    document.getElementById("next-link").remove();
 }
 
 
