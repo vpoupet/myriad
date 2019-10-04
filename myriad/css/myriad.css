@@ -89,8 +89,8 @@ section.blank {
   background: white no-repeat;
 }
 section.title {
-  background-image: url("../images/BG_Title.svg");
   padding: 0 calc(.5 * var(--mm)) 0 calc(.5 * var(--mm));
+  background-image: url("../images/BG_Title.svg");
 }
 section.title h1 {
   position: relative;
@@ -120,8 +120,8 @@ section.title .page-counter {
   display: none;
 }
 section.section {
-  background-image: url("../images/BG_Section.svg");
   padding: 0 calc(1 * var(--mm)) 0 calc(32 * var(--mm));
+  background-image: url("../images/BG_Section.svg");
 }
 section.section h1:before {
   content: counter(section-counter, upper-roman) ". ";
@@ -139,11 +139,11 @@ section.single {
   background-image: url("../images/BG_Single.svg");
 }
 section.split {
-  background-image: url("../images/BG_Split.svg");
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: calc(10 * var(--mm)) 0 calc(4.5 * var(--mm)) 0;
+  background-image: url("../images/BG_Split.svg");
 }
 section.split .side {
   width: var(--side-width);
