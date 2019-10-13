@@ -127,12 +127,17 @@ section
     flex-direction: row
     justify-content: space-between
     align-items: center
-    padding: calc(10 * var(--mm)) 0 calc(4.5 * var(--mm)) 0
+    padding: 0 // calc(10 * var(--mm)) 0 calc(4.5 * var(--mm)) 0
     background-image: url("../images/BG_Split.svg")
 
     .side
+      display: flex
+      flex-direction: column
+      justify-content: center
       width: var(--side-width)
-      padding: 0 calc(1 * var(--mm))
+      height: var(--height)
+      padding: calc(10 * var(--mm)) calc(1 * var(--mm)) calc(4.5 * var(--mm)) calc(1 * var(--mm))
+      position: relative
       &:nth-of-type(2)
         --text-color: var(--light-text-color)
         --bg-color: black
@@ -269,5 +274,19 @@ th, td
 a
   color: inherit
 
+.footnote
+  position: absolute
+  bottom: calc(4.5 * var(--mm))
+  left: calc(1 * var(--mm))
+  font-size: 70%
+
+.image-container
+  position: relative
+  img
+    &:first-child
+      position: relative
+    position: absolute
+    top: 0
+    left: 0
 //::-webkit-scrollbar
 //  width: 0
