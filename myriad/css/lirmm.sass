@@ -35,15 +35,13 @@
   font-weight: bold
   font-style: italic
 
-
-
 html
   font-size: calc(12 * var(--pt))
-  --text-color: #4a4a4a
+  --text-color: #4D4E4D
   color: var(--text-color)
-  --col-orange: #DF8939
-  --col-red: #DB3B3E
-  --col-blue: #4572BA
+  --col-orange: #D68E47
+  --col-red: #C8423F
+  --col-blue: #3B6AA1
 
 body
   counter-reset: section-counter
@@ -57,7 +55,7 @@ section
   line-height: 1.5
 
   // for single slides (default)
-  padding: calc(10 * var(--mm)) calc(3 * var(--mm)) calc(4.5 * var(--mm)) calc(3 * var(--mm))
+  padding: calc(15 * var(--mm)) calc(3 * var(--mm)) calc(4.5 * var(--mm)) calc(3 * var(--mm))
   background-image: url("../images/lirmm/BG_Single.png")
 
   h1
@@ -245,3 +243,6 @@ a
     position: absolute
     top: 0
     left: 0
+
+.MathJax
+  scale: .8
