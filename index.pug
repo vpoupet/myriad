@@ -1,0 +1,38 @@
+-
+  // root = "https://vpoupet.github.io/myriad/slides";
+  theme = "myriad";
+  context = "";
+  title = "";
+  subtitle = "";
+  author = "";
+  date = new Date().toJSON().slice(0, 10);
+  language = "en";
+
+doctype html
+block preamble
+html(lang=language)
+  head
+    block header
+      meta(charset="UTF-8")
+      if page_title
+        title !{page_title}
+      else
+        title !{title.replace('<br>', ' ')}
+      link(rel="stylesheet" href=`${root}/slides.css`)
+      link(rel="stylesheet" href=`${root}/themes/${theme}/${theme}.css`)
+  body
+    if title
+      section.title
+        h1 !{title}
+        if subtitle
+          h2 !{subtitle}
+        .context !{context}
+        .author !{author}
+        time !{date}
+    block document
+    block footer
+      script(src=`${root}/slides.js`)
+      script(src=`${root}/themes/${theme}/${theme}.js`)
+
+//block document
+//  // write content here
