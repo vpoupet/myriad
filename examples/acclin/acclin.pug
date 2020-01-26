@@ -1,4 +1,4 @@
-extends ../../myriad.pug
+extends ../../slides.pug
 
 block preamble
   -
@@ -6,7 +6,7 @@ block preamble
     author = 'Anaël Grandjean and <span class="underline">Victor Poupet</span>';
     context = "Séminaire ALGO";
     date = "2015-06-23";
-    root = "../../myriad";
+    root = "../../slides";
 
 append header
   link(rel="stylesheet" href="acclin.css")
@@ -24,6 +24,7 @@ append header
     | \)
 
 block document
+  .section-counter
   section.section
     h1 Definitions
 
@@ -143,6 +144,7 @@ block document
       li Complete neighborhoods with coinciding convex hulls on the positive quarter have same real time up to an
         | additive constant
 
+  .section-counter
   section.section
     h1 Linear Acceleration<br> on the<br>Moore Neighborhood
 
@@ -220,6 +222,7 @@ block document
         li cells know their simulated time mod. \((2k+1)\) and their last \(k\) states
         li the last cell never waits
 
+  .section-counter
   section.section
     h1 Linear Acceleration
 

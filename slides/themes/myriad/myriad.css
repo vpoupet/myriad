@@ -1,65 +1,65 @@
 @charset "UTF-8";
 @font-face {
   font-family: GillSans;
-  src: url("../../fonts/GillSans-Light.ttf");
+  src: url("./fonts/GillSans-Light.ttf");
   font-style: normal;
 }
 @font-face {
   font-family: GillSans;
-  src: url("../../fonts/GillSans-LightItalic.ttf");
+  src: url("./fonts/GillSans-LightItalic.ttf");
   font-style: italic;
 }
 @font-face {
   font-family: GillSans;
-  src: url("../../fonts/GillSans-SemiBold.ttf");
+  src: url("./fonts/GillSans-SemiBold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: GillSans;
-  src: url("../../fonts/GillSans-SemiBoldItalic.ttf");
+  src: url("./fonts/GillSans-SemiBoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: TitleFont;
-  src: url("../../fonts/FiraSans-Bold.otf");
+  src: url("./fonts/FiraSans-Bold.otf");
 }
 @font-face {
   font-family: TitleFont;
-  src: url("../../fonts/FiraSans-BoldItalic.otf");
+  src: url("./fonts/FiraSans-BoldItalic.otf");
   font-style: italic;
 }
 @font-face {
   font-family: TitleFont;
-  src: url("../../fonts/FiraSans-Heavy.otf");
+  src: url("./fonts/FiraSans-Heavy.otf");
   font-weight: bold;
 }
 @font-face {
   font-family: TitleFont;
-  src: url("../../fonts/FiraSans-HeavyItalic.otf");
+  src: url("./fonts/FiraSans-HeavyItalic.otf");
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: Menlo;
-  src: url("../../fonts/Menlo-Regular.ttf");
+  src: url("./fonts/Menlo-Regular.ttf");
   font-style: normal;
 }
 @font-face {
   font-family: Menlo;
-  src: url("../../fonts/Menlo-Italic.ttf");
+  src: url("./fonts/Menlo-Italic.ttf");
   font-style: italic;
 }
 @font-face {
   font-family: Menlo;
-  src: url("../../fonts/Menlo-Bold.ttf");
+  src: url("./fonts/Menlo-Bold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: Menlo;
-  src: url("../../fonts/Menlo-BoldItalic.ttf");
+  src: url("./fonts/Menlo-BoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
@@ -125,7 +125,6 @@ section.section {
 }
 section.section h1:before {
   content: counter(section-counter, upper-roman) ". ";
-  counter-increment: section-counter;
 }
 section.section h1 {
   position: relative;
@@ -164,6 +163,10 @@ section.no-page-counter {
 }
 section.no-page-counter .page-counter {
   display: none;
+}
+
+.section-counter {
+  counter-increment: section-counter;
 }
 
 ul {

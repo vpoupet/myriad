@@ -14,14 +14,14 @@ override functions or style rules):
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href=".../css/slides.css">
-    <link rel="stylesheet" href=".../css/myriad.css">
+    <link rel="stylesheet" href=".../slides.css">
+    <link rel="stylesheet" href=".../myriad.css">
     <title>Awesome Presentation</title>
 </head>
 <body>
 
-<script src=".../js/styles.js"></script>
-<script src=".../js/myriad.js"></script>
+<script src=".../styles.js"></script>
+<script src=".../myriad.js"></script>
 </body>
 </html>
 ```
@@ -148,8 +148,10 @@ All other elements of a title slide (for instance an image) should be manually p
 #### Section Slides
 
 `section` elements with the class `section` will be styled as (presentation) sections markers. These slides should only
-have a main title `h1` and optionally a subtitle `h2`. Sections are automatically counted and numbered in capital roman
-numerals before the title.
+have a main title `h1` and optionally a subtitle `h2`. Section number is added automatically in front of the title
+(in roman numerals) but each section should be preceded by a `.section-counter` element (an empty `div`) to increment
+the counter correctly (this is to avoid resorting to Javascript but it is required to have an element outside of the 
+`.section` slide because counter are not incremented for elements that are not displayed) 
 
 #### Single Slides
 

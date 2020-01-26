@@ -1,47 +1,24 @@
--
-  root = "../../myriad";
-  language = "en";
-  context = "Embedded Systems";
-  title = "An Introduction to<br>iOS Development";
-  author = "Victor Poupet";
-  date = "2018-07";
+extends ../../slides.pug
 
-doctype html
 block preamble
-html(lang=language)
-  head
-    block header
-      meta(charset="UTF-8")
-      if page_title
-        title !{page_title}
-      else
-        title !{title.replace('<br>', ' ')}
-      link(rel="stylesheet" href=root + "/css/slides.css")
-      link(rel="stylesheet" href=root + "/css/myriad.css")
-      link(rel="stylesheet" href="highlight.css")
-      style
-        | pre code { font-size: calc(6 * var(--pt)); }
-  body
-    if title
-      section.title
-        h1 !{title}
-        if subtitle
-          h2 !{subtitle}
-        .context !{context}
-        .author !{author}
-        time !{date}
-    block document
-    block footer
-      script(src="highlight.pack.js")
-      script(src="ios.js")
-      script(src=root + "/js/slides.js")
-      script(src=root + "/js/myriad.js")
+  -
+    root = "../../slides";
+    language = "en";
+    context = "Embedded Systems";
+    title = "An Introduction to<br>iOS Development";
+    author = "Victor Poupet";
+    date = "2018-07";
 
+append header
+  link(rel="stylesheet" href="highlight.css")
+  style
+    | pre code { font-size: calc(6 * var(--pt)); }
 
 block document
   section.blank.no-page-counter
     img(src="figures/Montpellier.jpg" style="height: 100%; width: 100%")
 
+  .section-counter
   section.section
     h1 A Word About iOS
 
@@ -127,6 +104,7 @@ block document
           li no natural order to present things
           li examples require to use some elements before explaining them
 
+  .section-counter
   section.section
     h1 Mobile Development
 
@@ -357,6 +335,7 @@ block document
     h1 Example
     p &rarr; Programmatical version of <em>Greeting</em>
 
+  .section-counter
   section.section
     h1 A Short Introduction<br>to Swift
 
@@ -573,6 +552,7 @@ block document
       <br>
       p <code>deinit</code> is called automatically, and should never be called manually
 
+  .section-counter
   section.section
     h1 Graphical User Interface
 
@@ -965,6 +945,7 @@ block document
       br
       p.uncover Controller transitions can be defined in the Interface Builder (storyboards)
 
+  .section-counter
   section.section
     h1 Responding to Events
 
@@ -1125,6 +1106,7 @@ block document
     h1 Example
     p Double tap recognizer in <em>Bezier</em>
 
+  .section-counter
   section.section
     h1 Focus on Table Views
 
@@ -1287,6 +1269,7 @@ block document
     br
     p Example : <em>TableViews</em>
 
+  .section-counter
   section.section
     h1 Memory Management
 
@@ -1417,6 +1400,7 @@ block document
     h1 Illustration
     p <em>Automatic Reference Counting</em> in a Playground
 
+  .section-counter
   section.section
     h1 Other Interesting<br>Things
 

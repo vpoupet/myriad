@@ -1,4 +1,4 @@
-$font_path: "../../fonts"
+$font_path: "./fonts"
 
 @font-face
   font-family: GillSans
@@ -117,13 +117,12 @@ section
     padding: 0 calc(1 * var(--mm)) 0 calc(50 * var(--mm))
     background-image: url("images/BG_Section.png")
 
-    h1:before
-      content: counter(section-counter, upper-roman) ". "
-      counter-increment: section-counter
-
     h1
       position: relative
       text-align: right
+
+    h1:before
+      content: counter(section-counter, upper-roman) ". "
 
     .page-counter
       display: none
@@ -133,6 +132,9 @@ section
 
     .page-counter
       display: none
+
+.section-counter
+  counter-increment: section-counter
 
 ul
   margin: 0
