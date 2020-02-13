@@ -165,6 +165,19 @@ section.no-page-counter .page-counter {
   display: none;
 }
 
+.animated section.title {
+  background-image: url("images/animated/BG_Title.svg");
+}
+.animated section.section {
+  background-image: url("images/animated/BG_Section.svg");
+}
+.animated section.single {
+  background-image: url("images/animated/BG_Single.svg");
+}
+.animated section.split {
+  background-image: url("images/animated/BG_Split.svg");
+}
+
 .section-counter {
   counter-increment: section-counter;
 }

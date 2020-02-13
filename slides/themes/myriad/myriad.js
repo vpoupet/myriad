@@ -5,20 +5,7 @@ function count_as_page (section) {
 }
 
 function toggleAnimation() {
-    for (let sheet of document.styleSheets) {
-        if (sheet.href && sheet.href.endsWith("myriad.css")) {
-            for (let rule of sheet.cssRules) {
-                if (rule.selectorText && rule.selectorText.startsWith("section.") && rule.style['backgroundImage']) {
-                    if (rule.style['backgroundImage'].includes("/animated")) {
-                        rule.style['backgroundImage'] = rule.style['backgroundImage'].replace("/animated", "");
-                    } else {
-                        rule.style['backgroundImage'] = rule.style['backgroundImage'].replace("images/", "images/animated/");
-                    }
-                }
-            }
-            break;
-        }
-    }
+    document.body.classList.toggle("animated");
 }
 
 window.addEventListener(
