@@ -331,6 +331,10 @@ a {
   color: inherit;
 }
 
+hr {
+  width: 100%;
+}
+
 .footnote {
   position: absolute;
   bottom: calc(4.5 * var(--mm));
