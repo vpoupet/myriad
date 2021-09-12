@@ -82,25 +82,30 @@ class Slide {
                 element.dataset.start = element.dataset.step;
                 element.dataset.end = element.dataset.step;
             }
-            if (!('start' in element.dataset || 'end' in element.dataset)) {
-                // if no step, start or end value, implement default behavior:
-                // - "uncover" from (active_step + 1) until the end of the slide)
-                // - "only" for (active_step + 1) only
-                active_step += 1;
-                element.dataset.start = String(active_step);
-                if (element.classList.contains('only')) {
-                    element.dataset.end = String(active_step);
+            if (element.dataset.start === undefined) {
+                // default behavior if no start step given is to start on next active step
+                element.dataset.start = "+1";
+                if (element.dataset.end === undefined && element.classList.contains('only')) {
+                    // default behavior for "only" elements if no start and no end step is to end on next active step
+                    element.dataset.end = "+1";
                 }
-            } else if ('start' in element.dataset) {
-                // remember starting step for next default "uncover" and "only"
-                active_step = parseInt(element.dataset.start);
             }
+            if (element.dataset.start.startsWith('-') || element.dataset.start.startsWith('+')) {
+                element.dataset.start = String(active_step + parseInt(element.dataset.start));
+            }
+            if (element.dataset.end !== undefined) {
+                if (element.dataset.end.startsWith('-') || element.dataset.end.startsWith('+')) {
+                    element.dataset.end = String(active_step + parseInt(element.dataset.end));
+                }
+            }
+            // remember starting step for next default "uncover" and "only"
+            active_step = parseInt(element.dataset.start);
 
             // remember highest step
             if (element.dataset.start > last_step) {
                 last_step = parseInt(element.dataset.start);
             }
-            if (element.dataset.end > last_step) {
+            if (element.dataset.end !== undefined && element.dataset.end > last_step) {
                 last_step = parseInt(element.dataset.end);
             }
         }
