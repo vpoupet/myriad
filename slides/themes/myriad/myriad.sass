@@ -232,6 +232,9 @@ h2
   font-family: "TitleFont", "sans-serif"
   color: white
   font-size: calc(16 * var(--pt))
+  -webkit-text-stroke-color: var(--dark-text-color)
+  -webkit-text-stroke-width: .03em
+
 
 .box
   --border-width: calc(.5 * var(--mm))
@@ -282,7 +285,7 @@ table
   border-collapse: collapse
 
 th, td
-  border: calc(.2 * var(--mm)) black solid
+  border: calc(.2 * var(--mm)) solid
   padding: 0 var(--mm)
 
 a
@@ -305,5 +308,9 @@ hr
     position: absolute
     top: 0
     left: 0
+
+.show-border
+  border: solid 1px gray
+
 //::-webkit-scrollbar
 //  width: 0

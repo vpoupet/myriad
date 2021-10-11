@@ -259,6 +259,8 @@ h2 {
   font-family: "TitleFont", "sans-serif";
   color: white;
   font-size: calc(16 * var(--pt));
+  -webkit-text-stroke-color: var(--dark-text-color);
+  -webkit-text-stroke-width: 0.03em;
 }
 
 .box {
@@ -323,7 +325,7 @@ table {
 }
 
 th, td {
-  border: calc(.2 * var(--mm)) black solid;
+  border: calc(.2 * var(--mm)) solid;
   padding: 0 var(--mm);
 }
 
@@ -352,6 +354,10 @@ hr {
 }
 .image-container img:first-child {
   position: relative;
+}
+
+.show-border {
+  border: solid 1px gray;
 }
 
 /*# sourceMappingURL=myriad.css.map */
