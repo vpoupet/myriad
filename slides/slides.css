@@ -46,7 +46,7 @@ section.flat {
 
 #prev-link, #next-link {
   --link-width: calc(30 * var(--mm));
-  --link-height: calc(10 * var(--mm));
+  --link-height: calc(7 * var(--mm));
   position: absolute;
   width: var(--link-width);
   height: var(--link-height);
