@@ -89,7 +89,8 @@ section.title {
   padding: 0;
   background-image: url("images/BG_Title.png");
 }
-section.title h1, section.title h2 {
+section.title h1,
+section.title h2 {
   position: relative;
   margin: 0;
   padding: 0;
@@ -97,7 +98,9 @@ section.title h1, section.title h2 {
   width: calc(78 * var(--mm));
   text-align: center;
 }
-section.title .context, section.title .author, section.title time {
+section.title .context,
+section.title .author,
+section.title time {
   position: absolute;
   bottom: calc(2 * var(--mm));
   left: 0;
@@ -158,7 +161,7 @@ ul ul {
 .slide-footer {
   position: absolute;
   width: 100%;
-  bottom: calc(.5 * var(--mm));
+  bottom: calc(0.5 * var(--mm));
   left: 0;
   display: flex;
   justify-content: center;
@@ -175,7 +178,8 @@ p {
   margin: 0;
 }
 
-img, svg {
+img,
+svg {
   height: auto;
   width: 100%;
 }
@@ -249,8 +253,9 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
-  border: calc(.2 * var(--mm)) black solid;
+th,
+td {
+  border: calc(0.2 * var(--mm)) black solid;
   padding: 0 var(--mm);
 }
 

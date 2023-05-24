@@ -89,7 +89,7 @@ section.blank {
   background: white no-repeat;
 }
 section.title {
-  padding: 0 calc(.5 * var(--mm)) 0 calc(.5 * var(--mm));
+  padding: 0 calc(0.5 * var(--mm)) 0 calc(0.5 * var(--mm));
   background-image: url("images/BG_Title.svg");
 }
 section.title h1 {
@@ -199,7 +199,7 @@ ul ul {
 .slide-footer {
   position: absolute;
   width: 100%;
-  bottom: calc(.5 * var(--mm));
+  bottom: calc(0.5 * var(--mm));
   left: 0;
   display: flex;
   justify-content: center;
@@ -209,7 +209,7 @@ ul ul {
   text-align: center;
   padding: 0;
   width: calc(12 * var(--mm));
-  border: calc(.1 * var(--mm)) black solid;
+  border: calc(0.1 * var(--mm)) black solid;
   border-radius: calc(1 * var(--mm));
   font-size: calc(8 * var(--pt));
   background-color: rgba(255, 255, 255, 0.9);
@@ -219,7 +219,8 @@ p {
   margin: 0;
 }
 
-img, svg {
+img,
+svg {
   height: auto;
   width: 100%;
 }
@@ -324,8 +325,9 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
-  border: calc(.2 * var(--mm)) solid;
+th,
+td {
+  border: calc(0.2 * var(--mm)) solid;
   padding: 0 var(--mm);
 }
 

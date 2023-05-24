@@ -1,19 +1,20 @@
-@charset "UTF-8";
+$aspect-ratio: "4/3"; // should be a string for @media query
+
 * {
   box-sizing: border-box;
 }
 
 html {
   --height: 100vh;
-  --width: calc(4/3 * var(--height));
+  --width: calc(#{$aspect-ratio} * var(--height));
   --mm: calc(var(--height) / 96);
   --pt: calc(.35 * var(--mm));
-}
-@media (max-aspect-ratio: 4/3) {
-  html {
+
+  @media (max-aspect-ratio: $aspect-ratio) {
     --width: 100vw;
-    --height: calc(var(--width) / (4/3));
+    --height: calc(var(--width) / (#{$aspect-ratio}));
   }
+
 }
 
 body {
@@ -32,16 +33,18 @@ section {
   left: 50%;
   margin-left: calc(-1 * var(--width) / 2);
   display: none;
-}
-section.display {
-  display: flex;
-}
-section.flat {
-  position: relative;
-  top: 0;
-  left: 0;
-  margin: 0;
-  display: flex;
+
+  &.display {
+    display: flex;
+  }
+
+  &.flat {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    display: flex;
+  }
 }
 
 #prev-link,
@@ -54,28 +57,30 @@ section.flat {
   top: calc(var(--height) - var(--link-height));
   text-align: center;
   font-size: 200%;
-  background-color: rgba(255, 255, 255, 0.6666666667);
+  background-color: #ffffffaa;
   opacity: 0;
-}
-#prev-link:hover,
-#next-link:hover {
-  opacity: 100%;
+
+  &:hover {
+    opacity: 100%;
+  }
 }
 
 #prev-link {
   left: 50%;
-  margin-left: calc(-1 * var(--width) / 2);
-}
-#prev-link:before {
-  content: "⇠";
+  margin-left: calc(-1 * var(--width) /2);
+
+  &:before {
+    content: "⇠";
+  }
 }
 
 #next-link {
   right: 50%;
-  margin-right: calc(-1 * var(--width) / 2);
-}
-#next-link:before {
-  content: "⇢";
+  margin-right: calc(-1 * var(--width) /2);
+
+  &:before {
+    content: "⇢";
+  }
 }
 
 a.prev_flat_link,
@@ -102,5 +107,3 @@ a.next_flat_link {
 .hidden {
   visibility: hidden !important;
 }
-
-/*# sourceMappingURL=slides.css.map */
