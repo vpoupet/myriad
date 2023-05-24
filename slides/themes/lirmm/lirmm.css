@@ -133,6 +133,21 @@ section.section h1:before {
 section.section .page-counter {
   display: none;
 }
+section.split {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+section.split .side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  height: var(--height);
+  padding: calc(10 * var(--mm)) calc(1 * var(--mm)) calc(4.5 * var(--mm)) calc(1 * var(--mm));
+  position: relative;
+}
 section.no-page-counter {
   padding-bottom: 0;
 }
