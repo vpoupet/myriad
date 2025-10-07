@@ -14,13 +14,13 @@ html {
     --width: 100vw;
     --height: calc(var(--width) / (#{$aspect-ratio}));
   }
-
 }
 
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 section {
