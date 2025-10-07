@@ -1,0 +1,315 @@
+@charset "UTF-8";
+@font-face {
+  font-family: Calibri;
+  src: url("./fonts/calibri-regular.ttf");
+  font-style: normal;
+}
+@font-face {
+  font-family: Calibri;
+  src: url("./fonts/calibri-italic.ttf");
+  font-style: italic;
+}
+@font-face {
+  font-family: Calibri;
+  src: url("./fonts/calibri-bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Calibri;
+  src: url("./fonts/calibri-bold-italic.ttf");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: Menlo;
+  src: url("./fonts/Menlo-Regular.ttf");
+  font-style: normal;
+}
+@font-face {
+  font-family: Menlo;
+  src: url("./fonts/Menlo-Italic.ttf");
+  font-style: italic;
+}
+@font-face {
+  font-family: Menlo;
+  src: url("./fonts/Menlo-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Menlo;
+  src: url("./fonts/Menlo-BoldItalic.ttf");
+  font-weight: bold;
+  font-style: italic;
+}
+html {
+  font-size: calc(12 * var(--pt));
+  --text-color: #4D4E4D;
+  color: var(--text-color);
+  --col-orange: #D68E47;
+  --col-red: #C8423F;
+  --col-blue: #3B6AA1;
+}
+
+body {
+  counter-reset: section-counter;
+}
+
+section {
+  font-family: "Calibri", "sans-serif";
+  background-size: 100% 100%;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.5;
+  padding: calc(15 * var(--mm)) calc(12 * var(--mm)) calc(4.5 * var(--mm)) calc(12 * var(--mm));
+  background-image: url("images/BG_Single.svg");
+}
+section h1 {
+  margin: 0;
+  text-align: right;
+  font-weight: normal;
+  font-size: calc(20 * var(--pt));
+  position: absolute;
+  top: calc(4 * var(--mm));
+  left: calc(38 * var(--mm));
+  width: 100%;
+  text-align: left;
+  padding-right: calc(8.5 * var(--mm));
+}
+section h2 {
+  font-weight: normal;
+  font-size: calc(16 * var(--pt));
+}
+section.blank {
+  background: white;
+  padding: 0 calc(2 * var(--mm));
+}
+section.title {
+  padding: 0;
+  background-image: url("images/BG_Title.svg");
+}
+section.title h1,
+section.title h2 {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  left: calc(55 * var(--mm));
+  width: calc(78 * var(--mm));
+  text-align: left;
+}
+section.title h1 {
+  font-weight: bold;
+  margin-bottom: calc(2 * var(--mm));
+}
+section.title h2 {
+  color: var(--col-blue);
+}
+section.title .context,
+section.title .author,
+section.title time {
+  position: absolute;
+  bottom: calc(2 * var(--mm));
+  left: 0;
+  width: 100%;
+  padding: 0 calc(2 * var(--mm));
+}
+section.title .context {
+  text-align: center;
+}
+section.title .author {
+  text-align: left;
+}
+section.title time {
+  text-align: right;
+}
+section.title .page-counter {
+  display: none;
+}
+section.section {
+  padding: 0 calc(1 * var(--mm)) 0 calc(50 * var(--mm));
+  background-image: url("images/BG_Section.png");
+}
+section.section h1 {
+  position: relative;
+  text-align: right;
+}
+section.section h1:before {
+  content: counter(section-counter, upper-roman) ". ";
+}
+section.section .page-counter {
+  display: none;
+}
+section.split {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+section.split .side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  height: var(--height);
+  padding: calc(10 * var(--mm)) calc(1 * var(--mm)) calc(4.5 * var(--mm)) calc(1 * var(--mm));
+  position: relative;
+}
+section.no-page-counter {
+  padding-bottom: 0;
+}
+section.no-page-counter .page-counter {
+  display: none;
+}
+
+.section-counter {
+  counter-increment: section-counter;
+}
+
+ul {
+  margin: 0;
+  list-style-type: none;
+  line-height: 1.5;
+  padding-left: calc(3 * var(--mm));
+}
+ul li:before {
+  content: "■ ";
+  margin-left: calc(-3 * var(--mm));
+  color: var(--col-blue);
+}
+ul ul {
+  font-size: 90%;
+}
+ul ul li:before {
+  color: var(--col-orange);
+}
+
+.slide-footer {
+  position: absolute;
+  width: 100%;
+  bottom: calc(0.5 * var(--mm));
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.page-counter {
+  text-align: right;
+  width: 100%;
+  padding: 0 calc(2 * var(--mm));
+  font-size: calc(8 * var(--pt));
+}
+
+p {
+  margin: 0;
+}
+
+img,
+svg {
+  height: auto;
+  width: 100%;
+}
+
+pre {
+  line-height: 1.5;
+  white-space: pre-wrap;
+  font-variant-ligatures: none;
+  font-size: 85%;
+}
+
+code {
+  font-family: "Menlo", "monospace";
+  font-size: 80%;
+}
+
+.box {
+  --border-width: calc(.5 * var(--mm));
+  margin: calc(4 * var(--mm)) 0 calc(2 * var(--mm)) 0;
+}
+.box .box-top {
+  display: flex;
+  height: calc(1.5 * var(--mm));
+  flex-direction: row;
+}
+.box .box-top .box-top-left {
+  width: calc(3 * var(--mm));
+  border-top: var(--border-width) var(--text-color) solid;
+  border-left: var(--border-width) var(--text-color) solid;
+}
+.box .box-top .box-top-right {
+  flex-grow: 1;
+  border-top: var(--border-width) var(--text-color) solid;
+  border-right: var(--border-width) var(--text-color) solid;
+}
+.box .box-top .box-title {
+  font-weight: bold;
+  margin: 0 calc(1 * var(--mm));
+  position: relative;
+  top: calc(-3 * var(--mm));
+}
+.box .box-bottom {
+  height: calc(1.5 * var(--mm));
+  border-bottom: var(--border-width) var(--text-color) solid;
+  border-left: var(--border-width) var(--text-color) solid;
+  border-right: var(--border-width) var(--text-color) solid;
+}
+.box .box-content {
+  padding: 0 calc(1 * var(--mm));
+}
+
+.highlight {
+  background: #FF7;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.skip {
+  margin-bottom: 1em;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: calc(0.2 * var(--mm)) black solid;
+  padding: 0 var(--mm);
+}
+
+a {
+  color: inherit;
+}
+
+.footnote {
+  position: absolute;
+  bottom: calc(4.5 * var(--mm));
+  left: calc(1 * var(--mm));
+  font-size: 70%;
+}
+
+.image-container {
+  position: relative;
+}
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.image-container img:first-child {
+  position: relative;
+}
+
+.MathJax {
+  scale: 0.8;
+}
+
+/*# sourceMappingURL=hceres.css.map */
