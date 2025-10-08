@@ -109,10 +109,10 @@ section.title .context,
 section.title .author,
 section.title time {
   position: absolute;
-  bottom: calc(2 * var(--mm));
+  bottom: calc(0 * var(--mm));
   left: 0;
   width: 100%;
-  padding: 0 calc(2 * var(--mm));
+  padding: 0 calc(1 * var(--mm));
 }
 section.title .context {
   text-align: center;
